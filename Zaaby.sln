@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby", "Zaaby\Zaaby.csproj", "{7BA7A1E2-B800-4DE1-B8B4-CF5A54830DF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Core", "Zaaby.Core\Zaaby.Core.csproj", "{843B351F-CDB7-40DE-98E5-59678127CC6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BA7A1E2-B800-4DE1-B8B4-CF5A54830DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA7A1E2-B800-4DE1-B8B4-CF5A54830DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA7A1E2-B800-4DE1-B8B4-CF5A54830DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA7A1E2-B800-4DE1-B8B4-CF5A54830DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843B351F-CDB7-40DE-98E5-59678127CC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{843B351F-CDB7-40DE-98E5-59678127CC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{843B351F-CDB7-40DE-98E5-59678127CC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{843B351F-CDB7-40DE-98E5-59678127CC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
