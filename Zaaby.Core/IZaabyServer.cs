@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Zaaby.Core
 {
@@ -29,14 +30,14 @@ namespace Zaaby.Core
 
         #region AddScope
 
-        IZaabyServer AddScope(Type serviceType, Type implementationType);
+        IZaabyServer AddScoped(Type serviceType, Type implementationType);
 
-        IZaabyServer AddScope<TService, TImplementation>()
+        IZaabyServer AddScoped<TService, TImplementation>()
             where TService : class where TImplementation : class, TService;
 
-        IZaabyServer AddScope(Type serviceType);
+        IZaabyServer AddScoped(Type serviceType);
 
-        IZaabyServer AddScope<TService>() where TService : class;
+        IZaabyServer AddScoped<TService>() where TService : class;
 
         IZaabyServer AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory);
 
@@ -69,7 +70,9 @@ namespace Zaaby.Core
 
         #endregion
 
-        IZaabyServer IsIService(Func<Type, bool> isIService);
+        IZaabyServer DefineIService(Func<Type, bool> defineIService);
+
+        IZaabyServer UseDynamicProxy(Dictionary<string, List<string>> baseUrls);
 
         void Run();
     }

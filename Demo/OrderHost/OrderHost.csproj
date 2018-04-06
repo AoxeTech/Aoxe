@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
+    <ProjectReference Include="..\OrderSystem\OrderApplication\OrderApplication.csproj" />
+    <ProjectReference Include="..\OrderSystem\OrderDomain\OrderDomain.csproj" />
+    <ProjectReference Include="..\OrderSystem\OrderRepository\OrderRepository.csproj" />
+  </ItemGroup>
+</Project>

@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Zaaby
 {
-    internal class ActionModelConvention : IActionModelConvention
+    internal class ZaabyActionModelConvention : IActionModelConvention
     {
         private Type ServiceType { get; }
 
-        public ActionModelConvention(Type serviceType)
+        public ZaabyActionModelConvention(Type serviceType)
         {
             ServiceType = serviceType;
         }

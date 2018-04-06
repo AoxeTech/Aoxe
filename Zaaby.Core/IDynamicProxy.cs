@@ -2,6 +2,6 @@
 {
     public interface IDynamicProxy
     {
-        T GestService<T>();
+        T GetService<T>();
     }
 }
