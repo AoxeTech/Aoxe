@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using IOrderRepository;
 using OrderDomain.DomainObjects;
+using OrderRepository.PersistentObjects;
 
 namespace OrderRepository.Repositories
 {
@@ -8,7 +9,7 @@ namespace OrderRepository.Repositories
     {
         public void Add(Order orderParent)
         {
-            throw new System.NotImplementedException();
+            var orderParentPo = new OrderParentPo { };
         }
 
         public void Add(List<Order> orderParents)
@@ -16,22 +17,22 @@ namespace OrderRepository.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void Delete(Order orderParent)
+        public bool Delete(Order orderParent)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Delete(List<Order> orderParents)
+        public int Delete(List<Order> orderParents)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Modify(Order orderParent)
+        public bool Modify(Order orderParent)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Modify(List<Order> orderParents)
+        public int Modify(List<Order> orderParents)
         {
             throw new System.NotImplementedException();
         }
@@ -42,6 +43,11 @@ namespace OrderRepository.Repositories
         }
 
         public List<Order> Get(List<string> id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Order> GetAll()
         {
             throw new System.NotImplementedException();
         }

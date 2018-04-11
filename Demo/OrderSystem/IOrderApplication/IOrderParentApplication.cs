@@ -1,7 +1,12 @@
-﻿namespace IOrderApplication
+﻿using System;
+using IOrderApplication.DTOs;
+using Zaaby.Core;
+
+namespace IOrderApplication
 {
-    public interface IOrderParentApplication
+    public interface IOrderParentApplication : IZaabyAppService
     {
-        
+        OrderParentDto GetOrderParentDto(string id);
+        Guid GetGuid();
     }
 }

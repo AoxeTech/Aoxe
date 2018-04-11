@@ -3,9 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="PersistentObjects" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\IOrderRepository\IOrderRepository.csproj" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,9 @@
-﻿namespace IOrderApplication
+﻿using Zaaby.Core;
+
+namespace IOrderApplication
 {
-    public interface IToBeCheckedOrderApplication
+    public interface IToBeCheckedOrderApplication : IZaabyAppService
     {
-        
+
     }
 }

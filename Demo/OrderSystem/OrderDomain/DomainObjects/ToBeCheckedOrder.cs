@@ -4,6 +4,9 @@ namespace OrderDomain.DomainObjects
 {
     public class ToBeCheckedOrder : OrderBase
     {
-
+        public Order Commit()
+        {
+            return new Order();
+        }
     }
 }

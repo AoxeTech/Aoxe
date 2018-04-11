@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using OrderDomain.DomainObjects;
+using Zaaby.Core;
 
 namespace IOrderRepository
 {
-    public interface IToBeCheckedOrderRepository
+    public interface IToBeCheckedOrderRepository : IZaabyRepository<ToBeCheckedOrder, string>
     {
-        void Add(ToBeCheckedOrder toBeCheckedOrder);
-        void Add(List<ToBeCheckedOrder> toBeCheckedOrders);
-        void Delete(ToBeCheckedOrder toBeCheckedOrder);
-        void Delete(List<ToBeCheckedOrder> toBeCheckedOrders);
-        void Modify(ToBeCheckedOrder toBeCheckedOrder);
-        void Modify(List<ToBeCheckedOrder> toBeCheckedOrders);
-        ToBeCheckedOrder Get(string id);
-        List<ToBeCheckedOrder> Get(List<string> id);
+        new void Add(ToBeCheckedOrder t);
+        new void Add(List<ToBeCheckedOrder> t);
+        new bool Delete(ToBeCheckedOrder t);
+        new int Delete(List<ToBeCheckedOrder> t);
+        new bool Modify(ToBeCheckedOrder t);
+        new int Modify(List<ToBeCheckedOrder> ts);
+        new ToBeCheckedOrder Get(string id);
+        new List<ToBeCheckedOrder> Get(List<string> ids);
+        new List<ToBeCheckedOrder> GetAll();
     }
 }

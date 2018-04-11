@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
     <ProjectReference Include="..\OrderDomain\OrderDomain.csproj" />
   </ItemGroup>
 </Project>

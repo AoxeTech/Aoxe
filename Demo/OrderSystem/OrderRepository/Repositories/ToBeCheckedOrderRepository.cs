@@ -6,32 +6,32 @@ namespace OrderRepository.Repositories
 {
     public class ToBeCheckedOrderRepository : IToBeCheckedOrderRepository
     {
-        public void Add(ToBeCheckedOrder toBeCheckedOrder)
+        public void Add(ToBeCheckedOrder t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Add(List<ToBeCheckedOrder> toBeCheckedOrders)
+        public void Add(List<ToBeCheckedOrder> t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Delete(ToBeCheckedOrder toBeCheckedOrder)
+        public bool Delete(ToBeCheckedOrder t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Delete(List<ToBeCheckedOrder> toBeCheckedOrders)
+        public int Delete(List<ToBeCheckedOrder> t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Modify(ToBeCheckedOrder toBeCheckedOrder)
+        public bool Modify(ToBeCheckedOrder t)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Modify(List<ToBeCheckedOrder> toBeCheckedOrders)
+        public int Modify(List<ToBeCheckedOrder> ts)
         {
             throw new System.NotImplementedException();
         }
@@ -41,7 +41,12 @@ namespace OrderRepository.Repositories
             throw new System.NotImplementedException();
         }
 
-        public List<ToBeCheckedOrder> Get(List<string> id)
+        public List<ToBeCheckedOrder> Get(List<string> ids)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<ToBeCheckedOrder> GetAll()
         {
             throw new System.NotImplementedException();
         }
