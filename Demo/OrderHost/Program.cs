@@ -1,4 +1,5 @@
-﻿using Zaaby;
+﻿using System.Collections.Generic;
+using Zaaby;
 
 namespace OrderHost
 {
@@ -6,7 +7,11 @@ namespace OrderHost
     {
         static void Main(string[] args)
         {
-            ZaabyServer.GetInstance().UseDynamicProxy(null).Run();
+            ZaabyServer.GetInstance().UseDynamicProxy(new Dictionary<string, List<string>>
+                {
+                    {"IFinanceApplication.ICustomerFinanceApplication", new List<string> {"http://localhost:3000"}}
+                })
+                .Run();
         }
     }
 }

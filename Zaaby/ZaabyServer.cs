@@ -21,7 +21,7 @@ namespace Zaaby
 
         private static List<Type> _repositoryInterfaces;
         private static List<Type> _implementrepositories;
-        
+
         private Func<Type, bool> _defineIService;
         private Func<Type, bool> _defineIRepository;
         private Action _useDynamicProxyAction;
@@ -64,13 +64,12 @@ namespace Zaaby
                     _implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
 
                 var dynamicProxy = new ZaabyDynamicProxy(interfaces
-                    .Where(@interface => !baseUrls.ContainsKey(@interface.FullName))
+                    .Where(@interface => baseUrls.ContainsKey(@interface.FullName))
                     .ToDictionary(k => k, v => baseUrls[v.FullName]));
                 var type = dynamicProxy.GetType();
-                var methods = type.GetMethods();
-                var methodInfo = type.GetMethod("GetService").MakeGenericMethod(type);
+                var methodInfo = type.GetMethod("GetService");
                 foreach (var interfaceType in interfaces)
-                {
+                {    
                     var g = methodInfo.MakeGenericMethod(interfaceType);
                     g.Invoke(dynamicProxy, null);
                 }
@@ -79,26 +78,24 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        private void InitApplicationServiceType(IReadOnlyCollection<Type> allTypes)
+        private void InitApplicationServiceType(IEnumerable<Type> allTypes, IEnumerable<Type> allInterfaces)
         {
-            var interfaceQuery = allTypes.Where(type => type.IsInterface);
-            
             var serviceQuery = _defineIService != null
-                ? interfaceQuery.Where(_defineIService)
-                : interfaceQuery.Where(type => typeof(IZaabyAppService).IsAssignableFrom(type));
+                ? allInterfaces.Where(_defineIService)
+                : allInterfaces.Where(type =>
+                    typeof(IZaabyAppService).IsAssignableFrom(type) && type != typeof(IZaabyAppService));
             _serviceInterfaces = serviceQuery.ToList();
             _implementServices = allTypes
                 .Where(type => type.IsClass && _serviceInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
         }
 
-        private void InitRepositoryType(List<Type> allTypes)
+        private void InitRepositoryType(IEnumerable<Type> allTypes, IEnumerable<Type> allInterfaces)
         {
-            var interfaceQuery = allTypes.Where(type => type.IsInterface);
-
             var repositoryQuery = _defineIRepository != null
-                ? interfaceQuery.Where(_defineIRepository)
-                : interfaceQuery.Where(type => typeof(IZaabyRepository<,>).IsAssignableFrom(type));
+                ? allInterfaces.Where(_defineIRepository)
+                : allInterfaces.Where(type =>
+                    typeof(IZaabyRepository).IsAssignableFrom(type) && type != typeof(IZaabyRepository));
             _repositoryInterfaces = repositoryQuery.ToList();
             _implementrepositories = allTypes
                 .Where(type => type.IsClass && _repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
@@ -108,11 +105,12 @@ namespace Zaaby
         public void Run()
         {
             var allTypes = GetTypes();
-            
-            InitApplicationServiceType(allTypes);
+            var allInterfaces = allTypes.Where(type => type.IsInterface).ToList();
 
-            InitRepositoryType(allTypes);
-            
+            InitApplicationServiceType(allTypes, allInterfaces);
+
+            InitRepositoryType(allTypes, allInterfaces);
+
             _useDynamicProxyAction?.Invoke();
             WebHost.CreateDefaultBuilder()
                 .ConfigureServices(ConfigureServices)
@@ -130,7 +128,7 @@ namespace Zaaby
                 if (serviceInterface != null)
                     services.AddScoped(serviceInterface, service);
             });
-            
+
             _implementrepositories.ForEach(repository =>
             {
                 var repositoryInterface =

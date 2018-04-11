@@ -1,8 +1,9 @@
 ﻿using IFinanceApplication.DTOs;
+using Zaaby.Core;
 
 namespace IFinanceApplication
 {
-    public interface ICustomerFinanceApplication
+    public interface ICustomerFinanceApplication : IZaabyAppService
     {
         bool Charge(CustomerChargeParam param);
     }

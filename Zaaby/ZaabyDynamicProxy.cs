@@ -52,7 +52,10 @@ namespace Zaaby
             {
                 _type = typeof(T);
                 if (!HttpClients.ContainsKey(_type))
-                    throw new Exception($"{_type} has not set the url.");
+                {
+                    Console.WriteLine($"{_type} has not set the url.");
+                    return;
+                }
 
                 var clients = HttpClients[_type];
                 var random = new Random();

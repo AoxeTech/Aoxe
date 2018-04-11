@@ -4,16 +4,16 @@ using Zaaby.Core;
 
 namespace IOrderRepository
 {
-    public interface IToBeCheckedOrderRepository : IZaabyRepository<ToBeCheckedOrder, string>
+    public interface IToBeCheckedOrderRepository : IZaabyRepository
     {
-        new void Add(ToBeCheckedOrder t);
-        new void Add(List<ToBeCheckedOrder> t);
-        new bool Delete(ToBeCheckedOrder t);
-        new int Delete(List<ToBeCheckedOrder> t);
-        new bool Modify(ToBeCheckedOrder t);
-        new int Modify(List<ToBeCheckedOrder> ts);
-        new ToBeCheckedOrder Get(string id);
-        new List<ToBeCheckedOrder> Get(List<string> ids);
-        new List<ToBeCheckedOrder> GetAll();
+        void Add(ToBeCheckedOrder t);
+        void Add(List<ToBeCheckedOrder> t);
+        bool Delete(ToBeCheckedOrder t);
+        int Delete(List<ToBeCheckedOrder> t);
+        bool Modify(ToBeCheckedOrder t);
+        int Modify(List<ToBeCheckedOrder> ts);
+        ToBeCheckedOrder Get(string id);
+        List<ToBeCheckedOrder> Get(List<string> ids);
+        List<ToBeCheckedOrder> GetAll();
     }
 }

@@ -4,16 +4,16 @@ using Zaaby.Core;
 
 namespace IOrderRepository
 {
-    public interface IOrderParentRepository : IZaabyRepository<Order, string>
+    public interface IOrderParentRepository : IZaabyRepository
     {
-        new void Add(Order orderParent);
-        new void Add(List<Order> orderParents);
-        new bool Delete(Order orderParent);
-        new int Delete(List<Order> orderParents);
-        new bool Modify(Order orderParent);
-        new int Modify(List<Order> orderParents);
-        new Order Get(string id);
-        new List<Order> Get(List<string> id);
-        new List<Order> GetAll();
+        void Add(Order orderParent);
+        void Add(List<Order> orderParents);
+        bool Delete(Order orderParent);
+        int Delete(List<Order> orderParents);
+        bool Modify(Order orderParent);
+        int Modify(List<Order> orderParents);
+        Order Get(string id);
+        List<Order> Get(List<string> id);
+        List<Order> GetAll();
     }
 }
