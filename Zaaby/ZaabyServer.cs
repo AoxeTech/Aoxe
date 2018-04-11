@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Zaaby.Core;
 
 namespace Zaaby
@@ -29,6 +30,7 @@ namespace Zaaby
         private static readonly Dictionary<Type, Type> ScopeDic = new Dictionary<Type, Type>();
         private static readonly Dictionary<Type, Type> TransientDic = new Dictionary<Type, Type>();
         private static readonly Dictionary<Type, Type> SingletonDic = new Dictionary<Type, Type>();
+        private static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
 
         public static ZaabyServer GetInstance()
         {
@@ -69,9 +71,10 @@ namespace Zaaby
                 var type = dynamicProxy.GetType();
                 var methodInfo = type.GetMethod("GetService");
                 foreach (var interfaceType in interfaces)
-                {    
+                {
                     var g = methodInfo.MakeGenericMethod(interfaceType);
-                    g.Invoke(dynamicProxy, null);
+                    var proxy = g.Invoke(dynamicProxy, null);
+                    AddTransient(interfaceType, p => proxy);
                 }
             };
 
@@ -115,6 +118,7 @@ namespace Zaaby
             WebHost.CreateDefaultBuilder()
                 .ConfigureServices(ConfigureServices)
                 .Configure(Configure)
+                .UseUrls("http://localhost:3000")
                 .Build()
                 .Run();
         }
@@ -145,6 +149,8 @@ namespace Zaaby
 
             foreach (var keyValuePair in SingletonDic)
                 services.AddSingleton(keyValuePair.Key, keyValuePair.Value);
+
+            services.Add(ServiceDescriptors);
 
             services.AddMvcCore(mvcOptions =>
                 {
@@ -405,8 +411,7 @@ namespace Zaaby
         private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
             ServiceLifetime lifetime)
         {
-            var implementationType = implementationFactory.GetType().GenericTypeArguments[1];
-            Add(serviceType, implementationType, lifetime);
+            ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
         }
 
         private ZaabyServer()

@@ -58,7 +58,7 @@ namespace OrderApplication
 
         public Guid GetGuid()
         {
-            return Guid.NewGuid();
+            return _customerFinanceApplication.GetId();
         }
     }
 }

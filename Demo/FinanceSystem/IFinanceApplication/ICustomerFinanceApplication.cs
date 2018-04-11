@@ -1,4 +1,5 @@
-﻿using IFinanceApplication.DTOs;
+﻿using System;
+using IFinanceApplication.DTOs;
 using Zaaby.Core;
 
 namespace IFinanceApplication
@@ -6,5 +7,7 @@ namespace IFinanceApplication
     public interface ICustomerFinanceApplication : IZaabyAppService
     {
         bool Charge(CustomerChargeParam param);
+
+        Guid GetId();
     }
 }
