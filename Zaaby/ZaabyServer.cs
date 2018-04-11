@@ -18,8 +18,12 @@ namespace Zaaby
 
         private static List<Type> _serviceInterfaces;
         private static List<Type> _implementServices;
+
+        private static List<Type> _repositoryInterfaces;
+        private static List<Type> _implementrepositories;
         
         private Func<Type, bool> _defineIService;
+        private Func<Type, bool> _defineIRepository;
         private Action _useDynamicProxyAction;
 
         private static readonly Dictionary<Type, Type> ScopeDic = new Dictionary<Type, Type>();
@@ -46,6 +50,12 @@ namespace Zaaby
             return _zaabyServer;
         }
 
+        public IZaabyServer DefineIRepository(Func<Type, bool> defineIRepository)
+        {
+            _defineIRepository = defineIRepository;
+            return _zaabyServer;
+        }
+
         public IZaabyServer UseDynamicProxy(Dictionary<string, List<string>> baseUrls)
         {
             _useDynamicProxyAction = () =>
@@ -69,17 +79,40 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public void Run()
+        private void InitApplicationServiceType(IReadOnlyCollection<Type> allTypes)
         {
-            var allTypes = GetTypes();
             var interfaceQuery = allTypes.Where(type => type.IsInterface);
-            interfaceQuery = _defineIService != null
+            
+            var serviceQuery = _defineIService != null
                 ? interfaceQuery.Where(_defineIService)
                 : interfaceQuery.Where(type => typeof(IZaabyAppService).IsAssignableFrom(type));
-            _serviceInterfaces = interfaceQuery.ToList();
+            _serviceInterfaces = serviceQuery.ToList();
             _implementServices = allTypes
                 .Where(type => type.IsClass && _serviceInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
+        }
+
+        private void InitRepositoryType(List<Type> allTypes)
+        {
+            var interfaceQuery = allTypes.Where(type => type.IsInterface);
+
+            var repositoryQuery = _defineIRepository != null
+                ? interfaceQuery.Where(_defineIRepository)
+                : interfaceQuery.Where(type => typeof(IZaabyRepository<,>).IsAssignableFrom(type));
+            _repositoryInterfaces = repositoryQuery.ToList();
+            _implementrepositories = allTypes
+                .Where(type => type.IsClass && _repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
+                .ToList();
+        }
+
+        public void Run()
+        {
+            var allTypes = GetTypes();
+            
+            InitApplicationServiceType(allTypes);
+
+            InitRepositoryType(allTypes);
+            
             _useDynamicProxyAction?.Invoke();
             WebHost.CreateDefaultBuilder()
                 .ConfigureServices(ConfigureServices)
@@ -96,6 +129,14 @@ namespace Zaaby
                     service.GetInterfaces().FirstOrDefault(i => _serviceInterfaces.Contains(i));
                 if (serviceInterface != null)
                     services.AddScoped(serviceInterface, service);
+            });
+            
+            _implementrepositories.ForEach(repository =>
+            {
+                var repositoryInterface =
+                    repository.GetInterfaces().FirstOrDefault(i => _repositoryInterfaces.Contains(i));
+                if (repositoryInterface != null)
+                    services.AddScoped(repositoryInterface, repository);
             });
 
             foreach (var keyValuePair in TransientDic)
