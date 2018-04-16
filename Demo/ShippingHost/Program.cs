@@ -6,7 +6,7 @@ namespace ShippingHost
     {
         static void Main(string[] args)
         {
-            ZaabyServer.GetInstance().UseDynamicProxy(null).Run();
+            ZaabyServer.GetInstance().UseZaabyApplicationService().Run();
         }
     }
 }

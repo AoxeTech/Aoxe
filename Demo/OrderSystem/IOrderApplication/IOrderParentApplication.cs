@@ -7,6 +7,6 @@ namespace IOrderApplication
     public interface IOrderParentApplication : IZaabyAppService
     {
         OrderParentDto GetOrderParentDto(string id);
-        Guid GetGuid();
+        int GetId();
     }
 }

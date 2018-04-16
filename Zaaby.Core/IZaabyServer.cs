@@ -70,9 +70,10 @@ namespace Zaaby.Core
 
         #endregion
 
-        IZaabyServer DefineIService(Func<Type, bool> defineIService);
+        IZaabyServer UseZaabyApplicationService(Dictionary<string, List<string>> baseUrls = null,
+            Func<Type, bool> defineIService = null);
 
-        IZaabyServer UseDynamicProxy(Dictionary<string, List<string>> baseUrls);
+        IZaabyServer UseZaabyRepository(Func<Type, bool> defineIRepository = null);
 
         void Run();
     }

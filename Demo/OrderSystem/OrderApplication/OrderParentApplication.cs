@@ -1,5 +1,4 @@
-﻿using System;
-using IFinanceApplication;
+﻿using IFinanceApplication;
 using IFinanceApplication.DTOs;
 using IOrderApplication;
 using IOrderApplication.DTOs;
@@ -56,7 +55,7 @@ namespace OrderApplication
             };
         }
 
-        public Guid GetGuid()
+        public int GetId()
         {
             return _customerFinanceApplication.GetId();
         }

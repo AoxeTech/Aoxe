@@ -6,7 +6,7 @@ namespace FinanceHost
     {
         static void Main(string[] args)
         {
-            ZaabyServer.GetInstance().Run();
+            ZaabyServer.GetInstance().UseZaabyApplicationService().Run();
         }
     }
 }

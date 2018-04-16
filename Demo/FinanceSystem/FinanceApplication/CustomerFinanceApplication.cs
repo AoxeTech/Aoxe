@@ -4,16 +4,16 @@ using IFinanceApplication.DTOs;
 
 namespace FinanceApplication
 {
-    public class CustomerFinanceApplication:ICustomerFinanceApplication
+    public class CustomerFinanceApplication : ICustomerFinanceApplication
     {
         public bool Charge(CustomerChargeParam param)
         {
             throw new NotImplementedException();
         }
 
-        public Guid GetId()
+        public int GetId()
         {
-            return Guid.NewGuid();
+            return 1;
         }
     }
 }
