@@ -20,7 +20,8 @@ namespace OrderHost
                         "IShippingApplication.IFreightApplication",
                         new List<string> {"http://192.168.5.223:2502/",}
                     }
-                }).Run();
+                })
+                .Run();
         }
     }
 }

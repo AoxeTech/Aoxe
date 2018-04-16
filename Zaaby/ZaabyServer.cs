@@ -34,7 +34,7 @@ namespace Zaaby
         private static readonly Dictionary<Type, Type> SingletonDic = new Dictionary<Type, Type>();
         private static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
 
-        public static ZaabyServer GetInstance()
+        public static IZaabyServer GetInstance()
         {
             if (_zaabyServer == null)
             {
