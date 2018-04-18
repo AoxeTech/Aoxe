@@ -6,7 +6,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\FinanceSystem\FinanceApplication\FinanceApplication.csproj" />
-    <ProjectReference Include="..\FinanceSystem\FinanceDomain\FinanceDomain.csproj" />
     <ProjectReference Include="..\FinanceSystem\FinanceRepository\FinanceRepository.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
+    <ProjectReference Include="..\OrderSystem\IOrderApplication\IOrderApplication.csproj" />
     <ProjectReference Include="..\ShippingSystem\ShippingApplication\ShippingApplication.csproj" />
     <ProjectReference Include="..\ShippingSystem\ShippingDomain\ShippingDomain.csproj" />
     <ProjectReference Include="..\ShippingSystem\ShippingRepository\ShippingRepository.csproj" />

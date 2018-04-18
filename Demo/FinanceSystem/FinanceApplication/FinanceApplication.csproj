@@ -3,10 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OrderSystem\IOrderApplication\IOrderApplication.csproj" />
-    <ProjectReference Include="..\..\ShippingSystem\IShippingApplication\IShippingApplication.csproj" />
     <ProjectReference Include="..\FinanceDomain\FinanceDomain.csproj" />
     <ProjectReference Include="..\IFinanceApplication\IFinanceApplication.csproj" />
-    <ProjectReference Include="..\IFinanceRepository\IFinanceRepository.csproj" />
   </ItemGroup>
 </Project>
