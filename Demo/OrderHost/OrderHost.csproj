@@ -9,4 +9,12 @@
     <ProjectReference Include="..\OrderSystem\OrderDomain\OrderDomain.csproj" />
     <ProjectReference Include="..\OrderSystem\OrderRepository\OrderRepository.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="ApplicationService.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

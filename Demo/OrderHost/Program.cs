@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
 using Zaaby;
 
 namespace OrderHost
@@ -7,20 +10,12 @@ namespace OrderHost
     {
         static void Main(string[] args)
         {
+            var dynamicProxyConfig = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ApplicationService.json", true, true).Build();
+
             ZaabyServer.GetInstance()
                 .UseZaabyRepository()
-                .UseZaabyApplicationService(
-                new Dictionary<string, List<string>>
-                {
-                    {
-                        "IFinanceApplication.ICustomerFinanceApplication",
-                        new List<string> {"http://192.168.5.223:2500/"}
-                    },
-                    {
-                        "IShippingApplication.IFreightApplication",
-                        new List<string> {"http://192.168.5.223:2502/",}
-                    }
-                })
+                .UseZaabyApplicationService(dynamicProxyConfig.Get<Dictionary<string, List<string>>>())
                 .Run();
         }
     }
