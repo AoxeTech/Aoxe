@@ -6,6 +6,6 @@
     <Folder Include="Entities" />
     <Folder Include="Events" />
     <Folder Include="IRepository" />
-    <Folder Include="Services" />
+    <Folder Include="DomainServices" />
   </ItemGroup>
 </Project>

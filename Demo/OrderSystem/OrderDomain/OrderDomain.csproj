@@ -5,7 +5,7 @@
   <ItemGroup>
     <Folder Include="Entities\ValueObjects" />
     <Folder Include="Events" />
-    <Folder Include="Services" />
+    <Folder Include="DomainServices" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
