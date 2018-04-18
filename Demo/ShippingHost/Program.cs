@@ -6,7 +6,9 @@ namespace ShippingHost
     {
         static void Main(string[] args)
         {
-            ZaabyServer.GetInstance().UseZaabyApplicationService().Run();
+            ZaabyServer.GetInstance()
+                .UseZaabyApplicationService()
+                .Run();
         }
     }
 }
