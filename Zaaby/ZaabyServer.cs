@@ -112,8 +112,10 @@ namespace Zaaby
                         implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
 
                     var dynamicProxy = new ZaabyDynamicProxy(interfaces
-                        .Where(@interface => baseUrls.ContainsKey(@interface.FullName))
-                        .ToDictionary(k => k, v => baseUrls[v.FullName]));
+                        .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
+                        .Select(@interface => @interface.Namespace)
+                        .Distinct()
+                        .ToDictionary(k => k, v => baseUrls[v]));
                     var type = dynamicProxy.GetType();
                     var methodInfo = type.GetMethod("GetService");
                     foreach (var interfaceType in interfaces)

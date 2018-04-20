@@ -13,17 +13,17 @@ namespace Zaaby
 {
     public class ZaabyDynamicProxy : IDynamicProxy
     {
-        private static readonly ConcurrentDictionary<Type, List<HttpClient>> HttpClients =
-            new ConcurrentDictionary<Type, List<HttpClient>>();
+        private static readonly ConcurrentDictionary<string, List<HttpClient>> HttpClients =
+            new ConcurrentDictionary<string, List<HttpClient>>();
 
-        public ZaabyDynamicProxy(Dictionary<Type, List<string>> baseUrls)
+        public ZaabyDynamicProxy(Dictionary<string, List<string>> baseUrls)
         {
             if (baseUrls.Any(kv =>
                 kv.Value?.Count == 0 || (kv.Value ?? throw new Exception()).Any(string.IsNullOrWhiteSpace)))
-                throw new Exception();
+                throw new ArgumentException(nameof(baseUrls));
 
             var urls = baseUrls
-                .SelectMany(kv => kv.Value.Select(v => new {Url = v.Trim(), Type = kv.Key}))
+                .SelectMany(kv => kv.Value.Select(v => new {Url = v.Trim(), Namespace = kv.Key}))
                 .GroupBy(p => p.Url);
 
             foreach (var datas in urls)
@@ -32,7 +32,7 @@ namespace Zaaby
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 foreach (var data in datas)
                 {
-                    var httpClients = HttpClients.GetOrAdd(data.Type, key => new List<HttpClient>());
+                    var httpClients = HttpClients.GetOrAdd(data.Namespace, key => new List<HttpClient>());
                     httpClients.Add(httpClient);
                 }
             }
@@ -51,15 +51,15 @@ namespace Zaaby
             public InvokeProxy()
             {
                 _type = typeof(T);
-                if (!HttpClients.ContainsKey(_type))
+                if (!HttpClients.ContainsKey(_type.Namespace))
                 {
                     Console.WriteLine($"{_type} has not set the url.");
                     return;
                 }
 
-                var clients = HttpClients[_type];
+                var clients = HttpClients[_type.Namespace];
                 var random = new Random();
-                _client = HttpClients[_type][random.Next(0, clients.Count - 1)];
+                _client = HttpClients[_type.Namespace][random.Next(0, clients.Count - 1)];
             }
 
             protected override object Invoke(MethodInfo targetMethod, object[] args)
