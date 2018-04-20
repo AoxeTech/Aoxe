@@ -11,4 +11,12 @@
     <ProjectReference Include="..\FinanceSystem\FinanceDomain\FinanceDomain.csproj" />
     <ProjectReference Include="..\FinanceSystem\FinanceRepository\FinanceRepository.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="ApplicationService.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
