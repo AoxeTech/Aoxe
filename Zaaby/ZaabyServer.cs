@@ -19,15 +19,17 @@ namespace Zaaby
         private static readonly object LockObj = new object();
         private static ZaabyServer _zaabyServer;
         private static List<Type> _allTypes;
-        
+
         private static Action _useDynamicProxyAction;
         private static Action _useAppService;
         private static Action _useRepository;
-        
+
         private static readonly List<Action<MvcOptions>> AddMvcCoreActions = new List<Action<MvcOptions>>();
 
         private static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
             new List<Action<ApplicationPartManager>>();
+        
+        private static readonly List<string> Urls = new List<string>();
 
         private static readonly Dictionary<Type, Type> ScopeDic = new Dictionary<Type, Type>();
         private static readonly Dictionary<Type, Type> TransientDic = new Dictionary<Type, Type>();
@@ -48,16 +50,26 @@ namespace Zaaby
             return _zaabyServer;
         }
 
+        public IZaabyServer UseUrls(params string[] urls)
+        {
+            Urls.AddRange(urls);
+            return _zaabyServer;
+        }
+
         public void Run()
         {
             _useAppService?.Invoke();
             _useRepository?.Invoke();
             _useDynamicProxyAction?.Invoke();
 
-            WebHost.CreateDefaultBuilder()
+            var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .ConfigureServices(ConfigureServices)
-                .Configure(Configure)
-                .Build()
+                .Configure(Configure);
+
+            if (Urls.Count > 0)
+                Urls.ForEach(url => webHostBuilder.UseUrls(url));
+
+            webHostBuilder.Build()
                 .Run();
         }
 
@@ -85,14 +97,12 @@ namespace Zaaby
                 AddMvcCoreActions.Add(mvcOptions =>
                 {
                     foreach (var serviceInterface in serviceInterfaces)
-                    {
                         mvcOptions.Conventions.Add(new ZaabyActionModelConvention(serviceInterface));
-                    }
                 });
                 ConfigureApplicationPartManagerActions.Add(manager =>
                 {
-                    manager.FeatureProviders.Add(
-                        new ZaabyAppServiceControllerFeatureProvider(implementServices));
+                    manager.FeatureProviders
+                        .Add(new ZaabyAppServiceControllerFeatureProvider(implementServices));
                 });
             };
             if (baseUrls != null)
@@ -108,8 +118,7 @@ namespace Zaaby
                     var methodInfo = type.GetMethod("GetService");
                     foreach (var interfaceType in interfaces)
                     {
-                        var g = methodInfo.MakeGenericMethod(interfaceType);
-                        var proxy = g.Invoke(dynamicProxy, null);
+                        var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
                         AddTransient(interfaceType, p => proxy);
                     }
                 };
@@ -151,10 +160,7 @@ namespace Zaaby
 
             services.Add(ServiceDescriptors);
 
-            services.AddMvcCore(mvcOptions =>
-                {
-                    AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions));
-                })
+            services.AddMvcCore(mvcOptions => { AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions)); })
                 .ConfigureApplicationPartManager(manager =>
                 {
                     ConfigureApplicationPartManagerActions.ForEach(action => action.Invoke(manager));

@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby" Version="0.0.3" />
+    <PackageReference Include="Zaaby" Version="0.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OrderSystem\OrderApplication\OrderApplication.csproj" />

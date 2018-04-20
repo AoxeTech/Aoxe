@@ -75,6 +75,8 @@ namespace Zaaby.Core
 
         IZaabyServer UseZaabyRepository(Func<Type, bool> defineIRepository = null);
 
+        IZaabyServer UseUrls(params string[] urls);
+
         void Run();
     }
-} 
+}

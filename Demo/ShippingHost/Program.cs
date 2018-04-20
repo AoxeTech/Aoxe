@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Zaaby;
 
 namespace ShippingHost
 {
@@ -6,7 +6,11 @@ namespace ShippingHost
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ZaabyServer.GetInstance()
+                .UseZaabyRepository()
+                .UseZaabyApplicationService()
+                .UseUrls("http://*:5002")
+                .Run();
         }
     }
 }

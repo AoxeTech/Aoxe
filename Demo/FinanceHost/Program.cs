@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Zaaby;
 
 namespace FinanceHost
 {
@@ -6,7 +6,11 @@ namespace FinanceHost
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ZaabyServer.GetInstance()
+                .UseZaabyRepository()
+                .UseZaabyApplicationService()
+                .UseUrls("http://*:5000")
+                .Run();
         }
     }
 }
