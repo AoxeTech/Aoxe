@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby" Version="0.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FinanceSystem\FinanceApplication\FinanceApplication.csproj" />
+    <ProjectReference Include="..\FinanceSystem\FinanceDomain\FinanceDomain.csproj" />
+    <ProjectReference Include="..\FinanceSystem\FinanceRepository\FinanceRepository.csproj" />
+  </ItemGroup>
+</Project>
