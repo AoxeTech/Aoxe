@@ -2,12 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.0.13</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
-    <PackageTags>Zaaby Webapi Framework</PackageTags>
+    <PackageTags>Zaaby MicroService Webapi Framework</PackageTags>
     <Description>Interface/BaseClass/Attribute/exception for Zaaby framework.</Description>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby.Core</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby.Core/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 </Project>

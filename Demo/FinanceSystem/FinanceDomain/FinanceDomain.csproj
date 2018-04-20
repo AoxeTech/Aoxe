@@ -9,6 +9,6 @@
     <Folder Include="IRepository\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.0.13" />
+    <PackageReference Include="Zaaby.Core" Version="0.1.1" />
   </ItemGroup>
 </Project>

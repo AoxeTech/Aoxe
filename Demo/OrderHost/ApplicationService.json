@@ -1,0 +1,4 @@
+﻿{
+  "IFinanceApplication.ICustomerFinanceApplication":["http://192.168.5.223:2500/"],
+  "IShippingApplication.IFreightApplication":["http://192.168.5.223:2502/"]
+}
