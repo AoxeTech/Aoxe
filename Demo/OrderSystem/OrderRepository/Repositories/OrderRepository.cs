@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using IOrderRepository;
-using OrderDomain.DomainObjects;
+using OrderDomain.AggregateRoots;
+using OrderDomain.IRepository;
 using OrderRepository.PersistentObjects;
 
 namespace OrderRepository.Repositories

@@ -1,6 +1,6 @@
 ﻿using OrderDomain.Entities.ReferenceObjects;
 
-namespace OrderDomain.DomainObjects
+namespace OrderDomain.AggregateRoots
 {
     public class Order : OrderBase
     {

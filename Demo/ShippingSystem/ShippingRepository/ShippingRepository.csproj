@@ -3,6 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IShippingRepository\IShippingRepository.csproj" />
+    <ProjectReference Include="..\ShippingDomain\ShippingDomain.csproj" />
   </ItemGroup>
 </Project>

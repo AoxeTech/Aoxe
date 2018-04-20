@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using OrderDomain.DomainObjects;
+using OrderDomain.AggregateRoots;
 using Zaaby.Core;
 
-namespace IOrderRepository
+namespace OrderDomain.IRepository
 {
     public interface IToBeCheckedOrderRepository : IZaabyRepository
     {

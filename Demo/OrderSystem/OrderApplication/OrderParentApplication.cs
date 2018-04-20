@@ -2,9 +2,9 @@
 using IFinanceApplication.DTOs;
 using IOrderApplication;
 using IOrderApplication.DTOs;
-using IOrderRepository;
 using IShippingApplication;
 using IShippingApplication.DTOs;
+using OrderDomain.IRepository;
 
 namespace OrderApplication
 {

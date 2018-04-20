@@ -1,12 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>0.0.2</PackageVersion>
+    <Authors>Mutuduxf</Authors>
+    <Company>Mutuduxf</Company>
+    <PackageTags>Zaaby MicroService Framework DDD</PackageTags>
+    <Description>A micro service framework base by asp.net core.</Description>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.3" />
-    <PackageReference Include="Zaaby.Core" Version="0.0.11" />
+    <PackageReference Include="Zaaby.Core" Version="0.0.13" />
   </ItemGroup>
 </Project>

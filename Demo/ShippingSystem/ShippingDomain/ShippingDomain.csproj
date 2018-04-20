@@ -8,4 +8,7 @@
     <Folder Include="IRepository" />
     <Folder Include="DomainServices" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby.Core" Version="0.0.13" />
+  </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@
     <ProjectReference Include="..\..\FinanceSystem\IFinanceApplication\IFinanceApplication.csproj" />
     <ProjectReference Include="..\..\OrderSystem\IOrderApplication\IOrderApplication.csproj" />
     <ProjectReference Include="..\IShippingApplication\IShippingApplication.csproj" />
-    <ProjectReference Include="..\IShippingRepository\IShippingRepository.csproj" />
     <ProjectReference Include="..\ShippingDomain\ShippingDomain.csproj" />
   </ItemGroup>
 </Project>
