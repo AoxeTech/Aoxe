@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Entities" />
-    <Folder Include="Events" />
+    <Folder Include="DomainEvents" />
     <Folder Include="IRepository" />
     <Folder Include="DomainServices" />
     <Folder Include="ValueObjects\" />
