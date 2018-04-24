@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Entities\ValueObjects" />
+    <Folder Include="ValueObjects\" />
     <Folder Include="Events" />
     <Folder Include="DomainServices" />
   </ItemGroup>

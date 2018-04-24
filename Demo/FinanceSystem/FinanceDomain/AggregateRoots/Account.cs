@@ -1,6 +1,6 @@
 ﻿namespace FinanceDomain.AggregateRoots
 {
-    public class Class1
+    public class Account
     {
     }
 }

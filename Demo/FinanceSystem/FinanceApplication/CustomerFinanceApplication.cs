@@ -6,6 +6,11 @@ namespace FinanceApplication
 {
     public class CustomerFinanceApplication : ICustomerFinanceApplication
     {
+        public CustomerFinanceApplication()
+        {
+            
+        }
+        
         public bool Charge(CustomerChargeParam param)
         {
             throw new NotImplementedException();

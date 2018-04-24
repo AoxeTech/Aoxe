@@ -1,4 +1,4 @@
-﻿using OrderDomain.Entities.ReferenceObjects;
+﻿using OrderDomain.Entities;
 
 namespace OrderDomain.AggregateRoots
 {

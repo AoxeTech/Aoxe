@@ -25,7 +25,7 @@ namespace OrderApplication
             _freightApplication = freightApplication;
         }
 
-        public void CommitToBeCheckedOrder(string id)
+        public void ReceiveCargo(string id)
         {
             var tbc = _toBeCheckedOrderRepository.Get(id);
             var freight = _freightApplication.FreightCharge(new Cargo

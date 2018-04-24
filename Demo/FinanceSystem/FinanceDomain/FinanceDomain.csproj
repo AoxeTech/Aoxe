@@ -7,6 +7,7 @@
     <Folder Include="Events\" />
     <Folder Include="DomainServices\" />
     <Folder Include="IRepository\" />
+    <Folder Include="ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Zaaby.Core" Version="0.1.3" />
