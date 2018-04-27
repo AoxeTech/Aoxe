@@ -2,7 +2,7 @@
 
 namespace IOrderApplication
 {
-    public interface IToBeCheckedOrderApplication : IZaabyAppService
+    public interface IToBeCheckedOrderApplication : IZaabyApplicationService
     {
 
     }

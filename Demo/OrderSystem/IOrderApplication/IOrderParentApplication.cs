@@ -3,9 +3,9 @@ using Zaaby.Core;
 
 namespace IOrderApplication
 {
-    public interface IOrderParentApplication : IZaabyAppService
+    public interface IOrderParentApplication : IZaabyApplicationService
     {
         OrderParentDto GetOrderParentDto(string id);
-        int GetId();
+        string OrderSystemTest();
     }
 }

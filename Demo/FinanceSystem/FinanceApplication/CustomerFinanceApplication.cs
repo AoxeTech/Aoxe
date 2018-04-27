@@ -16,9 +16,9 @@ namespace FinanceApplication
             throw new NotImplementedException();
         }
 
-        public int GetId()
+        public string FinanceSystemTest()
         {
-            return 1;
+            return $"From CustomerFinanceApplication. {DateTimeOffset.Now.UtcTicks}";
         }
     }
 }

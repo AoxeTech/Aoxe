@@ -71,9 +71,11 @@ namespace Zaaby.Core
         #endregion
 
         IZaabyServer UseZaabyApplicationService(Dictionary<string, List<string>> baseUrls = null,
-            Func<Type, bool> defineIService = null);
+            Func<Type, bool> applicationServiceInterfaceDefine = null);
 
-        IZaabyServer UseZaabyRepository(Func<Type, bool> defineIRepository = null);
+        IZaabyServer UseZaabyRepository(Func<Type, bool> repositoryInterfaceDefine = null);
+
+        IZaabyServer UseZaabyDomainService(Func<Type, bool> domainServiceInterfaceDefine = null);
 
         IZaabyServer UseUrls(params string[] urls);
 

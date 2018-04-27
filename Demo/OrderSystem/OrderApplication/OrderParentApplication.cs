@@ -1,53 +1,33 @@
-﻿using IFinanceApplication;
-using IFinanceApplication.DTOs;
+﻿using System;
+using IFinanceApplication;
 using IOrderApplication;
 using IOrderApplication.DTOs;
 using IShippingApplication;
-using IShippingApplication.DTOs;
 using OrderDomain.IRepository;
 
 namespace OrderApplication
 {
     public class OrderParentApplication : IOrderParentApplication
     {
-        private readonly IOrderParentRepository _orderParentRepository;
-        private readonly IToBeCheckedOrderRepository _toBeCheckedOrderRepository;
+        private readonly IOrderRepository _orderRepository;
         private readonly ICustomerFinanceApplication _customerFinanceApplication;
         private readonly IFreightApplication _freightApplication;
 
-        public OrderParentApplication(IOrderParentRepository orderParentRepository,
-            IToBeCheckedOrderRepository toBeCheckedOrderRepository,
+        public OrderParentApplication(IOrderRepository orderParentRepository,
             ICustomerFinanceApplication customerFinanceApplication, IFreightApplication freightApplication)
         {
-            _orderParentRepository = orderParentRepository;
-            _toBeCheckedOrderRepository = toBeCheckedOrderRepository;
+            _orderRepository = orderParentRepository;
             _customerFinanceApplication = customerFinanceApplication;
             _freightApplication = freightApplication;
         }
 
         public void ReceiveCargo(string id)
         {
-            var tbc = _toBeCheckedOrderRepository.Get(id);
-            var freight = _freightApplication.FreightCharge(new Cargo
-            {
-                Height = tbc.Height,
-                Lenght = tbc.Lenght,
-                Weight = tbc.Weight,
-                Width = tbc.Width
-            });
-            _customerFinanceApplication.Charge(new CustomerChargeParam
-            {
-                CustomerId = tbc.UserId,
-                FeeByCent = freight
-            });
-            var orderParent = tbc.Commit();
-            _toBeCheckedOrderRepository.Modify(tbc);
-            _orderParentRepository.Add(orderParent);
         }
 
         public OrderParentDto GetOrderParentDto(string id)
         {
-            var order = _orderParentRepository.Get(id);
+            var order = _orderRepository.Get(id);
             return new OrderParentDto
             {
                 Id = order.Id,
@@ -55,9 +35,10 @@ namespace OrderApplication
             };
         }
 
-        public int GetId()
+        public string OrderSystemTest()
         {
-            return _customerFinanceApplication.GetId();
+            return $"{_customerFinanceApplication.FinanceSystemTest()}\r\n" +
+                   $"From OrderParentApplication. {DateTimeOffset.Now.UtcTicks}";
         }
     }
 }

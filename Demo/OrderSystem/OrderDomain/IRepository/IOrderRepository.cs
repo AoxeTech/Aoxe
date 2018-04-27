@@ -4,7 +4,7 @@ using Zaaby.Core;
 
 namespace OrderDomain.IRepository
 {
-    public interface IOrderParentRepository : IZaabyRepository
+    public interface IOrderRepository : IZaabyRepository
     {
         void Add(Order orderParent);
         void Add(List<Order> orderParents);

@@ -1,12 +1,11 @@
-﻿using System;
-using IShippingApplication.DTOs;
+﻿using IShippingApplication.DTOs;
 using Zaaby.Core;
 
 namespace IShippingApplication
 {
-    public interface IFreightApplication : IZaabyAppService
+    public interface IFreightApplication : IZaabyApplicationService
     {
         int FreightCharge(Cargo cargo);
-        Guid GetGuid();
+        string ShippiingSystemTest();
     }
 }

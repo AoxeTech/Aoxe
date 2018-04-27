@@ -11,9 +11,9 @@ namespace ShippingApplication
             throw new NotImplementedException();
         }
 
-        public Guid GetGuid()
+        public string ShippiingSystemTest()
         {
-            return Guid.NewGuid();
+            return $"From FreightApplication. {DateTimeOffset.Now.UtcTicks}";
         }
     }
 }

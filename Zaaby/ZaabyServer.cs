@@ -20,15 +20,13 @@ namespace Zaaby
         private static ZaabyServer _zaabyServer;
         private static List<Type> _allTypes;
 
-        private static Action _useDynamicProxyAction;
         private static Action _useAppService;
-        private static Action _useRepository;
 
         private static readonly List<Action<MvcOptions>> AddMvcCoreActions = new List<Action<MvcOptions>>();
 
         private static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
             new List<Action<ApplicationPartManager>>();
-        
+
         private static readonly List<string> Urls = new List<string>();
 
         private static readonly Dictionary<Type, Type> ScopeDic = new Dictionary<Type, Type>();
@@ -59,8 +57,6 @@ namespace Zaaby
         public void Run()
         {
             _useAppService?.Invoke();
-            _useRepository?.Invoke();
-            _useDynamicProxyAction?.Invoke();
 
             var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .ConfigureServices(ConfigureServices)
@@ -74,14 +70,14 @@ namespace Zaaby
         }
 
         public IZaabyServer UseZaabyApplicationService(Dictionary<string, List<string>> baseUrls = null,
-            Func<Type, bool> defineIService = null)
+            Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             var allInterfaces = _allTypes.Where(type => type.IsInterface);
-            var serviceInterfaces = defineIService != null
-                ? allInterfaces.Where(defineIService)
+            var serviceInterfaces = applicationServiceInterfaceDefine != null
+                ? allInterfaces.Where(applicationServiceInterfaceDefine)
                 : allInterfaces.Where(type =>
-                        typeof(IZaabyAppService).IsAssignableFrom(type) && type != typeof(IZaabyAppService))
-                    .ToList();
+                    typeof(IZaabyApplicationService).IsAssignableFrom(type) &&
+                    type != typeof(IZaabyApplicationService));
             var implementServices = _allTypes
                 .Where(type => type.IsClass && serviceInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
@@ -106,46 +102,53 @@ namespace Zaaby
                 });
             };
             if (baseUrls != null)
-                _useDynamicProxyAction = () =>
-                {
-                    var interfaces = serviceInterfaces.Where(i =>
-                        implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
+            {
+                var interfaces = serviceInterfaces.Where(i =>
+                    implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
 
-                    var dynamicProxy = new ZaabyDynamicProxy(interfaces
-                        .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
-                        .Select(@interface => @interface.Namespace)
-                        .Distinct()
-                        .ToDictionary(k => k, v => baseUrls[v]));
-                    var type = dynamicProxy.GetType();
-                    var methodInfo = type.GetMethod("GetService");
-                    foreach (var interfaceType in interfaces)
-                    {
-                        var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
-                        AddTransient(interfaceType, p => proxy);
-                    }
-                };
+                var dynamicProxy = new ZaabyDynamicProxy(interfaces
+                    .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
+                    .Select(@interface => @interface.Namespace)
+                    .Distinct()
+                    .ToDictionary(k => k, v => baseUrls[v]));
+                var type = dynamicProxy.GetType();
+                var methodInfo = type.GetMethod("GetService");
+                foreach (var interfaceType in interfaces)
+                {
+                    var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
+                    AddTransient(interfaceType, p => proxy);
+                }
+            }
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaabyRepository(Func<Type, bool> defineIRepository = null)
+        public IZaabyServer UseZaabyDomainService(Func<Type, bool> domainServiceInterfaceDefine = null)
+        {
+            var domainServices = _allTypes
+                .Where(type => type.IsClass && typeof(IZaabyDomainService).IsAssignableFrom(type))
+                .ToList();
+
+            domainServices.ForEach(domainService => AddScoped(domainService, domainService));
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaabyRepository(Func<Type, bool> repositoryInterfaceDefine = null)
         {
             var allInterfaces = _allTypes.Where(type => type.IsInterface);
-            var repositoryInterfaces = defineIRepository != null
-                ? allInterfaces.Where(defineIRepository)
+            var repositoryInterfaces = repositoryInterfaceDefine != null
+                ? allInterfaces.Where(repositoryInterfaceDefine)
                 : allInterfaces.Where(type =>
-                        typeof(IZaabyRepository).IsAssignableFrom(type) && type != typeof(IZaabyRepository))
-                    .ToList();
+                    typeof(IZaabyRepository).IsAssignableFrom(type) && type != typeof(IZaabyRepository));
             var implementRepositories = _allTypes
                 .Where(type => type.IsClass && repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
-            _useRepository = () =>
+
+            implementRepositories.ForEach(repository =>
             {
-                implementRepositories.ForEach(repository =>
-                {
-                    AddScoped(repository.GetInterfaces().First(i => repositoryInterfaces.Contains(i)),
-                        repository);
-                });
-            };
+                AddScoped(repository.GetInterfaces().First(i => repositoryInterfaces.Contains(i)),
+                    repository);
+            });
+
             return _zaabyServer;
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Zaaby.Core
 {
-    public interface IZaabyAppService
+    public interface IZaabyDomainService
     {
         
     }

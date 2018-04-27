@@ -3,10 +3,10 @@ using Zaaby.Core;
 
 namespace IFinanceApplication
 {
-    public interface ICustomerFinanceApplication : IZaabyAppService
+    public interface ICustomerFinanceApplication : IZaabyApplicationService
     {
         bool Charge(CustomerChargeParam param);
 
-        int GetId();
+        string FinanceSystemTest();
     }
 }

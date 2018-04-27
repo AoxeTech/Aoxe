@@ -2,7 +2,7 @@
 {
     public class CustomerChargeParam
     {
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public int FeeByCent { get; set; }
     }
 }

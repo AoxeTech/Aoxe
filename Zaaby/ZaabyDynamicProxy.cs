@@ -72,7 +72,7 @@ namespace Zaaby
 
                 var result = responseForPost.Result.Content.ReadAsStringAsync().Result;
 
-                return JsonConvert.DeserializeObject(result, targetMethod.ReturnType);
+                return result == null ? null : JsonConvert.DeserializeObject(result, targetMethod.ReturnType);
             }
         }
     }

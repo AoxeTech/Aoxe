@@ -5,7 +5,7 @@ using OrderRepository.PersistentObjects;
 
 namespace OrderRepository.Repositories
 {
-    public class OrderRepository : IOrderParentRepository
+    public class OrderRepository : IOrderRepository
     {
         public void Add(Order orderParent)
         {

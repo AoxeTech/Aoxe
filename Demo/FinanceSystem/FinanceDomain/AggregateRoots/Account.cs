@@ -1,6 +1,9 @@
-﻿namespace FinanceDomain.AggregateRoots
+﻿using Zaaby.Core;
+
+namespace FinanceDomain.AggregateRoots
 {
-    public class Account
+    public class Account : IAggregateRoot<string>
     {
+        public string Id { get; protected set; }
     }
 }
