@@ -1,3 +1,3 @@
 # Zaaby
 
-A micro service framework base by asp.net core
+A micro service framework base by asp.net core for DDD.
