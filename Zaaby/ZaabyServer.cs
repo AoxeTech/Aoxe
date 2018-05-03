@@ -119,6 +119,7 @@ namespace Zaaby
                     AddTransient(interfaceType, p => proxy);
                 }
             }
+
             return _zaabyServer;
         }
 
@@ -138,7 +139,8 @@ namespace Zaaby
             var repositoryInterfaces = repositoryInterfaceDefine != null
                 ? allInterfaces.Where(repositoryInterfaceDefine)
                 : allInterfaces.Where(type =>
-                    typeof(IZaabyRepository).IsAssignableFrom(type) && type != typeof(IZaabyRepository));
+                    typeof(IZaabyRepository<,>).IsAssignableFrom(type) &&
+                    type != typeof(IZaabyRepository<,>));
             var implementRepositories = _allTypes
                 .Where(type => type.IsClass && repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();

@@ -1,7 +1,6 @@
 ﻿namespace Zaaby.Core
 {
-    public interface IEntity<out TId>
+    public interface IEntity<TId>
     {
-        TId Id { get;}
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using OrderDomain.Entities;
 using OrderDomain.ValueObjects;
+using Zaaby.Core;
 
 namespace OrderDomain.AggregateRoots
 {
-    public class Order : OrderBase
+    public class Order : OrderBase, IAggregateRoot<string>
     {
         public void Committing()
         {

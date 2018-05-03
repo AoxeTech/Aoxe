@@ -1,6 +1,6 @@
 ﻿namespace Zaaby.Core
 {
-    public interface IAggregateRoot<out TId> : IEntity<TId>
+    public interface IAggregateRoot<TId> : IEntity<TId>
     {
 
     }

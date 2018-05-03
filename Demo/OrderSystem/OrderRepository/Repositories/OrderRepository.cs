@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OrderDomain.AggregateRoots;
 using OrderDomain.IRepository;
 using OrderRepository.PersistentObjects;
@@ -7,6 +8,11 @@ namespace OrderRepository.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
+        public OrderRepository()
+        {
+            
+        }
+        
         public void Add(Order orderParent)
         {
             var orderParentPo = new OrderParentPo { };
@@ -44,12 +50,22 @@ namespace OrderRepository.Repositories
 
         public List<Order> Get(List<string> id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<Order> GetAll()
         {
             throw new System.NotImplementedException();
+        }
+
+        public List<Order> GetValidOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Order> GetOrdersByUser(Guid userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
