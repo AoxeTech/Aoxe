@@ -6,4 +6,7 @@
     <ProjectReference Include="..\FinanceDomain\FinanceDomain.csproj" />
     <ProjectReference Include="..\IFinanceApplication\IFinanceApplication.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby.MessageBus.Core" Version="1.1.1" />
+  </ItemGroup>
 </Project>

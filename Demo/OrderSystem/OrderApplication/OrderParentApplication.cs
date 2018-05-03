@@ -31,7 +31,7 @@ namespace OrderApplication
             return new OrderParentDto
             {
                 Id = order.Id,
-                CreateTimeOffset = order.CreateTimeOffset
+                CreateTimeOffset = order.CreateTime
             };
         }
 

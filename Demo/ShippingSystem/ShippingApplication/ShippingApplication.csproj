@@ -8,4 +8,7 @@
     <ProjectReference Include="..\IShippingApplication\IShippingApplication.csproj" />
     <ProjectReference Include="..\ShippingDomain\ShippingDomain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby.MessageBus.Core" Version="1.1.1" />
+  </ItemGroup>
 </Project>

@@ -7,12 +7,12 @@ namespace OrderDomain.IRepository
 {
     public interface IOrderRepository : IZaabyRepository<Order, string>
     {
-        void Add(Order orderParent);
-        void Add(List<Order> orderParents);
-        bool Delete(Order orderParent);
-        int Delete(List<Order> orderParents);
-        bool Modify(Order orderParent);
-        int Modify(List<Order> orderParents);
+        void Add(Order order);
+        void Add(List<Order> orders);
+        bool Delete(Order order);
+        int Delete(List<Order> orders);
+        bool Modify(Order order);
+        int Modify(List<Order> orders);
         Order Get(string id);
         List<Order> Get(List<string> id);
         List<Order> GetAll();

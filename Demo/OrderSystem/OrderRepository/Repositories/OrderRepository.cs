@@ -1,61 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using OrderDomain.AggregateRoots;
 using OrderDomain.IRepository;
 using OrderRepository.PersistentObjects;
+using Zaabee.Mongo.Core;
 
 namespace OrderRepository.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        public OrderRepository()
+        private readonly IMongoDbRepository _mongoDbRepository;
+
+        public OrderRepository(IMongoDbRepository mongoDbRepository)
         {
-            
-        }
-        
-        public void Add(Order orderParent)
-        {
-            var orderParentPo = new OrderParentPo { };
+            _mongoDbRepository = mongoDbRepository;
         }
 
-        public void Add(List<Order> orderParents)
+        public void Add(Order order)  
         {
-            throw new System.NotImplementedException();
+            _mongoDbRepository.Add(Convert(order));
         }
 
-        public bool Delete(Order orderParent)
+        public void Add(List<Order> orders)
         {
-            throw new System.NotImplementedException();
+            _mongoDbRepository.AddRange(Convert(orders));
         }
 
-        public int Delete(List<Order> orderParents)
+        public bool Delete(Order order)
         {
-            throw new System.NotImplementedException();
+            return _mongoDbRepository.Delete(Convert(order)) > 0;
+        }
+
+        public int Delete(List<Order> orders)
+        {
+            var ids = orders.Select(p => p.Id).ToList();
+            return (int) _mongoDbRepository.Delete<OrderParentPo>(p => ids.Contains(p.Id));
         }
 
         public bool Modify(Order orderParent)
         {
-            throw new System.NotImplementedException();
+            return _mongoDbRepository.Update(Convert(orderParent)) > 0;
         }
 
         public int Modify(List<Order> orderParents)
         {
-            throw new System.NotImplementedException();
+            var pos = Convert(orderParents);
+            var result = 0;
+            pos.ForEach(po => result += (int) _mongoDbRepository.Update(po));
+            return result;
         }
 
         public Order Get(string id)
         {
-            throw new System.NotImplementedException();
+            return Convert(_mongoDbRepository.GetQueryable<OrderParentPo>().FirstOrDefault(p => p.Id == id));
         }
 
-        public List<Order> Get(List<string> id)
+        public List<Order> Get(List<string> ids)
         {
-            throw new NotImplementedException();
+            return Convert(_mongoDbRepository.GetQueryable<OrderParentPo>().Where(p=>ids.Contains(p.Id)).ToList());
         }
 
         public List<Order> GetAll()
         {
-            throw new System.NotImplementedException();
+            return Convert(_mongoDbRepository.GetQueryable<OrderParentPo>().ToList());
         }
 
         public List<Order> GetValidOrders()
@@ -67,5 +75,29 @@ namespace OrderRepository.Repositories
         {
             throw new NotImplementedException();
         }
+
+        #region Convert
+
+        private static List<OrderParentPo> Convert(List<Order> orders)
+        {
+            return new List<OrderParentPo>();
+        }
+
+        private static OrderParentPo Convert(Order order)
+        {
+            return new OrderParentPo { };
+        }
+
+        private static List<Order> Convert(List<OrderParentPo> orders)
+        {
+            return new List<Order>();
+        }
+
+        private static Order Convert(OrderParentPo order)
+        {
+            return null;
+        }
+
+        #endregion
     }
 }

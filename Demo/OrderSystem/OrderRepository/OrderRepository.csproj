@@ -5,4 +5,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderDomain\OrderDomain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaabee.Mongo.Core" Version="1.0.0" />
+  </ItemGroup>
 </Project>
