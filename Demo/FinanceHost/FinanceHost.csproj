@@ -4,7 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Zaabee.Mongo" Version="1.1.0" />
     <PackageReference Include="Zaaby" Version="0.1.0" />
+    <PackageReference Include="Zaaby.MessageBus.RabbitMqProvider" Version="1.1.4" />
+    <PackageReference Include="Zaaby.MessageBus.RabbitMqProvider.Json" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinanceSystem\FinanceApplication\FinanceApplication.csproj" />
