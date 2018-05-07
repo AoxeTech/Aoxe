@@ -1,0 +1,10 @@
+﻿{
+  "ZaabeMongo": {
+    "Hosts": [
+      "192.168.78.152:27017"
+    ],
+    "Database": "TestDB",
+    "UserName": "TestUser",
+    "Password": "123"
+  }
+}
