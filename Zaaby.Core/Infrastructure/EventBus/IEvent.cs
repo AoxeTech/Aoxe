@@ -2,7 +2,7 @@
 {
     /// <inheritdoc />
     /// <summary>
-    /// This message type will be persisted and has dead letter queue.
+    /// This message type will republish to dead letter queue when throw a exception.
     /// </summary>
     public interface IEvent : IMessage
     {

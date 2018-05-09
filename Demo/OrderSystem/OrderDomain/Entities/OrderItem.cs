@@ -1,8 +1,9 @@
 ﻿using System;
+using Zaaby.Core.Domain;
 
 namespace OrderDomain.Entities
 {
-    public class OrderItem
+    public class OrderItem : IEntity<Guid>
     {
         public Guid Id { get; protected set; }
         public string Sku { get; protected set; }

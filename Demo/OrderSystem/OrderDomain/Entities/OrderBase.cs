@@ -1,5 +1,5 @@
 ﻿using System;
-using Zaaby.Core;
+using Zaaby.Core.Domain;
 
 namespace OrderDomain.Entities
 {

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Zaaby.Core;
+using Zaaby.Core.Application;
+using Zaaby.Core.Domain;
+using Zaaby.Core.Infrastructure.Repository;
 
 namespace Zaaby
 {
@@ -76,8 +79,8 @@ namespace Zaaby
             var serviceInterfaces = applicationServiceInterfaceDefine != null
                 ? allInterfaces.Where(applicationServiceInterfaceDefine)
                 : allInterfaces.Where(type =>
-                    typeof(IZaabyApplicationService).IsAssignableFrom(type) &&
-                    type != typeof(IZaabyApplicationService));
+                    typeof(IApplicationService).IsAssignableFrom(type) &&
+                    type != typeof(IApplicationService));
             var implementServices = _allTypes
                 .Where(type => type.IsClass && serviceInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
@@ -126,7 +129,7 @@ namespace Zaaby
         public IZaabyServer UseZaabyDomainService(Func<Type, bool> domainServiceInterfaceDefine = null)
         {
             var domainServices = _allTypes
-                .Where(type => type.IsClass && typeof(IZaabyDomainService).IsAssignableFrom(type))
+                .Where(type => type.IsClass && typeof(IDomainService).IsAssignableFrom(type))
                 .ToList();
 
             domainServices.ForEach(domainService => AddScoped(domainService, domainService));
@@ -139,8 +142,8 @@ namespace Zaaby
             var repositoryInterfaces = repositoryInterfaceDefine != null
                 ? allInterfaces.Where(repositoryInterfaceDefine)
                 : allInterfaces.Where(type =>
-                    typeof(IZaabyRepository<,>).IsAssignableFrom(type) &&
-                    type != typeof(IZaabyRepository<,>));
+                    typeof(IRepository<,>).IsAssignableFrom(type) &&
+                    type != typeof(IRepository<,>));
             var implementRepositories = _allTypes
                 .Where(type => type.IsClass && repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();

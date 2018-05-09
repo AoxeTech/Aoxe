@@ -2,9 +2,9 @@
 
 namespace Zaaby.Core.Infrastructure.EventBus
 {
-    public class EventVersionAttribute : Attribute
+    public class MessageVersionAttribute : Attribute
     {
-        public EventVersionAttribute(string version)
+        public MessageVersionAttribute(string version)
         {
             Version = version;
         }

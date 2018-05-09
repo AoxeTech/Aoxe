@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using OrderDomain.AggregateRoots;
-using Zaaby.Core;
+using Zaaby.Core.Infrastructure.Repository;
 
 namespace OrderDomain.IRepository
 {
-    public interface IOrderRepository : IZaabyRepository<Order, string>
+    public interface IOrderRepository : IRepository<Order, string>
     {
         void Add(Order order);
         void Add(List<Order> orders);

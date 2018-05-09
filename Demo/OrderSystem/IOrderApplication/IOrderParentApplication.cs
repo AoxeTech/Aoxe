@@ -1,9 +1,9 @@
 ﻿using IOrderApplication.DTOs;
-using Zaaby.Core;
+using Zaaby.Core.Application;
 
 namespace IOrderApplication
 {
-    public interface IOrderParentApplication : IZaabyApplicationService
+    public interface IOrderParentApplication : IApplicationService
     {
         OrderParentDto GetOrderParentDto(string id);
         string OrderSystemTest();

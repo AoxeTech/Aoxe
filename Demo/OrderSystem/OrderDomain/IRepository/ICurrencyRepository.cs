@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using OrderDomain.AggregateRoots;
-using Zaaby.Core;
+using Zaaby.Core.Infrastructure.Repository;
 
 namespace OrderDomain.IRepository
 {
-    public interface ICurrencyRepository : IZaabyRepository<Currency, string>
+    public interface ICurrencyRepository : IRepository<Currency, string>
     {
         void Add(Currency currency);
         void Add(List<Currency> currencies);

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using OrderDomain.IRepository;
-using Zaaby.Core;
+using Zaaby.Core.Domain;
 
 namespace OrderDomain.DomainServices
 {
-    public class OrderService : IZaabyDomainService
+    public class OrderService : IDomainService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ICurrencyRepository _currencyRepository;
