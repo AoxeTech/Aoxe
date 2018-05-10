@@ -5,8 +5,8 @@ using Zaabee.Mongo;
 using Zaabee.Mongo.Common;
 using Zaabee.Mongo.Core;
 using Zaaby;
-using Zaaby.Cache.Core;
 using Zaaby.Cache.RedisProvider;
+using Zaaby.Core.Infrastructure.Cache;
 using Zaaby.Core.Infrastructure.EventBus;
 using Zaaby.MessageBus.RabbitMqProvider;
 using Zaaby.MessageBus.RabbitMqProvider.Json;
@@ -37,7 +37,7 @@ namespace FinanceHost
                 .AddSingleton<IMongoDbRepository>(p => new MongoDbRepository(mongoConfig))
                 .AddSingleton<IEventBus, ZabbyRabbitMqClient>(p =>
                     new ZabbyRabbitMqClient(rabbitmqConfig, new Serializer()))
-                .AddSingleton<IHandler, ZaabyRedisClient>(p =>
+                .AddSingleton<ICache, ZaabyRedisClient>(p =>
                     new ZaabyRedisClient(redisConfig, new Zaaby.Cache.RedisProvider.Protobuf.Serializer()))
                 .UseUrls("http://*:5000")
                 .Run();

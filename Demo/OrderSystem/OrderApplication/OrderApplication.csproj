@@ -9,6 +9,6 @@
     <ProjectReference Include="..\OrderDomain\OrderDomain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.MessageBus.Core" Version="1.1.1" />
+    <PackageReference Include="Zaaby.MessageBus.Core" Version="1.1.2" />
   </ItemGroup>
 </Project>

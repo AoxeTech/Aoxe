@@ -7,6 +7,6 @@
     <Folder Include="DomainEvents" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.2.4" />
+    <PackageReference Include="Zaaby.Core" Version="0.2.5" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.3" />
-    <PackageReference Include="Zaaby.Core" Version="0.2.4" />
+    <PackageReference Include="Zaaby.Core" Version="0.2.5" />
   </ItemGroup>
 </Project>

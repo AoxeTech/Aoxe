@@ -2,7 +2,7 @@
 
 namespace Zaaby.Core.Domain
 {
-    public interface IDomainEvent : IEvent
+    public interface IDomainEvent<TId> : IEvent, IEntity<TId>
     {
 
     }

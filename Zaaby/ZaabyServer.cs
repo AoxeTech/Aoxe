@@ -4,12 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Zaaby.Core;
 using Zaaby.Core.Application;
 using Zaaby.Core.Domain;
@@ -25,17 +21,7 @@ namespace Zaaby
 
         private static Action _useAppService;
 
-        private static readonly List<Action<MvcOptions>> AddMvcCoreActions = new List<Action<MvcOptions>>();
-
-        private static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
-            new List<Action<ApplicationPartManager>>();
-
         private static readonly List<string> Urls = new List<string>();
-
-        private static readonly Dictionary<Type, Type> ScopeDic = new Dictionary<Type, Type>();
-        private static readonly Dictionary<Type, Type> TransientDic = new Dictionary<Type, Type>();
-        private static readonly Dictionary<Type, Type> SingletonDic = new Dictionary<Type, Type>();
-        private static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
 
         public static IZaabyServer GetInstance()
         {
@@ -62,8 +48,7 @@ namespace Zaaby
             _useAppService?.Invoke();
 
             var webHostBuilder = WebHost.CreateDefaultBuilder()
-                .ConfigureServices(ConfigureServices)
-                .Configure(Configure);
+                .UseStartup<Startup>();
 
             if (Urls.Count > 0)
                 Urls.ForEach(url => webHostBuilder.UseUrls(url));
@@ -93,12 +78,12 @@ namespace Zaaby
                     if (serviceInterface != null)
                         AddScoped(serviceInterface, service);
                 });
-                AddMvcCoreActions.Add(mvcOptions =>
+                Startup.AddMvcCoreActions.Add(mvcOptions =>
                 {
                     foreach (var serviceInterface in serviceInterfaces)
                         mvcOptions.Conventions.Add(new ZaabyActionModelConvention(serviceInterface));
                 });
-                ConfigureApplicationPartManagerActions.Add(manager =>
+                Startup.ConfigureApplicationPartManagerActions.Add(manager =>
                 {
                     manager.FeatureProviders
                         .Add(new ZaabyAppServiceControllerFeatureProvider(implementServices));
@@ -128,11 +113,26 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyDomainService(Func<Type, bool> domainServiceInterfaceDefine = null)
         {
-            var domainServices = _allTypes
-                .Where(type => type.IsClass && typeof(IDomainService).IsAssignableFrom(type))
-                .ToList();
+            var domainServiceQuery = _allTypes.Where(type => type.IsClass);
+            domainServiceQuery = domainServiceInterfaceDefine == null
+                ? domainServiceQuery.Where(type => typeof(IDomainService).IsAssignableFrom(type))
+                : domainServiceQuery.Where(domainServiceInterfaceDefine);
+
+            var domainServices = domainServiceQuery.ToList();
 
             domainServices.ForEach(domainService => AddScoped(domainService, domainService));
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaabyDomainEventHandler()
+        {
+            var domainEventHandlerQuery = _allTypes
+                .Where(type => type.IsClass && typeof(IDomainEventHandler<,>).IsAssignableFrom(type))
+                .ToList();
+
+            var domainEventHandlers = domainEventHandlerQuery.ToList();
+            domainEventHandlers.ForEach(domainEventHandler => AddSingleton(domainEventHandler, domainEventHandler));
+
             return _zaabyServer;
         }
 
@@ -155,31 +155,6 @@ namespace Zaaby
             });
 
             return _zaabyServer;
-        }
-
-        private void ConfigureServices(IServiceCollection services)
-        {
-            foreach (var keyValuePair in TransientDic)
-                services.AddTransient(keyValuePair.Key, keyValuePair.Value);
-
-            foreach (var keyValuePair in ScopeDic)
-                services.AddScoped(keyValuePair.Key, keyValuePair.Value);
-
-            foreach (var keyValuePair in SingletonDic)
-                services.AddSingleton(keyValuePair.Key, keyValuePair.Value);
-
-            services.Add(ServiceDescriptors);
-
-            services.AddMvcCore(mvcOptions => { AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions)); })
-                .ConfigureApplicationPartManager(manager =>
-                {
-                    ConfigureApplicationPartManagerActions.ForEach(action => action.Invoke(manager));
-                }).AddJsonFormatters();
-        }
-
-        private void Configure(IApplicationBuilder app)
-        {
-            app.UseMvc();
         }
 
         private ZaabyServer()
@@ -413,13 +388,13 @@ namespace Zaaby
             switch (lifetime)
             {
                 case ServiceLifetime.Singleton:
-                    SingletonDic.TryAdd(serviceType, implementationType);
+                    Startup.SingletonDic.TryAdd(serviceType, implementationType);
                     break;
                 case ServiceLifetime.Scoped:
-                    ScopeDic.TryAdd(serviceType, implementationType);
+                    Startup.ScopeDic.TryAdd(serviceType, implementationType);
                     break;
                 case ServiceLifetime.Transient:
-                    TransientDic.TryAdd(serviceType, implementationType);
+                    Startup.TransientDic.TryAdd(serviceType, implementationType);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(lifetime), lifetime, null);
@@ -429,7 +404,7 @@ namespace Zaaby
         private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
             ServiceLifetime lifetime)
         {
-            ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
+            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
         }
 
         #endregion
