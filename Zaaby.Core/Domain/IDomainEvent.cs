@@ -4,6 +4,6 @@ namespace Zaaby.Core.Domain
 {
     public interface IDomainEvent<TId> : IEvent, IEntity<TId>
     {
-
+        TId Id { get; }
     }
 }
