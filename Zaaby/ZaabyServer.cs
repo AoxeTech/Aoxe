@@ -104,9 +104,28 @@ namespace Zaaby
                 foreach (var interfaceType in interfaces)
                 {
                     var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
-                    AddTransient(interfaceType, p => proxy);
+                    AddScoped(interfaceType, p => proxy);
                 }
             }
+
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaabyIntegrationEventHandler(Func<Type, bool> integrationEventHandlerDefine = null)
+        {
+            var integrationEventHandlerQuery = _allTypes.Where(type => type.IsClass);
+            integrationEventHandlerQuery = integrationEventHandlerDefine == null
+                ? integrationEventHandlerQuery.Where(type =>
+                    type.BaseType.IsGenericType &&
+                    type.BaseType.GetGenericTypeDefinition() == typeof(IntegrationEventHandler<>))
+                : integrationEventHandlerQuery.Where(integrationEventHandlerDefine);
+
+            var integrationEventHandlers = integrationEventHandlerQuery.ToList();
+            integrationEventHandlers.ForEach(integrationEventHandler =>
+                {
+                    AddSingleton(integrationEventHandler, integrationEventHandler);
+                    Startup.IntegrationEventHandlerTypes.Add(integrationEventHandler);
+                });
 
             return _zaabyServer;
         }
@@ -124,14 +143,21 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaabyDomainEventHandler()
+        public IZaabyServer UseZaabyDomainEventHandler(Func<Type, bool> domainEventHandlerDefine = null)
         {
-            var domainEventHandlerQuery = _allTypes
-                .Where(type => type.IsClass && typeof(IDomainEventHandler<,>).IsAssignableFrom(type))
-                .ToList();
+            var domainEventHandlerQuery = _allTypes.Where(type => type.IsClass);
+            domainEventHandlerQuery = domainEventHandlerDefine == null
+                ? domainEventHandlerQuery.Where(type =>
+                    type.BaseType.IsGenericType &&
+                    type.BaseType.GetGenericTypeDefinition() == typeof(DomainEventHandler<>))
+                : domainEventHandlerQuery.Where(domainEventHandlerDefine);
 
             var domainEventHandlers = domainEventHandlerQuery.ToList();
-            domainEventHandlers.ForEach(domainEventHandler => AddSingleton(domainEventHandler, domainEventHandler));
+            domainEventHandlers.ForEach(domainEventHandler =>
+            {
+                AddSingleton(domainEventHandler, domainEventHandler);
+                Startup.DomainEventHandlerTypes.Add(domainEventHandler);
+            });
 
             return _zaabyServer;
         }
@@ -139,11 +165,12 @@ namespace Zaaby
         public IZaabyServer UseZaabyRepository(Func<Type, bool> repositoryInterfaceDefine = null)
         {
             var allInterfaces = _allTypes.Where(type => type.IsInterface);
+
             var repositoryInterfaces = repositoryInterfaceDefine != null
                 ? allInterfaces.Where(repositoryInterfaceDefine)
-                : allInterfaces.Where(type =>
-                    typeof(IRepository<,>).IsAssignableFrom(type) &&
-                    type != typeof(IRepository<,>));
+                : allInterfaces.Where(type => type.GetInterfaces().Any(@interface =>
+                    @interface.IsGenericType && @interface.GetGenericTypeDefinition() == typeof(IRepository<,>)));
+
             var implementRepositories = _allTypes
                 .Where(type => type.IsClass && repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
                 .ToList();
@@ -154,6 +181,16 @@ namespace Zaaby
                     repository);
             });
 
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaaby(Dictionary<string, List<string>> baseUrls = null)
+        {
+            UseZaabyApplicationService(baseUrls);
+            UseZaabyIntegrationEventHandler();
+            UseZaabyRepository();
+            UseZaabyDomainService();
+            UseZaabyDomainEventHandler();
             return _zaabyServer;
         }
 

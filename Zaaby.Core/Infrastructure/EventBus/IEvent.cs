@@ -1,4 +1,6 @@
-﻿namespace Zaaby.Core.Infrastructure.EventBus
+﻿using System;
+
+namespace Zaaby.Core.Infrastructure.EventBus
 {
     /// <inheritdoc />
     /// <summary>
@@ -6,5 +8,6 @@
     /// </summary>
     public interface IEvent : IMessage
     {
+        DateTimeOffset Timestamp { get; }
     }
 }

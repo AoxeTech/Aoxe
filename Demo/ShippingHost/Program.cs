@@ -31,9 +31,7 @@ namespace ShippingHost
             var redisConfig = config.GetSection("ZaabyRedis").Get<RedisConfig>();
 
             ZaabyServer.GetInstance()
-                .UseZaabyRepository()
-                .UseZaabyDomainService()
-                .UseZaabyApplicationService(appServiceConfig)
+                .UseZaaby(appServiceConfig)
                 .AddSingleton<IMongoDbRepository>(p => new MongoDbRepository(mongoConfig))
                 .AddSingleton<IEventBus, ZabbyRabbitMqClient>(p =>
                     new ZabbyRabbitMqClient(rabbitmqConfig, new Serializer()))

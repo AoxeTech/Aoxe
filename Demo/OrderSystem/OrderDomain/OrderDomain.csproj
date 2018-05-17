@@ -4,9 +4,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="ValueObjects\" />
-    <Folder Include="DomainEvents" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.2.6" />
+    <PackageReference Include="Zaaby.Core" Version="0.2.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
   </ItemGroup>
 </Project>

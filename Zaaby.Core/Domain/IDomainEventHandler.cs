@@ -1,7 +1,6 @@
 ﻿namespace Zaaby.Core.Domain
 {
-    public interface IDomainEventHandler<in TDomainEvent, TId> where TDomainEvent : IDomainEvent<TId>
+    public interface IDomainEventHandler
     {
-        void Handle(TDomainEvent domainEvent);
     }
 }

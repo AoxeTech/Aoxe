@@ -1,9 +1,9 @@
-﻿using Zaaby.Core.Infrastructure.EventBus;
+﻿using System;
+using Zaaby.Core.Infrastructure.EventBus;
 
 namespace Zaaby.Core.Domain
 {
-    public interface IDomainEvent<TId> : IEvent, IEntity<TId>
+    public interface IDomainEvent : IEvent, IEntity<Guid>
     {
-        TId Id { get; }
     }
 }

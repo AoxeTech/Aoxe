@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Zaaby.Core.Application;
 using Zaaby.Core.Domain;
-using Zaaby.Core.Infrastructure.EventBus;
 
 namespace Zaaby
 {
@@ -22,9 +23,10 @@ namespace Zaaby
         internal static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
             new List<Action<ApplicationPartManager>>();
 
-//        internal static readonly List<IDomainEventHandler<,>> lll = new List<>();
+        internal static readonly List<Type> DomainEventHandlerTypes = new List<Type>();
+        internal static readonly List<Type> IntegrationEventHandlerTypes = new List<Type>();
 
-        private void ConfigureServices(IServiceCollection services, IEventBus eventBus)
+        public void ConfigureServices(IServiceCollection services)
         {
             foreach (var keyValuePair in TransientDic)
                 services.AddTransient(keyValuePair.Key, keyValuePair.Value);
@@ -37,12 +39,11 @@ namespace Zaaby
 
             services.Add(ServiceDescriptors);
 
-            var i = services.BuildServiceProvider().GetServices(typeof(IDomainEventHandler<,>));
-            foreach (var o in i)
-            {                                                                                                                                                                                                                                                        
-                var oo = o as IDomainEventHandler<IDomainEvent<Guid>, Guid>;
-                eventBus.SubscribeEvent<IDomainEvent<Guid>>(oo.Handle);
-            }
+            var serviceProvider = services.BuildServiceProvider();
+            
+            DomainEventHandlerTypes.ForEach(type => serviceProvider.GetService(type));
+            
+            IntegrationEventHandlerTypes.ForEach(type => serviceProvider.GetService(type));
 
             services.AddMvcCore(mvcOptions => { AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions)); })
                 .ConfigureApplicationPartManager(manager =>
@@ -51,8 +52,10 @@ namespace Zaaby
                 }).AddJsonFormatters();
         }
 
-        private void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app)
         {
+            //domainEventHandleRunner?.Run();
+            //integrationEventHandlerRunner?.Run();
             app.UseMvc();
         }
     }

@@ -5,6 +5,7 @@ namespace OrderDomain.Entities
 {
     public class OrderBase : IEntity<string>
     {
+        public string Id { get; protected set; }
         public DateTimeOffset CreateTime { get; protected set; }
         public DateTimeOffset LastModifyTime { get; protected set; }
         public DateTimeOffset DeleteTime { get; protected set; }

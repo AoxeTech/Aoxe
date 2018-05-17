@@ -9,7 +9,6 @@ namespace OrderDomain.AggregateRoots
 {
     public class Order : OrderBase, IAggregateRoot<string>
     {
-        public string Id { get; protected set; }
         public string CustomerId { get; protected set; }
         public int LenghtByMillimeter { get; protected set; }
         public int WidthByMillimeter { get; protected set; }
@@ -57,6 +56,7 @@ namespace OrderDomain.AggregateRoots
             if (Status != OrderStatus.Commited)
                 throw new Exception("The order status must be commited.");
             Status = OrderStatus.Received;
+            
         }
 
         public void ModifyCurrency(string currency)
