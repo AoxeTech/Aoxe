@@ -2,7 +2,7 @@
 using Zaaby.Core.Domain;
 using Zaaby.Core.Infrastructure.EventBus;
 
-namespace OrderDomain.DomainServices
+namespace OrderDomain.DomainServices.EventHandlers
 {
     public class ReceivedOrderEventHandler : DomainEventHandler<ReceivedOrderEvent>
     {
