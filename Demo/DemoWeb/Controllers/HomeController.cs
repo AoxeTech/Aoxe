@@ -46,7 +46,7 @@ namespace DemoWeb.Controllers
         public string Test()
         {
             return $"{_customerFinanceApplication.FinanceSystemTest()}\r\n" +
-                   $"From OrderParentApplication. {DateTimeOffset.Now.UtcTicks}";
+                   $"From DemoWeb. {DateTimeOffset.Now.UtcTicks}";
         }
     }
 }
