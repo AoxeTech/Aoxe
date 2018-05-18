@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Zaaby.Core;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Zaaby.ApplicationServiceProxy
 {
-    public static class ZaabyServerExtension
+    public static class AspDotNetCoreExtension
     {
-        public static IZaabyServer UseZaabyApplicationServiceProxy(this IZaabyServer zaabyServer,
-            Dictionary<string, List<string>> baseUrls,Func<Type, bool> applicationServiceInterfaceDefine = null)
+        public static IServiceCollection UseZaabyApplicationServiceProxy(this IServiceCollection serviceCollection,
+            Dictionary<string, List<string>> baseUrls, Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
-            if (baseUrls == null) return zaabyServer;
+            if (baseUrls == null) return serviceCollection;
 
             var interfaces =
                 ZaabyApplicationServiceTypeRepository
@@ -26,10 +26,10 @@ namespace Zaaby.ApplicationServiceProxy
             foreach (var interfaceType in interfaces)
             {
                 var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
-                zaabyServer.AddScoped(interfaceType, p => proxy);
+                serviceCollection.AddScoped(interfaceType, p => proxy);
             }
 
-            return zaabyServer;
+            return serviceCollection;
         }
     }
 }
