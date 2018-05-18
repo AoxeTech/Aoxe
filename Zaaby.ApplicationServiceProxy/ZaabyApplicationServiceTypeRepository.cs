@@ -16,7 +16,8 @@ namespace Zaaby.ApplicationServiceProxy
             AllTypes = GetAllTypes();
         }
 
-        public static List<Type> GetZaabyApplicationServiceTypes( Func<Type, bool> applicationServiceInterfaceDefine = null)
+        public static List<Type> GetZaabyApplicationServiceTypes(
+            Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             var allInterfaces = AllTypes.Where(type => type.IsInterface);
 
