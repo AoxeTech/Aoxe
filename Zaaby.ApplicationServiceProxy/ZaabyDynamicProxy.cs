@@ -9,7 +9,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Zaaby.Core;
 
-namespace Zaaby
+namespace Zaaby.ApplicationServiceProxy
 {
     public class ZaabyDynamicProxy : IDynamicProxy
     {

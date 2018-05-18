@@ -10,6 +10,6 @@
     <Folder Include="ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.2.9" />
+    <PackageReference Include="Zaaby.Core" Version="0.3.2" />
   </ItemGroup>
 </Project>

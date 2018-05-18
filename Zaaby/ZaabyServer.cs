@@ -6,6 +6,7 @@ using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Zaaby.ApplicationServiceProxy;
 using Zaaby.Core;
 using Zaaby.Core.Application;
 using Zaaby.Core.Domain;
@@ -57,8 +58,7 @@ namespace Zaaby
                 .Run();
         }
 
-        public IZaabyServer UseZaabyApplicationService(Dictionary<string, List<string>> baseUrls = null,
-            Func<Type, bool> applicationServiceInterfaceDefine = null)
+        public IZaabyServer UseZaabyApplicationService(Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             var allInterfaces = _allTypes.Where(type => type.IsInterface);
             var serviceInterfaces = applicationServiceInterfaceDefine != null
@@ -77,11 +77,10 @@ namespace Zaaby
                         service.GetInterfaces().FirstOrDefault(i => serviceInterfaces.Contains(i));
                     if (serviceInterface != null)
                         AddScoped(serviceInterface, service);
-                });
-                Startup.AddMvcCoreActions.Add(mvcOptions =>
-                {
-                    foreach (var serviceInterface in serviceInterfaces)
+                    Startup.AddMvcCoreActions.Add(mvcOptions =>
+                    {
                         mvcOptions.Conventions.Add(new ZaabyActionModelConvention(serviceInterface));
+                    });
                 });
                 Startup.ConfigureApplicationPartManagerActions.Add(manager =>
                 {
@@ -89,25 +88,6 @@ namespace Zaaby
                         .Add(new ZaabyAppServiceControllerFeatureProvider(implementServices));
                 });
             };
-            if (baseUrls != null)
-            {
-                var interfaces = serviceInterfaces.Where(i =>
-                    implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
-
-                var dynamicProxy = new ZaabyDynamicProxy(interfaces
-                    .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
-                    .Select(@interface => @interface.Namespace)
-                    .Distinct()
-                    .ToDictionary(k => k, v => baseUrls[v]));
-                var type = dynamicProxy.GetType();
-                var methodInfo = type.GetMethod("GetService");
-                foreach (var interfaceType in interfaces)
-                {
-                    var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(dynamicProxy, null);
-                    AddScoped(interfaceType, p => proxy);
-                }
-            }
-
             return _zaabyServer;
         }
 
@@ -124,7 +104,7 @@ namespace Zaaby
             integrationEventHandlers.ForEach(integrationEventHandler =>
                 {
                     AddSingleton(integrationEventHandler, integrationEventHandler);
-                    Startup.IntegrationEventHandlerTypes.Add(integrationEventHandler);
+                    Startup.ServiceRunnerTypes.Add(integrationEventHandler);
                 });
 
             return _zaabyServer;
@@ -156,7 +136,7 @@ namespace Zaaby
             domainEventHandlers.ForEach(domainEventHandler =>
             {
                 AddSingleton(domainEventHandler, domainEventHandler);
-                Startup.DomainEventHandlerTypes.Add(domainEventHandler);
+                Startup.ServiceRunnerTypes.Add(domainEventHandler);
             });
 
             return _zaabyServer;
@@ -184,9 +164,9 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaaby(Dictionary<string, List<string>> baseUrls = null)
+        public IZaabyServer UseZaaby()
         {
-            UseZaabyApplicationService(baseUrls);
+            UseZaabyApplicationService();
             UseZaabyIntegrationEventHandler();
             UseZaabyRepository();
             UseZaabyDomainService();

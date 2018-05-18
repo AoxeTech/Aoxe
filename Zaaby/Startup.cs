@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Zaaby.Core.Application;
-using Zaaby.Core.Domain;
 
 namespace Zaaby
 {
@@ -23,8 +20,7 @@ namespace Zaaby
         internal static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
             new List<Action<ApplicationPartManager>>();
 
-        internal static readonly List<Type> DomainEventHandlerTypes = new List<Type>();
-        internal static readonly List<Type> IntegrationEventHandlerTypes = new List<Type>();
+        internal static readonly List<Type> ServiceRunnerTypes = new List<Type>();
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -40,10 +36,8 @@ namespace Zaaby
             services.Add(ServiceDescriptors);
 
             var serviceProvider = services.BuildServiceProvider();
-            
-            DomainEventHandlerTypes.ForEach(type => serviceProvider.GetService(type));
-            
-            IntegrationEventHandlerTypes.ForEach(type => serviceProvider.GetService(type));
+
+            ServiceRunnerTypes.ForEach(type => serviceProvider.GetService(type));
 
             services.AddMvcCore(mvcOptions => { AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions)); })
                 .ConfigureApplicationPartManager(manager =>
@@ -54,8 +48,6 @@ namespace Zaaby
 
         public void Configure(IApplicationBuilder app)
         {
-            //domainEventHandleRunner?.Run();
-            //integrationEventHandlerRunner?.Run();
             app.UseMvc();
         }
     }

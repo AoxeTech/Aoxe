@@ -70,8 +70,7 @@ namespace Zaaby.Core
 
         #endregion
 
-        IZaabyServer UseZaabyApplicationService(Dictionary<string, List<string>> baseUrls = null,
-            Func<Type, bool> applicationServiceInterfaceDefine = null);
+        IZaabyServer UseZaabyApplicationService(Func<Type, bool> applicationServiceInterfaceDefine = null);
 
         IZaabyServer UseZaabyIntegrationEventHandler(Func<Type, bool> integrationEventHandlerDefine = null);
 
@@ -83,7 +82,7 @@ namespace Zaaby.Core
 
         IZaabyServer UseUrls(params string[] urls);
 
-        IZaabyServer UseZaaby(Dictionary<string, List<string>> baseUrls = null);
+        IZaabyServer UseZaaby();
 
         void Run();
     }

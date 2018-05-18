@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderHost", "Demo\OrderHost
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShippingHost", "Demo\ShippingHost\ShippingHost.csproj", "{CAD54C76-EDD9-4DC8-A196-197207B78319}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ApplicationServiceProxy", "Zaaby.ApplicationServiceProxy\Zaaby.ApplicationServiceProxy.csproj", "{3DC5FB42-B73F-4F66-AC81-4C1B33DBE341}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,10 @@ Global
 		{CAD54C76-EDD9-4DC8-A196-197207B78319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAD54C76-EDD9-4DC8-A196-197207B78319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAD54C76-EDD9-4DC8-A196-197207B78319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC5FB42-B73F-4F66-AC81-4C1B33DBE341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC5FB42-B73F-4F66-AC81-4C1B33DBE341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC5FB42-B73F-4F66-AC81-4C1B33DBE341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC5FB42-B73F-4F66-AC81-4C1B33DBE341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8AB78D77-F79F-4D9B-874A-7F0A888BCC5A} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.1.5</PackageVersion>
+    <PackageVersion>0.1.7</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService Framework DDD</PackageTags>
@@ -15,9 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.4" />
-    <PackageReference Include="Zaaby.Core" Version="0.2.9" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Zaaby.Core\Zaaby.Core.csproj" />
+    <PackageReference Include="Zaaby.ApplicationServiceProxy" Version="0.1.0" />
+    <PackageReference Include="Zaaby.Core" Version="0.3.2" />
   </ItemGroup>
 </Project>
