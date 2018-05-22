@@ -20,6 +20,6 @@
     <None Remove="ValueObjects\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
+    <PackageReference Include="Zaaby.Core" Version="0.3.2" />
   </ItemGroup>
 </Project>
