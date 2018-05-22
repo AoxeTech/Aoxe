@@ -3,13 +3,23 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Entities" />
-    <Folder Include="DomainEvents" />
-    <Folder Include="IRepository" />
-    <Folder Include="DomainServices" />
-    <Folder Include="ValueObjects\" />
+    <Compile Remove="DomainEvents\**" />
+    <Compile Remove="DomainServices\**" />
+    <Compile Remove="Entities\**" />
+    <Compile Remove="IRepository\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="DomainEvents\**" />
+    <EmbeddedResource Remove="DomainServices\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="IRepository\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="DomainEvents\**" />
+    <None Remove="DomainServices\**" />
+    <None Remove="Entities\**" />
+    <None Remove="IRepository\**" />
+    <None Remove="ValueObjects\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.3.2" />
+    <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
   </ItemGroup>
 </Project>

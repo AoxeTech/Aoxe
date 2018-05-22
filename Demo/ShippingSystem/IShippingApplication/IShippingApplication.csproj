@@ -3,6 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Core" Version="0.3.2" />
+    <ProjectReference Include="..\..\..\Zaaby.Core\Zaaby.Core.csproj" />
   </ItemGroup>
 </Project>
