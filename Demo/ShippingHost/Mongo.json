@@ -5,6 +5,9 @@
     ],
     "Database": "TestDB",
     "UserName": "TestUser",
-    "Password": "123"
+    "Password": "123",
+    "MaxConnectionPoolSize": 100,
+    "MinConnectionPoolSize": 0,
+    "GuidType": "CSharpLegacy"
   }
 }

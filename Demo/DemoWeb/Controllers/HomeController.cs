@@ -43,7 +43,7 @@ namespace DemoWeb.Controllers
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
 
-        public string Test()
+        public string TestFinanceSystem()
         {
             return $"{_customerFinanceApplication.FinanceSystemTest()}\r\n" +
                    $"From DemoWeb. {DateTimeOffset.Now.UtcTicks}";
