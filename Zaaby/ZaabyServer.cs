@@ -6,7 +6,6 @@ using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.ApplicationServiceProxy;
 using Zaaby.Core;
 using Zaaby.Core.Application;
 using Zaaby.Core.Domain;

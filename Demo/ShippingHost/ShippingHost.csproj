@@ -5,7 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Zaabee.Mongo" Version="1.1.2" />
-    <PackageReference Include="Zaaby" Version="0.1.8" />
+    <PackageReference Include="Zaaby" Version="0.2.2018052401" />
+    <PackageReference Include="Zaaby.ApplicationServiceProxy" Version="0.2.2018052401" />
     <PackageReference Include="Zaaby.Cache.RedisProvider" Version="2.0.0" />
     <PackageReference Include="Zaaby.Cache.RedisProvider.Protobuf" Version="1.1.1" />
     <PackageReference Include="Zaaby.MessageBus.RabbitMqProvider" Version="2.0.5" />
@@ -21,6 +22,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Mongo.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="RabbitMQ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Redis.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
