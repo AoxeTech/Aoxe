@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Zaaby.Core;
 
 namespace Zaaby
 {
@@ -19,52 +22,50 @@ namespace Zaaby
             try
             {
                 await _next(context);
+                if (context.Response.StatusCode >= 400)
+                {
+                    var statusCode = context.Response.StatusCode;
+                    var msg = ((HttpStatusCode)context.Response.StatusCode).ToString();
+                    context.Response.StatusCode = 200;
+                    await HandleExceptionAsync(context, new ZaabyException($"{context.Request.Path.Value} httpStatus:{statusCode}"));
+                }
             }
             catch (Exception ex)
             {
-                var statusCode = context.Response.StatusCode;
-                if (ex is ArgumentException)
-                {
-                    statusCode = 200;
-                }
-
-                await HandleExceptionAsync(context, statusCode, ex.Message);
-            }
-            finally
-            {
-                var statusCode = context.Response.StatusCode;
-                var msg = "";
-                switch (statusCode)
-                {
-                    case 401:
-                        msg = "未授权";
-                        break;
-                    case 404:
-                        msg = "未找到服务";
-                        break;
-                    case 502:
-                        msg = "请求错误";
-                        break;
-                    default:
-                        if (statusCode != 200)
-                            msg = "未知错误";
-
-                        break;
-                }
-
-                if (!string.IsNullOrWhiteSpace(msg))
-                {
-                    await HandleExceptionAsync(context, statusCode, msg);
-                }
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, int statusCode, string msg)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            var data = new {code = statusCode.ToString(), is_success = false, msg = msg};
-            var result = JsonConvert.SerializeObject(new {data});
-            context.Response.ContentType = "application/json;charset=utf-8";
+            var innerEx = ex;
+            while (innerEx.InnerException != null)
+                innerEx = innerEx.InnerException;
+
+            var data = new ZaabyDtoBase<ZaabyException>
+            {
+                Id = Guid.NewGuid(),
+                Timespan = DateTimeOffset.UtcNow,
+                Msg = innerEx.Message,
+                Status = Status.Failure,
+                ErrCode = context.Response.StatusCode
+            };
+
+            if (innerEx is ZaabyException zaabyException)
+                data.Data = zaabyException;
+            else
+                data.Data = new ZaabyException(innerEx.Message, innerEx);
+
+            var result = JsonConvert.SerializeObject(data);
             return context.Response.WriteAsync(result);
+        }
+    }
+
+    public static class ErrorHandlingExtensions
+    {
+        public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<ErrorHandlingMiddleware>();
         }
     }
 }
