@@ -13,6 +13,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Zaaby.Core" Version="0.3.2018052301" />
+    <PackageReference Include="Zaaby.Core" Version="0.3.2018052401" />
   </ItemGroup>
 </Project>

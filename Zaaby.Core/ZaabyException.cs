@@ -4,9 +4,7 @@ using System.Runtime.Serialization;
 namespace Zaaby.Core
 {
     public class ZaabyException : Exception
-    {
-        public int ErrCode { get; set; }
-        
+    {        
         public ZaabyException()
         {
         }

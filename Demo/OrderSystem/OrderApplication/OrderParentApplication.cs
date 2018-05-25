@@ -21,8 +21,14 @@ namespace OrderApplication
             _freightApplication = freightApplication;
         }
 
-        public void ReceiveCargo(string id)
+        public OrderParentDto Test()
         {
+            throw new Exception("aksdjflaksdjf;lkajsd;fkjasd;lkfja;sdlkfj;alskdjf;lkasdjf;lsak");
+            return new OrderParentDto
+            {
+                Id = "testId",
+                CreateTime = DateTimeOffset.Now
+            };
         }
 
         public OrderParentDto GetOrderParentDto(string id)

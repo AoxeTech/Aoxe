@@ -52,10 +52,7 @@ namespace Zaaby.ApplicationServiceProxy
             {
                 _type = typeof(T);
                 if (!HttpClients.ContainsKey(_type.Namespace))
-                {
-                    Console.WriteLine($"{_type} has not set the url.");
-                    return;
-                }
+                    throw new ZaabyException($"{_type} has not set the url.");
 
                 var clients = HttpClients[_type.Namespace];
                 var random = new Random();

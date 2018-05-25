@@ -7,7 +7,7 @@ using Zaaby.Core.Application;
 
 namespace Zaaby.ApplicationServiceProxy
 {
-    public static class ZaabyApplicationServiceTypeRepository
+    internal static class ZaabyApplicationServiceTypeRepository
     {
         private static readonly List<Type> AllTypes;
 
@@ -16,7 +16,7 @@ namespace Zaaby.ApplicationServiceProxy
             AllTypes = GetAllTypes();
         }
 
-        public static List<Type> GetZaabyApplicationServiceTypes(
+        internal static List<Type> GetZaabyApplicationServiceTypes(
             Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             var allInterfaces = AllTypes.Where(type => type.IsInterface);

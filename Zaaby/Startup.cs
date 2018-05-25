@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Zaaby.Middleware;
 
 namespace Zaaby
 {
@@ -48,6 +49,7 @@ namespace Zaaby
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseErrorHandling();
             app.UseMvc();
         }
     }
