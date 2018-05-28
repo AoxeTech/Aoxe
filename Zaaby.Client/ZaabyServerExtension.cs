@@ -7,7 +7,7 @@ namespace Zaaby.Client
 {
     public static class ZaabyServerExtension
     {
-        public static IZaabyServer UseZaabyApplicationServiceProxy(this IZaabyServer zaabyServer,
+        public static IZaabyServer UseZaabyClient(this IZaabyServer zaabyServer,
             Dictionary<string, List<string>> baseUrls,Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             if (baseUrls == null) return zaabyServer;

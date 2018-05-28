@@ -11,7 +11,7 @@
     <PackageReference Include="Zaaby.MessageBus.RabbitMqProvider.Json" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Zaaby.ApplicationServiceProxy\Zaaby.ApplicationServiceProxy.csproj" />
+    <ProjectReference Include="..\..\Zaaby.Client\Zaaby.Client.csproj" />
     <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\OrderSystem\OrderApplication\OrderApplication.csproj" />
     <ProjectReference Include="..\OrderSystem\OrderDomain\OrderDomain.csproj" />

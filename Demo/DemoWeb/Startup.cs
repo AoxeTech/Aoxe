@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.ApplicationServiceProxy;
+using Zaaby.Client;
 
 namespace DemoWeb
 {
@@ -23,7 +23,7 @@ namespace DemoWeb
         public void ConfigureServices(IServiceCollection services)
         {
             var appServiceConfig = Configuration.GetSection("ZaabyApplication").Get<Dictionary<string, List<string>>>();
-            services.UseZaabyApplicationServiceProxy(appServiceConfig);
+            services.UseZaabyClient(appServiceConfig);
             services.AddMvc();
         }
 

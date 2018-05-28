@@ -7,7 +7,7 @@ namespace Zaaby.Client
 {
     public static class AspDotNetCoreExtension
     {
-        public static IServiceCollection UseZaabyApplicationServiceProxy(this IServiceCollection serviceCollection,
+        public static IServiceCollection UseZaabyClient(this IServiceCollection serviceCollection,
             Dictionary<string, List<string>> baseUrls, Func<Type, bool> applicationServiceInterfaceDefine = null)
         {
             if (baseUrls == null) return serviceCollection;

@@ -73,7 +73,7 @@ namespace Zaaby.Client
                     throw new ZaabyException($"{nameof(dto)} must be ZaabyDtoBase.") {LogId = Guid.NewGuid()};
 
                 if (dto.Status == Status.Success)
-                    return dto.Data;
+                    return JsonConvert.DeserializeObject(dto.Data.ToString(), targetMethod.ReturnType);
 
                 throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
             }

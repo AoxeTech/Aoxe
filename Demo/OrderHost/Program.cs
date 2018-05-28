@@ -5,7 +5,7 @@ using Zaabee.Mongo;
 using Zaabee.Mongo.Common;
 using Zaabee.Mongo.Core;
 using Zaaby;
-using Zaaby.ApplicationServiceProxy;
+using Zaaby.Client;
 using Zaaby.Cache.RedisProvider;
 using Zaaby.Core.Infrastructure.Cache;
 using Zaaby.Core.Infrastructure.EventBus;
@@ -32,7 +32,7 @@ namespace OrderHost
             var redisConfig = config.GetSection("ZaabyRedis").Get<RedisConfig>();
 
             ZaabyServer.GetInstance()
-                .UseZaabyApplicationServiceProxy(appServiceConfig)
+                .UseZaabyClient(appServiceConfig)
                 .UseZaaby()
                 .AddSingleton<IMongoDbRepository>(p => new MongoDbRepository(mongoConfig))
                 .AddSingleton<IEventBus, ZabbyRabbitMqClient>(p =>
