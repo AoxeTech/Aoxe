@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Zaaby.Core;
 
 namespace Zaaby.Client
@@ -72,10 +73,21 @@ namespace Zaaby.Client
                 if (!(JsonConvert.DeserializeObject(result, typeof(ZaabyDtoBase)) is ZaabyDtoBase dto))
                     throw new ZaabyException($"{nameof(dto)} must be ZaabyDtoBase.") {LogId = Guid.NewGuid()};
 
-                if (dto.Status == Status.Success)
-                    return JsonConvert.DeserializeObject(dto.Data.ToString(), targetMethod.ReturnType);
-
-                throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
+                switch (dto.Status)
+                {
+                    case Status.Success when dto.Data is JObject jObj:
+                        return jObj.ToObject(targetMethod.ReturnType);
+                    case Status.Success:
+                        throw new ZaabyException("dto.Data is not JObject.") {LogId = new Guid(dto.Data.ToString())};
+                    case Status.Failure:
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
+                    case Status.Warning:
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
+                    case Status.Info:
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
+                    default:
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
+                }
             }
         }
     }
