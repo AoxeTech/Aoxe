@@ -47,7 +47,7 @@ namespace OrderDomain.AggregateRoots
         public void Committing()
         {
             if (Status != OrderStatus.ToBeChecked)
-                throw new Exception("The order status must be to be checked.");
+                throw new Exception("The order status must to be checked.");
             Status = OrderStatus.Commited;
         }
 
