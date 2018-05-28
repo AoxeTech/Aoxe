@@ -2,14 +2,21 @@
 
 namespace Zaaby.Core
 {
-    public class ZaabyDtoBase<T>
+    public class ZaabyDtoBase
     {
-        public Guid Id { get; set; }
-        public DateTimeOffset Timespan { get; set; }
+        public Guid Id { get; }
+        public DateTimeOffset Timespan { get; }
         public string Msg { get; set; }
         public Status Status { get; set; }
         public int ErrCode { get; set; }
-        public T Data { get; set; }
+        public Guid? LastId { get; set; }
+        public object Data { get; set; }
+
+        public ZaabyDtoBase()
+        {
+            Id = Guid.NewGuid();
+            Timespan = DateTimeOffset.Now;
+        }
     }
 
     public enum Status

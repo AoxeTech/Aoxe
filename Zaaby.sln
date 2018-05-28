@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ApplicationServicePro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWeb", "Demo\DemoWeb\DemoWeb.csproj", "{9A013C9C-F56D-4433-A770-E03F012215A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server", "Zaaby.Server\Zaaby.Server.csproj", "{C262E672-8355-4E4E-B117-68C816D40BF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client", "Zaaby.Client\Zaaby.Client.csproj", "{6EA0D7B2-3EEC-465B-9459-826093CCC3DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +132,14 @@ Global
 		{9A013C9C-F56D-4433-A770-E03F012215A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A013C9C-F56D-4433-A770-E03F012215A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A013C9C-F56D-4433-A770-E03F012215A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C262E672-8355-4E4E-B117-68C816D40BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C262E672-8355-4E4E-B117-68C816D40BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C262E672-8355-4E4E-B117-68C816D40BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C262E672-8355-4E4E-B117-68C816D40BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA0D7B2-3EEC-465B-9459-826093CCC3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA0D7B2-3EEC-465B-9459-826093CCC3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA0D7B2-3EEC-465B-9459-826093CCC3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA0D7B2-3EEC-465B-9459-826093CCC3DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8AB78D77-F79F-4D9B-874A-7F0A888BCC5A} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}

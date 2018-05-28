@@ -1,4 +1,5 @@
 ﻿using IFinanceApplication.DTOs;
+using System;
 using Zaaby.Core.Application;
 
 namespace IFinanceApplication
@@ -8,5 +9,7 @@ namespace IFinanceApplication
         bool Charge(CustomerChargeParam param);
 
         string FinanceSystemTest();
+
+        CustomerDto GetCustomer(Guid id);
     }
 }

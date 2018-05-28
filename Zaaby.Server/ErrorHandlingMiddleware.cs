@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Zaaby.Core;
 using Zaaby.Core.Infrastructure.EventBus;
 
-namespace Zaaby
+namespace Zaaby.Server
 {
     internal class ErrorHandlingMiddleware
     {

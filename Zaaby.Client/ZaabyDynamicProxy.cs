@@ -9,7 +9,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Zaaby.Core;
 
-namespace Zaaby.ApplicationServiceProxy
+namespace Zaaby.Client
 {
     public class ZaabyDynamicProxy : IDynamicProxy
     {
@@ -73,7 +73,7 @@ namespace Zaaby.ApplicationServiceProxy
                     throw new ZaabyException($"{nameof(dto)} must be ZaabyDtoBase.") {LogId = Guid.NewGuid()};
 
                 if (dto.Status == Status.Success)
-                    return JsonConvert.DeserializeObject(dto.Data.ToString(), targetMethod.ReturnType);
+                    return dto.Data;
 
                 throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
             }

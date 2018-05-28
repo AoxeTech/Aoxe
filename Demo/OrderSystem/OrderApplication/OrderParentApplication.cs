@@ -23,7 +23,8 @@ namespace OrderApplication
 
         public OrderParentDto Test()
         {
-            throw new Exception("aksdjflaksdjf;lkajsd;fkjasd;lkfja;sdlkfj;alskdjf;lkasdjf;lsak");
+            var i = _customerFinanceApplication.GetCustomer(Guid.NewGuid());
+            //throw new Exception("aksdjflaksdjf;lkajsd;fkjasd;lkfja;sdlkfj;alskdjf;lkasdjf;lsak");
             return new OrderParentDto
             {
                 Id = "testId",

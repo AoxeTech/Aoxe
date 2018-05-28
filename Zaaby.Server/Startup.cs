@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Zaaby
+namespace Zaaby.Server
 {
     internal class Startup
     {
@@ -42,7 +42,7 @@ namespace Zaaby
             services.AddMvcCore(mvcOptions =>
                 {
                     AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions));
-                    mvcOptions.Filters.Add(typeof(WebApiResultFilter));
+                    mvcOptions.Filters.Add<WebApiResultMiddleware>();
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
