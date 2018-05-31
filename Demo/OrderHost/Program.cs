@@ -35,8 +35,8 @@ namespace OrderHost
                 .UseZaabyClient(appServiceConfig)
                 .UseZaaby()
                 .AddSingleton<IMongoDbRepository>(p => new MongoDbRepository(mongoConfig))
-                .AddSingleton<IEventBus, ZabbyRabbitMqClient>(p =>
-                    new ZabbyRabbitMqClient(rabbitmqConfig, new Serializer()))
+                .AddSingleton<IEventBus, ZaabyRabbitMqClient>(p =>
+                    new ZaabyRabbitMqClient(rabbitmqConfig, new Serializer()))
                 .AddSingleton<ICache, ZaabyRedisClient>(p =>
                     new ZaabyRedisClient(redisConfig, new Zaaby.Cache.RedisProvider.Protobuf.Serializer()))
                 .UseUrls("http://*:5001")

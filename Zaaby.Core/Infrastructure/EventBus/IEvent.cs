@@ -8,6 +8,6 @@ namespace Zaaby.Core.Infrastructure.EventBus
     /// </summary>
     public interface IEvent : IMessage
     {
-        DateTimeOffset Timestamp { get; }
+        DateTimeOffset Timestamp { get;}
     }
 }
