@@ -3,20 +3,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Zaaby.Core;
-using Zaaby.Core.Infrastructure.EventBus;
+using Zaaby.Abstractions;
 
 namespace Zaaby
 {
     internal class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IEventBus _eventBus;
 
-        public ErrorHandlingMiddleware(RequestDelegate next, IEventBus eventBus)
+        public ErrorHandlingMiddleware(RequestDelegate next)
         {
             _next = next;
-            _eventBus = eventBus;
         }
 
         public async Task Invoke(HttpContext context)

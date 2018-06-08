@@ -2,23 +2,19 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DemoWeb.Models;
-using IFinanceApplication;
-using IShippingApplication;
+using Interfaces;
 
 namespace DemoWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICustomerFinanceApplication _customerFinanceApplication;
-        private readonly IFreightApplication _freightApplication;
-
-        public HomeController(ICustomerFinanceApplication customerFinanceApplication,
-            IFreightApplication freightApplication)
+        private ITest _test;
+        
+        public HomeController(ITest test)
         {
-            _customerFinanceApplication = customerFinanceApplication;
-            _freightApplication = freightApplication;
+            _test = test;
         }
-
+        
         public IActionResult Index()
         {
             return View();
@@ -41,12 +37,6 @@ namespace DemoWeb.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
-        }
-
-        public string TestFinanceSystem()
-        {
-            return $"{_customerFinanceApplication.FinanceSystemTest()}\r\n" +
-                   $"From DemoWeb. {DateTimeOffset.Now.UtcTicks}";
         }
     }
 }

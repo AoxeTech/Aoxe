@@ -1,6 +1,0 @@
-﻿{
-  "ZaabyRedis": {
-    "ConnectionString": "192.168.78.152:6379,abortConnect=false,syncTimeout=3000",
-    "DefaultExpireMinutes": 10
-  }
-}

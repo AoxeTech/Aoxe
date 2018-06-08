@@ -6,10 +6,7 @@ using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.Core;
-using Zaaby.Core.Application;
-using Zaaby.Core.Domain;
-using Zaaby.Core.Infrastructure.Repository;
+using Zaaby.Abstractions;
 
 namespace Zaaby
 {
@@ -18,8 +15,6 @@ namespace Zaaby
         private static readonly object LockObj = new object();
         private static ZaabyServer _zaabyServer;
         private static List<Type> _allTypes;
-
-        private static Action _useAppService;
 
         private static readonly List<string> Urls = new List<string>();
 
@@ -45,8 +40,6 @@ namespace Zaaby
 
         public void Run()
         {
-            _useAppService?.Invoke();
-
             var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .UseStartup<Startup>();
 
@@ -57,119 +50,34 @@ namespace Zaaby
                 .Run();
         }
 
-        public IZaabyServer UseZaabyApplicationService(Func<Type, bool> applicationServiceInterfaceDefine = null)
+        public IZaabyServer UseZaabyServer<TService>()
         {
             var allInterfaces = _allTypes.Where(type => type.IsInterface);
-            var serviceInterfaces = applicationServiceInterfaceDefine != null
-                ? allInterfaces.Where(applicationServiceInterfaceDefine)
-                : allInterfaces.Where(type =>
-                    typeof(IApplicationService).IsAssignableFrom(type) &&
-                    type != typeof(IApplicationService));
-            var implementServices = _allTypes
-                .Where(type => type.IsClass && serviceInterfaces.Any(i => i.IsAssignableFrom(type)))
-                .ToList();
-            _useAppService = () =>
-            {
-                implementServices.ForEach(service =>
-                {
-                    var serviceInterface =
-                        service.GetInterfaces().FirstOrDefault(i => serviceInterfaces.Contains(i));
-                    if (serviceInterface != null)
-                        AddScoped(serviceInterface, service);
-                    Startup.AddMvcCoreActions.Add(mvcOptions =>
-                    {
-                        mvcOptions.Conventions.Add(new ZaabyActionModelConvention(serviceInterface));
-                    });
-                });
-                Startup.ConfigureApplicationPartManagerActions.Add(manager =>
-                {
-                    manager.FeatureProviders
-                        .Add(new ZaabyAppServiceControllerFeatureProvider(implementServices));
-                });
-            };
-            return _zaabyServer;
-        }
+            var interfaceTypes = allInterfaces.Where(type =>
+                typeof(TService).IsAssignableFrom(type)).ToList();
+            var implementTypes = _allTypes
+                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
-        public IZaabyServer UseZaabyIntegrationEventHandler(Func<Type, bool> integrationEventHandlerDefine = null)
-        {
-            var integrationEventHandlerQuery = _allTypes.Where(type => type.IsClass);
-            integrationEventHandlerQuery = integrationEventHandlerDefine == null
-                ? integrationEventHandlerQuery.Where(type =>
-                    type.BaseType.IsGenericType &&
-                    type.BaseType.GetGenericTypeDefinition() == typeof(IntegrationEventHandler<>))
-                : integrationEventHandlerQuery.Where(integrationEventHandlerDefine);
-
-            var integrationEventHandlers = integrationEventHandlerQuery.ToList();
-            integrationEventHandlers.ForEach(integrationEventHandler =>
-                {
-                    AddSingleton(integrationEventHandler, integrationEventHandler);
-                    Startup.ServiceRunnerTypes.Add(integrationEventHandler);
-                });
+            implementTypes.ForEach(implementType =>
+                Startup.ServiceDic.TryAdd(
+                    interfaceTypes.FirstOrDefault(interfaceType =>
+                        interfaceType.IsAssignableFrom(implementType) && interfaceType != typeof(TService)) ??
+                    interfaceTypes.First(interfaceType => interfaceType.IsAssignableFrom(implementType)),
+                    implementType));
 
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaabyDomainService(Func<Type, bool> domainServiceInterfaceDefine = null)
+        public IZaabyServer RegisterServiceRunners(List<Type> runnerTypes)
         {
-            var domainServiceQuery = _allTypes.Where(type => type.IsClass);
-            domainServiceQuery = domainServiceInterfaceDefine == null
-                ? domainServiceQuery.Where(type => typeof(IDomainService).IsAssignableFrom(type))
-                : domainServiceQuery.Where(domainServiceInterfaceDefine);
-
-            var domainServices = domainServiceQuery.ToList();
-
-            domainServices.ForEach(domainService => AddScoped(domainService, domainService));
+            runnerTypes.ForEach(type => RegisterServiceRunner(type));
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaabyDomainEventHandler(Func<Type, bool> domainEventHandlerDefine = null)
+        public IZaabyServer RegisterServiceRunner(Type runnerType)
         {
-            var domainEventHandlerQuery = _allTypes.Where(type => type.IsClass);
-            domainEventHandlerQuery = domainEventHandlerDefine == null
-                ? domainEventHandlerQuery.Where(type =>
-                    type.BaseType.IsGenericType &&
-                    type.BaseType.GetGenericTypeDefinition() == typeof(DomainEventHandler<>))
-                : domainEventHandlerQuery.Where(domainEventHandlerDefine);
-
-            var domainEventHandlers = domainEventHandlerQuery.ToList();
-            domainEventHandlers.ForEach(domainEventHandler =>
-            {
-                AddSingleton(domainEventHandler, domainEventHandler);
-                Startup.ServiceRunnerTypes.Add(domainEventHandler);
-            });
-
-            return _zaabyServer;
-        }
-
-        public IZaabyServer UseZaabyRepository(Func<Type, bool> repositoryInterfaceDefine = null)
-        {
-            var allInterfaces = _allTypes.Where(type => type.IsInterface);
-
-            var repositoryInterfaces = repositoryInterfaceDefine != null
-                ? allInterfaces.Where(repositoryInterfaceDefine)
-                : allInterfaces.Where(type => type.GetInterfaces().Any(@interface =>
-                    @interface.IsGenericType && @interface.GetGenericTypeDefinition() == typeof(IRepository<,>)));
-
-            var implementRepositories = _allTypes
-                .Where(type => type.IsClass && repositoryInterfaces.Any(i => i.IsAssignableFrom(type)))
-                .ToList();
-
-            implementRepositories.ForEach(repository =>
-            {
-                AddScoped(repository.GetInterfaces().First(i => repositoryInterfaces.Contains(i)),
-                    repository);
-            });
-
-            return _zaabyServer;
-        }
-
-        public IZaabyServer UseZaaby()
-        {
-            UseZaabyApplicationService();
-            UseZaabyIntegrationEventHandler();
-            UseZaabyRepository();
-            UseZaabyDomainService();
-            UseZaabyDomainEventHandler();
+            AddSingleton(runnerType);
+            Startup.ServiceRunnerTypes.Add(runnerType);
             return _zaabyServer;
         }
 

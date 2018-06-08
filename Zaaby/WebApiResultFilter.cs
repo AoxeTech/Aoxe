@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Zaaby.Core;
+using Zaaby.Abstractions;
 
 namespace Zaaby
 {

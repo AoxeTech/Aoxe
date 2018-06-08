@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -15,11 +14,8 @@ namespace Zaaby
         internal static readonly Dictionary<Type, Type> SingletonDic = new Dictionary<Type, Type>();
         internal static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
 
-        internal static readonly List<Action<MvcOptions>> AddMvcCoreActions = new List<Action<MvcOptions>>();
-
-        internal static readonly List<Action<ApplicationPartManager>> ConfigureApplicationPartManagerActions =
-            new List<Action<ApplicationPartManager>>();
-
+        //Key is interface type,value is implement type
+        internal static readonly Dictionary<Type, Type> ServiceDic = new Dictionary<Type, Type>();
         internal static readonly List<Type> ServiceRunnerTypes = new List<Type>();
 
         public void ConfigureServices(IServiceCollection services)
@@ -41,12 +37,19 @@ namespace Zaaby
 
             services.AddMvcCore(mvcOptions =>
                 {
-                    AddMvcCoreActions.ForEach(action => action.Invoke(mvcOptions));
+                    foreach (var keyValuePair in ServiceDic)
+                    {
+                        var interfaceType = keyValuePair.Key;
+                        var implementType = keyValuePair.Value;
+                        services.AddScoped(interfaceType, implementType);
+                        mvcOptions.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
+                    }
                     mvcOptions.Filters.Add(typeof(WebApiResultFilter));
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
-                    ConfigureApplicationPartManagerActions.ForEach(action => action.Invoke(manager));
+                    manager.FeatureProviders
+                        .Add(new ZaabyAppServiceControllerFeatureProvider(ServiceDic.Values));
                 }).AddJsonFormatters();
         }
 

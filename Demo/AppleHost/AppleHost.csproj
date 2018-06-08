@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppleSystem\AppleServices\AppleServices.csproj" />
+    <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby" Version="0.2.2018060801" />
+    <PackageReference Include="Zaaby.Client" Version="0.2.2018060801" />
+  </ItemGroup>
+</Project>
