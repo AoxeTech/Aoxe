@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.2.2018060802</PackageVersion>
+    <PackageVersion>0.3.0</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
-    <PackageTags>Zaaby MicroService Framework DDD</PackageTags>
-    <Description>A micro service framework base by asp.net core for DDD.</Description>
+    <PackageTags>Zaaby MicroService Framework</PackageTags>
+    <Description>A micro service framework base by asp.net core</Description>
     <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
