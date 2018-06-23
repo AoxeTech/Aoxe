@@ -325,7 +325,7 @@ namespace Zaaby
             }
         }
 
-        private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
+        private static void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
             ServiceLifetime lifetime)
         {
             Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
