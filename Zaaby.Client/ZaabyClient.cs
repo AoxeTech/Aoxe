@@ -71,7 +71,7 @@ namespace Zaaby.Client
                 var result = responseForPost.Result.Content.ReadAsStringAsync().Result;
 
                 if (!(JsonConvert.DeserializeObject(result, typeof(ZaabyDtoBase)) is ZaabyDtoBase dto))
-                    throw new ZaabyException($"{nameof(dto)} must be ZaabyDtoBase.") { LogId = Guid.NewGuid() };
+                    throw new ZaabyException($"\"{result}\" can not be deserialize to ZaabyDtoBase.") { LogId = Guid.NewGuid() };
 
                 switch (dto.Status)
                 {
