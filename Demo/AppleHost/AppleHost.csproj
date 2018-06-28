@@ -9,6 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Zaaby" Version="0.2.2018060802" />
-    <PackageReference Include="Zaaby.Client" Version="0.2.2018060801" />
+    <PackageReference Include="Zaaby.Client" Version="0.2.2018062801" />
   </ItemGroup>
 </Project>
