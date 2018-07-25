@@ -12,7 +12,12 @@ namespace Zaaby.Client
             if (baseUrls == null) return zaabyServer;
 
             var interfaces =
-                ServiceTypeRepository.GetZaabyApplicationServiceTypes(type => baseUrls.ContainsKey(type.Namespace));
+                zaabyServer.AllTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));            
+            var implementServices = zaabyServer.AllTypes
+                .Where(type => type.IsClass && interfaces.Any(i => i.IsAssignableFrom(type)))
+                .ToList();            
+            interfaces = interfaces.Where(i =>
+                implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
 
             var client = new ZaabyClient(interfaces
                 .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))

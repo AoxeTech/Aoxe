@@ -14,7 +14,7 @@ namespace Zaaby
     {
         private static readonly object LockObj = new object();
         private static ZaabyServer _zaabyServer;
-        private static List<Type> _allTypes;
+        public List<Type> AllTypes { get; set; }
 
         private static readonly List<string> Urls = new List<string>();
 
@@ -52,10 +52,10 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyServer<TService>()
         {
-            var allInterfaces = _allTypes.Where(type => type.IsInterface);
+            var allInterfaces = AllTypes.Where(type => type.IsInterface);
             var interfaceTypes = allInterfaces.Where(type =>
                 typeof(TService).IsAssignableFrom(type)).ToList();
-            var implementTypes = _allTypes
+            var implementTypes = AllTypes
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
             implementTypes.ForEach(implementType =>
@@ -83,7 +83,7 @@ namespace Zaaby
 
         private ZaabyServer()
         {
-            _allTypes = GetAllTypes();
+            AllTypes = GetAllTypes();
         }
 
         private static List<Type> GetAllTypes()

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Zaaby.Client
@@ -11,8 +14,13 @@ namespace Zaaby.Client
         {
             if (baseUrls == null) return serviceCollection;
 
-            var interfaces =
-                ServiceTypeRepository.GetZaabyApplicationServiceTypes(type => baseUrls.ContainsKey(type.Namespace));
+            var allTypes = GetAllTypes();
+
+            var interfaces = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
+            var implementServices =
+                allTypes.Where(type => type.IsClass && interfaces.Any(i => i.IsAssignableFrom(type))).ToList();
+            interfaces = interfaces.Where(i =>
+                implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
 
             var client = new ZaabyClient(interfaces
                 .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
@@ -28,6 +36,33 @@ namespace Zaaby.Client
             }
 
             return serviceCollection;
+        }
+
+        private static List<Type> GetAllTypes()
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+
+            var typeDic = new Dictionary<string, Type>();
+
+            foreach (var file in files)
+            {
+                try
+                {
+                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                        if (!typeDic.ContainsKey(type.FullName))
+                            typeDic.Add(type.FullName, type);
+                }
+                catch (BadImageFormatException)
+                {
+                    // ignored
+                }
+            }
+
+            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }

@@ -78,6 +78,8 @@ namespace Zaaby.Abstractions
 
         IZaabyServer RegisterServiceRunner(Type runnerType);
 
+        List<Type> AllTypes { get; set; }
+
         void Run();
     }
 }
