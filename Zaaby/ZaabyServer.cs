@@ -14,6 +14,7 @@ namespace Zaaby
     {
         private static readonly object LockObj = new object();
         private static ZaabyServer _zaabyServer;
+
         public List<Type> AllTypes { get; set; }
 
         private static readonly List<string> Urls = new List<string>();
@@ -74,10 +75,23 @@ namespace Zaaby
             return _zaabyServer;
         }
 
+        public IZaabyServer RegisterServiceRunners(Dictionary<Type, Type> runnerTypes)
+        {
+            foreach (var pair in runnerTypes)
+                RegisterServiceRunner(pair.Key, pair.Value);
+            return _zaabyServer;
+        }
+
         public IZaabyServer RegisterServiceRunner(Type runnerType)
         {
             AddSingleton(runnerType);
             Startup.ServiceRunnerTypes.Add(runnerType);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer RegisterServiceRunner(Type serviceType, Type implementationType)
+        {
+            AddSingleton(serviceType, implementationType);
             return _zaabyServer;
         }
 

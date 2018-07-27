@@ -8,7 +8,7 @@
     <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby" Version="0.3.2" />
+    <PackageReference Include="Zaaby" Version="0.3.3" />
     <PackageReference Include="Zaaby.Client" Version="0.2.2018072505" />
   </ItemGroup>
 </Project>

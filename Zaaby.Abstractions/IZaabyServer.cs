@@ -78,6 +78,10 @@ namespace Zaaby.Abstractions
 
         IZaabyServer RegisterServiceRunner(Type runnerType);
 
+        IZaabyServer RegisterServiceRunners(Dictionary<Type, Type> runnerTypes);
+
+        IZaabyServer RegisterServiceRunner(Type serviceType, Type implementationType);
+
         List<Type> AllTypes { get; set; }
 
         void Run();
