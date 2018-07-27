@@ -25,7 +25,7 @@ namespace AppleServices
 
         public string SayHelloToBanana()
         {
-            return $"Hello,here is Apple.\n{_bananaService.GetBananaMsg()}";
+            return $"Hello,here is Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
         }
     }
 }
