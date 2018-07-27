@@ -92,6 +92,7 @@ namespace Zaaby
         public IZaabyServer RegisterServiceRunner(Type serviceType, Type implementationType)
         {
             AddSingleton(serviceType, implementationType);
+            Startup.ServiceRunnerTypes.Add(serviceType);
             return _zaabyServer;
         }
 
