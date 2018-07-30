@@ -327,13 +327,16 @@ namespace Zaaby
             switch (lifetime)
             {
                 case ServiceLifetime.Singleton:
-                    Startup.SingletonDic.TryAdd(serviceType, implementationType);
+                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
+                        ServiceLifetime.Singleton));
                     break;
                 case ServiceLifetime.Scoped:
-                    Startup.ScopeDic.TryAdd(serviceType, implementationType);
+                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
+                        ServiceLifetime.Scoped));
                     break;
                 case ServiceLifetime.Transient:
-                    Startup.TransientDic.TryAdd(serviceType, implementationType);
+                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
+                        ServiceLifetime.Transient));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(lifetime), lifetime, null);
