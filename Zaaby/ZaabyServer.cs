@@ -53,18 +53,18 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyServer<TService>()
         {
-            var allInterfaces = AllTypes.Where(type => type.IsInterface);
-            var interfaceTypes = allInterfaces.Where(type =>
-                typeof(TService).IsAssignableFrom(type)).ToList();
+            var interfaceTypes = AllTypes
+                .Where(type => type.IsInterface && typeof(TService).IsAssignableFrom(type)).ToList();
             var implementTypes = AllTypes
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
-            implementTypes.ForEach(implementType =>
-                Startup.ServiceDic.TryAdd(
-                    interfaceTypes.FirstOrDefault(interfaceType =>
-                        interfaceType.IsAssignableFrom(implementType) && interfaceType != typeof(TService)) ??
-                    interfaceTypes.First(interfaceType => interfaceType.IsAssignableFrom(implementType)),
-                    implementType));
+            Startup.ServiceDescriptors.AddRange(implementTypes.Select(implementType =>
+                new ServiceDescriptor(interfaceTypes.FirstOrDefault(interfaceType =>
+                                          interfaceType.IsAssignableFrom(implementType) &&
+                                          interfaceType != typeof(TService)) ??
+                                      interfaceTypes.First(interfaceType =>
+                                          interfaceType.IsAssignableFrom(implementType)),
+                    implementType, ServiceLifetime.Scoped)));
 
             return _zaabyServer;
         }
