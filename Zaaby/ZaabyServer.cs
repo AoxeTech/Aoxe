@@ -119,7 +119,7 @@ namespace Zaaby
                         if (!typeDic.ContainsKey(type.FullName))
                             typeDic.Add(type.FullName, type);
                 }
-                catch (BadImageFormatException)
+                catch
                 {
                     // ignored
                 }
