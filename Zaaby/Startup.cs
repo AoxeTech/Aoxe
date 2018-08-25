@@ -18,10 +18,6 @@ namespace Zaaby
         {
             services.Add(ServiceDescriptors);
 
-            var serviceProvider = services.BuildServiceProvider();
-
-            ServiceRunnerTypes.ForEach(type => serviceProvider.GetService(type));
-
             services.AddMvcCore(mvcOptions =>
                 {
                     foreach (var keyValuePair in ServiceDic)
@@ -31,6 +27,7 @@ namespace Zaaby
                         services.AddScoped(interfaceType, implementType);
                         mvcOptions.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }
+
                     mvcOptions.Filters.Add(typeof(WebApiResultFilter));
                 })
                 .ConfigureApplicationPartManager(manager =>
@@ -40,10 +37,11 @@ namespace Zaaby
                 }).AddJsonFormatters();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
         {
             app.UseErrorHandling();
             app.UseMvc();
+            ServiceRunnerTypes.ForEach(type => serviceProvider.GetService(type));
         }
     }
 }
