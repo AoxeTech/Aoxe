@@ -74,6 +74,8 @@ namespace Zaaby.Abstractions
 
         IZaabyServer UseZaabyServer<TService>();
 
+        IZaabyServer UseZaabyServer(Func<Type, bool> definition);
+
         IZaabyServer RegisterServiceRunners(List<Type> runnerTypes);
 
         IZaabyServer RegisterServiceRunner(Type runnerType);

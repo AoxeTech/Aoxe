@@ -53,9 +53,16 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyServer<TService>()
         {
-            var interfaceTypes = AllTypes
-                .Where(type => type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService))
-                .ToList();
+            UseZaabyServer(type =>
+                type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
+        {
+            var interfaceTypes = AllTypes.Where(definition).ToList();
+
             var implementTypes = AllTypes
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
