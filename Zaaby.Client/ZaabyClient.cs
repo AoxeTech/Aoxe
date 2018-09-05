@@ -24,12 +24,12 @@ namespace Zaaby.Client
                 throw new ArgumentException(nameof(baseUrls));
 
             var urls = baseUrls
-                .SelectMany(kv => kv.Value.Select(v => new { Url = v.Trim(), Namespace = kv.Key }))
+                .SelectMany(kv => kv.Value.Select(v => new {Url = v.Trim(), Namespace = kv.Key}))
                 .GroupBy(p => p.Url);
 
             foreach (var datas in urls)
             {
-                var httpClient = new HttpClient { BaseAddress = new Uri(datas.Key) };
+                var httpClient = new HttpClient {BaseAddress = new Uri(datas.Key)};
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 foreach (var data in datas)
                 {
@@ -62,34 +62,40 @@ namespace Zaaby.Client
 
             protected override object Invoke(MethodInfo targetMethod, object[] args)
             {
-                var content = args.Any()
-                    ? new StringContent(JsonConvert.SerializeObject(args[0]), Encoding.UTF8, "application/json")
-                    : null;
-                var responseForPost =
-                    _client.PostAsync($"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}", content);
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
+                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
+                {
+                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+                        "application/json")
+                };
+                httpRequestMessage.Headers.Add("Accept", "application/json");
+
+                var responseForPost = _client.SendAsync(httpRequestMessage);
 
                 var result = responseForPost.Result.Content.ReadAsStringAsync().Result;
 
                 if (string.IsNullOrWhiteSpace(result))
                     return null;
-                
+
                 if (!(JsonConvert.DeserializeObject(result, typeof(ZaabyDtoBase)) is ZaabyDtoBase dto))
-                    throw new ZaabyException($"\"{result}\" can not be deserialize to ZaabyDtoBase.") { LogId = Guid.NewGuid() };
+                    throw new ZaabyException($"\"{result}\" can not be deserialize to ZaabyDtoBase.")
+                        {LogId = Guid.NewGuid()};
 
                 switch (dto.Status)
                 {
                     case Status.Success when dto.Data is JObject jObj:
                         return jObj.ToObject(targetMethod.ReturnType);
                     case Status.Success:
-                        return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dto.Data), targetMethod.ReturnType);
+                        return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dto.Data),
+                            targetMethod.ReturnType);
                     case Status.Failure:
-                        throw new ZaabyException(dto.Msg) { LogId = new Guid(dto.Data.ToString()) };
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
                     case Status.Warning:
-                        throw new ZaabyException(dto.Msg) { LogId = new Guid(dto.Data.ToString()) };
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
                     case Status.Info:
-                        throw new ZaabyException(dto.Msg) { LogId = new Guid(dto.Data.ToString()) };
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
                     default:
-                        throw new ZaabyException(dto.Msg) { LogId = new Guid(dto.Data.ToString()) };
+                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
                 }
             }
         }
