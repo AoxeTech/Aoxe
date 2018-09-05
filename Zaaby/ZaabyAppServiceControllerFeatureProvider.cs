@@ -18,9 +18,7 @@ namespace Zaaby
         public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
         {
             foreach (var serviceType in _serviceTypes)
-            {
                 feature.Controllers.Add(serviceType.GetTypeInfo());
-            }
         }
     }
 }
