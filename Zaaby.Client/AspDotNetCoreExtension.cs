@@ -16,24 +16,23 @@ namespace Zaaby.Client
 
             var allTypes = GetAllTypes();
 
-            var interfaces = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
-            var implementServices =
-                allTypes.Where(type => type.IsClass && interfaces.Any(i => i.IsAssignableFrom(type))).ToList();
-            interfaces = interfaces.Where(i =>
-                implementServices.All(s => !i.IsAssignableFrom(s))).ToList();
+            var interfaceTypes = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
+            var implementServiceTypes =
+                allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+            interfaceTypes = interfaceTypes.Where(i =>
+                implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 
-            var client = new ZaabyClient(interfaces
+            var client = new ZaabyClient(interfaceTypes
                 .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
-            var dynamicType = client.GetType();
-            var methodInfo = dynamicType.GetMethod("GetService");
-            foreach (var interfaceType in interfaces)
-            {
-                var proxy = methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null);
-                serviceCollection.AddScoped(interfaceType, p => proxy);
-            }
+            
+            var methodInfo = client.GetType().GetMethod("GetService");
+            
+            foreach (var interfaceType in interfaceTypes)
+                serviceCollection.AddScoped(interfaceType,
+                    p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
 
             return serviceCollection;
         }
