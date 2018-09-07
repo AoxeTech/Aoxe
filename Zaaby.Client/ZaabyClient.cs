@@ -7,7 +7,6 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -83,8 +82,6 @@ namespace Zaaby.Client
 
                 switch (dto.Status)
                 {
-                    case Status.Success when dto.Data is JObject jObj:
-                        return jObj.ToObject(targetMethod.ReturnType);
                     case Status.Success:
                         return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dto.Data),
                             targetMethod.ReturnType);

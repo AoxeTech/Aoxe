@@ -7,5 +7,7 @@ namespace IAppleServices
         int GetInt();
         string GetAppleMsg();
         string SayHelloToBanana();
+        void ThrowEx();
+        void TestAppleExFromBanana();
     }
 }

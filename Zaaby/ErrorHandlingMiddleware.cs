@@ -43,7 +43,7 @@ namespace Zaaby
 
             var data = new ZaabyDtoBase
             {
-                Msg = innerEx.Message,
+                Msg = $"{innerEx.Message}\r\n{innerEx.StackTrace}",
                 Status = Status.Failure,
                 ErrCode = httpStatusCode
             };

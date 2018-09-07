@@ -1,10 +1,18 @@
 ﻿using System;
+using IAppleServices;
 using IBananaServices;
 
 namespace BananaServices
 {
     public class BananaService : IBananaService
     {
+        private IAppleService _appleService;
+        
+        public BananaService(IAppleService appleService)
+        {
+            _appleService = appleService;
+        }
+        
         public Guid GetGuid()
         {
             return Guid.NewGuid();
@@ -18,6 +26,16 @@ namespace BananaServices
         public BananaDto ThrowBack(BananaDto dto)
         {
             return dto;
+        }
+
+        public void ThrowEx()
+        {
+            throw new Exception($"Throw by banana service in {DateTimeOffset.Now}");
+        }
+
+        public void TestAppleEx()
+        {
+            _appleService.ThrowEx();
         }
     }
 }

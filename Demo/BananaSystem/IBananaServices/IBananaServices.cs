@@ -8,5 +8,7 @@ namespace IBananaServices
         Guid GetGuid();
         string GetBananaMsg();
         BananaDto ThrowBack(BananaDto dto);
+        void ThrowEx();
+        void TestAppleEx();
     }
 }

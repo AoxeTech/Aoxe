@@ -27,5 +27,20 @@ namespace AppleServices
         {
             return $"Hello,here is Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
         }
+
+        public void ThrowEx()
+        {
+            throw new Exception($"Throw by apple service in {DateTimeOffset.Now}");
+        }
+
+        public void TestAppleExFromBanana()
+        {
+            _bananaService.TestAppleEx();
+        }
+
+        public void TestBananaEx()
+        {
+            _bananaService.ThrowEx();
+        }
     }
 }

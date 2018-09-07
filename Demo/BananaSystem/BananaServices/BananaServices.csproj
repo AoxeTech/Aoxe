@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AppleSystem\IAppleServices\IAppleServices.csproj" />
     <ProjectReference Include="..\..\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\IBananaServices\IBananaServices.csproj" />
   </ItemGroup>

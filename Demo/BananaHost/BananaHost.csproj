@@ -7,5 +7,6 @@
     <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\AppleSystem\IAppleServices\IAppleServices.csproj" />
     <ProjectReference Include="..\BananaSystem\BananaServices\BananaServices.csproj" />
+    <ProjectReference Include="..\Client\Client.csproj" />
   </ItemGroup>
 </Project>
