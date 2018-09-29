@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -27,7 +28,6 @@ namespace Zaaby
                         services.AddScoped(interfaceType, implementType);
                         mvcOptions.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }
-
                     mvcOptions.Filters.Add(typeof(WebApiResultFilter));
                 })
                 .ConfigureApplicationPartManager(manager =>
