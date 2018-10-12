@@ -20,7 +20,7 @@ namespace BananaServices
 
         public string GetBananaMsg()
         {
-            return $"This is from {GetType().Name} on {DateTimeOffset.Now}";
+            return $"This is from {GetType().Name} on {DateTime.Now}";
         }
 
         public BananaDto ThrowBack(BananaDto dto)
@@ -30,7 +30,7 @@ namespace BananaServices
 
         public void ThrowEx()
         {
-            throw new Exception($"Throw by banana service in {DateTimeOffset.Now}");
+            throw new Exception($"Throw by banana service in {DateTime.Now}");
         }
 
         public void TestAppleEx()

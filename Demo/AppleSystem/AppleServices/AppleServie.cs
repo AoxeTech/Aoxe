@@ -20,7 +20,7 @@ namespace AppleServices
 
         public string GetAppleMsg()
         {
-            return $"This is from {GetType().Name} on {DateTimeOffset.Now}";
+            return $"This is from {GetType().Name} on {DateTime.Now}";
         }
 
         public string SayHelloToBanana()
@@ -30,7 +30,7 @@ namespace AppleServices
 
         public void ThrowEx()
         {
-            throw new Exception($"Throw by apple service in {DateTimeOffset.Now}");
+            throw new Exception($"Throw by apple service in {DateTime.Now}");
         }
 
         public void TestAppleExFromBanana()

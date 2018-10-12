@@ -5,7 +5,7 @@ namespace Zaaby.Abstractions
     public class ZaabyDtoBase
     {
         public Guid Id { get; }
-        public DateTimeOffset Timespan { get; }
+        public DateTime Timespan { get; }
         public string Msg { get; set; }
         public Status Status { get; set; }
         public int ErrCode { get; set; }
@@ -15,7 +15,7 @@ namespace Zaaby.Abstractions
         public ZaabyDtoBase()
         {
             Id = Guid.NewGuid();
-            Timespan = DateTimeOffset.Now;
+            Timespan = DateTime.Now;
         }
     }
 

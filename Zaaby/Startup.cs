@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Zaabee.AspNetCore.Formatters.Protobuf;
 
 namespace Zaaby
 {
@@ -19,16 +19,17 @@ namespace Zaaby
         {
             services.Add(ServiceDescriptors);
 
-            services.AddMvcCore(mvcOptions =>
+            services.AddMvcCore(options =>
                 {
                     foreach (var keyValuePair in ServiceDic)
                     {
                         var interfaceType = keyValuePair.Key;
                         var implementType = keyValuePair.Value;
                         services.AddScoped(interfaceType, implementType);
-                        mvcOptions.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
+                        options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }
-                    mvcOptions.Filters.Add(typeof(WebApiResultFilter));
+                    options.Filters.Add(typeof(WebApiResultFilter));
+                    options.AddProtobufFormatter();
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {

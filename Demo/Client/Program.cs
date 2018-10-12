@@ -35,7 +35,7 @@ namespace Client
                         Console.WriteLine(appleService.SayHelloToBanana());
                     else if (string.Equals(input, "ThrowBack", StringComparison.CurrentCultureIgnoreCase))
                         Console.WriteLine(
-                            bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTimeOffset.Now})
+                            bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now})
                                 .ToJil());
                 }
                 catch (Exception ex)

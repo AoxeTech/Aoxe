@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
@@ -29,7 +28,6 @@ namespace Zaaby.Client
             foreach (var datas in urls)
             {
                 var httpClient = new HttpClient {BaseAddress = new Uri(datas.Key)};
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 foreach (var data in datas)
                 {
                     var httpClients = HttpClients.GetOrAdd(data.Namespace, key => new List<HttpClient>());
