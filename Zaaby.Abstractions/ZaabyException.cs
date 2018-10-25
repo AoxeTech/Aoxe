@@ -5,7 +5,7 @@ namespace Zaaby.Abstractions
 {
     public class ZaabyException : Exception
     {
-        public Guid LogId { get; set; }
+        public Guid Id { get; set; }
 
         public ZaabyException()
         {

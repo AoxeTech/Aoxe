@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BananaSystem\IBananaServices\IBananaServices.csproj" />
     <ProjectReference Include="..\..\Interfaces\Interfaces.csproj" />
   </ItemGroup>
 </Project>

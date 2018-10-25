@@ -9,6 +9,6 @@
     <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaabee.Jil" Version="1.0.4" />
+    <PackageReference Include="Zaabee.Jil" Version="1.2.0" />
   </ItemGroup>
 </Project>

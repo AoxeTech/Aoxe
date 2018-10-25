@@ -28,14 +28,14 @@ namespace Zaaby
                         services.AddScoped(interfaceType, implementType);
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }
-                    options.Filters.Add(typeof(WebApiResultFilter));
                     options.AddProtobufFormatter();
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
                     manager.FeatureProviders
                         .Add(new ZaabyAppServiceControllerFeatureProvider(ServiceDic.Values));
-                }).AddJsonFormatters();
+                })
+                .AddJsonFormatters();
         }
 
         public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)

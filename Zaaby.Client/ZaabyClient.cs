@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using Zaabee.Protobuf;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -59,39 +62,39 @@ namespace Zaaby.Client
 
             protected override object Invoke(MethodInfo targetMethod, object[] args)
             {
+//                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
+//                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
+//                {
+//                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+//                        "application/json")
+//                };
+//                httpRequestMessage.Headers.Add("Accept", "application/json");
+//
+//                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
+//                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+//                if (httpResponseMessage.IsSuccessStatusCode)
+//                    return string.IsNullOrWhiteSpace(result)
+//                        ? null
+//                        : JsonConvert.DeserializeObject(result,
+//                            targetMethod.ReturnType);
+
+                var stream = new MemoryStream();
+                if (args.Any())
+                    ProtobufHelper.Serialize(stream, args[0]);
+                stream.Seek(0, SeekOrigin.Begin);
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
-                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
-                        "application/json")
+                    Content = new StreamContent(stream)
                 };
-                httpRequestMessage.Headers.Add("Accept", "application/json");
+                httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
+                httpRequestMessage.Headers.Add("Accept", "application/x-protobuf");
+                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
+                var result = httpResponseMessage.Content.ReadAsStreamAsync().Result;
+                if (httpResponseMessage.IsSuccessStatusCode)
+                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
 
-                var responseForPost = _client.SendAsync(httpRequestMessage);
-
-                var result = responseForPost.Result.Content.ReadAsStringAsync().Result;
-
-                if (string.IsNullOrWhiteSpace(result))
-                    return null;
-
-                if (!(JsonConvert.DeserializeObject(result, typeof(ZaabyDtoBase)) is ZaabyDtoBase dto))
-                    throw new ZaabyException($"\"{result}\" can not be deserialize to ZaabyDtoBase.")
-                        {LogId = Guid.NewGuid()};
-
-                switch (dto.Status)
-                {
-                    case Status.Success:
-                        return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(dto.Data),
-                            targetMethod.ReturnType);
-                    case Status.Failure:
-                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
-                    case Status.Warning:
-                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
-                    case Status.Info:
-                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
-                    default:
-                        throw new ZaabyException(dto.Msg) {LogId = new Guid(dto.Data.ToString())};
-                }
+                throw JsonConvert.DeserializeObject<Exception>(httpResponseMessage.Content.ReadAsStringAsync().Result);
             }
         }
     }

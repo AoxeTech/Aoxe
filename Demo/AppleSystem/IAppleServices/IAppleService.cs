@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using IBananaServices;
+using Interfaces;
 
 namespace IAppleServices
 {
@@ -9,5 +10,7 @@ namespace IAppleServices
         string SayHelloToBanana();
         void ThrowEx();
         void TestAppleExFromBanana();
+        void TestBananaEx();
+        BananaDto TestBananaDto();
     }
 }

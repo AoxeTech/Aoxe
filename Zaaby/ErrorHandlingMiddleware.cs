@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Zaaby.Abstractions;
 
 namespace Zaaby
 {
@@ -21,42 +20,21 @@ namespace Zaaby
             try
             {
                 await _next(context);
-                if (context.Response.StatusCode >= 400)
-                {
-                    var statusCode = context.Response.StatusCode;
-                    context.Response.StatusCode = 200;
-                    await HandleExceptionAsync(context, statusCode,
-                        new ZaabyException($"{context.Request.Path.Value} httpStatus:{statusCode}"));
-                }
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, context.Response.StatusCode, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, int httpStatusCode, Exception ex)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var innerEx = ex;
             while (innerEx.InnerException != null)
                 innerEx = innerEx.InnerException;
 
-            var data = new ZaabyDtoBase
-            {
-                Msg = $"{innerEx.Message}\r\n{innerEx.StackTrace}",
-                Status = Status.Failure,
-                ErrCode = httpStatusCode
-            };
-
-            if (innerEx is ZaabyException zaabyException)
-                data.Data = zaabyException.LogId;
-            else
-            {
-                var zaabyEx = new ZaabyException(innerEx.Message, innerEx) {LogId = Guid.NewGuid()};
-                data.Data = zaabyEx.LogId;
-            }
-
-            var result = JsonConvert.SerializeObject(data);
+            context.Response.StatusCode = 500;
+            var result = JsonConvert.SerializeObject(innerEx);
             return context.Response.WriteAsync(result);
         }
     }

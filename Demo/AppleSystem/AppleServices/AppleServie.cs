@@ -12,7 +12,7 @@ namespace AppleServices
         {
             _bananaService = bananaService;
         }
-        
+
         public int GetInt()
         {
             return new Random().Next();
@@ -41,6 +41,11 @@ namespace AppleServices
         public void TestBananaEx()
         {
             _bananaService.ThrowEx();
+        }
+
+        public BananaDto TestBananaDto()
+        {
+            return _bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now});
         }
     }
 }
