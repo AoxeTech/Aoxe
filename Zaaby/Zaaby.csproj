@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.5.0</Version>
-    <PackageVersion>0.5.0</PackageVersion>
+    <Version>0.6.0</Version>
+    <PackageVersion>0.6.0</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -16,7 +16,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.1.3" />
-    <PackageReference Include="Zaabee.AspNetCore.Formatters.Protobuf" Version="1.1.5" />
+    <PackageReference Include="Zaabee.AspNetCore.Formatters.Protobuf" Version="1.1.7" />
+    <PackageReference Include="Zaabee.Json" Version="1.1.0" />
     <PackageReference Include="Zaaby.Abstractions" Version="0.6.1" />
   </ItemGroup>
 </Project>

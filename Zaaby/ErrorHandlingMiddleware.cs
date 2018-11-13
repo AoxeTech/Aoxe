@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Zaaby.Abstractions;
 
 namespace Zaaby
 {
@@ -21,21 +22,31 @@ namespace Zaaby
             {
                 await _next(context);
             }
+            catch (ZaabyException ex)
+            {
+                await HandleExceptionAsync(context, ex, 400);
+            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex, 500);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception ex)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex, int statusCode)
         {
             var innerEx = ex;
             while (innerEx.InnerException != null)
                 innerEx = innerEx.InnerException;
+            context.Response.StatusCode = statusCode;
 
-            context.Response.StatusCode = 500;
-            var result = JsonConvert.SerializeObject(innerEx);
-            return context.Response.WriteAsync(result);
+            if (!context.Request.Headers.ContainsKey("Accept"))
+                return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
+            switch (context.Request.Headers["Accept"])
+            {
+                case "application/json": return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
+                case "application/x-protobuf": return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
+                default: return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
+            }
         }
     }
 

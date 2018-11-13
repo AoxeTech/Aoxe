@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
-using Zaabee.Protobuf;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -62,38 +60,41 @@ namespace Zaaby.Client
 
             protected override object Invoke(MethodInfo targetMethod, object[] args)
             {
-//                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
-//                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
-//                {
-//                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
-//                        "application/json")
-//                };
-//                httpRequestMessage.Headers.Add("Accept", "application/json");
-//
-//                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
-//                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
-//                if (httpResponseMessage.IsSuccessStatusCode)
-//                    return string.IsNullOrWhiteSpace(result)
-//                        ? null
-//                        : JsonConvert.DeserializeObject(result,
-//                            targetMethod.ReturnType);
-
-                var stream = new MemoryStream();
-                if (args.Any())
-                    ProtobufHelper.Serialize(stream, args[0]);
-                stream.Seek(0, SeekOrigin.Begin);
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
-                    Content = new StreamContent(stream)
+                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+                        "application/json")
                 };
-                httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
-                httpRequestMessage.Headers.Add("Accept", "application/x-protobuf");
-                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
-                var result = httpResponseMessage.Content.ReadAsStreamAsync().Result;
-                if (httpResponseMessage.IsSuccessStatusCode)
-                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
+                httpRequestMessage.Headers.Add("Accept", "application/json");
 
+                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
+                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                if (httpResponseMessage.IsSuccessStatusCode)
+                    return string.IsNullOrWhiteSpace(result)
+                        ? null
+                        : JsonConvert.DeserializeObject(result,
+                            targetMethod.ReturnType);
+
+//                var stream = new MemoryStream();
+//                if (args.Any())
+//                    ProtobufHelper.Serialize(stream, args[0]);
+//                stream.Seek(0, SeekOrigin.Begin);
+//                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
+//                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
+//                {
+//                    Content = new StreamContent(stream)
+//                };
+//                httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
+//                httpRequestMessage.Headers.Add("Accept", "application/x-protobuf");
+//                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
+//                var result = httpResponseMessage.Content.ReadAsStreamAsync().Result;
+//                if (httpResponseMessage.IsSuccessStatusCode)
+//                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
+//
+                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+                    throw JsonConvert.DeserializeObject<ZaabyException>(httpResponseMessage.Content.ReadAsStringAsync()
+                        .Result);
                 throw JsonConvert.DeserializeObject<Exception>(httpResponseMessage.Content.ReadAsStringAsync().Result);
             }
         }
