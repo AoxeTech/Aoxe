@@ -7,9 +7,9 @@ namespace Zaaby.Abstractions
     {
         public Guid Id { get; set; }
 
-        public ZaabyException(string stackTrace)
+        public ZaabyException(string message) : base(message)
         {
-            StackTrace = stackTrace;
+
         }
 
         public ZaabyException(string message, string stackTrace) : base(message)
