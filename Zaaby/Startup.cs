@@ -21,10 +21,8 @@ namespace Zaaby
 
             services.AddMvcCore(options =>
                 {
-                    foreach (var keyValuePair in ServiceDic)
+                    foreach (var (interfaceType, implementType) in ServiceDic)
                     {
-                        var interfaceType = keyValuePair.Key;
-                        var implementType = keyValuePair.Value;
                         services.AddScoped(interfaceType, implementType);
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }

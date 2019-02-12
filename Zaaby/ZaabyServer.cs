@@ -17,7 +17,7 @@ namespace Zaaby
 
         public List<Type> AllTypes { get; set; }
 
-        private static readonly List<string> Urls = new List<string>();
+        protected static readonly List<string> Urls = new List<string>();
 
         public static IZaabyServer GetInstance()
         {
@@ -44,8 +44,7 @@ namespace Zaaby
             var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .UseStartup<Startup>();
 
-            if (Urls.Count > 0)
-                Urls.ForEach(url => webHostBuilder.UseUrls(url));
+            Urls?.ForEach(url => webHostBuilder.UseUrls(url));
 
             webHostBuilder.Build()
                 .Run();
@@ -72,6 +71,16 @@ namespace Zaaby
             return _zaabyServer;
         }
 
+        public IZaabyServer UseZaabyEventHub<TEvent, THandler>()
+        {
+            return _zaabyServer;
+        }
+
+        public IZaabyServer UseZaabyEventHub(Func<Type, bool> eventDefinition, Func<Type, bool> handlerDefinition)
+        {
+            return _zaabyServer;
+        }
+
         public IZaabyServer RegisterServiceRunners(List<Type> runnerTypes)
         {
             runnerTypes.ForEach(type => RegisterServiceRunner(type));
@@ -80,8 +89,8 @@ namespace Zaaby
 
         public IZaabyServer RegisterServiceRunners(Dictionary<Type, Type> runnerTypes)
         {
-            foreach (var pair in runnerTypes)
-                RegisterServiceRunner(pair.Key, pair.Value);
+            foreach (var (key, value) in runnerTypes)
+                RegisterServiceRunner(key, value);
             return _zaabyServer;
         }
 
@@ -327,23 +336,7 @@ namespace Zaaby
 
         private void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime)
         {
-            switch (lifetime)
-            {
-                case ServiceLifetime.Singleton:
-                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
-                        ServiceLifetime.Singleton));
-                    break;
-                case ServiceLifetime.Scoped:
-                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
-                        ServiceLifetime.Scoped));
-                    break;
-                case ServiceLifetime.Transient:
-                    Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType,
-                        ServiceLifetime.Transient));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(lifetime), lifetime, null);
-            }
+            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
         }
 
         private static void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
