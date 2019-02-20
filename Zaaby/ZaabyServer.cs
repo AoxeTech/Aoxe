@@ -71,16 +71,6 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer UseZaabyEventHub<TEvent, THandler>()
-        {
-            return _zaabyServer;
-        }
-
-        public IZaabyServer UseZaabyEventHub(Func<Type, bool> eventDefinition, Func<Type, bool> handlerDefinition)
-        {
-            return _zaabyServer;
-        }
-
         public IZaabyServer RegisterServiceRunners(List<Type> runnerTypes)
         {
             runnerTypes.ForEach(type => RegisterServiceRunner(type));

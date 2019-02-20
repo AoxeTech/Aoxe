@@ -5,8 +5,20 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Zaaby.Client\Zaaby.Client.csproj" />
+    <ProjectReference Include="..\..\Zaaby.MessageHub.RabbitMQ\Zaaby.MessageHub.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\AppleSystem\AppleServices\AppleServices.csproj" />
     <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="RabbitMQ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Zaabee.RabbitMQ" Version="1.4.0" />
+    <PackageReference Include="Zaabee.RabbitMQ.Jil" Version="1.0.4" />
   </ItemGroup>
 </Project>

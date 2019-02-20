@@ -14,9 +14,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2" />
     <PackageReference Include="Zaabee.AspNetCore.Formatters.Protobuf" Version="1.1.8" />
-    <PackageReference Include="Zaaby.Abstractions" Version="0.6.8" />
+    <PackageReference Include="Zaaby.Abstractions" Version="0.6.20" />
   </ItemGroup>
 </Project>

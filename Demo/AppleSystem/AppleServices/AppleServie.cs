@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Linq;
 using IAppleServices;
 using IBananaServices;
+using Zaaby.Abstractions;
 
 namespace AppleServices
 {
     public class AppleServie : IAppleService
     {
         private readonly IBananaService _bananaService;
+        private readonly IZaabyMessageHub _zaabyMessageHub;
 
-        public AppleServie(IBananaService bananaService)
+        public AppleServie(IBananaService bananaService, IZaabyMessageHub zaabyMessageHub)
         {
             _bananaService = bananaService;
+            _zaabyMessageHub = zaabyMessageHub;
         }
 
         public int GetInt()
@@ -46,6 +50,22 @@ namespace AppleServices
         public BananaDto TestBananaDto()
         {
             return _bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now});
+        }
+
+        public void TestPublishMessageA(int quantity)
+        {
+            for (var i = 0; i < quantity; i++)
+            {
+                _zaabyMessageHub.Publish(new AppleMessageA());
+            }
+        }
+
+        public void TestPublishMessageB(int quantity)
+        {
+            for (var i = 0; i < quantity; i++)
+            {
+                _zaabyMessageHub.Publish(new AppleMessageB());
+            }
         }
     }
 }

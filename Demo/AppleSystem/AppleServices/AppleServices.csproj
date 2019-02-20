@@ -6,4 +6,7 @@
     <ProjectReference Include="..\..\BananaSystem\IBananaServices\IBananaServices.csproj" />
     <ProjectReference Include="..\IAppleServices\IAppleServices.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Zaaby.Abstractions" Version="0.6.20" />
+  </ItemGroup>
 </Project>
