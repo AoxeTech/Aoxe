@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.7.0</PackageVersion>
-        <Version>0.7.0</Version>
+        <PackageVersion>0.7.1</PackageVersion>
+        <Version>0.7.1</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>

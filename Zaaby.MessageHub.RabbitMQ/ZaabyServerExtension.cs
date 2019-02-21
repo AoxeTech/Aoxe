@@ -14,7 +14,7 @@ namespace Zaaby.MessageHub.RabbitMQ
         internal static string HandleName;
         internal static ushort Prefetch;
 
-        public static IZaabyServer UseMessageHub(this IZaabyServer zaabyServer,
+        public static IZaabyServer UseRabbitMqMessageHub(this IZaabyServer zaabyServer,
             Func<IServiceProvider, IZaabeeRabbitMqClient> implementationFactory, Type messageHandlerInterfaceType,
             Type messageInterfaceType, string handleName, ushort prefetch)
         {

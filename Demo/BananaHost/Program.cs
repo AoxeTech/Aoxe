@@ -22,7 +22,7 @@ namespace BananaHost
             var rabbitMqConfig = config.GetSection("ZaabeeRabbitMQ").Get<MqConfig>();
             ZaabyServer.GetInstance()
                 .UseZaabyServer<ITest>()
-                .UseMessageHub(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()),
+                .UseRabbitMqMessageHub(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()),
                     typeof(IConsumer),
                     typeof(IMessage),
                     "Consume", 100)
