@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleHost", "Demo\AppleHost
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BananaHost", "Demo\BananaHost\BananaHost.csproj", "{1332DE35-CBBD-4A2A-9351-800137027A88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub", "Zaaby.MessageHub\Zaaby.MessageHub.csproj", "{955BA99F-55EF-4A28-AD77-50E35C1DC407}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub.RabbitMQ", "Zaaby.MessageHub.RabbitMQ\Zaaby.MessageHub.RabbitMQ.csproj", "{35150A35-10D2-49EB-BBF4-E06A462B7AA0}"
 EndProject
 Global
@@ -85,10 +83,6 @@ Global
 		{1332DE35-CBBD-4A2A-9351-800137027A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1332DE35-CBBD-4A2A-9351-800137027A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1332DE35-CBBD-4A2A-9351-800137027A88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{955BA99F-55EF-4A28-AD77-50E35C1DC407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{955BA99F-55EF-4A28-AD77-50E35C1DC407}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{955BA99F-55EF-4A28-AD77-50E35C1DC407}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{955BA99F-55EF-4A28-AD77-50E35C1DC407}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35150A35-10D2-49EB-BBF4-E06A462B7AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35150A35-10D2-49EB-BBF4-E06A462B7AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35150A35-10D2-49EB-BBF4-E06A462B7AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU

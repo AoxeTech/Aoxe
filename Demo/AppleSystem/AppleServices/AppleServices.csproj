@@ -7,6 +7,6 @@
     <ProjectReference Include="..\IAppleServices\IAppleServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zaaby.Abstractions" Version="0.6.20" />
+    <PackageReference Include="Zaaby.Abstractions" Version="0.7.0" />
   </ItemGroup>
 </Project>
