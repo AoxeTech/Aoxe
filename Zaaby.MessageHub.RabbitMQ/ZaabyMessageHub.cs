@@ -64,8 +64,6 @@ namespace Zaaby.MessageHub.RabbitMQ
                         m.GetParameters().Count() == 1 &&
                         messageTypes.Contains(m.GetParameters()[0].ParameterType)
                     ).ToList();
-
-                if (!handleMethods.Any()) return;
                 
                 handleMethods.ForEach(handleMethod =>
                 {
