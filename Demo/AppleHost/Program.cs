@@ -3,7 +3,6 @@ using System.IO;
 using Interfaces;
 using Microsoft.Extensions.Configuration;
 using Zaabee.RabbitMQ;
-using Zaabee.RabbitMQ.Abstractions;
 using Zaaby;
 using Zaaby.Client;
 using Zaaby.MessageHub.RabbitMQ;

@@ -2,9 +2,9 @@ using System;
 
 namespace Zaaby.Abstractions
 {
-    public interface IZaabyMessageHub
+    public interface IZaabyMessageHub : IZaabyMessagePublisher, IZaabyMessageSubscriber
     {
-        void Publish<TMessage>(TMessage message);
-        void Subscribe<TMessage>(Func<Action<TMessage>> handle);
+        void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
+            string handleName);
     }
 }

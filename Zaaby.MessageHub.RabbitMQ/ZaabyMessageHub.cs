@@ -14,6 +14,7 @@ namespace Zaaby.MessageHub.RabbitMQ
         private readonly IZaabeeRabbitMqClient _rabbitMqClient;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly List<Type> _allTypes;
+        private readonly ushort _prefetch; 
 
         private readonly ConcurrentDictionary<Type, string> _queueNameDic =
             new ConcurrentDictionary<Type, string>();
@@ -23,10 +24,10 @@ namespace Zaaby.MessageHub.RabbitMQ
             _rabbitMqClient = rabbitMqClient;
             _serviceScopeFactory = serviceScopeFactory;
             _allTypes = ZaabyServerExtension.AllTypes;
+            _prefetch = ZaabyServerExtension.Prefetch;
 
             RegisterMessageSubscriber(ZaabyServerExtension.MessageHandlerInterfaceType,
-                ZaabyServerExtension.MessageInterfaceType, ZaabyServerExtension.HandleName,
-                ZaabyServerExtension.Prefetch);
+                ZaabyServerExtension.MessageInterfaceType, ZaabyServerExtension.HandleName);
         }
 
         public void Publish<TMessage>(TMessage message)
@@ -39,12 +40,12 @@ namespace Zaaby.MessageHub.RabbitMQ
             _rabbitMqClient.SubscribeEvent(handle);
         }
 
-        private void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
-            string handleName, ushort prefetch)
+        public void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
+            string handleName)
         {
             var messageHandlerTypes = _allTypes
                 .Where(type => type.IsClass && messageHandlerInterfaceType.IsAssignableFrom(type)).ToList();
-            
+
             var messageTypes = _allTypes
                 .Where(type => type.IsClass && messageInterfaceType.IsAssignableFrom(type)).ToList();
 
@@ -64,7 +65,7 @@ namespace Zaaby.MessageHub.RabbitMQ
                         m.GetParameters().Count() == 1 &&
                         messageTypes.Contains(m.GetParameters()[0].ParameterType)
                     ).ToList();
-                
+
                 handleMethods.ForEach(handleMethod =>
                 {
                     var messageType = handleMethod.GetParameters()[0].ParameterType;
@@ -87,7 +88,7 @@ namespace Zaaby.MessageHub.RabbitMQ
 
                     subscribeMethod.MakeGenericMethod(messageType)
                         .Invoke(_rabbitMqClient,
-                            new object[] {exchangeName, queueName, (Action<object>) HandleAction, prefetch});
+                            new object[] {exchangeName, queueName, (Action<object>) HandleAction, _prefetch});
                 });
             });
         }

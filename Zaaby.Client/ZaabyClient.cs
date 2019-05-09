@@ -80,7 +80,7 @@ namespace Zaaby.Client
                 return InvokeTest(targetMethod, args).Result;
             }
 
-            private async Task<object> InvokeTest(MethodInfo targetMethod, object[] args)
+            private async Task<object> InvokeTest(MethodInfo targetMethod, IReadOnlyList<object> args)
             {
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")

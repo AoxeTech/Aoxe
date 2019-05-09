@@ -19,6 +19,6 @@
 
   <ItemGroup>
     <PackageReference Include="Zaabee.RabbitMQ" Version="1.4.0" />
-    <PackageReference Include="Zaabee.RabbitMQ.Jil" Version="1.0.4" />
+    <PackageReference Include="Zaabee.RabbitMQ.Jil" Version="1.0.5" />
   </ItemGroup>
 </Project>
