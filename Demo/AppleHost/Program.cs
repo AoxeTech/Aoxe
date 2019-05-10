@@ -24,12 +24,16 @@ namespace AppleHost
             ZaabyServer.GetInstance()
                 .UseZaabyServer<ITest>()
                 .UseRabbitMqMessageHub(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()),
-                    typeof(IConsumer),
-                    typeof(IMessage),
-                    "Consume", 100)
+                    new MessageHubConfig
+                    {
+                        HandleName = "Consume",
+                        MessageHandlerInterfaceType = typeof(IConsumer),
+                        MessageInterfaceType = typeof(IMessage),
+                        Prefetch = 100
+                    })
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {
-                    {"IBananaServices", new List<string> {"http://localhost:5001"}}
+                    {"IBananaServices", new List<string> {"http://localhost:5002"}}
                 })
                 .UseUrls("http://localhost:5001").Run();
         }

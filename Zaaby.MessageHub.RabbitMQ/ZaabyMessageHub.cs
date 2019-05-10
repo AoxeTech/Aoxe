@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,23 +12,24 @@ namespace Zaaby.MessageHub.RabbitMQ
 {
     public class ZaabyMessageHub : IZaabyMessageHub
     {
-        private readonly IZaabeeRabbitMqClient _rabbitMqClient;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private readonly List<Type> _allTypes;
-        private readonly ushort _prefetch; 
+        private readonly IZaabeeRabbitMqClient _rabbitMqClient;
+        private readonly IList<Type> _allTypes;
+        private readonly ushort _prefetch;
 
         private readonly ConcurrentDictionary<Type, string> _queueNameDic =
             new ConcurrentDictionary<Type, string>();
 
-        public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory, IZaabeeRabbitMqClient rabbitMqClient)
+        public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory,
+            IZaabeeRabbitMqClient rabbitMqClient, MessageHubConfig messageHubConfig)
         {
-            _rabbitMqClient = rabbitMqClient;
             _serviceScopeFactory = serviceScopeFactory;
-            _allTypes = ZaabyServerExtension.AllTypes;
-            _prefetch = ZaabyServerExtension.Prefetch;
+            _rabbitMqClient = rabbitMqClient;
+            _prefetch = messageHubConfig.Prefetch;
+            _allTypes = GetAllTypes();
 
-            RegisterMessageSubscriber(ZaabyServerExtension.MessageHandlerInterfaceType,
-                ZaabyServerExtension.MessageInterfaceType, ZaabyServerExtension.HandleName);
+            RegisterMessageSubscriber(messageHubConfig.MessageHandlerInterfaceType,
+                messageHubConfig.MessageInterfaceType, messageHubConfig.HandleName);
         }
 
         public void Publish<TMessage>(TMessage message)
@@ -105,6 +107,33 @@ namespace Zaaby.MessageHub.RabbitMQ
         private string GetQueueName(MemberInfo memberInfo, string eventName)
         {
             return $"{memberInfo.ReflectedType?.FullName}.{memberInfo.Name}[{eventName}]";
+        }
+
+        private List<Type> GetAllTypes()
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+
+            var typeDic = new Dictionary<string, Type>();
+
+            foreach (var file in files)
+            {
+                try
+                {
+                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                        if (!typeDic.ContainsKey(type.FullName))
+                            typeDic.Add(type.FullName, type);
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }

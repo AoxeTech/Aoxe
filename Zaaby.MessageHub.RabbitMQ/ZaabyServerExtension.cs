@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Zaabee.RabbitMQ.Abstractions;
 using Zaaby.Abstractions;
 
@@ -8,35 +10,46 @@ namespace Zaaby.MessageHub.RabbitMQ
 {
     public static class ZaabyServerExtension
     {
-        internal static List<Type> AllTypes;
-        internal static Type MessageHandlerInterfaceType;
-        internal static Type MessageInterfaceType;
-        internal static string HandleName;
-        internal static ushort Prefetch;
-
         public static IZaabyServer UseRabbitMqMessageHub(this IZaabyServer zaabyServer,
-            Func<IServiceProvider, IZaabeeRabbitMqClient> implementationFactory, Type messageHandlerInterfaceType,
-            Type messageInterfaceType, string handleName, ushort prefetch)
+            Func<IServiceProvider, IZaabeeRabbitMqClient> rmqClientFactory,
+            MessageHubConfig messageHubConfig)
         {
-            AllTypes = AllTypes ?? zaabyServer.AllTypes;
-            MessageHandlerInterfaceType = messageHandlerInterfaceType;
-            MessageInterfaceType = messageInterfaceType;
-            HandleName = handleName;
-            Prefetch = prefetch;
+            zaabyServer.AddSingleton(rmqClientFactory);
+            zaabyServer.AddSingleton(p => messageHubConfig);
+            zaabyServer.RegisterServiceRunner<IZaabyMessageHub, ZaabyMessageHub>();
 
-            var messageHubInterfaceType = typeof(IZaabyMessageHub);
-            var eventBusType =
-                AllTypes.FirstOrDefault(type =>
-                    messageHubInterfaceType.IsAssignableFrom(type) && type.IsClass);
-            if (eventBusType == null) return zaabyServer;
-            var messageConsumerTypes = AllTypes
-                .Where(type => type.IsClass && messageHandlerInterfaceType.IsAssignableFrom(type)).ToList();
-            if (!messageConsumerTypes.Any()) return zaabyServer;
-            messageConsumerTypes.ForEach(messageConsumerType => zaabyServer.AddScoped(messageConsumerType));
-            zaabyServer.AddSingleton(implementationFactory);
-            zaabyServer.AddSingleton(messageHubInterfaceType, eventBusType);
-            zaabyServer.RegisterServiceRunner(messageHubInterfaceType, eventBusType);
+            var messageHandlerTypes = GetAllTypes()
+                .Where(type => type.IsClass && messageHubConfig.MessageHandlerInterfaceType.IsAssignableFrom(type))
+                .ToList();
+            messageHandlerTypes.ForEach(messageHandlerType => zaabyServer.AddScoped(messageHandlerType));
             return zaabyServer;
+        }
+
+        private static List<Type> GetAllTypes()
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+
+            var typeDic = new Dictionary<string, Type>();
+
+            foreach (var file in files)
+            {
+                try
+                {
+                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                        if (!typeDic.ContainsKey(type.FullName))
+                            typeDic.Add(type.FullName, type);
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }

@@ -50,12 +50,200 @@ namespace Zaaby
                 .Run();
         }
 
+        #region IOC
+
+        #region AddTransient
+        
+        public IZaabyServer AddTransient(Type serviceType, Type implementationType)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            Add(serviceType, implementationType, ServiceLifetime.Transient);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddTransient<TService, TImplementation>() where TImplementation : class, TService
+        {
+            return AddTransient(typeof(TService), typeof(TImplementation));
+        }
+
+        public IZaabyServer AddTransient(Type implementationType)
+        {
+            return AddTransient(implementationType, implementationType);
+        }
+
+        public IZaabyServer AddTransient<TService>(Type implementationType)
+        {
+            return AddTransient(typeof(TService), implementationType);
+        }
+
+        public IZaabyServer AddTransient<TImplementation>() where TImplementation : class
+        {
+            var implementationType = typeof(TImplementation);
+            return AddTransient(implementationType, implementationType);
+        }
+
+        public IZaabyServer AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            Add(serviceType, implementationFactory, ServiceLifetime.Transient);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
+            where TService : class
+        {
+            return AddTransient(typeof(TService), implementationFactory);
+        }
+
+        #endregion
+
+        #region AddScoped
+
+        public IZaabyServer AddScoped(Type serviceType, Type implementationType)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            Add(serviceType, implementationType, ServiceLifetime.Scoped);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddScoped<TService, TImplementation>() where TImplementation : class, TService
+        {
+            return AddScoped(typeof(TService), typeof(TImplementation));
+        }
+
+        public IZaabyServer AddScoped(Type serviceType)
+        {
+            return AddScoped(serviceType, serviceType);
+        }
+
+        public IZaabyServer AddScoped<TService>(Type implementationType)
+        {
+            return AddScoped(typeof(TService), implementationType);
+        }
+
+        public IZaabyServer AddScoped<TImplementation>() where TImplementation : class
+        {
+            var implementationType = typeof(TImplementation);
+            return AddScoped(implementationType, implementationType);
+        }
+
+        public IZaabyServer AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            Add(serviceType, implementationFactory, ServiceLifetime.Scoped);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory)
+            where TService : class
+        {
+            return AddScoped(typeof(TService), implementationFactory);
+        }
+
+        #endregion
+
+        #region AddSingleton
+
+        public IZaabyServer AddSingleton(Type serviceType, Type implementationType)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            Add(serviceType, implementationType, ServiceLifetime.Singleton);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddSingleton<TService, TImplementation>() where TImplementation : class, TService
+        {
+            return AddSingleton(typeof(TService), typeof(TImplementation));
+        }
+
+        public IZaabyServer AddSingleton(Type serviceType)
+        {
+            return AddSingleton(serviceType, serviceType);
+        }
+
+        public IZaabyServer AddSingleton<TService>(Type implementationType)
+        {
+            return AddSingleton(typeof(TService), implementationType);
+        }
+
+        public IZaabyServer AddSingleton<TImplementation>() where TImplementation : class
+        {
+            var implementationType = typeof(TImplementation);
+            return AddSingleton(implementationType, implementationType);
+        }
+
+        public IZaabyServer AddSingleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        {
+            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            Add(serviceType, implementationFactory, ServiceLifetime.Singleton);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory)
+            where TService : class
+        {
+            return AddSingleton(typeof(TService), implementationFactory);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region RegisterServiceRunner
+
+        public IZaabyServer RegisterServiceRunner(Type serviceType, Type implementationType)
+        {
+            Add(serviceType, implementationType, ServiceLifetime.Singleton);
+            Startup.ServiceRunnerTypes.Add(serviceType);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer RegisterServiceRunner<TService, TImplementation>() where TImplementation : class, TService
+        {
+            return RegisterServiceRunner(typeof(TService), typeof(TImplementation));
+        }
+
+        public IZaabyServer RegisterServiceRunner(Type implementationType)
+        {
+            return RegisterServiceRunner(implementationType, implementationType);
+        }
+
+        public IZaabyServer RegisterServiceRunner<TService>(Type implementationType)
+        {
+            return RegisterServiceRunner(typeof(TService), implementationType);
+        }
+
+        public IZaabyServer RegisterServiceRunner<TImplementation>() where TImplementation : class
+        {
+            var implementationType = typeof(TImplementation);
+            return RegisterServiceRunner(implementationType, implementationType);
+        }
+
+        public IZaabyServer RegisterServiceRunner(Type serviceType, Func<IServiceProvider, object> runnerFactory)
+        {
+            Add(serviceType, runnerFactory, ServiceLifetime.Singleton);
+            Startup.ServiceRunnerTypes.Add(serviceType);
+            return _zaabyServer;
+        }
+
+        public IZaabyServer RegisterServiceRunner<TService>(Func<IServiceProvider, TService> runnerFactory)
+            where TService : class
+        {
+            return RegisterServiceRunner(typeof(TService), runnerFactory);
+        }
+
+        #endregion
+
         public IZaabyServer UseZaabyServer<TService>()
         {
-            UseZaabyServer(type =>
+            return UseZaabyServer(type =>
                 type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
-
-            return _zaabyServer;
         }
 
         public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
@@ -71,31 +259,15 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer RegisterServiceRunners(List<Type> runnerTypes)
+        private void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime)
         {
-            runnerTypes.ForEach(type => RegisterServiceRunner(type));
-            return _zaabyServer;
+            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
         }
 
-        public IZaabyServer RegisterServiceRunners(Dictionary<Type, Type> runnerTypes)
+        private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
+            ServiceLifetime lifetime)
         {
-            foreach (var (key, value) in runnerTypes)
-                RegisterServiceRunner(key, value);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer RegisterServiceRunner(Type runnerType)
-        {
-            AddSingleton(runnerType);
-            Startup.ServiceRunnerTypes.Add(runnerType);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer RegisterServiceRunner(Type serviceType, Type implementationType)
-        {
-            AddSingleton(serviceType, implementationType);
-            Startup.ServiceRunnerTypes.Add(serviceType);
-            return _zaabyServer;
+            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
         }
 
         private ZaabyServer()
@@ -129,212 +301,5 @@ namespace Zaaby
 
             return typeDic.Select(kv => kv.Value).ToList();
         }
-
-        #region IOC
-
-        #region AddTransient
-
-        public IZaabyServer AddTransient(Type serviceType, Type implementationType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null)
-                throw new ArgumentNullException(nameof(implementationType));
-            Add(serviceType, implementationType, ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient<TService, TImplementation>()
-            where TService : class where TImplementation : class, TService
-        {
-            Add(typeof(TService), typeof(TImplementation), ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient(Type serviceType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            Add(serviceType, serviceType, ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient<TService>() where TService : class
-        {
-            Add(typeof(TService), typeof(TService), ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(serviceType, implementationFactory, ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddTransient<TService, TImplementation>(
-            Func<IServiceProvider, TImplementation> implementationFactory) where TService : class
-            where TImplementation : class, TService
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Transient);
-            return _zaabyServer;
-        }
-
-        #endregion
-
-        #region AddScope
-
-        public IZaabyServer AddScoped(Type serviceType, Type implementationType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null)
-                throw new ArgumentNullException(nameof(implementationType));
-            Add(serviceType, implementationType, ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped<TService, TImplementation>()
-            where TService : class where TImplementation : class, TService
-        {
-            Add(typeof(TService), typeof(TImplementation), ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped(Type serviceType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            Add(serviceType, serviceType, ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped<TService>() where TService : class
-        {
-            Add(typeof(TService), typeof(TService), ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(serviceType, implementationFactory, ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddScoped<TService, TImplementation>(
-            Func<IServiceProvider, TImplementation> implementationFactory) where TService : class
-            where TImplementation : class, TService
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Scoped);
-            return _zaabyServer;
-        }
-
-        #endregion
-
-        #region AddSingleton
-
-        public IZaabyServer AddSingleton(Type serviceType, Type implementationType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null)
-                throw new ArgumentNullException(nameof(implementationType));
-            Add(serviceType, implementationType, ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton<TService, TImplementation>()
-            where TService : class where TImplementation : class, TService
-        {
-            Add(typeof(TService), typeof(TImplementation), ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton(Type serviceType)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            Add(serviceType, serviceType, ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton<TService>() where TService : class
-        {
-            Add(typeof(TService), typeof(TService), ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
-        {
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(serviceType, implementationFactory, ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        public IZaabyServer AddSingleton<TService, TImplementation>(
-            Func<IServiceProvider, TImplementation> implementationFactory) where TService : class
-            where TImplementation : class, TService
-        {
-            if (implementationFactory == null)
-                throw new ArgumentNullException(nameof(implementationFactory));
-            Add(typeof(TService), implementationFactory, ServiceLifetime.Singleton);
-            return _zaabyServer;
-        }
-
-        #endregion
-
-        private void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime)
-        {
-            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
-        }
-
-        private static void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
-            ServiceLifetime lifetime)
-        {
-            Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
-        }
-
-        #endregion
     }
 }

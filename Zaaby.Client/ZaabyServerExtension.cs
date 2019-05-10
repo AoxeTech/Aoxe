@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -11,11 +14,11 @@ namespace Zaaby.Client
         {
             if (baseUrls == null) return zaabyServer;
 
-            var interfaceTypes =
-                zaabyServer.AllTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
-            var implementServiceTypes = zaabyServer.AllTypes
-                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type)))
-                .ToList();
+            var allTypes = GetAllTypes();
+
+            var interfaceTypes = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
+            var implementServiceTypes = allTypes
+                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
             interfaceTypes = interfaceTypes.Where(i =>
                 implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 
@@ -24,7 +27,7 @@ namespace Zaaby.Client
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
-            
+
             var methodInfo = client.GetType().GetMethod("GetService");
 
             foreach (var interfaceType in interfaceTypes)
@@ -32,6 +35,33 @@ namespace Zaaby.Client
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
 
             return zaabyServer;
+        }
+
+        private static List<Type> GetAllTypes()
+        {
+            var dir = Directory.GetCurrentDirectory();
+            var files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+
+            var typeDic = new Dictionary<string, Type>();
+
+            foreach (var file in files)
+            {
+                try
+                {
+                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                        if (!typeDic.ContainsKey(type.FullName))
+                            typeDic.Add(type.FullName, type);
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }
