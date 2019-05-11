@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -14,7 +11,7 @@ namespace Zaaby.Client
         {
             if (baseUrls == null) return zaabyServer;
 
-            var allTypes = GetAllTypes();
+            var allTypes = zaabyServer.AllTypes;
 
             var interfaceTypes = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
             var implementServiceTypes = allTypes
@@ -35,33 +32,6 @@ namespace Zaaby.Client
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
 
             return zaabyServer;
-        }
-
-        private static List<Type> GetAllTypes()
-        {
-            var dir = Directory.GetCurrentDirectory();
-            var files = new List<string>();
-
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-
-            var typeDic = new Dictionary<string, Type>();
-
-            foreach (var file in files)
-            {
-                try
-                {
-                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                        if (!typeDic.ContainsKey(type.FullName))
-                            typeDic.Add(type.FullName, type);
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
-
-            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }
