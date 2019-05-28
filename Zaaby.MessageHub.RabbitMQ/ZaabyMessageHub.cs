@@ -124,7 +124,8 @@ namespace Zaaby.MessageHub.RabbitMQ
                 try
                 {
                     foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                        if (!typeDic.ContainsKey(type.FullName))
+                        if (!typeDic.ContainsKey(type.FullName ??
+                                                 throw new NullReferenceException(nameof(type.FullName))))
                             typeDic.Add(type.FullName, type);
                 }
                 catch

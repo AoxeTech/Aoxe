@@ -1,6 +1,6 @@
 namespace IBananaServices
 {
-    public interface IBananaMessage
+    public class BananaMessage
     {
         
     }

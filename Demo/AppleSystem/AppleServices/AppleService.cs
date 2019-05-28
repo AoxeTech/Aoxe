@@ -7,12 +7,12 @@ using Zaaby.Abstractions;
 
 namespace AppleServices
 {
-    public class AppleServie : IAppleService
+    public class AppleService : IAppleService
     {
         private readonly IBananaService _bananaService;
         private readonly IZaabyMessageHub _zaabyMessageHub;
 
-        public AppleServie(IBananaService bananaService, IZaabyMessageHub zaabyMessageHub)
+        public AppleService(IBananaService bananaService, IZaabyMessageHub zaabyMessageHub)
         {
             _bananaService = bananaService;
             _zaabyMessageHub = zaabyMessageHub;

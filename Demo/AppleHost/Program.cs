@@ -3,10 +3,10 @@ using System.IO;
 using Interfaces;
 using Microsoft.Extensions.Configuration;
 using Zaabee.RabbitMQ;
+using Zaabee.RabbitMQ.Jil;
 using Zaaby;
 using Zaaby.Client;
 using Zaaby.MessageHub.RabbitMQ;
-using Serializer = Zaabee.RabbitMQ.Jil.Serializer;
 
 namespace AppleHost
 {

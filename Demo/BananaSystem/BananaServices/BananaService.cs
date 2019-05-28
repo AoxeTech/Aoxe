@@ -1,12 +1,13 @@
 ﻿using System;
 using IAppleServices;
 using IBananaServices;
+using Interfaces;
 
 namespace BananaServices
 {
-    public class BananaService : IBananaService
+    public class BananaService : IBananaService,IConsumer<BananaMessage>
     {
-        private IAppleService _appleService;
+        private readonly IAppleService _appleService;
         
         public BananaService(IAppleService appleService)
         {
@@ -36,6 +37,11 @@ namespace BananaServices
         public void TestAppleEx()
         {
             _appleService.ThrowEx();
+        }
+
+        public void Consume(BananaMessage message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

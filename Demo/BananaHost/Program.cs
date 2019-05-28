@@ -3,10 +3,10 @@ using System.IO;
 using Interfaces;
 using Microsoft.Extensions.Configuration;
 using Zaabee.RabbitMQ;
+using Zaabee.RabbitMQ.Abstractions;
 using Zaabee.RabbitMQ.Jil;
 using Zaaby;
 using Zaaby.Client;
-using Zaaby.MessageHub.RabbitMQ;
 
 namespace BananaHost
 {
@@ -22,18 +22,12 @@ namespace BananaHost
             var rabbitMqConfig = config.GetSection("ZaabeeRabbitMQ").Get<MqConfig>();
             ZaabyServer.GetInstance()
                 .UseZaabyServer<ITest>()
-                .UseRabbitMqMessageHub(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()),
-                    new MessageHubConfig
-                    {
-                        HandleName = "Consume",
-                        MessageHandlerInterfaceType = typeof(IConsumer),
-                        MessageInterfaceType = typeof(IMessage),
-                        Prefetch = 100
-                    })
+                .AddSingleton<IZaabeeRabbitMqClient>(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()))
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {
                     {"IAppleServices", new List<string> {"http://localhost:5001"}}
                 })
+                .RegisterServiceRunner<Runner>()
                 .UseUrls("http://localhost:5002").Run();
         }
     }
