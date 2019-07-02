@@ -14,9 +14,16 @@ namespace Zaaby.Client
 {
     public class ZaabyClient
     {
+        /// <summary>
+        /// Key is interface's NameSpace
+        /// </summary>
         private static readonly ConcurrentDictionary<string, List<HttpClient>> HttpClients =
             new ConcurrentDictionary<string, List<HttpClient>>();
 
+        /// <summary>
+        /// Key is interface's NameSpace
+        /// </summary>
+        /// <param name="baseUrls"></param>
         public ZaabyClient(Dictionary<string, List<string>> baseUrls)
         {
             if (baseUrls.Any(kv =>
@@ -29,11 +36,10 @@ namespace Zaaby.Client
 
             foreach (var datas in urls)
             {
-                var httpClient = new HttpClient {BaseAddress = new Uri(datas.Key)};
                 foreach (var data in datas)
                 {
                     var httpClients = HttpClients.GetOrAdd(data.Namespace, key => new List<HttpClient>());
-                    httpClients.Add(httpClient);
+                    httpClients.Add(new HttpClient { BaseAddress = new Uri(datas.Key) });
                 }
             }
         }
@@ -77,7 +83,25 @@ namespace Zaaby.Client
 //                if (httpResponseMessage.IsSuccessStatusCode)
 //                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
 
-                return InvokeTest(targetMethod, args).Result;
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
+                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
+                {
+                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+                        "application/json")
+                };
+                httpRequestMessage.Headers.Add("Accept", "application/json");
+
+                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
+                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                if (httpResponseMessage.IsSuccessStatusCode)
+                    return string.IsNullOrWhiteSpace(result)
+                        ? null
+                        : JsonConvert.DeserializeObject(result,
+                            targetMethod.ReturnType);
+
+                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+                    throw JsonConvert.DeserializeObject<ZaabyException>(result);
+                throw JsonConvert.DeserializeObject<Exception>(result);
             }
 
             private async Task<object> InvokeTest(MethodInfo targetMethod, IReadOnlyList<object> args)

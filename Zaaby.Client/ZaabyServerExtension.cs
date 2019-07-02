@@ -13,7 +13,10 @@ namespace Zaaby.Client
 
             var allTypes = zaabyServer.AllTypes;
 
-            var interfaceTypes = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
+            var interfaceTypes = allTypes.Where(type =>
+                    type.IsInterface && !string.IsNullOrWhiteSpace(type.Namespace) &&
+                    baseUrls.ContainsKey(type.Namespace))
+                .ToList();
             var implementServiceTypes = allTypes
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
             interfaceTypes = interfaceTypes.Where(i =>

@@ -12,11 +12,14 @@ namespace Zaaby.Client
         public static IServiceCollection UseZaabyClient(this IServiceCollection serviceCollection,
             Dictionary<string, List<string>> baseUrls)
         {
-            if (baseUrls == null) return serviceCollection;
+            if (baseUrls == null || !baseUrls.Any()) return serviceCollection;
 
             var allTypes = GetAllTypes();
 
-            var interfaceTypes = allTypes.Where(type => type.IsInterface && baseUrls.ContainsKey(type.Namespace));
+            var interfaceTypes = allTypes.Where(type =>
+                    type.IsInterface && !string.IsNullOrWhiteSpace(type.Namespace) &&
+                    baseUrls.ContainsKey(type.Namespace))
+                .ToList();
             var implementServiceTypes =
                 allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
             interfaceTypes = interfaceTypes.Where(i =>
@@ -27,9 +30,9 @@ namespace Zaaby.Client
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
-            
+
             var methodInfo = client.GetType().GetMethod("GetService");
-            
+
             foreach (var interfaceType in interfaceTypes)
                 serviceCollection.AddScoped(interfaceType,
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
@@ -56,6 +59,10 @@ namespace Zaaby.Client
                             typeDic.Add(type.FullName, type);
                 }
                 catch (BadImageFormatException)
+                {
+                    // ignored
+                }
+                catch (FileLoadException)
                 {
                     // ignored
                 }
