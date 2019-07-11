@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Zaabee.NewtonsoftJson;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
@@ -86,7 +86,7 @@ namespace Zaaby.Client
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
-                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
                         "application/json")
                 };
                 httpRequestMessage.Headers.Add("Accept", "application/json");
@@ -96,12 +96,11 @@ namespace Zaaby.Client
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return string.IsNullOrWhiteSpace(result)
                         ? null
-                        : JsonConvert.DeserializeObject(result,
-                            targetMethod.ReturnType);
+                        :result.FromJson(targetMethod.ReturnType);
 
                 if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
-                    throw JsonConvert.DeserializeObject<ZaabyException>(result);
-                throw JsonConvert.DeserializeObject<Exception>(result);
+                    throw result.FromJson<ZaabyException>();
+                throw result.FromJson<Exception>();
             }
 
             private async Task<object> InvokeTest(MethodInfo targetMethod, IReadOnlyList<object> args)
@@ -109,7 +108,7 @@ namespace Zaaby.Client
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
-                    Content = new StringContent(args.Any() ? JsonConvert.SerializeObject(args[0]) : "", Encoding.UTF8,
+                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
                         "application/json")
                 };
                 httpRequestMessage.Headers.Add("Accept", "application/json");
@@ -119,12 +118,11 @@ namespace Zaaby.Client
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return string.IsNullOrWhiteSpace(result)
                         ? null
-                        : JsonConvert.DeserializeObject(result,
-                            targetMethod.ReturnType);
+                        : result.FromJson(targetMethod.ReturnType);
 
                 if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
-                    throw JsonConvert.DeserializeObject<ZaabyException>(result);
-                throw JsonConvert.DeserializeObject<Exception>(result);
+                    throw result.FromJson<ZaabyException>();
+                throw result.FromJson<Exception>();
             }
         }
     }
