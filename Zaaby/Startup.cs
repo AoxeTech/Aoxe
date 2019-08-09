@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Zaabee.AspNetCore.Formatters.Protobuf;
 
 namespace Zaaby
 {
@@ -26,7 +25,6 @@ namespace Zaaby
                         services.AddScoped(interfaceType, implementType);
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                     }
-                    options.AddProtobufFormatter();
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {

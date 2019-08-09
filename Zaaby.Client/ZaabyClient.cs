@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Zaabee.Extensions;
 using Zaabee.NewtonsoftJson;
 using Zaaby.Abstractions;
 
@@ -39,7 +40,7 @@ namespace Zaaby.Client
                 foreach (var data in datas)
                 {
                     var httpClients = HttpClients.GetOrAdd(data.Namespace, key => new List<HttpClient>());
-                    httpClients.Add(new HttpClient { BaseAddress = new Uri(datas.Key) });
+                    httpClients.Add(new HttpClient {BaseAddress = new Uri(datas.Key)});
                 }
             }
         }
@@ -57,6 +58,8 @@ namespace Zaaby.Client
             public InvokeProxy()
             {
                 _type = typeof(T);
+                if (string.IsNullOrEmpty(_type.Namespace))
+                    throw new ZaabyException($"{_type}'s namespace is null or empty.");
                 if (!HttpClients.ContainsKey(_type.Namespace))
                     throw new ZaabyException($"{_type} has not set the url.");
 
@@ -83,35 +86,39 @@ namespace Zaaby.Client
 //                if (httpResponseMessage.IsSuccessStatusCode)
 //                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
 
+                if (string.IsNullOrEmpty(_type.FullName))
+                    throw new ZaabyException($"{_type}'s full name is null or empty.");
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
                     Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
-                        "application/json")
+                        "application/json"),
+                    Headers = {{"Accept", "application/json"}}
                 };
-                httpRequestMessage.Headers.Add("Accept", "application/json");
 
-                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
-                var result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                var httpResponseMessage = _client.SendAsync(httpRequestMessage).RunSync();
+                var result = httpResponseMessage.Content.ReadAsStringAsync().RunSync();
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return string.IsNullOrWhiteSpace(result)
                         ? null
-                        :result.FromJson(targetMethod.ReturnType);
+                        : result.FromJson(targetMethod.ReturnType);
 
                 if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
                     throw result.FromJson<ZaabyException>();
                 throw result.FromJson<Exception>();
             }
 
-            private async Task<object> InvokeTest(MethodInfo targetMethod, IReadOnlyList<object> args)
+            private async Task<object> InvokeAsync(MethodInfo targetMethod, IReadOnlyList<object> args)
             {
+                if (string.IsNullOrEmpty(_type.FullName))
+                    throw new ZaabyException($"{_type}'s full name is null or empty.");
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
                 {
                     Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
-                        "application/json")
+                        "application/json"),
+                    Headers = {{"Accept", "application/json"}}
                 };
-                httpRequestMessage.Headers.Add("Accept", "application/json");
 
                 var httpResponseMessage = await _client.SendAsync(httpRequestMessage);
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();

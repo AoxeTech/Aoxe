@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using IAppleServices;
 using IBananaServices;
-using Zaabee.Jil;
+using Zaabee.NewtonsoftJson;
 using Zaaby.Client;
 
 namespace Client
@@ -36,7 +36,7 @@ namespace Client
                     else if (string.Equals(input, "ThrowBack", StringComparison.CurrentCultureIgnoreCase))
                         Console.WriteLine(
                             bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now})
-                                .ToJil());
+                                .ToJson());
                 }
                 catch (Exception ex)
                 {
