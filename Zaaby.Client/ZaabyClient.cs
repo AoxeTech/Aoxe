@@ -68,45 +68,8 @@ namespace Zaaby.Client
                 _client = HttpClients[_type.Namespace][random.Next(0, clients.Count - 1)];
             }
 
-            protected override object Invoke(MethodInfo targetMethod, object[] args)
-            {
-//                var stream = new MemoryStream();
-//                if (args.Any())
-//                    ProtobufHelper.Serialize(stream, args[0]);
-//                stream.Seek(0, SeekOrigin.Begin);
-//                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
-//                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
-//                {
-//                    Content = new StreamContent(stream)
-//                };
-//                httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
-//                httpRequestMessage.Headers.Add("Accept", "application/x-protobuf");
-//                var httpResponseMessage = _client.SendAsync(httpRequestMessage).Result;
-//                var result = httpResponseMessage.Content.ReadAsStreamAsync().Result;
-//                if (httpResponseMessage.IsSuccessStatusCode)
-//                    return ProtobufHelper.Deserialize(result, targetMethod.ReturnType);
-
-                if (string.IsNullOrEmpty(_type.FullName))
-                    throw new ZaabyException($"{_type}'s full name is null or empty.");
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
-                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
-                {
-                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
-                        "application/json"),
-                    Headers = {{"Accept", "application/json"}}
-                };
-
-                var httpResponseMessage = _client.SendAsync(httpRequestMessage).RunSync();
-                var result = httpResponseMessage.Content.ReadAsStringAsync().RunSync();
-                if (httpResponseMessage.IsSuccessStatusCode)
-                    return string.IsNullOrWhiteSpace(result)
-                        ? null
-                        : result.FromJson(targetMethod.ReturnType);
-
-                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
-                    throw result.FromJson<ZaabyException>();
-                throw result.FromJson<Exception>();
-            }
+            protected override object Invoke(MethodInfo targetMethod, object[] args) =>
+                InvokeAsync(targetMethod, args).RunSync();
 
             private async Task<object> InvokeAsync(MethodInfo targetMethod, IReadOnlyList<object> args)
             {
@@ -127,9 +90,15 @@ namespace Zaaby.Client
                         ? null
                         : result.FromJson(targetMethod.ReturnType);
 
-                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
-                    throw result.FromJson<ZaabyException>();
-                throw result.FromJson<Exception>();
+                switch (httpResponseMessage.StatusCode)
+                {
+                    case HttpStatusCode.BadRequest:
+                        throw result.FromJson<ZaabyException>();
+                    case HttpStatusCode.InternalServerError:
+                        throw result.FromJson<Exception>();
+                    default:
+                        throw new Exception(httpResponseMessage.ToString());
+                }
             }
         }
     }
