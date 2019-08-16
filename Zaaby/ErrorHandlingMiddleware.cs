@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -24,20 +25,20 @@ namespace Zaaby
             }
             catch (ZaabyException ex)
             {
-                await HandleExceptionAsync(context, ex, 400);
+                await HandleExceptionAsync(context, ex, HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex, 500);
+                await HandleExceptionAsync(context, ex, HttpStatusCode.InternalServerError);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception ex, int statusCode)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex, HttpStatusCode httpStatusCode)
         {
             var innerEx = ex;
             while (innerEx.InnerException != null)
                 innerEx = innerEx.InnerException;
-            context.Response.StatusCode = statusCode;
+            context.Response.StatusCode = (int) httpStatusCode;
 
             if (!context.Request.Headers.ContainsKey("Accept"))
                 return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));

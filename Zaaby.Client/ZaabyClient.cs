@@ -55,6 +55,9 @@ namespace Zaaby.Client
             private readonly Type _type;
             private readonly HttpClient _client;
 
+            private readonly ConcurrentDictionary<Tuple<string, string>, string> _urlMapper =
+                new ConcurrentDictionary<Tuple<string, string>, string>();
+
             public InvokeProxy()
             {
                 _type = typeof(T);
@@ -75,11 +78,11 @@ namespace Zaaby.Client
             {
                 if (string.IsNullOrEmpty(_type.FullName))
                     throw new ZaabyException($"{_type}'s full name is null or empty.");
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
-                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}")
+                var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, targetMethod.Name),
+                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
                 {
-                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
-                        "application/json"),
+                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8, "application/json"),
                     Headers = {{"Accept", "application/json"}}
                 };
 
@@ -90,15 +93,9 @@ namespace Zaaby.Client
                         ? null
                         : result.FromJson(targetMethod.ReturnType);
 
-                switch (httpResponseMessage.StatusCode)
-                {
-                    case HttpStatusCode.BadRequest:
-                        throw result.FromJson<ZaabyException>();
-                    case HttpStatusCode.InternalServerError:
-                        throw result.FromJson<Exception>();
-                    default:
-                        throw new Exception(httpResponseMessage.ToString());
-                }
+                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+                    throw result.FromJson<ZaabyException>();
+                throw new Exception($"{url}:{httpResponseMessage}");
             }
         }
     }
