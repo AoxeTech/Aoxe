@@ -93,7 +93,7 @@ namespace Zaaby.Client
                         ? null
                         : result.FromJson(targetMethod.ReturnType);
 
-                if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+                if (httpResponseMessage.StatusCode == (HttpStatusCode) 600)
                     throw result.FromJson<ZaabyException>();
                 throw new Exception($"{url}:{httpResponseMessage}");
             }

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.7.8</Version>
-    <PackageVersion>0.7.8</PackageVersion>
+    <Version>0.7.9</Version>
+    <PackageVersion>0.7.9</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService Framework</PackageTags>

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Zaaby.Abstractions;
 
 namespace Zaaby
 {
@@ -23,31 +22,19 @@ namespace Zaaby
             {
                 await _next(context);
             }
-            catch (ZaabyException ex)
-            {
-                await HandleExceptionAsync(context, ex, HttpStatusCode.BadRequest);
-            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex, HttpStatusCode.InternalServerError);
+                await HandleExceptionAsync(context, ex, 600);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception ex, HttpStatusCode httpStatusCode)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex, int httpStatusCode)
         {
             var innerEx = ex;
             while (innerEx.InnerException != null)
                 innerEx = innerEx.InnerException;
-            context.Response.StatusCode = (int) httpStatusCode;
-
-            if (!context.Request.Headers.ContainsKey("Accept"))
-                return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
-            switch (context.Request.Headers["Accept"])
-            {
-                case "application/json": return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
-                case "application/x-protobuf": return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
-                default: return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
-            }
+            context.Response.StatusCode = httpStatusCode;
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
         }
     }
 
