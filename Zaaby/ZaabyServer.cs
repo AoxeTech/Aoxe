@@ -53,7 +53,7 @@ namespace Zaaby
         #region IOC
 
         #region AddTransient
-        
+
         public IZaabyServer AddTransient(Type serviceType, Type implementationType)
         {
             if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
@@ -289,7 +289,8 @@ namespace Zaaby
             {
                 try
                 {
-                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                    foreach (var type in Assembly.LoadFrom(file).GetTypes()
+                        .Where(type => type.FullName != null))
                         if (!typeDic.ContainsKey(type.FullName))
                             typeDic.Add(type.FullName, type);
                 }

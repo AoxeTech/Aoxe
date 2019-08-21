@@ -17,7 +17,8 @@ namespace Zaaby.Client
             var allTypes = GetAllTypes();
 
             var interfaceTypes = allTypes.Where(type =>
-                    type.IsInterface && !string.IsNullOrWhiteSpace(type.Namespace) &&
+                    type.IsInterface &&
+                    !string.IsNullOrWhiteSpace(type.Namespace) &&
                     baseUrls.ContainsKey(type.Namespace))
                 .ToList();
             var implementServiceTypes =
@@ -26,13 +27,16 @@ namespace Zaaby.Client
                 implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 
             var client = new ZaabyClient(interfaceTypes
-                .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
+                .Where(@interface => @interface != null &&
+                                     !string.IsNullOrWhiteSpace(@interface.Namespace) &&
+                                     baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
 
             var methodInfo = client.GetType().GetMethod("GetService");
-
+            if (methodInfo == null) return serviceCollection;
+            
             foreach (var interfaceType in interfaceTypes)
                 serviceCollection.AddScoped(interfaceType,
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));

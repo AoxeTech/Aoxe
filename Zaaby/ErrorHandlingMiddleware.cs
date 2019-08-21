@@ -40,9 +40,7 @@ namespace Zaaby
 
     public static class ErrorHandlingExtensions
     {
-        public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ErrorHandlingMiddleware>();
-        }
+        public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder) =>
+            builder.UseMiddleware<ErrorHandlingMiddleware>();
     }
 }
