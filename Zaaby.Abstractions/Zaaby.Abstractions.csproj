@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.8.7</PackageVersion>
-    <Version>0.8.7</Version>
+    <PackageVersion>0.8.12</PackageVersion>
+    <Version>0.8.12</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService Framework</PackageTags>

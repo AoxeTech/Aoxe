@@ -10,5 +10,6 @@ namespace IBananaServices
         BananaDto ThrowBack(BananaDto dto);
         void ThrowEx();
         void TestAppleEx();
+        void ThrowFormatterEx();
     }
 }

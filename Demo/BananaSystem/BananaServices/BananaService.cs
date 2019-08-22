@@ -34,6 +34,11 @@ namespace BananaServices
             throw new Exception($"Throw by banana service in {DateTime.Now}");
         }
 
+        public void ThrowFormatterEx()
+        {
+            Convert.ToInt32("");
+        }
+
         public void TestAppleEx()
         {
             _appleService.ThrowEx();

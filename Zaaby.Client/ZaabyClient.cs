@@ -62,9 +62,9 @@ namespace Zaaby.Client
             {
                 _type = typeof(T);
                 if (string.IsNullOrEmpty(_type.Namespace))
-                    throw new ZaabyException($"{_type}'s namespace is null or empty.");
+                    throw new ZaabyException(Guid.NewGuid(), $"{_type}'s namespace is null or empty.");
                 if (!HttpClients.ContainsKey(_type.Namespace))
-                    throw new ZaabyException($"{_type} has not set the url.");
+                    throw new ZaabyException(Guid.NewGuid(), $"{_type} has not set the url.");
 
                 var clients = HttpClients[_type.Namespace];
                 var random = new Random();
@@ -77,7 +77,7 @@ namespace Zaaby.Client
             private async Task<object> InvokeAsync(MethodInfo targetMethod, IReadOnlyList<object> args)
             {
                 if (string.IsNullOrEmpty(_type.FullName))
-                    throw new ZaabyException($"{_type}'s full name is null or empty.");
+                    throw new ZaabyException(Guid.NewGuid(), $"{_type}'s full name is null or empty.");
                 var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, targetMethod.Name),
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
@@ -93,9 +93,14 @@ namespace Zaaby.Client
                         ? null
                         : result.FromJson(targetMethod.ReturnType);
 
-                if (httpResponseMessage.StatusCode == (HttpStatusCode) 600)
-                    throw result.FromJson<ZaabyException>();
-                throw new Exception($"{url}:{httpResponseMessage}");
+                if (httpResponseMessage.StatusCode != (HttpStatusCode) 600)
+                    throw new Exception($"{url}:{httpResponseMessage}");
+                var zaabyError = result.FromJson<ZaabyError>();
+                var zaabyException = new ZaabyException(zaabyError.Id, zaabyError.Message, zaabyError.StackTrace)
+                {
+                    Source = zaabyError.Source
+                };
+                throw zaabyException;
             }
         }
     }

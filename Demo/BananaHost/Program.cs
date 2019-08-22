@@ -22,7 +22,7 @@ namespace BananaHost
             var rabbitMqConfig = config.GetSection("ZaabeeRabbitMQ").Get<MqConfig>();
             ZaabyServer.GetInstance()
                 .UseZaabyServer<ITest>()
-                .AddSingleton<IZaabeeRabbitMqClient>(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()))
+//                .AddSingleton<IZaabeeRabbitMqClient>(p => new ZaabeeRabbitMqClient(rabbitMqConfig, new Serializer()))
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {
                     {"IAppleServices", new List<string> {"http://localhost:5001"}}

@@ -8,16 +8,17 @@ namespace AppleServices
     public class AppleService : IAppleService
     {
         private readonly IBananaService _bananaService;
-        private readonly IZaabyMessageHub _zaabyMessageHub;
+//        private readonly IZaabyMessageHub _zaabyMessageHub;
 
-        public AppleService(IBananaService bananaService, IZaabyMessageHub zaabyMessageHub)
+        public AppleService(IBananaService bananaService)
         {
             _bananaService = bananaService;
-            _zaabyMessageHub = zaabyMessageHub;
+//            _zaabyMessageHub = zaabyMessageHub;
         }
 
         public int GetInt()
         {
+            _bananaService.ThrowFormatterEx();
             return new Random().Next();
         }
 
@@ -55,7 +56,7 @@ namespace AppleServices
         {
             for (var i = 0; i < quantity; i++)
             {
-                _zaabyMessageHub.Publish(new AppleMessageA());
+//                _zaabyMessageHub.Publish(new AppleMessageA());
             }
         }
 
@@ -63,7 +64,7 @@ namespace AppleServices
         {
             for (var i = 0; i < quantity; i++)
             {
-                _zaabyMessageHub.Publish(new AppleMessageB());
+//                _zaabyMessageHub.Publish(new AppleMessageB());
             }
         }
     }

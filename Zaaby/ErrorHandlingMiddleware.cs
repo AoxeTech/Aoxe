@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Zaaby.Abstractions;
 
 namespace Zaaby
 {
@@ -30,11 +31,17 @@ namespace Zaaby
 
         private static Task HandleExceptionAsync(HttpContext context, Exception ex, int httpStatusCode)
         {
-            var innerEx = ex;
-            while (innerEx.InnerException != null)
-                innerEx = innerEx.InnerException;
+            var inmostEx = ex;
+            while (inmostEx.InnerException != null)
+                inmostEx = inmostEx.InnerException;
             context.Response.StatusCode = httpStatusCode;
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(innerEx));
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(new ZaabyError
+            {
+                Id = Guid.NewGuid(),
+                Message = inmostEx.Message,
+                Source = inmostEx.Source,
+                StackTrace = inmostEx.StackTrace
+            }));
         }
     }
 
