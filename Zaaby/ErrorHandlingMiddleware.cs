@@ -11,10 +11,7 @@ namespace Zaaby
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public ErrorHandlingMiddleware(RequestDelegate next) => _next = next;
 
         public async Task Invoke(HttpContext context)
         {
@@ -23,6 +20,14 @@ namespace Zaaby
                 await _next(context);
             }
             catch (ZaabyException ex)
+            {
+                await HandleExceptionAsync(context, ex, 600);
+            }
+            catch (ArgumentNullException ex)
+            {
+                await HandleExceptionAsync(context, ex, 600);
+            }
+            catch (ArgumentException ex)
             {
                 await HandleExceptionAsync(context, ex, 600);
             }

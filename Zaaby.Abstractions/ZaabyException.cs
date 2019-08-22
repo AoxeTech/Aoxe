@@ -5,38 +5,35 @@ namespace Zaaby.Abstractions
 {
     public class ZaabyException : Exception
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Code { get; set; }
+        public DateTimeOffset ThrowTime { get; set; } = DateTimeOffset.Now;
 
         public ZaabyException()
         {
         }
 
-        public ZaabyException(Guid id, string message) : base(message)
+        public ZaabyException(string message) : base(message)
         {
-            Id = id;
             Message = message;
         }
 
-        public ZaabyException(Guid id, string message, string stackTrace) : base(message)
+        public ZaabyException(string message, string stackTrace = null) : base(message)
         {
-            Id = id;
             Message = message;
             StackTrace = stackTrace;
         }
 
-        public ZaabyException(Guid id, string message, Exception inner, string stackTrace) : base(message, inner)
+        public ZaabyException(string message, Exception inner, string stackTrace = null) : base(message, inner)
         {
-            Id = id;
             Message = message;
             StackTrace = stackTrace;
         }
 
         protected ZaabyException(
-            Guid id,
             SerializationInfo info,
             StreamingContext context) : base(info, context)
         {
-            Id = id;
         }
 
         /// <inheritdoc />
