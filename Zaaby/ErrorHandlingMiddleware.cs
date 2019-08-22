@@ -23,6 +23,10 @@ namespace Zaaby
             {
                 await _next(context);
             }
+            catch (ZaabyException ex)
+            {
+                await HandleExceptionAsync(context, ex, 600);
+            }
             catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex, 600);
@@ -35,13 +39,24 @@ namespace Zaaby
             while (inmostEx.InnerException != null)
                 inmostEx = inmostEx.InnerException;
             context.Response.StatusCode = httpStatusCode;
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(new ZaabyError
-            {
-                Id = Guid.NewGuid(),
-                Message = inmostEx.Message,
-                Source = inmostEx.Source,
-                StackTrace = inmostEx.StackTrace
-            }));
+            ZaabyError zaabyError;
+            if (inmostEx is ZaabyException zaabyException)
+                zaabyError = new ZaabyError
+                {
+                    Id = zaabyException.Id,
+                    Message = inmostEx.Message,
+                    Source = inmostEx.Source,
+                    StackTrace = inmostEx.StackTrace
+                };
+            else
+                zaabyError = new ZaabyError
+                {
+                    Id = Guid.NewGuid(),
+                    Message = inmostEx.Message,
+                    Source = inmostEx.Source,
+                    StackTrace = inmostEx.StackTrace
+                };
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(zaabyError));
         }
     }
 
