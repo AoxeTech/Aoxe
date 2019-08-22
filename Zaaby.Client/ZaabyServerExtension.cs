@@ -11,7 +11,7 @@ namespace Zaaby.Client
         {
             if (baseUrls == null) return zaabyServer;
 
-            var allTypes = zaabyServer.AllTypes;
+            var allTypes = LoadHelper.GetAllTypes();
 
             var interfaceTypes = allTypes.Where(type =>
                     type.IsInterface && !string.IsNullOrWhiteSpace(type.Namespace) &&

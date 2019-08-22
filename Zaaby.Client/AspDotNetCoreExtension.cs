@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Zaaby.Abstractions;
 
 namespace Zaaby.Client
 {
@@ -14,7 +12,7 @@ namespace Zaaby.Client
         {
             if (baseUrls == null || !baseUrls.Any()) return serviceCollection;
 
-            var allTypes = GetAllTypes();
+            var allTypes = LoadHelper.GetAllTypes();
 
             var interfaceTypes = allTypes.Where(type =>
                     type.IsInterface &&
@@ -42,37 +40,6 @@ namespace Zaaby.Client
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
 
             return serviceCollection;
-        }
-
-        private static List<Type> GetAllTypes()
-        {
-            var dir = Directory.GetCurrentDirectory();
-            var files = new List<string>();
-
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-
-            var typeDic = new Dictionary<string, Type>();
-
-            foreach (var file in files)
-            {
-                try
-                {
-                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                        if (!typeDic.ContainsKey(type.FullName))
-                            typeDic.Add(type.FullName, type);
-                }
-                catch (BadImageFormatException)
-                {
-                    // ignored
-                }
-                catch (FileLoadException)
-                {
-                    // ignored
-                }
-            }
-
-            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }

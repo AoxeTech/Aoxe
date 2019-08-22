@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +12,6 @@ namespace Zaaby
     {
         private static readonly object LockObj = new object();
         private static ZaabyServer _zaabyServer;
-
-        public List<Type> AllTypes { get; set; }
 
         protected static readonly List<string> Urls = new List<string>();
 
@@ -248,9 +244,10 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
         {
-            var interfaceTypes = AllTypes.Where(definition).ToList();
+            var allTypes = LoadHelper.GetAllTypes();
+            var interfaceTypes = allTypes.Where(definition).ToList();
 
-            var implementTypes = AllTypes
+            var implementTypes = allTypes
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
             implementTypes.ForEach(implementType =>
@@ -268,39 +265,6 @@ namespace Zaaby
             ServiceLifetime lifetime)
         {
             Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
-        }
-
-        private ZaabyServer()
-        {
-            AllTypes = GetAllTypes();
-        }
-
-        private static List<Type> GetAllTypes()
-        {
-            var dir = Directory.GetCurrentDirectory();
-            var files = new List<string>();
-
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-
-            var typeDic = new Dictionary<string, Type>();
-
-            foreach (var file in files)
-            {
-                try
-                {
-                    foreach (var type in Assembly.LoadFrom(file).GetTypes()
-                        .Where(type => type.FullName != null))
-                        if (!typeDic.ContainsKey(type.FullName))
-                            typeDic.Add(type.FullName, type);
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
-
-            return typeDic.Select(kv => kv.Value).ToList();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Zaaby.MessageHub.RabbitMQ
             zaabyServer.AddSingleton(p => messageHubConfig);
             zaabyServer.RegisterServiceRunner<IZaabyMessageHub, ZaabyMessageHub>();
 
-            var messageHandlerTypes = zaabyServer.AllTypes
+            var messageHandlerTypes = LoadHelper.GetAllTypes()
                 .Where(type => type.IsClass && messageHubConfig.MessageHandlerInterfaceType.IsAssignableFrom(type))
                 .ToList();
             messageHandlerTypes.ForEach(messageHandlerType => zaabyServer.AddScoped(messageHandlerType));
