@@ -38,23 +38,13 @@ namespace Zaaby
             while (inmostEx.InnerException != null)
                 inmostEx = inmostEx.InnerException;
             context.Response.StatusCode = httpStatusCode;
-            ZaabyError zaabyError;
-            if (inmostEx is ZaabyException zaabyException)
-                zaabyError = new ZaabyError
-                {
-                    Id = zaabyException.Id,
-                    Message = inmostEx.Message,
-                    Source = inmostEx.Source,
-                    StackTrace = inmostEx.StackTrace
-                };
-            else
-                zaabyError = new ZaabyError
-                {
-                    Id = Guid.NewGuid(),
-                    Message = inmostEx.Message,
-                    Source = inmostEx.Source,
-                    StackTrace = inmostEx.StackTrace
-                };
+            var zaabyError = new ZaabyError
+            {
+                Id = inmostEx is ZaabyException zaabyException ? zaabyException.Id : Guid.NewGuid(),
+                Message = inmostEx.Message,
+                Source = inmostEx.Source,
+                StackTrace = inmostEx.StackTrace
+            };
             return context.Response.WriteAsync(JsonConvert.SerializeObject(zaabyError));
         }
     }
