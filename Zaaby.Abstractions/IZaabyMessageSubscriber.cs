@@ -4,6 +4,6 @@ namespace Zaaby.Abstractions
 {
     public interface IZaabyMessageSubscriber
     {
-        void Subscribe<TMessage>(Func<Action<TMessage>> handle);
+        void Subscribe<TMessage>(Func<Action<TMessage>> resolve);
     }
 }

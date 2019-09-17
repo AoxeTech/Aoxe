@@ -32,7 +32,7 @@ namespace Zaaby.Abstractions
                             try
                             {
                                 foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                                    if (!typeDic.ContainsKey(type.FullName))
+                                    if (type.FullName != null && !typeDic.ContainsKey(type.FullName))
                                         typeDic.Add(type.FullName, type);
                             }
                             catch (BadImageFormatException)
@@ -44,10 +44,12 @@ namespace Zaaby.Abstractions
                                 // ignored
                             }
                         }
+
                         _allTypes = typeDic.Select(kv => kv.Value).ToList();
                     }
                 }
             }
+
             return _allTypes;
         }
     }

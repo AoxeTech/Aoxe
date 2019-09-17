@@ -200,20 +200,14 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer RegisterServiceRunner<TService, TImplementation>() where TImplementation : class, TService
-        {
-            return RegisterServiceRunner(typeof(TService), typeof(TImplementation));
-        }
+        public IZaabyServer RegisterServiceRunner<TService, TImplementation>() where TImplementation : class, TService=>
+            RegisterServiceRunner(typeof(TService), typeof(TImplementation));
 
-        public IZaabyServer RegisterServiceRunner(Type implementationType)
-        {
-            return RegisterServiceRunner(implementationType, implementationType);
-        }
+        public IZaabyServer RegisterServiceRunner(Type implementationType)=>
+            RegisterServiceRunner(implementationType, implementationType);
 
-        public IZaabyServer RegisterServiceRunner<TService>(Type implementationType)
-        {
-            return RegisterServiceRunner(typeof(TService), implementationType);
-        }
+        public IZaabyServer RegisterServiceRunner<TService>(Type implementationType)=>
+            RegisterServiceRunner(typeof(TService), implementationType);
 
         public IZaabyServer RegisterServiceRunner<TImplementation>() where TImplementation : class
         {
@@ -229,18 +223,14 @@ namespace Zaaby
         }
 
         public IZaabyServer RegisterServiceRunner<TService>(Func<IServiceProvider, TService> runnerFactory)
-            where TService : class
-        {
-            return RegisterServiceRunner(typeof(TService), runnerFactory);
-        }
+            where TService : class =>
+            RegisterServiceRunner(typeof(TService), runnerFactory);
 
         #endregion
 
-        public IZaabyServer UseZaabyServer<TService>()
-        {
-            return UseZaabyServer(type =>
+        public IZaabyServer UseZaabyServer<TService>() =>
+            UseZaabyServer(type =>
                 type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
-        }
 
         public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
         {
@@ -256,15 +246,11 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        private void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime)
-        {
+        private static void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime) =>
             Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
-        }
 
-        private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
-            ServiceLifetime lifetime)
-        {
+        private static void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
+            ServiceLifetime lifetime) =>
             Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
-        }
     }
 }

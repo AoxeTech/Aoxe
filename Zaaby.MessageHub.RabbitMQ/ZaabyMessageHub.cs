@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
 using Zaaby.Abstractions;
@@ -20,27 +20,26 @@ namespace Zaaby.MessageHub.RabbitMQ
         private readonly ConcurrentDictionary<Type, string> _queueNameDic =
             new ConcurrentDictionary<Type, string>();
 
-        public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory,
-            IZaabeeRabbitMqClient rabbitMqClient, MessageHubConfig messageHubConfig)
+        public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory, IZaabeeRabbitMqClient rabbitMqClient,
+            MessageHubConfig messageHubConfig, ushort prefetch = 100)
         {
             _serviceScopeFactory = serviceScopeFactory;
             _rabbitMqClient = rabbitMqClient;
-            _prefetch = messageHubConfig.Prefetch;
-            _allTypes = GetAllTypes();
+            _prefetch = prefetch;
+            _allTypes = LoadHelper.GetAllTypes();
 
             RegisterMessageSubscriber(messageHubConfig.MessageHandlerInterfaceType,
                 messageHubConfig.MessageInterfaceType, messageHubConfig.HandleName);
         }
 
-        public void Publish<TMessage>(TMessage message)
-        {
+        public void Publish<TMessage>(TMessage message) =>
             _rabbitMqClient.PublishEvent(message);
-        }
 
-        public void Subscribe<TMessage>(Func<Action<TMessage>> handle)
-        {
-            _rabbitMqClient.SubscribeEvent(handle);
-        }
+        public Task PublishAsync<TMessage>(TMessage message) =>
+            _rabbitMqClient.PublishEventAsync(message);
+
+        public void Subscribe<TMessage>(Func<Action<TMessage>> resolve) =>
+            _rabbitMqClient.SubscribeEvent(resolve);
 
         public void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
             string handleName)
@@ -61,14 +60,14 @@ namespace Zaaby.MessageHub.RabbitMQ
 
             messageHandlerTypes.ForEach(messageHandlerType =>
             {
-                var handleMethods = messageHandlerType.GetMethods()
+                var messageHandleMethods = messageHandlerType.GetMethods()
                     .Where(m =>
                         m.Name == handleName &&
                         m.GetParameters().Count() == 1 &&
                         messageTypes.Contains(m.GetParameters()[0].ParameterType)
                     ).ToList();
 
-                handleMethods.ForEach(handleMethod =>
+                messageHandleMethods.ForEach(handleMethod =>
                 {
                     var messageType = handleMethod.GetParameters()[0].ParameterType;
 
@@ -95,46 +94,13 @@ namespace Zaaby.MessageHub.RabbitMQ
             });
         }
 
-        private string GetTypeName(Type type)
-        {
-            return _queueNameDic.GetOrAdd(type,
-                key => !(type.GetCustomAttributes(typeof(MessageVersionAttribute), false).FirstOrDefault() is
-                    MessageVersionAttribute msgVerAttr)
-                    ? type.ToString()
-                    : $"{type.ToString()}[{msgVerAttr.Version}]");
-        }
+        private string GetTypeName(Type type) => _queueNameDic.GetOrAdd(type,
+            key => !(type.GetCustomAttributes(typeof(MessageVersionAttribute), false).FirstOrDefault() is
+                MessageVersionAttribute msgVerAttr)
+                ? type.ToString()
+                : $"{type}[{msgVerAttr.Version}]");
 
-        private string GetQueueName(MemberInfo memberInfo, string eventName)
-        {
-            return $"{memberInfo.ReflectedType?.FullName}.{memberInfo.Name}[{eventName}]";
-        }
-
-        private List<Type> GetAllTypes()
-        {
-            var dir = Directory.GetCurrentDirectory();
-            var files = new List<string>();
-
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-
-            var typeDic = new Dictionary<string, Type>();
-
-            foreach (var file in files)
-            {
-                try
-                {
-                    foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                        if (!typeDic.ContainsKey(type.FullName ??
-                                                 throw new NullReferenceException(nameof(type.FullName))))
-                            typeDic.Add(type.FullName, type);
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
-
-            return typeDic.Select(kv => kv.Value).ToList();
-        }
+        private static string GetQueueName(MemberInfo memberInfo, string eventName) =>
+            $"{memberInfo.ReflectedType?.FullName}.{memberInfo.Name}[{eventName}]";
     }
 }

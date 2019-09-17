@@ -3,7 +3,7 @@
     "AutomaticRecoveryEnabled":"true",
     "HeartBeat":60,
     "NetworkRecoveryInterval":"00:00:00.0000060",
-    "Hosts":["192.168.78.152"],
+    "Hosts":["192.168.78.140"],
     "UserName":"guest",
     "Password":"guest"
   }

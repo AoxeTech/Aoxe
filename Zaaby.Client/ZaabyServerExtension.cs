@@ -23,7 +23,7 @@ namespace Zaaby.Client
                 implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 
             var client = new ZaabyClient(interfaceTypes
-                .Where(@interface => baseUrls.ContainsKey(@interface.Namespace))
+                .Where(@interface => @interface.Namespace != null && baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
