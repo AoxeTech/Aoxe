@@ -80,8 +80,7 @@ namespace Zaaby.MessageHub.RabbitMQ
                         var actionT = typeof(Action<>).MakeGenericType(messageType);
                         using (var scope = _serviceScopeFactory.CreateScope())
                         {
-                            var handler = scope.ServiceProvider
-                                .GetService(messageHandlerType);
+                            var handler = scope.ServiceProvider.GetService(messageHandlerType);
                             var @delegate = Delegate.CreateDelegate(actionT, handler, handleMethod);
                             @delegate.Method.Invoke(handler, new[] {message});
                         }
