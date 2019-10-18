@@ -21,7 +21,7 @@ namespace BananaServices
 
         public string GetBananaMsg()
         {
-            return $"This is from {GetType().Name} on {DateTime.Now}";
+            return $"这里是 from {GetType().Name} on {DateTime.Now}";
         }
 
         public BananaDto ThrowBack(BananaDto dto)

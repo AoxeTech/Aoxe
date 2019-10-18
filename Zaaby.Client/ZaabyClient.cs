@@ -8,12 +8,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Zaabee.Extensions;
-using Zaabee.NewtonsoftJson;
+using Zaabee.SystemTextJson;
 using Zaaby.Abstractions;
 
 namespace Zaaby.Client
 {
-    public class ZaabyClient
+    public class ZaabyClient : IDisposable
     {
         /// <summary>
         /// Key is interface's NameSpace
@@ -106,5 +106,7 @@ namespace Zaaby.Client
                 throw zaabyException;
             }
         }
+
+        public void Dispose() => HttpClients?.ForEach(kv => kv.Value.ForEach(client => client.Dispose()));
     }
 }

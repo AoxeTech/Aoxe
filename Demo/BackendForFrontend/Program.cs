@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace BackendForFrontend
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseUrls("http://localhost:3000");
+        public static void Main(string[] args) =>
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:3000");
+                })
+                .Build()
+                .Run();
     }
 }

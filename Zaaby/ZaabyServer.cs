@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Zaaby.Abstractions;
 
 namespace Zaaby
@@ -11,21 +12,13 @@ namespace Zaaby
     public class ZaabyServer : IZaabyServer
     {
         private static readonly object LockObj = new object();
-        private static ZaabyServer _zaabyServer;
-
-        protected static readonly List<string> Urls = new List<string>();
+        private static IZaabyServer _zaabyServer;
+        private static readonly List<string> Urls = new List<string>();
 
         public static IZaabyServer GetInstance()
         {
-            if (_zaabyServer == null)
-            {
-                lock (LockObj)
-                {
-                    if (_zaabyServer == null)
-                        _zaabyServer = new ZaabyServer();
-                }
-            }
-
+            if (_zaabyServer != null) return _zaabyServer;
+            lock (LockObj) _zaabyServer ??= new ZaabyServer();
             return _zaabyServer;
         }
 
@@ -44,6 +37,11 @@ namespace Zaaby
 
             webHostBuilder.Build()
                 .Run();
+
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
+                .Build()
+                .Run();
         }
 
         #region IOC
@@ -58,20 +56,14 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer AddTransient<TService, TImplementation>() where TImplementation : class, TService
-        {
-            return AddTransient(typeof(TService), typeof(TImplementation));
-        }
+        public IZaabyServer AddTransient<TService, TImplementation>() where TImplementation : class, TService =>
+            AddTransient(typeof(TService), typeof(TImplementation));
 
-        public IZaabyServer AddTransient(Type implementationType)
-        {
-            return AddTransient(implementationType, implementationType);
-        }
+        public IZaabyServer AddTransient(Type implementationType) =>
+            AddTransient(implementationType, implementationType);
 
-        public IZaabyServer AddTransient<TService>(Type implementationType)
-        {
-            return AddTransient(typeof(TService), implementationType);
-        }
+        public IZaabyServer AddTransient<TService>(Type implementationType) =>
+            AddTransient(typeof(TService), implementationType);
 
         public IZaabyServer AddTransient<TImplementation>() where TImplementation : class
         {
@@ -88,10 +80,8 @@ namespace Zaaby
         }
 
         public IZaabyServer AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            return AddTransient(typeof(TService), implementationFactory);
-        }
+            where TService : class =>
+            AddTransient(typeof(TService), implementationFactory);
 
         #endregion
 
@@ -105,20 +95,14 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer AddScoped<TService, TImplementation>() where TImplementation : class, TService
-        {
-            return AddScoped(typeof(TService), typeof(TImplementation));
-        }
+        public IZaabyServer AddScoped<TService, TImplementation>() where TImplementation : class, TService =>
+            AddScoped(typeof(TService), typeof(TImplementation));
 
-        public IZaabyServer AddScoped(Type serviceType)
-        {
-            return AddScoped(serviceType, serviceType);
-        }
+        public IZaabyServer AddScoped(Type serviceType) =>
+            AddScoped(serviceType, serviceType);
 
-        public IZaabyServer AddScoped<TService>(Type implementationType)
-        {
-            return AddScoped(typeof(TService), implementationType);
-        }
+        public IZaabyServer AddScoped<TService>(Type implementationType) =>
+            AddScoped(typeof(TService), implementationType);
 
         public IZaabyServer AddScoped<TImplementation>() where TImplementation : class
         {
@@ -135,10 +119,8 @@ namespace Zaaby
         }
 
         public IZaabyServer AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            return AddScoped(typeof(TService), implementationFactory);
-        }
+            where TService : class =>
+            AddScoped(typeof(TService), implementationFactory);
 
         #endregion
 
@@ -152,20 +134,14 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer AddSingleton<TService, TImplementation>() where TImplementation : class, TService
-        {
-            return AddSingleton(typeof(TService), typeof(TImplementation));
-        }
+        public IZaabyServer AddSingleton<TService, TImplementation>() where TImplementation : class, TService =>
+            AddSingleton(typeof(TService), typeof(TImplementation));
 
-        public IZaabyServer AddSingleton(Type serviceType)
-        {
-            return AddSingleton(serviceType, serviceType);
-        }
+        public IZaabyServer AddSingleton(Type serviceType) =>
+            AddSingleton(serviceType, serviceType);
 
-        public IZaabyServer AddSingleton<TService>(Type implementationType)
-        {
-            return AddSingleton(typeof(TService), implementationType);
-        }
+        public IZaabyServer AddSingleton<TService>(Type implementationType) =>
+            AddSingleton(typeof(TService), implementationType);
 
         public IZaabyServer AddSingleton<TImplementation>() where TImplementation : class
         {
@@ -182,10 +158,8 @@ namespace Zaaby
         }
 
         public IZaabyServer AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory)
-            where TService : class
-        {
-            return AddSingleton(typeof(TService), implementationFactory);
-        }
+            where TService : class =>
+            AddSingleton(typeof(TService), implementationFactory);
 
         #endregion
 
@@ -200,13 +174,14 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public IZaabyServer RegisterServiceRunner<TService, TImplementation>() where TImplementation : class, TService=>
+        public IZaabyServer RegisterServiceRunner<TService, TImplementation>()
+            where TImplementation : class, TService =>
             RegisterServiceRunner(typeof(TService), typeof(TImplementation));
 
-        public IZaabyServer RegisterServiceRunner(Type implementationType)=>
+        public IZaabyServer RegisterServiceRunner(Type implementationType) =>
             RegisterServiceRunner(implementationType, implementationType);
 
-        public IZaabyServer RegisterServiceRunner<TService>(Type implementationType)=>
+        public IZaabyServer RegisterServiceRunner<TService>(Type implementationType) =>
             RegisterServiceRunner(typeof(TService), implementationType);
 
         public IZaabyServer RegisterServiceRunner<TImplementation>() where TImplementation : class

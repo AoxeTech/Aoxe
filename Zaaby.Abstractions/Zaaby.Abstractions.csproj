@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.9.0</PackageVersion>
-    <Version>0.9.0</Version>
+    <PackageVersion>0.9.1</PackageVersion>
+    <Version>0.9.1</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService Framework</PackageTags>
     <Description>Abstraction libraries for Zaaby framework.</Description>
     <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
-    <PackageLicense>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicense>
+    <LicenseExpression>MIT</LicenseExpression>
   </PropertyGroup>
 </Project>

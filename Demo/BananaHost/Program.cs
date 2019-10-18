@@ -4,7 +4,7 @@ using Interfaces;
 using Microsoft.Extensions.Configuration;
 using Zaabee.RabbitMQ;
 using Zaabee.RabbitMQ.Abstractions;
-using Zaabee.RabbitMQ.Jil;
+using Zaabee.RabbitMQ.SystemTextJson;
 using Zaaby;
 using Zaaby.Client;
 

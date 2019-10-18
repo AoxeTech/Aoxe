@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using Zaaby.Abstractions;
 
 namespace Zaaby
@@ -50,7 +50,7 @@ namespace Zaaby
                 Source = inmostEx.Source,
                 StackTrace = inmostEx.StackTrace
             };
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(zaabyError));
+            return context.Response.WriteAsync(JsonSerializer.Serialize(zaabyError));
         }
     }
 

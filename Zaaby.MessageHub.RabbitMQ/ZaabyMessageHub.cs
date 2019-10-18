@@ -21,11 +21,11 @@ namespace Zaaby.MessageHub.RabbitMQ
             new ConcurrentDictionary<Type, string>();
 
         public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory, IZaabeeRabbitMqClient rabbitMqClient,
-            MessageHubConfig messageHubConfig, ushort prefetch = 100)
+            MessageHubConfig messageHubConfig)
         {
             _serviceScopeFactory = serviceScopeFactory;
             _rabbitMqClient = rabbitMqClient;
-            _prefetch = prefetch;
+            _prefetch = messageHubConfig.Prefetch;
             _allTypes = LoadHelper.GetAllTypes();
 
             RegisterMessageSubscriber(messageHubConfig.MessageHandlerInterfaceType,
