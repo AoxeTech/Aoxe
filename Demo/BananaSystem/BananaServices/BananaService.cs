@@ -8,40 +8,22 @@ namespace BananaServices
     public class BananaService : IBananaService
     {
         private readonly IAppleService _appleService;
-        
+
         public BananaService(IAppleService appleService)
         {
             _appleService = appleService;
         }
-        
-        public Guid GetGuid()
-        {
-            return Guid.NewGuid();
-        }
 
-        public string GetBananaMsg()
-        {
-            return $"这里是 from {GetType().Name} on {DateTime.Now}";
-        }
+        public Guid GetGuid() => Guid.NewGuid();
 
-        public BananaDto ThrowBack(BananaDto dto)
-        {
-            return dto;
-        }
+        public string GetBananaMsg() => $"这里是 {GetType().Name} on {DateTime.Now}";
 
-        public void ThrowEx()
-        {
-            throw new Exception($"Throw by banana service in {DateTime.Now}");
-        }
+        public BananaDto ThrowBack(BananaDto dto) => dto;
 
-        public void ThrowFormatterEx()
-        {
-            Convert.ToInt32("");
-        }
+        public void ThrowEx() => throw new Exception($"Throw by banana service in {DateTime.Now}");
 
-        public void TestAppleEx()
-        {
-            _appleService.ThrowEx();
-        }
+        public void ThrowFormatterEx() => Convert.ToInt32("");
+
+        public void TestAppleEx() => _appleService.ThrowEx();
     }
 }

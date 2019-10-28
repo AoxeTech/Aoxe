@@ -16,41 +16,21 @@ namespace AppleServices
 //            _zaabyMessageHub = zaabyMessageHub;
         }
 
-        public int GetInt()
-        {
-            _bananaService.ThrowFormatterEx();
-            return new Random().Next();
-        }
+        public int GetInt() => new Random().Next();
 
-        public string GetAppleMsg()
-        {
-            return $"This is from {GetType().Name} on {DateTime.Now}";
-        }
+        public string GetAppleMsg() => $"This is from {GetType().Name} on {DateTime.Now}";
 
-        public string SayHelloToBanana()
-        {
-            return $"这里是 Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
-        }
+        public string SayHelloToBanana() =>
+            $"这里是 Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
 
-        public void ThrowEx()
-        {
-            throw new Exception($"Throw by apple service in {DateTime.Now}");
-        }
+        public void ThrowEx() => new Exception($"Throw by apple service in {DateTime.Now}");
 
-        public void TestAppleExFromBanana()
-        {
-            _bananaService.TestAppleEx();
-        }
+        public void TestAppleExFromBanana() => _bananaService.TestAppleEx();
 
-        public void TestBananaEx()
-        {
-            _bananaService.ThrowEx();
-        }
+        public void TestBananaEx() => _bananaService.ThrowEx();
 
-        public BananaDto TestBananaDto()
-        {
-            return _bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now});
-        }
+        public BananaDto TestBananaDto() =>
+            _bananaService.ThrowBack(new BananaDto {Id = Guid.NewGuid(), Time = DateTime.Now});
 
         public void TestPublishMessageA(int quantity)
         {

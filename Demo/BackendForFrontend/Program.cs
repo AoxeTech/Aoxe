@@ -10,7 +10,7 @@ namespace BackendForFrontend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:3000");
+                    webBuilder.UseUrls("http://localhost:5000");
                 })
                 .Build()
                 .Run();

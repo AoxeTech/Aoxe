@@ -28,21 +28,15 @@ namespace Zaaby
             return _zaabyServer;
         }
 
-        public void Run()
-        {
-            var webHostBuilder = WebHost.CreateDefaultBuilder()
-                .UseStartup<Startup>();
-
-            Urls?.ForEach(url => webHostBuilder.UseUrls(url));
-
-            webHostBuilder.Build()
-                .Run();
-
+        public void Run() =>
             Host.CreateDefaultBuilder()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    Urls?.ForEach(url => webBuilder.UseUrls(url));
+                })
                 .Build()
                 .Run();
-        }
 
         #region IOC
 

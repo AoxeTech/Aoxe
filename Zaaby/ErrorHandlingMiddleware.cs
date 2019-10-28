@@ -48,7 +48,8 @@ namespace Zaaby
                 Id = inmostEx is ZaabyException zaabyException ? zaabyException.Id : Guid.NewGuid(),
                 Message = inmostEx.Message,
                 Source = inmostEx.Source,
-                StackTrace = inmostEx.StackTrace
+                StackTrace = inmostEx.StackTrace,
+                ThrowTime = DateTimeOffset.Now
             };
             return context.Response.WriteAsync(JsonSerializer.Serialize(zaabyError));
         }
