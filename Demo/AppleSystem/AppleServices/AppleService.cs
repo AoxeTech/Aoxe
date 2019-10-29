@@ -18,7 +18,7 @@ namespace AppleServices
 
         public int GetInt() => new Random().Next();
 
-        public string GetAppleMsg() => $"This is from {GetType().Name} on {DateTime.Now}";
+        public string GetAppleMsg() => $"这里是AppleService， from “{GetType().Name}” on \"{DateTime.Now}\"";
 
         public string SayHelloToBanana() =>
             $"这里是 Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
