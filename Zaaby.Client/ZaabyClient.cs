@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Zaabee.Extensions;
 using Zaabee.SystemTextJson;
@@ -55,6 +57,11 @@ namespace Zaaby.Client
             private readonly Type _type;
             private readonly HttpClient _client;
 
+            private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
+
             private readonly ConcurrentDictionary<Tuple<string, string>, string> _urlMapper =
                 new ConcurrentDictionary<Tuple<string, string>, string>();
 
@@ -82,7 +89,8 @@ namespace Zaaby.Client
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
                 {
-                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8, "application/json"),
+                    Content = new StringContent(args.Any() ? args[0].ToJson(JsonSerializerOptions) : "", Encoding.UTF8,
+                        "application/json"),
                     Headers = {{"Accept", "application/json"}}
                 };
 
@@ -91,11 +99,11 @@ namespace Zaaby.Client
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return result.IsNullOrWhiteSpace()
                         ? null
-                        : result.FromJson(targetMethod.ReturnType);
+                        : result.FromJson(targetMethod.ReturnType, JsonSerializerOptions);
 
                 if (httpResponseMessage.StatusCode != (HttpStatusCode) 600)
                     throw new ZaabyException($"{url}:{httpResponseMessage}");
-                var zaabyError = result.FromJson<ZaabyError>();
+                var zaabyError = result.FromJson<ZaabyError>(JsonSerializerOptions);
                 var zaabyException = new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
                 {
                     Id = zaabyError.Id,

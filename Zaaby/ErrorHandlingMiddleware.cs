@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,11 @@ namespace Zaaby
         private readonly RequestDelegate _next;
 
         public ErrorHandlingMiddleware(RequestDelegate next) => _next = next;
+
+        private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
 
         public async Task Invoke(HttpContext context)
         {
@@ -51,7 +57,7 @@ namespace Zaaby
                 StackTrace = inmostEx.StackTrace,
                 ThrowTime = DateTimeOffset.Now
             };
-            return context.Response.WriteAsync(JsonSerializer.Serialize(zaabyError));
+            return context.Response.WriteAsync(JsonSerializer.Serialize(zaabyError, JsonSerializerOptions));
         }
     }
 

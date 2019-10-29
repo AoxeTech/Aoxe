@@ -13,41 +13,42 @@ namespace Zaaby.Abstractions
 
         public static IList<Type> GetAllTypes()
         {
-            if (_allTypes == null)
+            if (_allTypes != null) return _allTypes;
+            lock (LockObj)
             {
-                lock (LockObj)
+                if (_allTypes != null) return _allTypes;
+                var dir = Directory.GetCurrentDirectory();
+                var files = new List<string>();
+
+                files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+                files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+                files = files.Where(file => file != "Zaaby.dll").ToList();
+
+                var typeDic = new Dictionary<string, Type>();
+
+                foreach (var file in files)
                 {
-                    if (_allTypes == null)
+                    try
                     {
-                        var dir = Directory.GetCurrentDirectory();
-                        var files = new List<string>();
-
-                        files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-                        files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-
-                        var typeDic = new Dictionary<string, Type>();
-
-                        foreach (var file in files)
-                        {
-                            try
-                            {
-                                foreach (var type in Assembly.LoadFrom(file).GetTypes())
-                                    if (type.FullName != null && !typeDic.ContainsKey(type.FullName))
-                                        typeDic.Add(type.FullName, type);
-                            }
-                            catch (BadImageFormatException)
-                            {
-                                // ignored
-                            }
-                            catch (FileLoadException)
-                            {
-                                // ignored
-                            }
-                        }
-
-                        _allTypes = typeDic.Select(kv => kv.Value).ToList();
+                        foreach (var type in Assembly.LoadFrom(file).GetTypes())
+                            if (type.FullName != null && !typeDic.ContainsKey(type.FullName))
+                                typeDic.Add(type.FullName, type);
+                    }
+                    catch (BadImageFormatException)
+                    {
+                        // ignored
+                    }
+                    catch (FileLoadException)
+                    {
+                        // ignored
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
                     }
                 }
+
+                _allTypes = typeDic.Select(kv => kv.Value).ToList();
             }
 
             return _allTypes;

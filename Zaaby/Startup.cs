@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Encodings.Web;
-using System.Text.Unicode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -19,21 +18,20 @@ namespace Zaaby
         public void ConfigureServices(IServiceCollection services)
         {
             services.Add(ServiceDescriptors);
+            foreach (var (interfaceType, implementType) in ServiceDic)
+                services.AddScoped(interfaceType, implementType);
 
             services.AddControllers(options =>
                 {
                     foreach (var (interfaceType, implementType) in ServiceDic)
-                    {
-                        services.AddScoped(interfaceType, implementType);
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
-                    }
                 }).ConfigureApplicationPartManager(manager =>
                 {
                     manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(ServiceDic.Values));
                 })
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+                    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
                 });
         }
 
