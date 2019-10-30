@@ -12,22 +12,20 @@ namespace Zaaby
         internal static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
 
         //Key is interface type,value is implement type
-        internal static readonly Dictionary<Type, Type> ServiceDic = new Dictionary<Type, Type>();
+        internal static readonly Dictionary<Type, Type> InterfaceAndImplementTypes = new Dictionary<Type, Type>();
         internal static readonly List<Type> ServiceRunnerTypes = new List<Type>();
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.Add(ServiceDescriptors);
-            foreach (var (interfaceType, implementType) in ServiceDic)
-                services.AddScoped(interfaceType, implementType);
 
             services.AddControllers(options =>
                 {
-                    foreach (var (interfaceType, implementType) in ServiceDic)
+                    foreach (var interfaceType in InterfaceAndImplementTypes.Keys)
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                 }).ConfigureApplicationPartManager(manager =>
                 {
-                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(ServiceDic.Values));
+                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(InterfaceAndImplementTypes.Values));
                 })
                 .AddJsonOptions(options =>
                 {

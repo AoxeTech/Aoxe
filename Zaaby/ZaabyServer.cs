@@ -210,7 +210,7 @@ namespace Zaaby
                 .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
             implementTypes.ForEach(implementType =>
-                Startup.ServiceDic.Add(interfaceTypes.First(i => i.IsAssignableFrom(implementType)), implementType));
+                Startup.InterfaceAndImplementTypes.Add(interfaceTypes.First(i => i.IsAssignableFrom(implementType)), implementType));
 
             return _zaabyServer;
         }
