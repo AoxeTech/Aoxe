@@ -14,5 +14,6 @@ namespace IAppleServices
         BananaDto TestBananaDto();
         void TestPublishMessageA(int quantity);
         void TestPublishMessageB(int quantity);
+        void TestApple(Apple apple);
     }
 }

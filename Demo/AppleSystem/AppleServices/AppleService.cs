@@ -1,7 +1,6 @@
 ﻿using System;
 using IAppleServices;
 using IBananaServices;
-using Zaaby.Abstractions;
 
 namespace AppleServices
 {
@@ -46,6 +45,11 @@ namespace AppleServices
             {
 //                _zaabyMessageHub.Publish(new AppleMessageB());
             }
+        }
+
+        public void TestApple(Apple apple)
+        {
+            var i = apple.Id;
         }
     }
 }
