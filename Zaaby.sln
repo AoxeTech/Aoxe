@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub.RabbitMQ",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendForFrontend", "Demo\BackendForFrontend\BackendForFrontend.csproj", "{DB6B0205-13AC-4B24-8ED4-DC023BAC53CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Core", "Zaaby.Core\Zaaby.Core.csproj", "{7CF94742-A30B-4B80-8DB6-8615D76174BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{DB6B0205-13AC-4B24-8ED4-DC023BAC53CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB6B0205-13AC-4B24-8ED4-DC023BAC53CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB6B0205-13AC-4B24-8ED4-DC023BAC53CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF94742-A30B-4B80-8DB6-8615D76174BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF94742-A30B-4B80-8DB6-8615D76174BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF94742-A30B-4B80-8DB6-8615D76174BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF94742-A30B-4B80-8DB6-8615D76174BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

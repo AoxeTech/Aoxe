@@ -10,10 +10,8 @@ namespace Zaaby
     {
         private readonly IEnumerable<Type> _serviceTypes;
 
-        public ZaabyAppServiceControllerFeatureProvider(IEnumerable<Type> serviceTypes)
-        {
+        public ZaabyAppServiceControllerFeatureProvider(IEnumerable<Type> serviceTypes) =>
             _serviceTypes = serviceTypes;
-        }
 
         public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
         {
