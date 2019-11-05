@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.11.0</PackageVersion>
-    <Version>0.11.0</Version>
+    <PackageVersion>0.11.2</PackageVersion>
+    <Version>0.11.2</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
     <PackageReference Include="Zaabee.Extensions" Version="1.2.1" />
-    <PackageReference Include="Zaabee.SystemTextJson" Version="2.1.2" />
+    <PackageReference Include="Zaabee.NewtonsoftJson" Version="2.1.0" />
     <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
   </ItemGroup>
 </Project>

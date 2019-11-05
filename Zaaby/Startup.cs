@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -25,12 +24,10 @@ namespace Zaaby
                         options.Conventions.Add(new ZaabyActionModelConvention(interfaceType));
                 }).ConfigureApplicationPartManager(manager =>
                 {
-                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(InterfaceAndImplementTypes.Values));
+                    manager.FeatureProviders.Add(
+                        new ZaabyAppServiceControllerFeatureProvider(InterfaceAndImplementTypes.Values));
                 })
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-                });
+                .AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
