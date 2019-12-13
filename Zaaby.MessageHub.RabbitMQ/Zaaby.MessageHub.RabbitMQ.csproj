@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageVersion>0.10.0</PackageVersion>
         <Version>0.10.0</Version>
@@ -10,12 +10,12 @@
         <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
         <Description>Message hub for Zaaby framework by RabbitMQ.</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
-        <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
-      <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="1.7.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+      <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="1.7.1" />
       <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
     </ItemGroup>
 

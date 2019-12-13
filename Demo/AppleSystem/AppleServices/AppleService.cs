@@ -17,12 +17,16 @@ namespace AppleServices
 
         public int GetInt() => new Random().Next();
 
+        public DateTime GetNowTime() => DateTime.Now;
+
         public string GetAppleMsg() => $"这里是AppleService， from “{GetType().Name}” on \"{DateTime.Now}\"";
 
         public string SayHelloToBanana() =>
             $"这里是 Apple.I get the message \"{_bananaService.GetBananaMsg()}\" from Banana.";
 
-        public void ThrowEx() => new Exception($"Throw by apple service in {DateTime.Now}");
+        public void ThrowEx() => throw new Exception($"Throw by apple service in {DateTime.Now}");
+
+        public Apple GetApple()=>new Apple{Id = new Random().Next(),Name = $"此苹果创建于：{DateTimeOffset.Now}"};
 
         public void TestAppleExFromBanana() => _bananaService.TestAppleEx();
 

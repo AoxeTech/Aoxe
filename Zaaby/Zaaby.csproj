@@ -1,22 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IsPackable>true</IsPackable>
-    <Version>0.11.2</Version>
-    <PackageVersion>0.11.2</PackageVersion>
-    <Authors>Mutuduxf</Authors>
-    <Company>Mutuduxf</Company>
-    <PackageTags>Zaaby MicroService Framework</PackageTags>
-    <Description>A micro service framework base by asp.net core</Description>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaaby/master/LICENSE</PackageLicenseUrl>
-    <LangVersion>8.0</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
-    <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
-  </ItemGroup>
+    
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>true</IsPackable>
+        <Version>0.11.2</Version>
+        <PackageVersion>0.11.2</PackageVersion>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Zaaby MicroService Framework</PackageTags>
+        <Description>A micro service framework base by asp.net core</Description>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.0" />
+        <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
+    </ItemGroup>
+    
 </Project>

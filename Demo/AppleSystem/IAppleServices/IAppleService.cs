@@ -1,4 +1,5 @@
-﻿using IBananaServices;
+﻿using System;
+using IBananaServices;
 using Interfaces;
 
 namespace IAppleServices
@@ -6,9 +7,11 @@ namespace IAppleServices
     public interface IAppleService : ITest
     {
         int GetInt();
+        DateTime GetNowTime();
         string GetAppleMsg();
         string SayHelloToBanana();
         void ThrowEx();
+        Apple GetApple();
         void TestAppleExFromBanana();
         void TestBananaEx();
         BananaDto TestBananaDto();

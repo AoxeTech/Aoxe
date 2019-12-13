@@ -35,7 +35,7 @@ namespace AppleHost
                 {
                     {"IBananaServices", new List<string> {"http://localhost:5002"}}
                 })
-                .UseUrls("http://localhost:5001").Run();
+                .UseUrls("http://*:5001").Run();
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Zaabee.Extensions;
 using Zaabee.NewtonsoftJson;
@@ -55,11 +54,6 @@ namespace Zaaby.Client
         {
             private readonly Type _type;
             private readonly HttpClient _client;
-
-//            private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
-//            {
-//                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-//            };
 
             private readonly ConcurrentDictionary<Tuple<string, string>, string> _urlMapper =
                 new ConcurrentDictionary<Tuple<string, string>, string>();

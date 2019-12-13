@@ -34,10 +34,7 @@ namespace Zaaby
         {
             app.UseErrorHandling();
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
             ServiceRunnerTypes.ForEach(type => serviceProvider.GetService(type));
         }
     }

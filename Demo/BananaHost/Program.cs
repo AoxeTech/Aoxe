@@ -28,7 +28,7 @@ namespace BananaHost
                     {"IAppleServices", new List<string> {"http://localhost:5001"}}
                 })
                 .RegisterServiceRunner<Runner>()
-                .UseUrls("http://localhost:5002").Run();
+                .UseUrls("http://127.0.0.1:5002").Run();
         }
     }
 }

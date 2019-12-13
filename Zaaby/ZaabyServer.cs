@@ -21,6 +21,24 @@ namespace Zaaby
             return _zaabyServer;
         }
 
+        public IZaabyServer UseZaabyServer<TService>() =>
+            UseZaabyServer(type =>
+                type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+
+        public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
+        {
+            var allTypes = LoadHelper.GetAllTypes();
+            var interfaceTypes = allTypes.Where(definition).ToList();
+
+            var implementTypes = allTypes
+                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+
+            implementTypes.ForEach(implementType =>
+                Startup.InterfaceAndImplementTypes.Add(interfaceTypes.First(i => i.IsAssignableFrom(implementType)), implementType));
+
+            return _zaabyServer;
+        }
+
         public IZaabyServer UseUrls(params string[] urls)
         {
             Urls.AddRange(urls);
@@ -195,24 +213,6 @@ namespace Zaaby
             RegisterServiceRunner(typeof(TService), runnerFactory);
 
         #endregion
-
-        public IZaabyServer UseZaabyServer<TService>() =>
-            UseZaabyServer(type =>
-                type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
-
-        public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
-        {
-            var allTypes = LoadHelper.GetAllTypes();
-            var interfaceTypes = allTypes.Where(definition).ToList();
-
-            var implementTypes = allTypes
-                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-
-            implementTypes.ForEach(implementType =>
-                Startup.InterfaceAndImplementTypes.Add(interfaceTypes.First(i => i.IsAssignableFrom(implementType)), implementType));
-
-            return _zaabyServer;
-        }
 
         private static void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime) =>
             Startup.ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
