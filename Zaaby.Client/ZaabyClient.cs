@@ -29,8 +29,7 @@ namespace Zaaby.Client
         {
             if (clientUrls.Keys.Any(string.IsNullOrWhiteSpace))
                 throw new ArgumentException($"{nameof(clientUrls)}'s key can not be null or whitespace.");
-            if (clientUrls.Values.Any(
-                value => value is null || value.Count == 0 || value.Any(string.IsNullOrWhiteSpace)))
+            if (clientUrls.Values.Any(value => value is null || value.Count == 0 || value.Any(string.IsNullOrWhiteSpace)))
                 throw new ArgumentException($"{nameof(clientUrls)}'s urls can not be null or whitespace.");
 
             var urlConfigs = clientUrls
@@ -82,8 +81,7 @@ namespace Zaaby.Client
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
                 {
-                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8,
-                        "application/json"),
+                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8, "application/json"),
                     Headers = {{"Accept", "application/json"}}
                 };
 
