@@ -61,8 +61,8 @@ namespace Zaaby
 
         public IZaabyServer AddTransient(Type serviceType, Type implementationType)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
             Add(serviceType, implementationType, ServiceLifetime.Transient);
             return _zaabyServer;
         }

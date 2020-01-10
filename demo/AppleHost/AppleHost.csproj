@@ -4,9 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Zaaby.Client\Zaaby.Client.csproj" />
-    <ProjectReference Include="..\..\Zaaby.MessageHub.RabbitMQ\Zaaby.MessageHub.RabbitMQ.csproj" />
-    <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
+    <ProjectReference Include="..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
+    <ProjectReference Include="..\..\src\Zaaby.MessageHub.RabbitMQ\Zaaby.MessageHub.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\src\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\AppleSystem\AppleServices\AppleServices.csproj" />
     <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
   </ItemGroup>

@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Zaaby\Zaaby.csproj" />
+    <ProjectReference Include="..\..\src\Zaaby\Zaaby.csproj" />
     <ProjectReference Include="..\AppleSystem\IAppleServices\IAppleServices.csproj" />
     <ProjectReference Include="..\BananaSystem\BananaServices\BananaServices.csproj" />
     <ProjectReference Include="..\Client\Client.csproj" />
