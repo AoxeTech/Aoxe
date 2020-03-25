@@ -19,9 +19,8 @@ namespace Zaaby.Core
             var implementTypes =
                 allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type)));
 
-            services.AddControllers(options =>
-                    interfaceTypes.ForEach(interfaceType =>
-                        options.Conventions.Add(new ZaabyActionModelConvention(interfaceType))))
+            services.AddControllers(options => interfaceTypes.ForEach(interfaceType =>
+                    options.Conventions.Add(new ZaabyActionModelConvention(interfaceType))))
                 .ConfigureApplicationPartManager(manager =>
                     manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(implementTypes)));
             return services;
