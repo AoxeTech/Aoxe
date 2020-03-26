@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.11.3</PackageVersion>
-    <Version>0.11.2</Version>
+    <PackageVersion>0.20.0</PackageVersion>
+    <Version>0.20.0</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
