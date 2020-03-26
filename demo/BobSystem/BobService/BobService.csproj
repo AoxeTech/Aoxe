@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\AliceSystem\IAliceServices\IAliceServices.csproj" />
+      <ProjectReference Include="..\..\ICarolServices\ICarolServices.csproj" />
+      <ProjectReference Include="..\IBobServices\IBobServices.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Zaabee.Utf8Json" Version="3.2.0" />
+    </ItemGroup>
+
+</Project>

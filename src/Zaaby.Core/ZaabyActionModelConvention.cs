@@ -12,10 +12,7 @@ namespace Zaaby.Core
     {
         private readonly Type _serviceType;
 
-        public ZaabyActionModelConvention(Type serviceType)
-        {
-            _serviceType = serviceType;
-        }
+        public ZaabyActionModelConvention(Type serviceType) => _serviceType = serviceType;
 
         public void Apply(ActionModel action)
         {
@@ -24,7 +21,7 @@ namespace Zaaby.Core
             if (!_serviceType.IsAssignableFrom(action.Controller.ControllerType)) return;
 
             action.Selectors.Clear();
-            var template = $"{_serviceType.FullName?.Replace('.','/')}/[action]";
+            var template = $"{_serviceType.FullName?.Replace('.', '/')}/[action]";
             action.Selectors.Add(CreateSelector(new RouteAttribute(template) {Name = template}));
 
             foreach (var parameter in action.Parameters)

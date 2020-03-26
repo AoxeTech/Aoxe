@@ -5,7 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
-    <ProjectReference Include="..\AppleSystem\IAppleServices\IAppleServices.csproj" />
-    <ProjectReference Include="..\BananaSystem\IBananaServices\IBananaServices.csproj" />
+    <ProjectReference Include="..\AliceSystem\IAliceServices\IAliceServices.csproj" />
+    <ProjectReference Include="..\BobSystem\IBobServices\IBobServices.csproj" />
+    <ProjectReference Include="..\ICarolServices\ICarolServices.csproj" />
   </ItemGroup>
 </Project>

@@ -30,8 +30,9 @@ namespace BackendForFrontend
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.UseZaabyClient(new Dictionary<string, List<string>>
             {
-                {"IAppleServices", new List<string> {"http://localhost:5001"}},
-                {"IBananaServices", new List<string> {"http://localhost:5002"}}
+                {"IAliceServices", new List<string> {"http://localhost:5001"}},
+                {"IBobServices", new List<string> {"http://localhost:5002"}},
+                {"ICarolServices", new List<string> {"http://localhost:5003"}}
             });
         }
 

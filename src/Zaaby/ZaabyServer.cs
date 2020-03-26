@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,15 +26,7 @@ namespace Zaaby
 
         public IZaabyServer UseZaabyServer(Func<Type, bool> definition)
         {
-            var allTypes = LoadHelper.GetAllTypes();
-            var interfaceTypes = allTypes.Where(definition).ToList();
-
-            var implementTypes = allTypes
-                .Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-
-            implementTypes.ForEach(implementType =>
-                Startup.InterfaceAndImplementTypes.Add(interfaceTypes.First(i => i.IsAssignableFrom(implementType)), implementType));
-
+            Startup.Definition = definition;
             return _zaabyServer;
         }
 

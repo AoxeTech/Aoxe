@@ -3,6 +3,17 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <OutputType>Library</OutputType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>true</IsPackable>
+        <Version>0.1.0</Version>
+        <PackageVersion>0.1.0</PackageVersion>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Zaaby MicroService Framework</PackageTags>
+        <Description>A micro service framework base by asp.net core</Description>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <LangVersion>8.0</LangVersion>
     </PropertyGroup>
     
     <ItemGroup>
