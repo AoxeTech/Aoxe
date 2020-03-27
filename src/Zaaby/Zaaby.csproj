@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>0.20.0</Version>
-        <PackageVersion>0.20.0</PackageVersion>
+        <Version>0.20.1</Version>
+        <PackageVersion>0.20.1</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -20,7 +20,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.3" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.3" />
         <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
-        <PackageReference Include="Zaaby.Core" Version="0.1.0" />
+        <PackageReference Include="Zaaby.Core" Version="0.5.0" />
     </ItemGroup>
     
     <ItemGroup>

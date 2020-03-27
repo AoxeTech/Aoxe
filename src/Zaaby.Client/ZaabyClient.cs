@@ -29,7 +29,8 @@ namespace Zaaby.Client
         {
             if (clientUrls.Keys.Any(string.IsNullOrWhiteSpace))
                 throw new ArgumentException($"{nameof(clientUrls)}'s key can not be null or whitespace.");
-            if (clientUrls.Values.Any(value => value is null || value.Count == 0 || value.Any(string.IsNullOrWhiteSpace)))
+            if (clientUrls.Values.Any(
+                value => value is null || value.Count == 0 || value.Any(string.IsNullOrWhiteSpace)))
                 throw new ArgumentException($"{nameof(clientUrls)}'s urls can not be null or whitespace.");
 
             var urlConfigs = clientUrls
@@ -106,6 +107,6 @@ namespace Zaaby.Client
             }
         }
 
-        public void Dispose() => HttpClients?.ForEach(kv => kv.Value.ForEach(client => client.Dispose()));
+        public void Dispose() => HttpClients.SelectMany(kv => kv.Value).ForEach(client => client.Dispose());
     }
 }

@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>0.1.0</Version>
-        <PackageVersion>0.1.0</PackageVersion>
+        <Version>0.5.0</Version>
+        <PackageVersion>0.5.0</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
