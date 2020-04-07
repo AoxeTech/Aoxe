@@ -10,7 +10,7 @@ namespace Zaaby.Client
         public static IServiceCollection UseZaabyClient(this IServiceCollection serviceCollection,
             Dictionary<string, List<string>> baseUrls)
         {
-            if (baseUrls == null || !baseUrls.Any()) return serviceCollection;
+            if (baseUrls is null || !baseUrls.Any()) return serviceCollection;
 
             var allTypes = LoadHelper.GetAllTypes();
 
@@ -33,7 +33,7 @@ namespace Zaaby.Client
                 .ToDictionary(k => k, v => baseUrls[v]));
 
             var methodInfo = client.GetType().GetMethod("GetService");
-            if (methodInfo == null) return serviceCollection;
+            if (methodInfo is null) return serviceCollection;
             
             foreach (var interfaceType in interfaceTypes)
                 serviceCollection.AddScoped(interfaceType,

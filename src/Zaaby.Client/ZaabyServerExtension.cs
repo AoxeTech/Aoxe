@@ -9,7 +9,7 @@ namespace Zaaby.Client
         public static IZaabyServer UseZaabyClient(this IZaabyServer zaabyServer,
             Dictionary<string, List<string>> baseUrls)
         {
-            if (baseUrls == null) return zaabyServer;
+            if (baseUrls is null) return zaabyServer;
 
             var allTypes = LoadHelper.GetAllTypes();
 

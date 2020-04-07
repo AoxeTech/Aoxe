@@ -46,8 +46,8 @@ namespace Zaaby.Core
 //            {
 //                var handleMethods = messageHandlerType.GetMethods()
 //                    .Where(m =>
-//                        m.Name == handleName &&
-//                        m.GetParameters().Count() == 1 &&
+//                        m.Name is handleName &&
+//                        m.GetParameters().Count() is 1 &&
 //                        messageTypes.Contains(m.GetParameters()[0].ParameterType)
 //                    ).ToList();
 //
@@ -60,9 +60,9 @@ namespace Zaaby.Core
 //            if (!_subscriberResolves.ContainsKey(messageInterfaceType))
 //                _subscriberResolves.TryAdd(messageInterfaceType, new ConcurrentBag<MethodInfo>());
 //            var handleMethods = messageHandlerInterfaceType.GetMethods().Where(m =>
-//                m.Name == handleName &&
-//                m.GetParameters().Count() == 1 &&
-//                m.GetParameters()[0].ParameterType == messageInterfaceType);
+//                m.Name is handleName &&
+//                m.GetParameters().Count() is 1 &&
+//                m.GetParameters()[0].ParameterType is messageInterfaceType);
 //            foreach (var handleMethod in handleMethods)
 //                _subscriberResolves[messageInterfaceType].Add(handleMethod);
 //        }

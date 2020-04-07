@@ -30,7 +30,7 @@ namespace Zaaby.Client
             if (clientUrls.Keys.Any(string.IsNullOrWhiteSpace))
                 throw new ArgumentException($"{nameof(clientUrls)}'s key can not be null or whitespace.");
             if (clientUrls.Values.Any(
-                value => value is null || value.Count == 0 || value.Any(string.IsNullOrWhiteSpace)))
+                value => value is null || value.Count is 0 || value.Any(string.IsNullOrWhiteSpace)))
                 throw new ArgumentException($"{nameof(clientUrls)}'s urls can not be null or whitespace.");
 
             var urlConfigs = clientUrls
@@ -80,21 +80,34 @@ namespace Zaaby.Client
                     throw new ZaabyException($"{_type}'s full name is null or empty.");
                 var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, targetMethod.Name),
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
+
+                var httpRequestMessage = CreateHttpRequestMessage(url, args);
+
+                var httpResponseMessage = await _client.SendAsync(httpRequestMessage);
+
+                if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode != (HttpStatusCode) 600)
+                    throw new ZaabyException($"{url}:{httpResponseMessage}");
+
+                return await GetResultAsync(httpResponseMessage, targetMethod.ReturnType);
+            }
+
+            private static HttpRequestMessage CreateHttpRequestMessage(string url, IReadOnlyList<object> args)
+            {
+                return new HttpRequestMessage(HttpMethod.Post, url)
                 {
                     Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8, "application/json"),
                     Headers = {{"Accept", "application/json"}}
                 };
+            }
 
-                var httpResponseMessage = await _client.SendAsync(httpRequestMessage);
+            private static async Task<object> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
+            {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return result.IsNullOrWhiteSpace()
                         ? null
-                        : result.FromJson(targetMethod.ReturnType);
+                        : result.FromJson(returnType);
 
-                if (httpResponseMessage.StatusCode != (HttpStatusCode) 600)
-                    throw new ZaabyException($"{url}:{httpResponseMessage}");
                 var zaabyError = result.FromJson<ZaabyError>();
                 var zaabyException = new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
                 {

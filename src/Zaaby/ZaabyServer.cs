@@ -75,8 +75,8 @@ namespace Zaaby
 
         public IZaabyServer AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
             Add(serviceType, implementationFactory, ServiceLifetime.Transient);
             return _zaabyServer;
         }
@@ -91,8 +91,8 @@ namespace Zaaby
 
         public IZaabyServer AddScoped(Type serviceType, Type implementationType)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
             Add(serviceType, implementationType, ServiceLifetime.Scoped);
             return _zaabyServer;
         }
@@ -114,8 +114,8 @@ namespace Zaaby
 
         public IZaabyServer AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
             Add(serviceType, implementationFactory, ServiceLifetime.Scoped);
             return _zaabyServer;
         }
@@ -130,8 +130,8 @@ namespace Zaaby
 
         public IZaabyServer AddSingleton(Type serviceType, Type implementationType)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null) throw new ArgumentNullException(nameof(implementationType));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
             Add(serviceType, implementationType, ServiceLifetime.Singleton);
             return _zaabyServer;
         }
@@ -153,8 +153,8 @@ namespace Zaaby
 
         public IZaabyServer AddSingleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
-            if (serviceType == null) throw new ArgumentNullException(nameof(serviceType));
-            if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
+            if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
+            if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
             Add(serviceType, implementationFactory, ServiceLifetime.Singleton);
             return _zaabyServer;
         }
