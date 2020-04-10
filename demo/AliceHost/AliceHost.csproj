@@ -10,4 +10,8 @@
       <ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
+    </ItemGroup>
+
 </Project>
