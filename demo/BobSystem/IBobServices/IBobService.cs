@@ -3,7 +3,7 @@ using Interfaces;
 
 namespace IBobServices
 {
-    public interface IBobService : ITest
+    public interface IBobService : IService
     {
         string Hello();
         string SayHelloToAlice();

@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    public interface ITest
+    public interface IService
     {
     }
 }

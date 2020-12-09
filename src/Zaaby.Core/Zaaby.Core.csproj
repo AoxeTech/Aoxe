@@ -1,23 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>1.0.0</Version>
-        <PackageVersion>1.0.0</PackageVersion>
+        <Version>2020.1.0</Version>
+        <PackageVersion>2020.1.0</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
         <Description>A micro service framework base by asp.net core</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>Latest</LangVersion>
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="Zaaby.Abstractions" Version="0.9.1" />
+      <PackageReference Include="Zaaby.Abstractions" Version="2020.1.0" />
     </ItemGroup>
 
 </Project>

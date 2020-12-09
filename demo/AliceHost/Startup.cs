@@ -15,7 +15,7 @@ namespace AliceHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddZaaby<ITest>();
+            services.AddZaaby<IService>();
             services.UseZaabyClient(new Dictionary<string, List<string>>
             {
                 {"IBobServices", new List<string> {"http://localhost:5002"}},
@@ -28,7 +28,7 @@ namespace AliceHost
                     Version = "v1",
                     Title = "Alice API",
                     Description = "API for AliceHost",
-                    Contact = new OpenApiContact() {Name = "DuXiaoFei", Email = "aeondxf@live.com"}
+                    Contact = new OpenApiContact {Name = "DuXiaoFei", Email = "aeondxf@live.com"}
                 });
             });
         }

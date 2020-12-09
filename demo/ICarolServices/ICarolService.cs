@@ -3,7 +3,7 @@ using Interfaces;
 
 namespace ICarolServices
 {
-    public interface ICarolService : ITest
+    public interface ICarolService : IService
     {
         string Hello();
         string SayHelloToAlice();

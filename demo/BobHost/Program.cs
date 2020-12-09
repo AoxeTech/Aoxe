@@ -10,7 +10,7 @@ namespace BobHost
         static void Main(string[] args)
         {
             var zaabyServer = ZaabyServer.GetInstance();
-            zaabyServer.UseZaabyServer<ITest>()
+            zaabyServer.UseZaabyServer<IService>()
                 .UseUrls("http://localhost:5002")
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {

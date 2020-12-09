@@ -10,7 +10,7 @@ namespace Zaaby.Client
         public static IServiceCollection UseZaabyClient(this IServiceCollection serviceCollection,
             Dictionary<string, List<string>> baseUrls)
         {
-            if (baseUrls is null || !baseUrls.Any()) return serviceCollection;
+            if (baseUrls is null || baseUrls.Count <= 0) return serviceCollection;
 
             var allTypes = LoadHelper.GetAllTypes();
 

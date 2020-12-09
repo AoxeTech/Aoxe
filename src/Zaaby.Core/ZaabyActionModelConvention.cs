@@ -37,7 +37,7 @@ namespace Zaaby.Core
             if (routeTemplateProvider != null)
                 selectorModel.AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider);
 
-            selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> {"GET", "POST"}));
+            selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> {"POST"}));
 
             return selectorModel;
         }

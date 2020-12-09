@@ -72,16 +72,16 @@ namespace Zaaby.Client
             }
 
             protected override object Invoke(MethodInfo targetMethod, object[] args) =>
-                InvokeAsync(targetMethod, args).RunSync();
+                InvokeAsync(targetMethod, args.FirstOrDefault()).RunSync();
 
-            private async Task<object> InvokeAsync(MethodInfo targetMethod, IReadOnlyList<object> args)
+            private async Task<object> InvokeAsync(MethodInfo targetMethod, object message)
             {
                 if (string.IsNullOrEmpty(_type.FullName))
                     throw new ZaabyException($"{_type}'s full name is null or empty.");
                 var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, targetMethod.Name),
                     $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
 
-                var httpRequestMessage = CreateHttpRequestMessage(url, args);
+                var httpRequestMessage = CreateHttpRequestMessage(url, message);
 
                 var httpResponseMessage = await _client.SendAsync(httpRequestMessage);
 
@@ -91,13 +91,15 @@ namespace Zaaby.Client
                 return await GetResultAsync(httpResponseMessage, targetMethod.ReturnType);
             }
 
-            private static HttpRequestMessage CreateHttpRequestMessage(string url, IReadOnlyList<object> args)
+            private static HttpRequestMessage CreateHttpRequestMessage(string url, object message)
             {
-                return new HttpRequestMessage(HttpMethod.Post, url)
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
                 {
-                    Content = new StringContent(args.Any() ? args[0].ToJson() : "", Encoding.UTF8, "application/json"),
-                    Headers = {{"Accept", "application/json"}}
+                    Content = new StringContent(message is null ? "" : message.ToJson(), Encoding.UTF8,
+                        "application/json")
                 };
+                httpRequestMessage.Headers.Add("Accept", "application/json");
+                return httpRequestMessage;
             }
 
             private static async Task<object> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
@@ -109,14 +111,13 @@ namespace Zaaby.Client
                         : result.FromJson(returnType);
 
                 var zaabyError = result.FromJson<ZaabyError>();
-                var zaabyException = new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
+                throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
                 {
                     Id = zaabyError.Id,
                     Code = zaabyError.Code,
                     ThrowTime = zaabyError.ThrowTime,
                     Source = zaabyError.Source
                 };
-                throw zaabyException;
             }
         }
 

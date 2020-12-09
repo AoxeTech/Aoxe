@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using IAliceServices;
 using IBobServices;
 using ICarolServices;
@@ -37,6 +40,19 @@ namespace AliceServices
             if (apple.Message is null) apple.Message = string.Empty;
             apple.Message += "\r\nThis apple is pass back by Alice.";
             return apple;
+        }
+
+        public async Task<string> HelloAsyncTest()
+        {
+            var hello = $"Hi,I am Alice.{DateTime.UtcNow}";
+            var ms = new MemoryStream();
+            var bytes = Encoding.UTF8.GetBytes(hello);
+            await ms.WriteAsync(bytes, 0, bytes.Length);
+            ms.Position = 0;
+            var buffer = new byte[bytes.Length];
+            var i = await ms.ReadAsync(buffer, 0, buffer.Length);
+            var result = Encoding.UTF8.GetString(buffer);
+            return result;
         }
     }
 }
