@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Zaaby.Abstractions
+namespace Zaaby.Common
 {
     public class ZaabyException : Exception
     {
@@ -30,9 +30,7 @@ namespace Zaaby.Abstractions
             StackTrace = stackTrace;
         }
 
-        protected ZaabyException(
-            SerializationInfo info,
-            StreamingContext context) : base(info, context)
+        protected ZaabyException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 

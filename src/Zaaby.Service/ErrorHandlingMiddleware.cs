@@ -2,9 +2,9 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Zaaby.Abstractions;
+using Zaaby.Common;
 
-namespace Zaaby.Core
+namespace Zaaby.Service
 {
     internal class ErrorHandlingMiddleware
     {
@@ -26,7 +26,15 @@ namespace Zaaby.Core
             {
                 await HandleExceptionAsync(context, ex, 600);
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                await HandleExceptionAsync(context, ex, 600);
+            }
             catch (ArgumentException ex)
+            {
+                await HandleExceptionAsync(context, ex, 600);
+            }
+            catch (ApplicationException ex)
             {
                 await HandleExceptionAsync(context, ex, 600);
             }

@@ -3,9 +3,10 @@ using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Zaaby.Client;
-using Zaaby.Core;
+using Zaaby.Service;
 
 namespace AliceHost
 {
@@ -37,16 +38,21 @@ namespace AliceHost
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseZaaby();
-            //Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-            //Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint
-            app.UseSwaggerUI(option =>
+            
+            if (env.IsDevelopment())
             {
-                option.SwaggerEndpoint("/swagger/Alice/swagger.json", "Alice Docs");
+                app.UseDeveloperExceptionPage();    
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alice API v1"));
+            }
 
-                option.RoutePrefix = string.Empty;
-                option.DocumentTitle = "Alice API";
-            });
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

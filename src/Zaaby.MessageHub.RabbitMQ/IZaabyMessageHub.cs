@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.Abstractions
+namespace Zaaby.MessageHub.RabbitMQ
 {
     public interface IZaabyMessageHub : IZaabyMessagePublisher, IZaabyMessageSubscriber
     {

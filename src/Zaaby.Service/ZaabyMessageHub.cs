@@ -1,4 +1,4 @@
-namespace Zaaby.Core
+namespace Zaaby.Service
 {
 //    public class ZaabyMessageHub : IZaabyMessageHub
 //    {

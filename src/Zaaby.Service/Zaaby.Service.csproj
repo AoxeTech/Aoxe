@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>2020.1.0</Version>
-        <PackageVersion>2020.1.0</PackageVersion>
+        <Version>2021.8.0</Version>
+        <PackageVersion>2021.8.0</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -15,9 +15,9 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>Latest</LangVersion>
     </PropertyGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="Zaaby.Abstractions" Version="2020.1.0" />
+      <PackageReference Include="Zaaby.Common" Version="2021.1.0" />
     </ItemGroup>
 
 </Project>

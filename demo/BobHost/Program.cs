@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Interfaces;
 using Zaaby;
-using Zaaby.Client;
 
 namespace BobHost
 {
@@ -9,8 +8,8 @@ namespace BobHost
     {
         static void Main(string[] args)
         {
-            var zaabyServer = ZaabyServer.GetInstance();
-            zaabyServer.UseZaabyServer<IService>()
+            var server = ZaabyServer.GetInstance();
+            server.AddZaabyService<IService>()
                 .UseUrls("http://localhost:5002")
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {

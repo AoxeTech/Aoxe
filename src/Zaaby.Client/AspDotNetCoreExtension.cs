@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.Abstractions;
+using Zaaby.Common;
 
 namespace Zaaby.Client
 {

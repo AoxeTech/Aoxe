@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2021.1.0</PackageVersion>
+        <Version>2021.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Zaaby MicroService Framework</PackageTags>
+        <Description>Common classes or tools for Zaaby.</Description>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+        <LicenseExpression>MIT</LicenseExpression>
+        <LangVersion>Latest</LangVersion>
+    </PropertyGroup>
+
+</Project>

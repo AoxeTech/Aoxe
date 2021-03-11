@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zaabee.Extensions;
 using Zaabee.NewtonsoftJson;
-using Zaaby.Abstractions;
+using Zaaby.Common;
 
 namespace Zaaby.Client
 {
@@ -121,6 +121,6 @@ namespace Zaaby.Client
             }
         }
 
-        public void Dispose() => HttpClients.SelectMany(kv => kv.Value).ForEach(client => client.Dispose());
+        void IDisposable.Dispose() => HttpClients.SelectMany(kv => kv.Value).ForEach(client => client.Dispose());
     }
 }

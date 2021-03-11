@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.Abstractions
+namespace Zaaby.Common
 {
     public class ZaabyError
     {

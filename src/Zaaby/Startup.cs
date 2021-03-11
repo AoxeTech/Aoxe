@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Zaaby.Core;
+using Zaaby.Service;
 
 namespace Zaaby
 {
     internal class Startup
     {
-        internal static readonly List<ServiceDescriptor> ServiceDescriptors = new List<ServiceDescriptor>();
-        internal static readonly List<Type> ServiceRunnerTypes = new List<Type>();
+        internal static readonly List<ServiceDescriptor> ServiceDescriptors = new();
+        internal static readonly List<Type> ServiceRunnerTypes = new();
         internal static Func<Type, bool> Definition;
 
         public void ConfigureServices(IServiceCollection services)

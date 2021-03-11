@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zaaby.Client;
-using Zaaby.Core;
+using Zaaby.Service;
 
 namespace CarolHost
 {

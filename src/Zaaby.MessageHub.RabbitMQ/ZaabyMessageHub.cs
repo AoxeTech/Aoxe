@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
-using Zaaby.Abstractions;
+using Zaaby.Common;
 
 namespace Zaaby.MessageHub.RabbitMQ
 {
@@ -14,7 +14,7 @@ namespace Zaaby.MessageHub.RabbitMQ
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IZaabeeRabbitMqClient _rabbitMqClient;
-        private readonly IList<Type> _allTypes;
+        private readonly IEnumerable<Type> _allTypes;
         private readonly ushort _prefetch;
 
         private readonly ConcurrentDictionary<Type, string> _queueNameDic =

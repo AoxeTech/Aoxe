@@ -6,8 +6,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
-      <ProjectReference Include="..\..\src\Zaaby.Core\Zaaby.Core.csproj" />
+      <ProjectReference Include="..\..\src\Zaaby.Service\Zaaby.Service.csproj" />
       <ProjectReference Include="..\CarolSystem\CarolServices\CarolServices.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.Abstractions;
+using Zaaby.Common;
 
-namespace Zaaby.Core
+namespace Zaaby.Service
 {
     public static class ZaabyIServiceCollectionExtensions
     {
