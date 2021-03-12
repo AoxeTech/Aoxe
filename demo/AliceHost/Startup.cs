@@ -24,7 +24,7 @@ namespace AliceHost
             });
             services.AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("Alice", new OpenApiInfo
+                option.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "Alice API",

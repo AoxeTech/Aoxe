@@ -7,7 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\AliceSystem\IAliceServices\IAliceServices.csproj" />
       <ProjectReference Include="..\..\BobSystem\IBobServices\IBobServices.csproj" />
-      <ProjectReference Include="..\..\ICarolServices\ICarolServices.csproj" />
+      <ProjectReference Include="..\ICarolServices\ICarolServices.csproj" />
     </ItemGroup>
 
 </Project>

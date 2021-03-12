@@ -18,8 +18,7 @@ namespace Zaaby.Client
         /// <summary>
         /// Key is interface's NameSpace
         /// </summary>
-        private static readonly ConcurrentDictionary<string, List<HttpClient>> HttpClients =
-            new ConcurrentDictionary<string, List<HttpClient>>();
+        private static readonly ConcurrentDictionary<string, List<HttpClient>> HttpClients = new();
 
         /// <summary>
         /// Key is interface's NameSpace,value is urls

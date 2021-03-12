@@ -6,7 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
       <ProjectReference Include="..\..\src\Zaaby\Zaaby.csproj" />
       <ProjectReference Include="..\BobSystem\BobService\BobService.csproj" />
     </ItemGroup>

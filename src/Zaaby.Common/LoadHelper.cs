@@ -1,29 +1,59 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Zaaby.Common
 {
     public static class LoadHelper
     {
-        private static IEnumerable<Type> _types;
+        public static List<Type> Types = new();
+        private static bool _isLoaded;
         private static readonly object LockObj = new();
 
         public static void Scan(params Type[] types)
         {
-            _types = types.SelectMany(type => type.Assembly.ExportedTypes).Distinct();
+            Types.AddRange(types.SelectMany(type => type.Assembly.ExportedTypes));
+            Types = Types.Distinct().ToList();
         }
 
-        public static IEnumerable<Type> GetAllTypes()
+        public static void LoadAllTypes()
         {
-            if (_types != null) return _types;
+            if (_isLoaded) return;
             lock (LockObj)
             {
-                _types = AppDomain.CurrentDomain.GetAssemblies()
-                    .SelectMany(assembly => assembly.ExportedTypes).Distinct();
-            }
+                if (_isLoaded) return;
+                var dir = Directory.GetCurrentDirectory();
+                var files = new List<string>();
 
-            return _types;
+                files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+                files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+                files = files.Where(file => file != "Zaaby.dll").ToList();
+
+                foreach (var file in files)
+                {
+                    try
+                    {
+                        Types.AddRange(Assembly.LoadFrom(file).ExportedTypes);
+                    }
+                    catch (BadImageFormatException)
+                    {
+                        // ignored
+                    }
+                    catch (FileLoadException)
+                    {
+                        // ignored
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+
+                Types = Types.Distinct().ToList();
+                _isLoaded = true;
+            }
         }
     }
 }

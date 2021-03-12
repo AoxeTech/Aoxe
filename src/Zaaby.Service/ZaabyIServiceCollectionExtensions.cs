@@ -13,7 +13,8 @@ namespace Zaaby.Service
 
         public static IServiceCollection AddZaaby(this IServiceCollection services, Func<Type, bool> definition)
         {
-            var allTypes = LoadHelper.GetAllTypes();
+            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
+            var allTypes = LoadHelper.Types;
             var interfaceTypes = allTypes.Where(definition).ToList();
 
             var implementTypes =

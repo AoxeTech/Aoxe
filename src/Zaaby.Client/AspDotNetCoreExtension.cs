@@ -12,7 +12,8 @@ namespace Zaaby.Client
         {
             if (baseUrls is null || baseUrls.Count <= 0) return serviceCollection;
 
-            var allTypes = LoadHelper.GetAllTypes();
+            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
+            var allTypes = LoadHelper.Types;
 
             var interfaceTypes = allTypes.Where(type =>
                     type.IsInterface &&

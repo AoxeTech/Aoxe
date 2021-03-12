@@ -26,7 +26,9 @@ namespace Zaaby.MessageHub.RabbitMQ
             _serviceScopeFactory = serviceScopeFactory;
             _rabbitMqClient = rabbitMqClient;
             _prefetch = messageHubConfig.Prefetch;
-            _allTypes = LoadHelper.GetAllTypes();
+
+            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
+            _allTypes = LoadHelper.Types;
 
             RegisterMessageSubscriber(messageHubConfig.MessageHandlerInterfaceType,
                 messageHubConfig.MessageInterfaceType, messageHubConfig.HandleName);
