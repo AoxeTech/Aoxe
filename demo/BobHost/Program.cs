@@ -13,7 +13,7 @@ namespace BobHost
                 .UseUrls("http://localhost:5002")
                 .UseZaabyClient(new Dictionary<string, List<string>>
                 {
-                    {"IAliceServices", new List<string> {"http://localhost:5001"}},
+                    {"IAliceServices", new List<string> {"https://localhost:5001"}},
                     {"ICarolServices", new List<string> {"http://localhost:5003"}}
                 })
                 .Run();

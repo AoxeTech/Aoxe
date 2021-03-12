@@ -5,12 +5,12 @@ using Zaaby.Common;
 
 namespace Zaaby.Client
 {
-    public static class AspDotNetCoreExtension
+    public static class ZaabyIServiceCollectionExtensions
     {
-        public static IServiceCollection UseZaabyClient(this IServiceCollection serviceCollection,
+        public static IServiceCollection UseZaabyClient(this IServiceCollection services,
             Dictionary<string, List<string>> baseUrls)
         {
-            if (baseUrls is null || baseUrls.Count <= 0) return serviceCollection;
+            if (baseUrls is null || baseUrls.Count <= 0) return services;
 
             if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
             var allTypes = LoadHelper.Types;
@@ -34,13 +34,13 @@ namespace Zaaby.Client
                 .ToDictionary(k => k, v => baseUrls[v]));
 
             var methodInfo = client.GetType().GetMethod("GetService");
-            if (methodInfo is null) return serviceCollection;
+            if (methodInfo is null) return services;
             
             foreach (var interfaceType in interfaceTypes)
-                serviceCollection.AddScoped(interfaceType,
+                services.AddScoped(interfaceType,
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
 
-            return serviceCollection;
+            return services;
         }
     }
 }
