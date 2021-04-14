@@ -10,18 +10,18 @@ namespace Zaaby.Service
 {
     internal class ZaabyActionModelConvention : IActionModelConvention
     {
-        private readonly Type _interfaceType;
+        private readonly Type _contractType;
 
-        public ZaabyActionModelConvention(Type interfaceType) => _interfaceType = interfaceType;
+        public ZaabyActionModelConvention(Type interfaceType) => _contractType = interfaceType;
 
         public void Apply(ActionModel action)
         {
             if (action is null)
                 throw new ArgumentNullException(nameof(action));
-            if (!_interfaceType.IsAssignableFrom(action.Controller.ControllerType)) return;
+            if (!_contractType.IsAssignableFrom(action.Controller.ControllerType)) return;
 
             action.Selectors.Clear();
-            var template = $"{_interfaceType.FullName?.Replace('.', '/')}/[action]";
+            var template = $"{_contractType.FullName?.Replace('.', '/')}/[action]";
             action.Selectors.Add(CreateSelector(new RouteAttribute(template) {Name = template}));
 
             foreach (var parameter in action.Parameters)
