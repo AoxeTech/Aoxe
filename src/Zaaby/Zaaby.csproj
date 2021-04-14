@@ -4,8 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2021.9.0</Version>
-        <PackageVersion>2021.9.0</PackageVersion>
+        <Version>2021.9.1</Version>
+        <PackageVersion>2021.9.1</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>

@@ -3,7 +3,7 @@ using Interfaces;
 
 namespace AliceServices
 {
-    public class NonContractService:IService
+    public class NonContractService : IService
     {
         public string NonInterfaceTest()
         {

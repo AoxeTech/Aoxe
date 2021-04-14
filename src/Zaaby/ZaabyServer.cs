@@ -23,8 +23,7 @@ namespace Zaaby
         }
 
         public ZaabyServer AddZaabyService<TService>() =>
-            AddZaabyService(type =>
-                type.IsInterface && typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+            AddZaabyService(type => typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
 
         public ZaabyServer AddZaabyService(Func<Type, bool> definition)
         {
@@ -64,7 +63,7 @@ namespace Zaaby
                 {
                     ConfigureAppActions.ForEach(action => action.Invoke(webHostBuilder));
                     ServiceRunnerTypes.ForEach(type => webHostBuilder.ApplicationServices.GetService(type));
-                    
+
                     webHostBuilder.UseHttpsRedirection();
                     webHostBuilder.UseRouting();
                     webHostBuilder.UseAuthorization();
