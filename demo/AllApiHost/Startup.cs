@@ -26,7 +26,7 @@ namespace AllApiHost
             services.AddZaaby<IService>();
             services.UseZaabyClient(new Dictionary<string, List<string>>
             {
-                {"IBobServices", new List<string> {"http://localhost:5002"}},
+                {"IAliceServices", new List<string> {"http://localhost:5001"}},
                 {"ICarolServices", new List<string> {"http://localhost:5003"}}
             });
             services.AddSwaggerGen(c =>

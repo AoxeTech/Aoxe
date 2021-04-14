@@ -54,8 +54,7 @@ namespace Zaaby.Client
             private readonly Type _type;
             private readonly HttpClient _client;
 
-            private readonly ConcurrentDictionary<Tuple<string, string>, string> _urlMapper =
-                new ConcurrentDictionary<Tuple<string, string>, string>();
+            private readonly ConcurrentDictionary<Tuple<string, string>, string> _urlMapper = new();
 
             public InvokeProxy()
             {
@@ -120,6 +119,6 @@ namespace Zaaby.Client
             }
         }
 
-        void IDisposable.Dispose() => HttpClients.SelectMany(kv => kv.Value).ForEach(client => client.Dispose());
+        public void Dispose() => HttpClients.SelectMany(kv => kv.Value).ForEach(client => client?.Dispose());
     }
 }

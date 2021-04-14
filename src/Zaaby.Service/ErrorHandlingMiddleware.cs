@@ -47,7 +47,7 @@ namespace Zaaby.Service
         private static Task HandleExceptionAsync(HttpContext context, Exception ex, int httpStatusCode)
         {
             var inmostEx = ex;
-            while (inmostEx.InnerException != null)
+            while (inmostEx.InnerException is not null)
                 inmostEx = inmostEx.InnerException;
             context.Response.StatusCode = httpStatusCode;
             var zaabyError = new ZaabyError

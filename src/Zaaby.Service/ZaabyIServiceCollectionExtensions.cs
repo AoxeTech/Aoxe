@@ -18,7 +18,7 @@ namespace Zaaby.Service
             var interfaceTypes = allTypes.Where(definition).ToList();
 
             var implementTypes =
-                allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type)));
+                allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
 
             services.AddControllers(options => interfaceTypes.ForEach(interfaceType =>
                     options.Conventions.Add(new ZaabyActionModelConvention(interfaceType))))

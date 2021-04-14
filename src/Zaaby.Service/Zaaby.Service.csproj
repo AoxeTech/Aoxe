@@ -5,15 +5,15 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>2021.8.3</Version>
-        <PackageVersion>2021.8.3</PackageVersion>
+        <Version>2021.8.5</Version>
+        <PackageVersion>2021.8.5</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
         <Description>A micro service framework base by asp.net core</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <LangVersion>Latest</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

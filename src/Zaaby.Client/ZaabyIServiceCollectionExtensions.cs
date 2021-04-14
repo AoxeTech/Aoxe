@@ -26,7 +26,7 @@ namespace Zaaby.Client
                 implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 
             var client = new ZaabyClient(interfaceTypes
-                .Where(@interface => @interface != null &&
+                .Where(@interface => @interface is not null &&
                                      !string.IsNullOrWhiteSpace(@interface.Namespace) &&
                                      baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)

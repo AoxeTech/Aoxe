@@ -9,5 +9,9 @@
       <ProjectReference Include="..\..\src\Zaaby\Zaaby.csproj" />
       <ProjectReference Include="..\BobSystem\BobService\BobService.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="NSwag.AspNetCore" Version="13.10.9" />
+    </ItemGroup>
 
 </Project>

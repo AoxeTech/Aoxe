@@ -34,7 +34,7 @@ namespace Zaaby.Service
         private static SelectorModel CreateSelector(IRouteTemplateProvider routeTemplateProvider)
         {
             var selectorModel = new SelectorModel();
-            if (routeTemplateProvider != null)
+            if (routeTemplateProvider is not null)
                 selectorModel.AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider);
 
             selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> {"POST"}));
