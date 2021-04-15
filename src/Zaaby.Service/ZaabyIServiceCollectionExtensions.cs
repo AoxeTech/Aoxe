@@ -8,7 +8,7 @@ namespace Zaaby.Service
     public static class ZaabyIServiceCollectionExtensions
     {
         public static IServiceCollection AddZaaby<TService>(this IServiceCollection services) =>
-            AddZaaby(services, type => typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+            services.AddZaaby(type => typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
 
         public static IServiceCollection AddZaaby(this IServiceCollection services, Func<Type, bool> definition)
         {
