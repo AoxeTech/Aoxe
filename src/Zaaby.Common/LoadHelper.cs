@@ -8,14 +8,14 @@ namespace Zaaby.Common
 {
     public static class LoadHelper
     {
-        public static (List<Type>interfaceTypes, List<Type>classTypes, List<Type>anyInterfacesAssignClassTypes,
-            List<Type>allInterfacesNotAssignClassTypes) GetByBaseType<T>() => GetByBaseType(typeof(T));
+        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
+            List<Type>AllInterfacesNotAssignClassTypes) GetByBaseType<T>() => GetByBaseType(typeof(T));
 
-        public static (List<Type>interfaceTypes, List<Type>classTypes, List<Type>anyInterfacesAssignClassTypes,
-            List<Type>allInterfacesNotAssignClassType) GetByBaseType(Type baseType)
+        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
+            List<Type>AllInterfacesNotAssignClassTypes) GetByBaseType(Type baseType)
         {
             var types = AllTypes.Where(baseType.IsAssignableFrom).ToList();
-
+            
             var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
             var classTypes = types.Where(type => type.IsClass).ToList();
             var anyInterfacesAssignClassTypes =

@@ -11,20 +11,19 @@ namespace Zaaby.Service
 
         public static IServiceCollection AddZaaby(this IServiceCollection services, Type baseType)
         {
-            var (interfaceTypes, classTypes, _, allInterfacesNotAssignClassTypes) =
-                LoadHelper.GetByBaseType(baseType);
+            var types = LoadHelper.GetByBaseType(baseType);
 
             services.AddControllers(options =>
                 {
-                    interfaceTypes.ForEach(type =>
+                    types.InterfaceTypes.ForEach(type =>
                         options.Conventions.Add(new ZaabyActionModelConvention(type)));
-                    allInterfacesNotAssignClassTypes.ForEach(type =>
+                    types.AllInterfacesNotAssignClassTypes.ForEach(type =>
                         options.Conventions.Add(new ZaabyActionModelConvention(type)));
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
                     // manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(implementTypes));
-                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(classTypes));
+                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(types.ClassTypes));
                 });
             return services;
         }
