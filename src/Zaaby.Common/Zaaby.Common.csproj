@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.2.3</PackageVersion>
-        <Version>2021.2.3</Version>
+        <PackageVersion>2021.3.0</PackageVersion>
+        <Version>2021.3.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>

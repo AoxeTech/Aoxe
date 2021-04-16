@@ -8,52 +8,54 @@ namespace Zaaby.Common
 {
     public static class LoadHelper
     {
-        public static List<Type> Types = new();
-        private static bool _isLoaded;
-        private static readonly object LockObj = new();
+        public static (IList<Type>interfaceType, IList<Type>classType, IList<Type>anyInterfacesAssignClassType,
+            IList<Type>allInterfacesNotAssignClassType) GetByBaseType<T>() => GetByBaseType(typeof(T));
 
-        public static void Scan(params Type[] types)
+        public static (IList<Type>interfaceType, IList<Type>classType, IList<Type>anyInterfacesAssignClassType,
+            IList<Type>allInterfacesNotAssignClassType) GetByBaseType(Type baseType)
         {
-            Types.AddRange(types.SelectMany(type => type.Assembly.ExportedTypes));
-            Types = Types.Distinct().ToList();
+            var types = AllTypes.Where(baseType.IsAssignableFrom).ToList();
+
+            var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
+            var classType = types.Where(type => type.IsClass).ToList();
+            var anyInterfacesAssignClassType =
+                classType.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+            var allInterfacesNotAssignClassType =
+                classType.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
+            return (interfaceTypes, classType, anyInterfacesAssignClassType, allInterfacesNotAssignClassType);
         }
 
-        public static void LoadAllTypes()
+        public static readonly List<Type> AllTypes = new Lazy<List<Type>>(() =>
         {
-            if (_isLoaded) return;
-            lock (LockObj)
+            var dir = Directory.GetCurrentDirectory();
+            var files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+            files = files.Where(file => file != "Zaaby.dll").ToList();
+
+            var types = new List<Type>();
+            foreach (var file in files)
             {
-                if (_isLoaded) return;
-                var dir = Directory.GetCurrentDirectory();
-                var files = new List<string>();
-
-                files.AddRange(Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories));
-                files.AddRange(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
-                files = files.Where(file => file != "Zaaby.dll").ToList();
-
-                foreach (var file in files)
+                try
                 {
-                    try
-                    {
-                        Types.AddRange(Assembly.LoadFrom(file).ExportedTypes);
-                    }
-                    catch (BadImageFormatException)
-                    {
-                        // ignored
-                    }
-                    catch (FileLoadException)
-                    {
-                        // ignored
-                    }
-                    catch (Exception)
-                    {
-                        // ignored
-                    }
+                    types.AddRange(Assembly.LoadFrom(file).ExportedTypes);
                 }
-
-                Types = Types.Distinct().ToList();
-                _isLoaded = true;
+                catch (BadImageFormatException)
+                {
+                    // ignored
+                }
+                catch (FileLoadException)
+                {
+                    // ignored
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
             }
-        }
+
+            return types;
+        }).Value;
     }
 }
