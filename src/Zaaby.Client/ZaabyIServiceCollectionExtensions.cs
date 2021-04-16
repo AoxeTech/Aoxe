@@ -12,16 +12,13 @@ namespace Zaaby.Client
         {
             if (baseUrls is null || baseUrls.Count <= 0) return services;
 
-            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
-            var allTypes = LoadHelper.Types;
-
-            var interfaceTypes = allTypes.Where(type =>
+            var interfaceTypes = LoadHelper.AllTypes.Where(type =>
                     type.IsInterface &&
                     !string.IsNullOrWhiteSpace(type.Namespace) &&
                     baseUrls.ContainsKey(type.Namespace))
                 .ToList();
             var implementServiceTypes =
-                allTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+                LoadHelper.AllTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
             interfaceTypes = interfaceTypes.Where(i =>
                 implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
 

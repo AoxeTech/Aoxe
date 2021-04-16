@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
-using Zaaby.Common;
 
 namespace Zaaby.MessageHub.RabbitMQ
 {
@@ -26,9 +25,6 @@ namespace Zaaby.MessageHub.RabbitMQ
             _serviceScopeFactory = serviceScopeFactory;
             _rabbitMqClient = rabbitMqClient;
             _prefetch = messageHubConfig.Prefetch;
-
-            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
-            _allTypes = LoadHelper.Types;
 
             RegisterMessageSubscriber(messageHubConfig.MessageHandlerInterfaceType,
                 messageHubConfig.MessageInterfaceType, messageHubConfig.HandleName);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
 
@@ -8,29 +7,24 @@ namespace Zaaby.Service
     public static class ZaabyIServiceCollectionExtensions
     {
         public static IServiceCollection AddZaaby<TService>(this IServiceCollection services) =>
-            services.AddZaaby(type => typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+            services.AddZaaby(typeof(TService));
 
-        public static IServiceCollection AddZaaby(this IServiceCollection services, Func<Type, bool> definition)
+        public static IServiceCollection AddZaaby(this IServiceCollection services, Type baseType)
         {
-            if (!LoadHelper.Types.Any()) LoadHelper.LoadAllTypes();
-            var types = LoadHelper.Types.Where(definition).ToList();
-
-            var interfaceTypes = types.Where(type => type.IsInterface).ToList();
-            var serviceTypes = types.Where(type => type.IsClass).ToList();
-            var notAssignableFromTypes =
-                serviceTypes.Where(type => !interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+            var (interfaceTypes, classTypes, _, allInterfacesNotAssignClassTypes) =
+                LoadHelper.GetByBaseType(baseType);
 
             services.AddControllers(options =>
                 {
-                    interfaceTypes.ForEach(interfaceType =>
-                        options.Conventions.Add(new ZaabyActionModelConvention(interfaceType)));
-                    notAssignableFromTypes.ForEach(notAssignableFromType=>
-                        options.Conventions.Add(new ZaabyActionModelConvention(notAssignableFromType)));
+                    interfaceTypes.ForEach(type =>
+                        options.Conventions.Add(new ZaabyActionModelConvention(type)));
+                    allInterfacesNotAssignClassTypes.ForEach(type =>
+                        options.Conventions.Add(new ZaabyActionModelConvention(type)));
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
                     // manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(implementTypes));
-                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(serviceTypes));
+                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(classTypes));
                 });
             return services;
         }

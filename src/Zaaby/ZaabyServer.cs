@@ -14,7 +14,7 @@ namespace Zaaby
         internal readonly List<Action<IServiceCollection>> ConfigurationServicesActions = new();
         internal readonly List<Action<IApplicationBuilder>> ConfigureAppActions = new();
         internal readonly List<string> Urls = new();
-        internal Func<Type, bool> ServiceDefinition;
+        internal Type ServiceBaseType;
 
         public static readonly ZaabyServer Instance = new();
 
@@ -22,12 +22,11 @@ namespace Zaaby
         {
         }
 
-        public ZaabyServer AddZaabyService<TService>() =>
-            AddZaabyService(type => typeof(TService).IsAssignableFrom(type) && type != typeof(TService));
+        public ZaabyServer AddZaabyService<TService>() => AddZaabyService(typeof(TService));
 
-        public ZaabyServer AddZaabyService(Func<Type, bool> definition)
+        public ZaabyServer AddZaabyService(Type serviceBaseType)
         {
-            ServiceDefinition = definition;
+            ServiceBaseType = serviceBaseType;
             return Instance;
         }
 
@@ -56,8 +55,8 @@ namespace Zaaby
                 {
                     ConfigurationServicesActions.ForEach(action => action.Invoke(services));
                     ServiceDescriptors.ForEach(services.Add);
-                    if (ServiceDefinition is not null)
-                        services.AddZaaby(ServiceDefinition);
+                    if (ServiceBaseType is not null)
+                        services.AddZaaby(ServiceBaseType);
                 });
                 webBuilder.Configure(webHostBuilder =>
                 {

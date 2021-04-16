@@ -8,21 +8,21 @@ namespace Zaaby.Common
 {
     public static class LoadHelper
     {
-        public static (IList<Type>interfaceType, IList<Type>classType, IList<Type>anyInterfacesAssignClassType,
-            IList<Type>allInterfacesNotAssignClassType) GetByBaseType<T>() => GetByBaseType(typeof(T));
+        public static (List<Type>interfaceType, List<Type>classTypes, List<Type>anyInterfacesAssignClassTypes,
+            List<Type>allInterfacesNotAssignClassTypes) GetByBaseType<T>() => GetByBaseType(typeof(T));
 
-        public static (IList<Type>interfaceType, IList<Type>classType, IList<Type>anyInterfacesAssignClassType,
-            IList<Type>allInterfacesNotAssignClassType) GetByBaseType(Type baseType)
+        public static (List<Type>interfaceType, List<Type>classTypes, List<Type>anyInterfacesAssignClassTypes,
+            List<Type>allInterfacesNotAssignClassType) GetByBaseType(Type baseType)
         {
             var types = AllTypes.Where(baseType.IsAssignableFrom).ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
-            var classType = types.Where(type => type.IsClass).ToList();
-            var anyInterfacesAssignClassType =
-                classType.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-            var allInterfacesNotAssignClassType =
-                classType.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
-            return (interfaceTypes, classType, anyInterfacesAssignClassType, allInterfacesNotAssignClassType);
+            var classTypes = types.Where(type => type.IsClass).ToList();
+            var anyInterfacesAssignClassTypes =
+                classTypes.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+            var allInterfacesNotAssignClassTypes =
+                classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
+            return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
         }
 
         public static readonly List<Type> AllTypes = new Lazy<List<Type>>(() =>
@@ -55,7 +55,7 @@ namespace Zaaby.Common
                 }
             }
 
-            return types;
+            return types.Distinct().ToList();
         }).Value;
     }
 }
