@@ -8,6 +8,8 @@ namespace Zaaby.Common
 {
     public static class LoadHelper
     {
+        private static List<Type> _scanTypes = new();
+        
         public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
             List<Type>AllInterfacesNotAssignClassTypes) GetByBaseType<T>() => GetByBaseType(typeof(T));
 
@@ -23,6 +25,12 @@ namespace Zaaby.Common
             var allInterfacesNotAssignClassTypes =
                 classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
             return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
+        }
+
+        public static void FromAssemblyOf(Type type)
+        {
+            _scanTypes.AddRange(type.Assembly.GetTypes());
+            _scanTypes = _scanTypes.Distinct().ToList();
         }
 
         public static readonly List<Type> AllTypes = new Lazy<List<Type>>(() =>
