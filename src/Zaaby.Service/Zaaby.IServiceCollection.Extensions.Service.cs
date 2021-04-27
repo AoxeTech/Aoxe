@@ -4,14 +4,14 @@ using Zaaby.Common;
 
 namespace Zaaby.Service
 {
-    public static class ZaabyIServiceCollectionExtensions
+    public static partial class ZaabyIServiceCollectionExtensions
     {
-        public static IServiceCollection AddZaaby<TService>(this IServiceCollection services) =>
-            services.AddZaaby(typeof(TService));
+        public static IServiceCollection AddZaabyService<TService>(this IServiceCollection services) =>
+            services.AddZaabyService(typeof(TService));
 
-        public static IServiceCollection AddZaaby(this IServiceCollection services, Type baseType)
+        public static IServiceCollection AddZaabyService(this IServiceCollection services, Type baseServiceType)
         {
-            var types = LoadHelper.GetByBaseType(baseType);
+            var types = LoadHelper.GetByBaseType(baseServiceType);
 
             services.AddControllers(options =>
                 {
