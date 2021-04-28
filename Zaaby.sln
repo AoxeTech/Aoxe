@@ -45,6 +45,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICarolServices", "demo\Caro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllApiHost", "demo\AllApiHost\AllApiHost.csproj", "{306DB923-C4E4-431E-B001-14306FACCEDA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9C5D1C18-AB9B-4A01-9A06-375198D440C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Common.Test", "tests\Zaaby.Common.Test\Zaaby.Common.Test.csproj", "{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +119,10 @@ Global
 		{306DB923-C4E4-431E-B001-14306FACCEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{306DB923-C4E4-431E-B001-14306FACCEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{306DB923-C4E4-431E-B001-14306FACCEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +147,7 @@ Global
 		{3124644D-03C2-4513-9790-07B65202E626} = {A8121E45-FC80-4578-8791-7EB2867F4D38}
 		{67013D3A-011E-4603-9D66-851A3CF4BB3E} = {0CE9AFC3-2D5D-471B-9734-C64C48AEC4F7}
 		{306DB923-C4E4-431E-B001-14306FACCEDA} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}
+		{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697} = {9C5D1C18-AB9B-4A01-9A06-375198D440C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

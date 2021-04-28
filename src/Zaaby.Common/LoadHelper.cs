@@ -62,5 +62,25 @@ namespace Zaaby.Common
                 classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
             return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
         }
+
+        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
+            List<Type>AllInterfacesNotAssignClassTypes) GetByAttribute<TAttribute>() where TAttribute : Attribute =>
+            GetByAttribute(typeof(TAttribute));
+
+        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
+            List<Type>AllInterfacesNotAssignClassTypes) GetByAttribute(Type attributeType)
+        {
+            var types = AllTypes.Where(type =>
+                    type.GetCustomAttributes(true).Any(att => att.GetType() == attributeType))
+                .ToList();
+
+            var interfaceTypes = types.Where(type => type.IsInterface).ToList();
+            var classTypes = types.Where(type => type.IsClass).ToList();
+            var anyInterfacesAssignClassTypes =
+                classTypes.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
+            var allInterfacesNotAssignClassTypes =
+                classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
+            return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
+        }
     }
 }
