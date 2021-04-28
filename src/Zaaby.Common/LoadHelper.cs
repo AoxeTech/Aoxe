@@ -70,8 +70,7 @@ namespace Zaaby.Common
         public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
             List<Type>AllInterfacesNotAssignClassTypes) GetByAttribute(Type attributeType)
         {
-            var types = AllTypes.Where(type =>
-                    type.GetCustomAttributes(true).Any(att => att.GetType() == attributeType))
+            var types = AllTypes.Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
                 .ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface).ToList();
