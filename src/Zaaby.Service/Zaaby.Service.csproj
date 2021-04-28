@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>2021.9.3</Version>
-        <PackageVersion>2021.9.3</PackageVersion>
+        <Version>2021.9.4</Version>
+        <PackageVersion>2021.9.4</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Zaaby.Common" Version="2021.7.0" />
+      <PackageReference Include="Zaaby.Common" Version="2021.8.1" />
     </ItemGroup>
 
 </Project>
