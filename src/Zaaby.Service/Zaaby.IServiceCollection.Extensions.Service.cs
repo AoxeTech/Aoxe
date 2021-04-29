@@ -10,9 +10,11 @@ namespace Zaaby.Service
         public static IServiceCollection AddZaabyService<TService>(this IServiceCollection services) =>
             services.AddZaabyService(typeof(TService));
 
-        public static IServiceCollection AddZaabyService(this IServiceCollection services, Type baseServiceType)
+        public static IServiceCollection AddZaabyService(this IServiceCollection services, Type serviceDefineType)
         {
-            var typePairs = LoadHelper.GetByBaseType(baseServiceType);
+            var typePairs = typeof(Attribute).IsAssignableFrom(serviceDefineType)
+                ? LoadHelper.GetByAttribute(serviceDefineType)
+                : LoadHelper.GetByBaseType(serviceDefineType);
 
             services.AddControllers(options =>
                 {
