@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AliceServices
 {
     [Route("RouteTest/[action]")]
-    public class RouteAttributeService : IService
+    [ServiceAttribute]
+    public class RouteAttributeService
     {
         public string RouteAttributeTest()
         {

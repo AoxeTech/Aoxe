@@ -17,6 +17,7 @@ namespace AliceHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddZaabyService<IService>();
+            services.AddZaabyService<ServiceAttribute>();
             services.UseZaabyClient(new Dictionary<string, List<string>>
             {
                 {"IBobServices", new List<string> {"http://localhost:5002"}},
