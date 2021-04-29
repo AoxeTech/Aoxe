@@ -16,14 +16,16 @@ namespace Zaaby.Service
 
             services.AddControllers(options =>
                 {
-                    foreach (var type in typePairs.Select(typePair =>
-                        typePair.InterfaceType ?? typePair.ImplementationType))
+                    foreach (var type in typePairs.Where(t => t.ImplementationType is not null)
+                        .Select(t => t.InterfaceType ?? t.ImplementationType))
                         options.Conventions.Add(new ZaabyActionModelConvention(type));
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
                     manager.FeatureProviders.Add(
-                        new ZaabyAppServiceControllerFeatureProvider(typePairs.Select(t => t.ImplementationType)
+                        new ZaabyAppServiceControllerFeatureProvider(typePairs
+                            .Where(t => t.ImplementationType is not null)
+                            .Select(t => t.ImplementationType)
                             .ToList()));
                 });
             return services;

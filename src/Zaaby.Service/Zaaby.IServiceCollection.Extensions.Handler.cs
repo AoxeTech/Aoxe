@@ -11,7 +11,7 @@ namespace Zaaby.Service
     public static partial class ZaabyIServiceCollectionExtensions
     {
         private static readonly ConcurrentDictionary<Type, List<Type>> MessageHandlers = new();
-        
+
         public static IServiceCollection AddZaabyHandler<THandler, TMessage>(this IServiceCollection services,
             string handleName = "Handle") =>
             services.AddZaabyHandler(typeof(THandler), typeof(TMessage), handleName);
@@ -20,7 +20,8 @@ namespace Zaaby.Service
             Type messageType, string handleName = "Handle")
         {
             var typePairs = LoadHelper.GetByBaseType(baseHandleType);
-            foreach (var classType in typePairs.Select(t=>t.ImplementationType))
+            foreach (var classType in typePairs.Where(t => t.ImplementationType is not null)
+                .Select(t => t.ImplementationType))
             {
                 var methods = classType.GetMethods(BindingFlags.Public).Where(m =>
                 {
@@ -38,7 +39,7 @@ namespace Zaaby.Service
                     services.AddScoped(handlerInterfaceType, classType);
                 }
             }
-            
+
             return services;
         }
     }
