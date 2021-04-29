@@ -53,15 +53,9 @@ namespace Zaaby.Common
             var types = AllTypes.Where(baseType.IsAssignableFrom).ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
-            var classTypes = types.Where(type => type.IsClass).ToList();
+            var implementationTypes = types.Where(type => type.IsClass).ToList();
 
-            var result = interfaceTypes
-                .Select(i => new TypePair(i, classTypes.FirstOrDefault(i.IsAssignableFrom))).ToList();
-
-            result.AddRange(classTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
-                .Select(c => new TypePair(null, c)));
-
-            return result;
+            return CreateTypePairs(interfaceTypes, implementationTypes);
         }
 
         public static List<TypePair> GetByAttribute<TAttribute>() where TAttribute : Attribute =>
@@ -73,13 +67,20 @@ namespace Zaaby.Common
                 .ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface).ToList();
-            var classTypes = types.Where(type => type.IsClass).ToList();
+            var implementationTypes = types.Where(type => type.IsClass).ToList();
 
+            return CreateTypePairs(interfaceTypes, implementationTypes);
+        }
+
+        private static List<TypePair> CreateTypePairs(IEnumerable<Type> interfaceTypes,
+            IEnumerable<Type> implementationTypes)
+        {
             var result = interfaceTypes
-                .Select(i => new TypePair(i, classTypes.FirstOrDefault(i.IsAssignableFrom))).ToList();
+                .Select(interfaceType => new TypePair(interfaceType,
+                    implementationTypes.FirstOrDefault(interfaceType.IsAssignableFrom))).ToList();
 
-            result.AddRange(classTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
-                .Select(c => new TypePair(null, c)));
+            result.AddRange(implementationTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
+                .Select(implementationType => new TypePair(null, implementationType)));
 
             return result;
         }
