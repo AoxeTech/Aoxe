@@ -1,5 +1,12 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
+using AliceServices;
+using BobServices;
+using CarolServices;
+using IAliceServices;
+using IBobServices;
+using ICarolServices;
 using Xunit;
 
 namespace Zaaby.Common.Test
@@ -33,6 +40,33 @@ namespace Zaaby.Common.Test
             Assert.Single(types1);
             Assert.Null(types1[0].InterfaceType);
             Assert.Equal(typeof(ClassWithDerivedInterface), types1[0].ImplementationType);
+        }
+
+        [Fact]
+        public void ScanTypesTest()
+        {
+            var sw = Stopwatch.StartNew();
+            
+            LoadHelper.FromAssemblyOf<IAliceService>();
+            LoadHelper.FromAssemblyOf<AliceService>();
+            LoadHelper.FromAssemblyOf<IBobService>();
+            LoadHelper.FromAssemblyOf<BobService>();
+            LoadHelper.FromAssemblyOf<ICarolService>();
+            LoadHelper.FromAssemblyOf<CarolService>();
+
+            sw.Stop();
+            var i0 = sw.ElapsedMilliseconds;
+
+            LoadHelper.LoadMode = LoadMode.LoadAll;
+            
+            sw.Restart();
+
+            LoadHelper.LoadTypes();
+            
+            sw.Stop();
+            var i1 = sw.ElapsedMilliseconds;
+
+            Assert.True(LoadHelper.ScanTypes.Count > 0);
         }
     }
 
