@@ -16,13 +16,13 @@ namespace AliceHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddZaabyService<IService>();
-            services.AddZaabyService<ServiceAttribute>();
-            services.UseZaabyClient(new Dictionary<string, List<string>>
-            {
-                {"IBobServices", new List<string> {"http://localhost:5002"}},
-                {"ICarolServices", new List<string> {"http://localhost:5003"}}
-            });
+            services.AddZaabyService<IService>()
+                .AddZaabyService<ServiceAttribute>()
+                .UseZaabyClient(new Dictionary<string, List<string>>
+                {
+                    {"IBobServices", new List<string> {"http://localhost:5002"}},
+                    {"ICarolServices", new List<string> {"http://localhost:5003"}}
+                });
             services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1", new OpenApiInfo

@@ -11,7 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
       <ProjectReference Include="..\..\src\Zaaby.Service\Zaaby.Service.csproj" />
-      <ProjectReference Include="..\BobSystem\BobService\BobService.csproj" />
+      <ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
     </ItemGroup>
 
 </Project>

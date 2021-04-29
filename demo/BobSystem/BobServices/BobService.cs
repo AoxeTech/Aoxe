@@ -4,7 +4,7 @@ using IBobServices;
 using ICarolServices;
 using Zaabee.Utf8Json;
 
-namespace BobService
+namespace BobServices
 {
     public class BobService : IBobService
     {

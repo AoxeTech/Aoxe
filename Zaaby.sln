@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBobServices", "demo\BobSys
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarolSystem", "CarolSystem", "{0CE9AFC3-2D5D-471B-9734-C64C48AEC4F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BobService", "demo\BobSystem\BobService\BobService.csproj", "{8A68FDD6-2752-4DAB-A13E-41A87F42CF15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BobServices", "demo\BobSystem\BobServices\BobServices.csproj", "{8A68FDD6-2752-4DAB-A13E-41A87F42CF15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarolServices", "demo\CarolSystem\CarolServices\CarolServices.csproj", "{088770BA-3910-4AD1-979A-9EDFCC1D8D87}"
 EndProject

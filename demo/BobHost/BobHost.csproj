@@ -7,7 +7,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Zaaby\Zaaby.csproj" />
-      <ProjectReference Include="..\BobSystem\BobService\BobService.csproj" />
+      <ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
     </ItemGroup>
     
     <ItemGroup>
