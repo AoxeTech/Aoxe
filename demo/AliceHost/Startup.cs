@@ -18,7 +18,7 @@ namespace AliceHost
         {
             services.AddZaabyService<IService>()
                 .AddZaabyService<ServiceAttribute>()
-                .UseZaabyClient(new Dictionary<string, List<string>>
+                .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
                 {
                     {"IBobServices", new List<string> {"http://localhost:5002"}},
                     {"ICarolServices", new List<string> {"http://localhost:5003"}}

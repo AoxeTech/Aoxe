@@ -68,7 +68,6 @@ namespace Zaaby
                 {
                     _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
                     ServiceRunnerTypes.ForEach(type => webHostBuilder.ApplicationServices.GetService(type));
-
                     webHostBuilder.UseHttpsRedirection();
                     webHostBuilder.UseRouting();
                     webHostBuilder.UseAuthorization();

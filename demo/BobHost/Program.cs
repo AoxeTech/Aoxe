@@ -13,7 +13,7 @@ namespace BobHost
         {
             ZaabyServer.Instance
                 .AddZaabyService<IService>()
-                .UseZaabyClient(new Dictionary<string, List<string>>
+                .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
                 {
                     {"IAliceServices", new List<string> {"https://localhost:5001"}},
                     {"ICarolServices", new List<string> {"http://localhost:5003"}}

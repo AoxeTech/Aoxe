@@ -8,7 +8,7 @@ namespace Zaaby.Common
 {
     public partial class LoadHelper
     {
-        public static LoadMode LoadMode { get; set; }
+        public static LoadMode LoadMode { get; set; } = LoadMode.LoadAll;
         private static readonly List<Type> ScanTypes = new();
 
         public static void FromAssemblyOf<T>() => FromAssemblyOf(typeof(T));

@@ -16,7 +16,7 @@ namespace CarolHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddZaabyService<IService>();
-            services.UseZaabyClient(new Dictionary<string, List<string>>
+            services.UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
             {
                 {"IAliceServices", new List<string> {"https://localhost:5001"}},
                 {"IBobServices", new List<string> {"http://localhost:5002"}}

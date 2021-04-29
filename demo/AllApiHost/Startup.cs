@@ -24,7 +24,7 @@ namespace AllApiHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddZaabyService<IService>();
-            services.UseZaabyClient(new Dictionary<string, List<string>>
+            services.UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
             {
                 {"IAliceServices", new List<string> {"http://localhost:5001"}},
                 {"ICarolServices", new List<string> {"http://localhost:5003"}}

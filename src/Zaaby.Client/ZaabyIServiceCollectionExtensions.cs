@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
@@ -7,20 +8,16 @@ namespace Zaaby.Client
 {
     public static class ZaabyIServiceCollectionExtensions
     {
-        public static IServiceCollection UseZaabyClient(this IServiceCollection services,
+        public static IServiceCollection UseZaabyClient(this IServiceCollection services,Type serviceDefineType,
             Dictionary<string, List<string>> baseUrls)
         {
             if (baseUrls is null || baseUrls.Count <= 0) return services;
 
-            var interfaceTypes = LoadHelper.AllTypes.Where(type =>
-                    type.IsInterface &&
-                    !string.IsNullOrWhiteSpace(type.Namespace) &&
-                    baseUrls.ContainsKey(type.Namespace))
-                .ToList();
-            var implementServiceTypes =
-                LoadHelper.AllTypes.Where(type => type.IsClass && interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-            interfaceTypes = interfaceTypes.Where(i =>
-                implementServiceTypes.All(s => !i.IsAssignableFrom(s))).ToList();
+            var typePairs = LoadHelper.GetByBaseType(serviceDefineType);
+            var interfaceTypes = typePairs.Where(t => t.InterfaceType.Namespace is not null
+                                                      && t.ImplementationType is null
+                                                      && baseUrls.ContainsKey(t.InterfaceType.Namespace))
+                .Select(t => t.InterfaceType).ToList();
 
             var client = new ZaabyClient(interfaceTypes
                 .Where(@interface => @interface is not null &&
