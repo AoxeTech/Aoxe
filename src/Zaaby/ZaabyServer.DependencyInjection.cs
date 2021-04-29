@@ -6,7 +6,7 @@ namespace Zaaby
 {
     public partial class ZaabyServer
     {
-        internal readonly List<ServiceDescriptor> ServiceDescriptors = new();
+        private readonly List<ServiceDescriptor> _serviceDescriptors = new();
         
         #region AddTransient
 
@@ -126,10 +126,10 @@ namespace Zaaby
         #endregion
 
         private void Add(Type serviceType, Type implementationType, ServiceLifetime lifetime) =>
-            ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
+            _serviceDescriptors.Add(new ServiceDescriptor(serviceType, implementationType, lifetime));
 
         private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
             ServiceLifetime lifetime) =>
-            ServiceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
+            _serviceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
     }
 }
