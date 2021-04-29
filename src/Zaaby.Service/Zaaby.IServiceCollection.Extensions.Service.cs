@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
 
@@ -11,19 +12,19 @@ namespace Zaaby.Service
 
         public static IServiceCollection AddZaabyService(this IServiceCollection services, Type baseServiceType)
         {
-            var types = LoadHelper.GetByBaseType(baseServiceType);
+            var typePairs = LoadHelper.GetByBaseType(baseServiceType);
 
             services.AddControllers(options =>
                 {
-                    types.InterfaceTypes.ForEach(type =>
-                        options.Conventions.Add(new ZaabyActionModelConvention(type)));
-                    types.AllInterfacesNotAssignClassTypes.ForEach(type =>
-                        options.Conventions.Add(new ZaabyActionModelConvention(type)));
+                    foreach (var type in typePairs.Select(typePair =>
+                        typePair.InterfaceType ?? typePair.ImplementationType))
+                        options.Conventions.Add(new ZaabyActionModelConvention(type));
                 })
                 .ConfigureApplicationPartManager(manager =>
                 {
-                    // manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(implementTypes));
-                    manager.FeatureProviders.Add(new ZaabyAppServiceControllerFeatureProvider(types.ClassTypes));
+                    manager.FeatureProviders.Add(
+                        new ZaabyAppServiceControllerFeatureProvider(typePairs.Select(t => t.ImplementationType)
+                            .ToList()));
                 });
             return services;
         }

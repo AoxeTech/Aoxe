@@ -10,7 +10,7 @@ namespace Zaaby.Service
 {
     public static partial class ZaabyIServiceCollectionExtensions
     {
-        private static ConcurrentDictionary<Type, List<Type>> _messageHandlers = new();
+        private static readonly ConcurrentDictionary<Type, List<Type>> MessageHandlers = new();
         
         public static IServiceCollection AddZaabyHandler<THandler, TMessage>(this IServiceCollection services,
             string handleName = "Handle") =>
@@ -19,8 +19,8 @@ namespace Zaaby.Service
         public static IServiceCollection AddZaabyHandler(this IServiceCollection services, Type baseHandleType,
             Type messageType, string handleName = "Handle")
         {
-            var types = LoadHelper.GetByBaseType(baseHandleType);
-            foreach (var classType in types.ClassTypes)
+            var typePairs = LoadHelper.GetByBaseType(baseHandleType);
+            foreach (var classType in typePairs.Select(t=>t.ImplementationType))
             {
                 var methods = classType.GetMethods(BindingFlags.Public).Where(m =>
                 {
@@ -33,7 +33,7 @@ namespace Zaaby.Service
                 var handlerInterfaceTypes = classType.GetInterfaces().Where(baseHandleType.IsAssignableFrom);
                 foreach (var handlerInterfaceType in handlerInterfaceTypes)
                 {
-                    var messageHandlerTypes = _messageHandlers.GetOrAdd(messageType, _ => new List<Type>());
+                    var messageHandlerTypes = MessageHandlers.GetOrAdd(messageType, _ => new List<Type>());
                     messageHandlerTypes.Add(handlerInterfaceType);
                     services.AddScoped(handlerInterfaceType, classType);
                 }

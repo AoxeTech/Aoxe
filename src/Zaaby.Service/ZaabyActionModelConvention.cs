@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -10,19 +11,20 @@ namespace Zaaby.Service
 {
     internal class ZaabyActionModelConvention : IActionModelConvention
     {
-        private readonly Type _contractType;
+        private readonly Type _serviceType;
 
-        public ZaabyActionModelConvention(Type interfaceType) => _contractType = interfaceType;
+        public ZaabyActionModelConvention(Type serviceType) => _serviceType = serviceType;
 
         public void Apply(ActionModel action)
         {
             if (action is null)
                 throw new ArgumentNullException(nameof(action));
-            if (!_contractType.IsAssignableFrom(action.Controller.ControllerType)) return;
+            if (!_serviceType.IsAssignableFrom(action.Controller.ControllerType)) return;
 
             action.Selectors.Clear();
-            var template = $"{_contractType.FullName?.Replace('.', '/')}/[action]";
-            action.Selectors.Add(CreateSelector(new RouteAttribute(template) {Name = template}));
+            var route = _serviceType.GetCustomAttribute(typeof(Attribute), false) as RouteAttribute;
+            var template = $"{_serviceType.FullName?.Replace('.', '/')}/[action]";
+            action.Selectors.Add(CreateSelector(route ?? new RouteAttribute(template) {Name = template}));
 
             foreach (var parameter in action.Parameters)
             {

@@ -56,7 +56,7 @@ namespace Zaaby
                     ConfigurationServicesActions.ForEach(action => action.Invoke(services));
                     ServiceDescriptors.ForEach(services.Add);
                     if (ServiceBaseType is not null)
-                        services.AddZaaby(ServiceBaseType);
+                        services.AddZaabyService(ServiceBaseType);
                 });
                 webBuilder.Configure(webHostBuilder =>
                 {
