@@ -46,40 +46,42 @@ namespace Zaaby.Common
             return types.Distinct().ToList();
         }).Value;
 
-        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
-            List<Type>AllInterfacesNotAssignClassTypes) GetByBaseType<T>() => GetByBaseType(typeof(T));
+        public static List<TypePair> GetByBaseType<T>() => GetByBaseType(typeof(T));
 
-        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
-            List<Type>AllInterfacesNotAssignClassTypes) GetByBaseType(Type baseType)
+        public static List<TypePair> GetByBaseType(Type baseType)
         {
             var types = AllTypes.Where(baseType.IsAssignableFrom).ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
             var classTypes = types.Where(type => type.IsClass).ToList();
-            var anyInterfacesAssignClassTypes =
-                classTypes.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-            var allInterfacesNotAssignClassTypes =
-                classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
-            return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
+
+            var result = interfaceTypes
+                .Select(i => new TypePair(i, classTypes.FirstOrDefault(i.IsAssignableFrom))).ToList();
+
+            result.AddRange(classTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
+                .Select(c => new TypePair(null, c)));
+
+            return result;
         }
 
-        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
-            List<Type>AllInterfacesNotAssignClassTypes) GetByAttribute<TAttribute>() where TAttribute : Attribute =>
+        public static List<TypePair> GetByAttribute<TAttribute>() where TAttribute : Attribute =>
             GetByAttribute(typeof(TAttribute));
 
-        public static (List<Type>InterfaceTypes, List<Type>ClassTypes, List<Type>AnyInterfacesAssignClassTypes,
-            List<Type>AllInterfacesNotAssignClassTypes) GetByAttribute(Type attributeType)
+        public static List<TypePair> GetByAttribute(Type attributeType)
         {
             var types = AllTypes.Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
                 .ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface).ToList();
             var classTypes = types.Where(type => type.IsClass).ToList();
-            var anyInterfacesAssignClassTypes =
-                classTypes.Where(type => interfaceTypes.Any(i => i.IsAssignableFrom(type))).ToList();
-            var allInterfacesNotAssignClassTypes =
-                classTypes.Where(type => interfaceTypes.All(i => !i.IsAssignableFrom(type))).ToList();
-            return (interfaceTypes, classTypes, anyInterfacesAssignClassTypes, allInterfacesNotAssignClassTypes);
+
+            var result = interfaceTypes
+                .Select(i => new TypePair(i, classTypes.FirstOrDefault(i.IsAssignableFrom))).ToList();
+
+            result.AddRange(classTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
+                .Select(c => new TypePair(null, c)));
+
+            return result;
         }
     }
 }

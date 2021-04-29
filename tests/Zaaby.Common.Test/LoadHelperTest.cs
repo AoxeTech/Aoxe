@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace Zaaby.Common.Test
@@ -10,6 +11,28 @@ namespace Zaaby.Common.Test
         {
             var types0 = LoadHelper.GetByAttribute<TestAttribute>();
             var types1 = LoadHelper.GetByAttribute(typeof(TestDerivedAttribute));
+
+            Assert.Equal(2, types0.Count);
+            Assert.Single(types1);
+            Assert.Contains(typeof(TestClassWithAttribute), types0.Select(p => p.ImplementationType));
+            Assert.Contains(typeof(TestClassWithDerivedAttribute), types0.Select(p => p.ImplementationType));
+            Assert.Contains(typeof(TestClassWithDerivedAttribute), types1.Select(p => p.ImplementationType));
+        }
+
+        [Fact]
+        public void GetByBaseType()
+        {
+            var types0 = LoadHelper.GetByBaseType<ITestInterface>();
+            var types1 = LoadHelper.GetByBaseType(typeof(IDerivedTestInterface));
+
+            Assert.Equal(2, types0.Count);
+            Assert.Contains(typeof(IDerivedTestInterface), types0.Select(p => p.InterfaceType));
+            Assert.Contains(typeof(ClassWithInterface), types0.Select(p => p.ImplementationType));
+            Assert.Contains(typeof(ClassWithDerivedInterface), types0.Select(p => p.ImplementationType));
+
+            Assert.Single(types1);
+            Assert.Null(types1[0].InterfaceType);
+            Assert.Equal(typeof(ClassWithDerivedInterface), types1[0].ImplementationType);
         }
     }
 
@@ -22,12 +45,28 @@ namespace Zaaby.Common.Test
     }
 
     [TestAttribute]
-    public class TestClass
+    public class TestClassWithAttribute
     {
     }
 
     [TestDerivedAttribute]
-    public class TestDerivedClass
+    public class TestClassWithDerivedAttribute
+    {
+    }
+
+    public interface ITestInterface
+    {
+    }
+
+    public interface IDerivedTestInterface : ITestInterface
+    {
+    }
+
+    public class ClassWithInterface : ITestInterface
+    {
+    }
+
+    public class ClassWithDerivedInterface : IDerivedTestInterface
     {
     }
 }
