@@ -14,7 +14,7 @@ namespace Zaaby.Client
             if (baseUrls is null || baseUrls.Count <= 0) return services;
 
             var typePairs = LoadHelper.GetByBaseType(serviceDefineType);
-            var interfaceTypes = typePairs.Where(t => t.InterfaceType.Namespace is not null
+            var interfaceTypes = typePairs.Where(t => t.InterfaceType?.Namespace is not null
                                                       && t.ImplementationType is null
                                                       && baseUrls.ContainsKey(t.InterfaceType.Namespace))
                 .Select(t => t.InterfaceType).ToList();
