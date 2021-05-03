@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using BobServices;
+using IAliceServices;
+using IBobServices;
+using ICarolServices;
 using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +16,10 @@ namespace BobHost
         static void Main(string[] args)
         {
             ZaabyServer.Instance
+                .FromAssemblyOf<IAliceService>()
+                .FromAssemblyOf<IBobService>()
+                .FromAssemblyOf<ICarolService>()
+                .FromAssemblyOf<BobService>()
                 .AddZaabyService<IService>()
                 .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
                 {

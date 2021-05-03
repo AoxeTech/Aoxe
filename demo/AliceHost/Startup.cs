@@ -1,4 +1,8 @@
 using System.Collections.Generic;
+using AliceServices;
+using IAliceServices;
+using IBobServices;
+using ICarolServices;
 using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Zaaby.Client;
+using Zaaby.Common;
 using Zaaby.Service;
 
 namespace AliceHost
@@ -16,7 +21,11 @@ namespace AliceHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddZaabyService<IService>()
+            services.FromAssemblyOf<IAliceService>()
+                .FromAssemblyOf<IBobService>()
+                .FromAssemblyOf<ICarolService>()
+                .FromAssemblyOf<AliceService>()
+                .AddZaabyService<IService>()
                 .AddZaabyService<ServiceAttribute>()
                 .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
                 {

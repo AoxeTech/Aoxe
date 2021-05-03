@@ -1,10 +1,15 @@
 using System.Collections.Generic;
+using CarolServices;
+using IAliceServices;
+using IBobServices;
+using ICarolServices;
 using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zaaby.Client;
+using Zaaby.Common;
 using Zaaby.Service;
 
 namespace CarolHost
@@ -15,6 +20,8 @@ namespace CarolHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.FromAssemblyOf(typeof(IAliceService), typeof(IBobService), typeof(ICarolService),
+                typeof(CarolService));
             services.AddZaabyService<IService>();
             services.UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
             {
