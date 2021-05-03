@@ -10,7 +10,9 @@ namespace Zaaby.Common
 
         public static List<TypePair> GetByBaseType(Type baseType)
         {
-            var types = LoadTypes().Where(baseType.IsAssignableFrom).ToList();
+            var types = LoadTypes()
+                .Where(baseType.IsAssignableFrom)
+                .ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
             var implementationTypes = types.Where(type => type.IsClass).ToList();
@@ -23,7 +25,8 @@ namespace Zaaby.Common
 
         public static List<TypePair> GetByAttribute(Type attributeType)
         {
-            var types = LoadTypes().Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
+            var types = LoadTypes()
+                .Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
                 .ToList();
 
             var interfaceTypes = types.Where(type => type.IsInterface).ToList();

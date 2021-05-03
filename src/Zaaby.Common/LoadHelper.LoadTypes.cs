@@ -24,8 +24,8 @@ namespace Zaaby.Common
 
         public static IReadOnlyList<Type> LoadTypes() =>
             LoadMode is LoadMode.LoadByScan
-                ? ScanTypes
-                : AllTypesLazy.Value;
+                ? LoadScanTypes()
+                : LoadAllTypes();
 
         public static IReadOnlyList<Type> LoadScanTypes() => ScanTypes;
 
