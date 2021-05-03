@@ -20,9 +20,9 @@ namespace Zaaby.Client
                 .Select(t => t.InterfaceType).ToList();
 
             var client = new ZaabyClient(interfaceTypes
-                .Where(@interface => @interface is not null &&
-                                     !string.IsNullOrWhiteSpace(@interface.Namespace) &&
-                                     baseUrls.ContainsKey(@interface.Namespace))
+                .Where(@interface => @interface is not null
+                                     && !string.IsNullOrWhiteSpace(@interface.Namespace)
+                                     && baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
                 .ToDictionary(k => k, v => baseUrls[v]));
