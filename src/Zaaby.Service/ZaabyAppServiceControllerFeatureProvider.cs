@@ -13,9 +13,7 @@ namespace Zaaby.Service
         public ZaabyAppServiceControllerFeatureProvider(List<Type> implementTypes) =>
             _implementTypes = implementTypes;
 
-        public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
-        {
+        public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature) =>
             _implementTypes.ForEach(serviceType => feature.Controllers.Add(serviceType.GetTypeInfo()));
-        }
     }
 }

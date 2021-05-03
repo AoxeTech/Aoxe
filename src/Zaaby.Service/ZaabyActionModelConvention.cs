@@ -17,8 +17,7 @@ namespace Zaaby.Service
 
         public void Apply(ActionModel action)
         {
-            if (action is null)
-                throw new ArgumentNullException(nameof(action));
+            if (action is null) throw new ArgumentNullException(nameof(action));
             if (!_serviceType.IsAssignableFrom(action.Controller.ControllerType)) return;
 
             action.Selectors.Clear();
