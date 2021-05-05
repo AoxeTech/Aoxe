@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Zaaby.Common;
 
 namespace Zaaby
@@ -68,6 +69,18 @@ namespace Zaaby
         public static ZaabyServer FromAssemblyOf(this ZaabyServer server, params Type[] types)
         {
             LoadHelper.FromAssemblyOf(types);
+            return server;
+        }
+
+        public static ZaabyServer LoadByAssemblies(this ZaabyServer server, params Assembly[] assemblies)
+        {
+            LoadHelper.LoadByAssemblies(assemblies);
+            return server;
+        }
+
+        public static ZaabyServer LoadByAssemblyNames(this ZaabyServer server, params AssemblyName[] assemblyNames)
+        {
+            LoadHelper.LoadByAssemblyNames(assemblyNames);
             return server;
         }
     }
