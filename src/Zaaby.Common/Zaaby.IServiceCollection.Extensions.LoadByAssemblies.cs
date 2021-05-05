@@ -8,13 +8,13 @@ namespace Zaaby.Common
         public static IServiceCollection FromAssemblyNames(this IServiceCollection services,
             params AssemblyName[] assemblyNames)
         {
-            LoadHelper.LoadByAssemblyNames(assemblyNames);
+            LoadHelper.FromAssemblyNames(assemblyNames);
             return services;
         }
 
         public static IServiceCollection FromAssemblies(this IServiceCollection services, params Assembly[] assemblies)
         {
-            LoadHelper.LoadByAssemblies(assemblies);
+            LoadHelper.FromAssemblies(assemblies);
             return services;
         }
     }

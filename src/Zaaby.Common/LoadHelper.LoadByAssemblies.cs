@@ -5,10 +5,10 @@ namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        public static void LoadByAssemblyNames(params AssemblyName[] assemblyNames) =>
-            LoadByAssemblies(assemblyNames.Select(Assembly.Load).ToArray());
+        public static void FromAssemblyNames(params AssemblyName[] assemblyNames) =>
+            FromAssemblies(assemblyNames.Select(Assembly.Load).ToArray());
 
-        public static void LoadByAssemblies(params Assembly[] assemblies)
+        public static void FromAssemblies(params Assembly[] assemblies)
         {
             SpecifyTypes.AddRange(assemblies
                 .SelectMany(assembly => assembly.GetTypes())
