@@ -72,15 +72,15 @@ namespace Zaaby
             return server;
         }
 
-        public static ZaabyServer LoadByAssemblies(this ZaabyServer server, params Assembly[] assemblies)
+        public static ZaabyServer FromAssemblies(this ZaabyServer server, params Assembly[] assemblies)
         {
-            LoadHelper.LoadByAssemblies(assemblies);
+            LoadHelper.FromAssemblies(assemblies);
             return server;
         }
 
-        public static ZaabyServer LoadByAssemblyNames(this ZaabyServer server, params AssemblyName[] assemblyNames)
+        public static ZaabyServer FromAssemblyNames(this ZaabyServer server, params AssemblyName[] assemblyNames)
         {
-            LoadHelper.LoadByAssemblyNames(assemblyNames);
+            LoadHelper.FromAssemblyNames(assemblyNames);
             return server;
         }
     }

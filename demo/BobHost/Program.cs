@@ -17,9 +17,9 @@ namespace BobHost
         {
             ZaabyServer.Instance
                 .FromAssemblyOf<IAliceService>()
-                .FromAssemblyOf<IBobService>()
-                .FromAssemblyOf<ICarolService>()
-                .FromAssemblyOf<BobService>()
+                .FromAssemblyOf(typeof(IBobService))
+                .FromAssemblies(typeof(ICarolService).Assembly)
+                .FromAssemblyNames(typeof(BobService).Assembly.GetName())
                 .AddZaabyService<IService>()
                 .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
                 {
