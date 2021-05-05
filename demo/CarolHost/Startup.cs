@@ -20,8 +20,9 @@ namespace CarolHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.FromAssemblyOf(typeof(IAliceService), typeof(IBobService), typeof(ICarolService),
-                typeof(CarolService));
+            services.FromAssemblies(typeof(IAliceService).Assembly, typeof(IBobService).Assembly);
+            services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
+                typeof(CarolService).Assembly.GetName());
             services.AddZaabyService<IService>();
             services.UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
             {
