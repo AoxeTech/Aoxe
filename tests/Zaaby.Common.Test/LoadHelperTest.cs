@@ -66,7 +66,7 @@ namespace Zaaby.Common.Test
             sw.Stop();
             var i1 = sw.ElapsedMilliseconds;
 
-            Assert.True(LoadHelper.LoadScanTypes().Count > 0);
+            Assert.True(LoadHelper.LoadSpecifyTypes().Count > 0);
         }
     }
 

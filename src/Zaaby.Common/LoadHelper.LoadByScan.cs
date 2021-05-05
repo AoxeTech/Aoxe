@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        private static readonly List<Type> ScanTypes = new();
-
-        public static IReadOnlyList<Type> LoadScanTypes() => ScanTypes;
-
         public static void FromAssemblyOf<T>() =>
             FromAssemblyOf(typeof(T));
 
@@ -45,11 +40,11 @@ namespace Zaaby.Common
 
         public static void FromAssemblyOf(params Type[] types)
         {
-            ScanTypes.AddRange(types
+            SpecifyTypes.AddRange(types
                 .SelectMany(type => type.Assembly.GetTypes())
-                .Where(p => !ScanTypes.Contains(p))
+                .Where(p => !SpecifyTypes.Contains(p))
                 .Distinct());
-            LoadMode = LoadTypesMode.LoadByScan;
+            LoadMode = LoadTypesMode.LoadBySpecify;
         }
     }
 }

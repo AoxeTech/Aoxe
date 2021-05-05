@@ -8,8 +8,6 @@ namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        public static IReadOnlyList<Type> LoadDirectoryTypes() => DirectoryTypesLazy.Value;
-
         private static readonly Lazy<List<Type>> DirectoryTypesLazy = new(() =>
         {
             var dir = Directory.GetCurrentDirectory();

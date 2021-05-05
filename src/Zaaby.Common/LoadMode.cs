@@ -2,8 +2,7 @@ namespace Zaaby.Common
 {
     public enum LoadTypesMode
     {
-        LoadByScan,
-        LoadByAssemblies,
+        LoadBySpecify,
         LoadByDirectory
     }
 }
