@@ -3,8 +3,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>2021.8.13</PackageVersion>
-    <Version>2021.8.13</Version>
+    <IsPackable>true</IsPackable>
+    <PackageVersion>2021.8.14</PackageVersion>
+    <Version>2021.8.14</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
@@ -16,6 +17,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Zaabee.NewtonsoftJson" Version="2021.1.3" />
-    <PackageReference Include="Zaaby.Common" Version="2021.17.0" />
+    <PackageReference Include="Zaaby.Common" Version="2021.18.0" />
   </ItemGroup>
 </Project>
