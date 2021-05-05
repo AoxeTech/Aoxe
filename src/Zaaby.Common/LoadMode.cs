@@ -1,8 +1,9 @@
 namespace Zaaby.Common
 {
-    public enum LoadMode
+    public enum LoadTypesMode
     {
         LoadByScan,
-        LoadAll
+        LoadByAssemblies,
+        LoadByDirectory
     }
 }

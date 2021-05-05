@@ -5,11 +5,14 @@ namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        public static LoadMode LoadMode { get; set; } = LoadMode.LoadAll;
+        public static LoadTypesMode LoadMode { get; set; } = LoadTypesMode.LoadByDirectory;
 
         public static IReadOnlyList<Type> LoadTypes() =>
-            LoadMode is LoadMode.LoadByScan
-                ? LoadScanTypes()
-                : LoadAllTypes();
+            LoadMode switch
+            {
+                LoadTypesMode.LoadByScan => LoadScanTypes(),
+                LoadTypesMode.LoadByAssemblies => LoadAssemblyTypes(),
+                _ => LoadDirectoryTypes()
+            };
     }
 }

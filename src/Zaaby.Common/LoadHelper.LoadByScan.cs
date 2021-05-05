@@ -8,6 +8,8 @@ namespace Zaaby.Common
     {
         private static readonly List<Type> ScanTypes = new();
 
+        public static IReadOnlyList<Type> LoadScanTypes() => ScanTypes;
+
         public static void FromAssemblyOf<T>() =>
             FromAssemblyOf(typeof(T));
 
@@ -47,9 +49,7 @@ namespace Zaaby.Common
                 .SelectMany(type => type.Assembly.GetTypes())
                 .Where(p => !ScanTypes.Contains(p))
                 .Distinct());
-            LoadMode = LoadMode.LoadByScan;
+            LoadMode = LoadTypesMode.LoadByScan;
         }
-
-        public static IReadOnlyList<Type> LoadScanTypes() => ScanTypes;
     }
 }

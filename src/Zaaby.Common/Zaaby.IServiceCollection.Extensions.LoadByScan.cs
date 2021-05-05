@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Zaaby.Common
 {
-    public static class ZaabyIServiceCollectionExtensions
+    public static partial class ZaabyIServiceCollectionExtensions
     {
         public static IServiceCollection FromAssemblyOf<T>(this IServiceCollection services)
         {

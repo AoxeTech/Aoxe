@@ -13,22 +13,14 @@ namespace Zaaby.Common
         {
         }
 
-        public ZaabyException(string message) : base(message)
-        {
+        public ZaabyException(string message) : base(message)=>
             Message = message;
-        }
 
-        public ZaabyException(string message, string stackTrace = null) : base(message)
-        {
-            Message = message;
+        public ZaabyException(string message, string stackTrace = null) : base(message) =>
             StackTrace = stackTrace;
-        }
 
-        public ZaabyException(string message, Exception inner, string stackTrace = null) : base(message, inner)
-        {
-            Message = message;
+        public ZaabyException(string message, Exception inner, string stackTrace = null) : base(message, inner) =>
             StackTrace = stackTrace;
-        }
 
         protected ZaabyException(SerializationInfo info, StreamingContext context) : base(info, context)
         {

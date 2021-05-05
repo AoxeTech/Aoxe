@@ -14,8 +14,8 @@ namespace Zaaby.Common
                 .Where(baseType.IsAssignableFrom)
                 .ToList();
 
-            var interfaceTypes = types.Where(type => type.IsInterface && type != baseType).ToList();
-            var implementationTypes = types.Where(type => type.IsClass).ToList();
+            var interfaceTypes = types.Where(type => type.IsInterface && type != baseType);
+            var implementationTypes = types.Where(type => type.IsClass);
 
             return CreateTypePairs(interfaceTypes, implementationTypes);
         }
@@ -29,8 +29,8 @@ namespace Zaaby.Common
                 .Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
                 .ToList();
 
-            var interfaceTypes = types.Where(type => type.IsInterface).ToList();
-            var implementationTypes = types.Where(type => type.IsClass).ToList();
+            var interfaceTypes = types.Where(type => type.IsInterface);
+            var implementationTypes = types.Where(type => type.IsClass);
 
             return CreateTypePairs(interfaceTypes, implementationTypes);
         }
@@ -38,11 +38,12 @@ namespace Zaaby.Common
         private static List<TypePair> CreateTypePairs(IEnumerable<Type> interfaceTypes,
             IEnumerable<Type> implementationTypes)
         {
-            var result = interfaceTypes
-                .Select(interfaceType => new TypePair(interfaceType,
-                    implementationTypes.FirstOrDefault(interfaceType.IsAssignableFrom))).ToList();
+            var result = interfaceTypes.Select(interfaceType =>
+                    new TypePair(interfaceType, implementationTypes.FirstOrDefault(interfaceType.IsAssignableFrom)))
+                .ToList();
 
-            result.AddRange(implementationTypes.Where(c => !result.Select(r => r.ImplementationType).Contains(c))
+            result.AddRange(implementationTypes
+                .Where(c => result.All(r => r.ImplementationType != c))
                 .Select(implementationType => new TypePair(null, implementationType)));
 
             return result;
