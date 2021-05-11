@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Zaaby.Service;
 
@@ -14,8 +15,8 @@ namespace Zaaby
         private readonly List<Action<IServiceCollection>> _configurationServicesActions = new();
         private readonly List<Action<IApplicationBuilder>> _configureAppActions = new();
         private readonly List<string> _urls = new();
-        private Type _serviceBaseType;
-        private Type _serviceAttributeType;
+        private readonly List<Type> _serviceBaseTypes = new();
+        private readonly List<Type> _serviceAttributeTypes = new();
 
         public static readonly ZaabyServer Instance = new();
 
@@ -27,10 +28,8 @@ namespace Zaaby
 
         public ZaabyServer AddZaabyService(Type serviceDefineType)
         {
-            if (typeof(Attribute).IsAssignableFrom(serviceDefineType))
-                _serviceAttributeType = serviceDefineType;
-            else
-                _serviceBaseType = serviceDefineType;
+            if (typeof(Attribute).IsAssignableFrom(serviceDefineType)) _serviceAttributeTypes.Add(serviceDefineType);
+            else _serviceBaseTypes.Add(serviceDefineType);
             return Instance;
         }
 
@@ -59,15 +58,15 @@ namespace Zaaby
                 {
                     _configurationServicesActions.ForEach(action => action.Invoke(services));
                     _serviceDescriptors.ForEach(services.Add);
-                    if (_serviceBaseType is not null)
-                        services.AddZaabyService(_serviceBaseType);
-                    if (_serviceAttributeType is not null)
-                        services.AddZaabyService(_serviceAttributeType);
+                    _tryAddEnumerableDescriptors.ForEach(services.TryAddEnumerable);
+                    _serviceBaseTypes.ForEach(serviceBaseType =>
+                        services.AddZaabyService(serviceBaseType));
+                    _serviceAttributeTypes.ForEach(serviceAttributeType =>
+                        services.AddZaabyService(serviceAttributeType));
                 });
                 webBuilder.Configure(webHostBuilder =>
                 {
                     _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
-                    ServiceRunnerTypes.ForEach(type => webHostBuilder.ApplicationServices.GetService(type));
                     webHostBuilder.UseHttpsRedirection();
                     webHostBuilder.UseRouting();
                     webHostBuilder.UseAuthorization();

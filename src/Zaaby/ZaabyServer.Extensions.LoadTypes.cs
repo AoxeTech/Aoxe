@@ -4,7 +4,7 @@ using Zaaby.Common;
 
 namespace Zaaby
 {
-    public static partial class ZaabyServerExtension
+    public static partial class ZaabyServerExtensions
     {
         public static ZaabyServer FromAssemblyOf<T>(this ZaabyServer server)
         {

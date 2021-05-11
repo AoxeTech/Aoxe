@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
+using Zaabee.Extensions;
 
 namespace Zaaby
 {
     public partial class ZaabyServer
     {
         private readonly List<ServiceDescriptor> _serviceDescriptors = new();
-        
+        private readonly List<ServiceDescriptor> _tryAddEnumerableDescriptors = new();
+
         #region AddTransient
 
         public ZaabyServer AddTransient(Type serviceType, Type implementationType)
@@ -131,5 +133,11 @@ namespace Zaaby
         private void Add(Type serviceType, Func<IServiceProvider, object> implementationFactory,
             ServiceLifetime lifetime) =>
             _serviceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
+
+        public void TryAddEnumerable(ServiceDescriptor descriptor) =>
+            _tryAddEnumerableDescriptors.Add(descriptor);
+
+        public void TryAddEnumerable(IEnumerable<ServiceDescriptor> descriptors) =>
+            descriptors.ForEach(descriptor => _tryAddEnumerableDescriptors.Add(descriptor));
     }
 }
