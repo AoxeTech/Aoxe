@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <PackageReference Include="NetMQ" Version="4.0.1.6" />
-      <PackageReference Include="Zaaby.Common" Version="2021.20.0" />
+      <PackageReference Include="Zaaby.Common" Version="2021.21.0" />
     </ItemGroup>
 
 </Project>
