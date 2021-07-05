@@ -8,7 +8,7 @@ using Zaaby.DDD.Abstractions.Domain;
 
 namespace Domain.AggregateRoots
 {
-    public class User : AggregateRoot<Guid>
+    public class User : AggregateRoot
     {
         public Guid Id { get; protected set; }
 
