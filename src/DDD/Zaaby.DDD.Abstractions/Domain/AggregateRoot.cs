@@ -8,6 +8,10 @@ namespace Zaaby.DDD.Abstractions.Domain
     {
     }
 
+    public class AggregateRoot : Entity, IAggregateRoot
+    {
+    }
+
     public class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
     {
     }
