@@ -46,7 +46,7 @@ namespace Zaaby.Common.Test
         public void ScanTypesTest()
         {
             var sw = Stopwatch.StartNew();
-            
+
             LoadHelper.FromAssemblyOf<IAliceService>();
             LoadHelper.FromAssemblyOf<AliceService>();
             LoadHelper.FromAssemblyOf<IBobService>();
@@ -58,11 +58,11 @@ namespace Zaaby.Common.Test
             var i0 = sw.ElapsedMilliseconds;
 
             LoadHelper.LoadMode = LoadTypesMode.LoadByDirectory;
-            
+
             sw.Restart();
 
             LoadHelper.LoadTypes();
-            
+
             sw.Stop();
             var i1 = sw.ElapsedMilliseconds;
 

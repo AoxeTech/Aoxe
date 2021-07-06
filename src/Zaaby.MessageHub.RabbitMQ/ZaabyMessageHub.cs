@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
+using Zaaby.Common;
 
 namespace Zaaby.MessageHub.RabbitMQ
 {
@@ -13,7 +13,6 @@ namespace Zaaby.MessageHub.RabbitMQ
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IZaabeeRabbitMqClient _rabbitMqClient;
-        private readonly IEnumerable<Type> _allTypes;
         private readonly ushort _prefetch;
 
         private readonly ConcurrentDictionary<Type, string> _queueNameDic =
@@ -42,10 +41,10 @@ namespace Zaaby.MessageHub.RabbitMQ
         public void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
             string handleName)
         {
-            var messageHandlerTypes = _allTypes
+            var messageHandlerTypes = LoadHelper.LoadTypes()
                 .Where(type => type.IsClass && messageHandlerInterfaceType.IsAssignableFrom(type)).ToList();
 
-            var messageTypes = _allTypes
+            var messageTypes = LoadHelper.LoadTypes()
                 .Where(type => type.IsClass && messageInterfaceType.IsAssignableFrom(type)).ToList();
 
             var rabbitMqClientType = _rabbitMqClient.GetType();
