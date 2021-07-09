@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>2021.9.15</Version>
-        <PackageVersion>2021.9.15</PackageVersion>
+        <Version>2021.9.16</Version>
+        <PackageVersion>2021.9.16</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -17,7 +17,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NetMQ" Version="4.0.1.6" />
       <PackageReference Include="Zaaby.Common" Version="2021.21.0" />
     </ItemGroup>
 
