@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.0.90" />
-        <PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.6-alpha" />
+        <PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.7-alpha" />
     </ItemGroup>
     
 </Project>
