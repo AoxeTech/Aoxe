@@ -17,11 +17,11 @@ namespace BusinessLogicLayer
             _userDal = userDal;
         }
 
-        public bool Login(string name, string pwd)
+        public bool Login(LoginRequestParam param)
         {
-            var user = _userDal.GetByName(name);
+            var user = _userDal.GetByName(param.Name);
             if (user is null) throw new ApplicationException("The user is not exist.");
-            return user.Pwd == pwd;
+            return user.Pwd == param.Pwd;
         }
 
         public bool CreateUser(CreateUserDto dto)

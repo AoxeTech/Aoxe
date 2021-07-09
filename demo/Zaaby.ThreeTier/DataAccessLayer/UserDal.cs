@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Dapper;
 using IDataAccessLayer;
 using Model;
 using Zaabee.Dapper.Extensions;
@@ -15,7 +16,7 @@ namespace DataAccessLayer
         {
             _connection = connection;
         }
-        
+
         public int Add(User user)
         {
             return _connection.Add(user);
@@ -23,12 +24,12 @@ namespace DataAccessLayer
 
         public bool Update(User user)
         {
-            return _connection.Update(user)>1;
+            return _connection.Update(user) > 1;
         }
 
         public bool Delete(User user)
         {
-            return _connection.DeleteByEntity(user)>1;
+            return _connection.DeleteByEntity(user) > 1;
         }
 
         public User GetById(Guid id)
@@ -38,7 +39,7 @@ namespace DataAccessLayer
 
         public User GetByName(string name)
         {
-            throw new NotImplementedException();
+            return _connection.QueryFirstOrDefault<User>("SELECT * FROM \"User\" WHERE \"Name\" = @Name", new {Name = name});
         }
 
         public IList<User> GetAll()
