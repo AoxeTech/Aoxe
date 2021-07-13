@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Dapper;
-using IDataAccessLayer;
 using Model;
 using Zaabee.Dapper.Extensions;
+using Zaaby.ThreeTier.Abstractions.DataAccess;
 
 namespace DataAccessLayer
 {
-    public class UserDal : IUserDal
+    public class UserDal : IDal
     {
         private readonly IDbConnection _connection;
 

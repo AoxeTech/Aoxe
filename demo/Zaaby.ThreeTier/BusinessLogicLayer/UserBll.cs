@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using IBusinessLogicLayer;
-using IDataAccessLayer;
+using BusinessLogicLayer.Dtos;
+using DataAccessLayer;
 using Model;
 using Zaabee.SequentialGuid;
 using Zaaby.ThreeTier.Abstractions.BusinessLogic;
@@ -10,9 +10,9 @@ namespace BusinessLogicLayer
 {
     public class UserBll : IBll
     {
-        private readonly IUserDal _userDal;
+        private readonly UserDal _userDal;
 
-        public UserBll(IUserDal userDal)
+        public UserBll(UserDal userDal)
         {
             _userDal = userDal;
         }

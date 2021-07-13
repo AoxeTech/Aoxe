@@ -3,14 +3,15 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\IDataAccessLayer\IDataAccessLayer.csproj" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.0.90" />
         <PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.7-alpha" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier.Abstractions\Zaaby.ThreeTier.Abstractions.csproj" />
+      <ProjectReference Include="..\Model\Model.csproj" />
     </ItemGroup>
     
 </Project>

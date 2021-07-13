@@ -1,4 +1,4 @@
-namespace IBusinessLogicLayer
+namespace BusinessLogicLayer.Dtos
 {
     public class CreateUserDto
     {
