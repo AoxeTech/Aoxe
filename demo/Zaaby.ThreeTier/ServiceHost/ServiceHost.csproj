@@ -13,7 +13,6 @@
       <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj" />
       <ProjectReference Include="..\..\..\src\Zaaby\Zaaby.csproj" />
       <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
-      <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     </ItemGroup>
 
 </Project>
