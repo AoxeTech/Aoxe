@@ -83,5 +83,11 @@ namespace Zaaby
             LoadHelper.FromAssemblyNames(assemblyNames);
             return server;
         }
+
+        public static ZaabyServer FromDirectories(this ZaabyServer server, params string[] directories)
+        {
+            LoadHelper.FromDirectories(directories);
+            return server;
+        }
     }
 }

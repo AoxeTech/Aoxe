@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Zaaby.Common
 {
@@ -7,9 +10,9 @@ namespace Zaaby.Common
     {
         private static readonly List<Type> SpecifyTypes = new();
 
-        public static LoadTypesMode LoadMode { get; set; } = LoadTypesMode.LoadByDirectory;
+        public static LoadTypesMode LoadMode { get; set; } = LoadTypesMode.LoadByAllDirectory;
 
-        public static IReadOnlyList<Type> LoadDirectoryTypes() => DirectoryTypesLazy.Value;
+        public static IReadOnlyList<Type> LoadAllDirectoryTypes() => DirectoryTypesLazy.Value;
 
         public static IReadOnlyList<Type> LoadSpecifyTypes() => SpecifyTypes;
 
@@ -17,7 +20,14 @@ namespace Zaaby.Common
             LoadMode switch
             {
                 LoadTypesMode.LoadBySpecify => LoadSpecifyTypes(),
-                _ => LoadDirectoryTypes()
+                _ => LoadAllDirectoryTypes()
             };
+
+        private static readonly Lazy<List<Type>> DirectoryTypesLazy = new(() =>
+        {
+            var result = LoadFromDirectories(Directory.GetCurrentDirectory());
+            LoadMode = LoadTypesMode.LoadByAllDirectory;
+            return result;
+        });
     }
 }

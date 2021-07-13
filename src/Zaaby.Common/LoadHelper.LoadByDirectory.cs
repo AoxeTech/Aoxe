@@ -8,11 +8,17 @@ namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        private static readonly Lazy<List<Type>> DirectoryTypesLazy = new(() =>
+        public static void FromDirectories(params string[] directories)
         {
-            var dir = Directory.GetCurrentDirectory();
-            var files = Directory.GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
-                .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories));
+            SpecifyTypes.AddRange(LoadFromDirectories(directories));
+            LoadMode = LoadTypesMode.LoadBySpecify;
+        }
+
+        private static List<Type> LoadFromDirectories(params string[] directories)
+        {
+            var files = directories.SelectMany(dir => Directory
+                .GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
+                .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories)));
 
             var result = files.Select(file =>
                 {
@@ -38,8 +44,8 @@ namespace Zaaby.Common
                 .Distinct()
                 .ToList();
 
-            LoadMode = LoadTypesMode.LoadByDirectory;
+            LoadMode = LoadTypesMode.LoadByAllDirectory;
             return result;
-        });
+        }
     }
 }

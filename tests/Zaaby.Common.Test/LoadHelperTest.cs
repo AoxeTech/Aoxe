@@ -57,7 +57,7 @@ namespace Zaaby.Common.Test
             sw.Stop();
             var i0 = sw.ElapsedMilliseconds;
 
-            LoadHelper.LoadMode = LoadTypesMode.LoadByDirectory;
+            LoadHelper.LoadMode = LoadTypesMode.LoadByAllDirectory;
 
             sw.Restart();
 
