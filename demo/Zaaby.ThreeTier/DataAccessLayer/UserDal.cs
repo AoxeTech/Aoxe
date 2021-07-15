@@ -22,14 +22,14 @@ namespace DataAccessLayer
             return _connection.Add(user);
         }
 
-        public bool Update(User user)
+        public int Update(User user)
         {
-            return _connection.Update(user) > 1;
+            return _connection.Update(user);
         }
 
-        public bool Delete(User user)
+        public int Delete(User user)
         {
-            return _connection.DeleteByEntity(user) > 1;
+            return _connection.DeleteByEntity(user);
         }
 
         public User GetById(Guid id)
