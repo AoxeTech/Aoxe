@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.2.0" />
-        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.11.0" />
+        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.11.2" />
     </ItemGroup>
 
 </Project>

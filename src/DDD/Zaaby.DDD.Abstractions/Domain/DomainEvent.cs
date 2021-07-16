@@ -14,6 +14,8 @@ namespace Zaaby.DDD.Abstractions.Domain
     {
         public TEntityId EntityId { get; protected set; }
         public int EntityVersion { get; protected set; }
+        
+        public DomainEvent(){}
 
         public DomainEvent(Entity<TEntityId> entity)
         {
