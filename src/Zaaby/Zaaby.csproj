@@ -4,12 +4,13 @@
         <TargetFramework>net5.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2021.14.0</Version>
-        <PackageVersion>2021.14.0</PackageVersion>
+        <Version>2021.15.0</Version>
+        <PackageVersion>2021.15.0</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
         <Description>A micro service framework base by asp.net core</Description>
+        <PackageReleaseNotes>Breaking changes,ZaabyServer rename to ZaabyHost.</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>

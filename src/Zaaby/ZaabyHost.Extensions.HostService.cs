@@ -4,21 +4,20 @@ using Microsoft.Extensions.Hosting;
 
 namespace Zaaby
 {
-    public partial class ZaabyServer
+    public partial class ZaabyHost
     {
-        public ZaabyServer AddHostedService<THostedService>(ZaabyServer zaabyServer)
+        public ZaabyHost AddHostedService<THostedService>(ZaabyHost zaabyHost)
             where THostedService : class, IHostedService
         {
             TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService, THostedService>());
-            return zaabyServer;
+            return zaabyHost;
         }
 
-        public ZaabyServer AddHostedService<THostedService>(ZaabyServer zaabyServer,
-            Func<IServiceProvider, THostedService> implementationFactory)
-            where THostedService : class, IHostedService
+        public ZaabyHost AddHostedService<THostedService>(ZaabyHost zaabyHost,
+            Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class, IHostedService
         {
             TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService>(implementationFactory));
-            return zaabyServer;
+            return zaabyHost;
         }
     }
 }

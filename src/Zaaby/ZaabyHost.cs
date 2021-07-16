@@ -10,7 +10,7 @@ using Zaaby.Service;
 
 namespace Zaaby
 {
-    public partial class ZaabyServer
+    public partial class ZaabyHost
     {
         private readonly List<Action<IServiceCollection>> _configurationServicesActions = new();
         private readonly List<Action<IApplicationBuilder>> _configureAppActions = new();
@@ -18,34 +18,34 @@ namespace Zaaby
         private readonly List<Type> _serviceBaseTypes = new();
         private readonly List<Type> _serviceAttributeTypes = new();
 
-        public static readonly ZaabyServer Instance = new();
+        public static readonly ZaabyHost Instance = new();
 
-        private ZaabyServer()
+        private ZaabyHost()
         {
         }
 
-        public ZaabyServer AddZaabyService<TService>() => AddZaabyService(typeof(TService));
+        public ZaabyHost AddZaabyService<TService>() => AddZaabyService(typeof(TService));
 
-        public ZaabyServer AddZaabyService(Type serviceDefineType)
+        public ZaabyHost AddZaabyService(Type serviceDefineType)
         {
             if (typeof(Attribute).IsAssignableFrom(serviceDefineType)) _serviceAttributeTypes.Add(serviceDefineType);
             else _serviceBaseTypes.Add(serviceDefineType);
             return Instance;
         }
 
-        public ZaabyServer ConfigureServices(Action<IServiceCollection> configureServicesAction)
+        public ZaabyHost ConfigureServices(Action<IServiceCollection> configureServicesAction)
         {
             _configurationServicesActions.Add(configureServicesAction);
             return Instance;
         }
 
-        public ZaabyServer Configure(Action<IApplicationBuilder> configureAppAction)
+        public ZaabyHost Configure(Action<IApplicationBuilder> configureAppAction)
         {
             _configureAppActions.Add(configureAppAction);
             return Instance;
         }
 
-        public ZaabyServer UseUrls(params string[] urls)
+        public ZaabyHost UseUrls(params string[] urls)
         {
             _urls.AddRange(urls);
             return Instance;

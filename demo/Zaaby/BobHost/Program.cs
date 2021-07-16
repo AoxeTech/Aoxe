@@ -15,7 +15,7 @@ namespace BobHost
     {
         static void Main(string[] args)
         {
-            ZaabyServer.Instance
+            ZaabyHost.Instance
                 .FromAssemblyOf<IAliceService>()
                 .FromAssemblyOf(typeof(IBobService))
                 .FromAssemblies(typeof(ICarolService).Assembly)

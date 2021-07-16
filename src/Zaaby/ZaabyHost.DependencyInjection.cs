@@ -5,14 +5,14 @@ using Zaabee.Extensions;
 
 namespace Zaaby
 {
-    public partial class ZaabyServer
+    public partial class ZaabyHost
     {
         private readonly List<ServiceDescriptor> _serviceDescriptors = new();
         private readonly List<ServiceDescriptor> _tryAddEnumerableDescriptors = new();
 
         #region AddTransient
 
-        public ZaabyServer AddTransient(Type serviceType, Type implementationType)
+        public ZaabyHost AddTransient(Type serviceType, Type implementationType)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
@@ -20,22 +20,22 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddTransient<TService, TImplementation>() where TImplementation : class, TService =>
+        public ZaabyHost AddTransient<TService, TImplementation>() where TImplementation : class, TService =>
             AddTransient(typeof(TService), typeof(TImplementation));
 
-        public ZaabyServer AddTransient(Type implementationType) =>
+        public ZaabyHost AddTransient(Type implementationType) =>
             AddTransient(implementationType, implementationType);
 
-        public ZaabyServer AddTransient<TService>(Type implementationType) =>
+        public ZaabyHost AddTransient<TService>(Type implementationType) =>
             AddTransient(typeof(TService), implementationType);
 
-        public ZaabyServer AddTransient<TImplementation>() where TImplementation : class
+        public ZaabyHost AddTransient<TImplementation>() where TImplementation : class
         {
             var implementationType = typeof(TImplementation);
             return AddTransient(implementationType, implementationType);
         }
 
-        public ZaabyServer AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        public ZaabyHost AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
@@ -43,7 +43,7 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
+        public ZaabyHost AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
             where TService : class =>
             AddTransient(typeof(TService), implementationFactory);
 
@@ -51,7 +51,7 @@ namespace Zaaby
 
         #region AddScoped
 
-        public ZaabyServer AddScoped(Type serviceType, Type implementationType)
+        public ZaabyHost AddScoped(Type serviceType, Type implementationType)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
@@ -59,22 +59,22 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddScoped<TService, TImplementation>() where TImplementation : class, TService =>
+        public ZaabyHost AddScoped<TService, TImplementation>() where TImplementation : class, TService =>
             AddScoped(typeof(TService), typeof(TImplementation));
 
-        public ZaabyServer AddScoped(Type serviceType) =>
+        public ZaabyHost AddScoped(Type serviceType) =>
             AddScoped(serviceType, serviceType);
 
-        public ZaabyServer AddScoped<TService>(Type implementationType) =>
+        public ZaabyHost AddScoped<TService>(Type implementationType) =>
             AddScoped(typeof(TService), implementationType);
 
-        public ZaabyServer AddScoped<TImplementation>() where TImplementation : class
+        public ZaabyHost AddScoped<TImplementation>() where TImplementation : class
         {
             var implementationType = typeof(TImplementation);
             return AddScoped(implementationType, implementationType);
         }
 
-        public ZaabyServer AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        public ZaabyHost AddScoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
@@ -82,7 +82,7 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory)
+        public ZaabyHost AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory)
             where TService : class =>
             AddScoped(typeof(TService), implementationFactory);
 
@@ -90,7 +90,7 @@ namespace Zaaby
 
         #region AddSingleton
 
-        public ZaabyServer AddSingleton(Type serviceType, Type implementationType)
+        public ZaabyHost AddSingleton(Type serviceType, Type implementationType)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationType is null) throw new ArgumentNullException(nameof(implementationType));
@@ -98,22 +98,22 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddSingleton<TService, TImplementation>() where TImplementation : class, TService =>
+        public ZaabyHost AddSingleton<TService, TImplementation>() where TImplementation : class, TService =>
             AddSingleton(typeof(TService), typeof(TImplementation));
 
-        public ZaabyServer AddSingleton(Type serviceType) =>
+        public ZaabyHost AddSingleton(Type serviceType) =>
             AddSingleton(serviceType, serviceType);
 
-        public ZaabyServer AddSingleton<TService>(Type implementationType) =>
+        public ZaabyHost AddSingleton<TService>(Type implementationType) =>
             AddSingleton(typeof(TService), implementationType);
 
-        public ZaabyServer AddSingleton<TImplementation>() where TImplementation : class
+        public ZaabyHost AddSingleton<TImplementation>() where TImplementation : class
         {
             var implementationType = typeof(TImplementation);
             return AddSingleton(implementationType, implementationType);
         }
 
-        public ZaabyServer AddSingleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
+        public ZaabyHost AddSingleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
             if (serviceType is null) throw new ArgumentNullException(nameof(serviceType));
             if (implementationFactory is null) throw new ArgumentNullException(nameof(implementationFactory));
@@ -121,7 +121,7 @@ namespace Zaaby
             return Instance;
         }
 
-        public ZaabyServer AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory)
+        public ZaabyHost AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory)
             where TService : class =>
             AddSingleton(typeof(TService), implementationFactory);
 
