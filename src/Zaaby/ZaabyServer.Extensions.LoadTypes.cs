@@ -6,88 +6,88 @@ namespace Zaaby
 {
     public static partial class ZaabyServerExtensions
     {
-        public static ZaabyServer FromAssemblyOf<T>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ZaabyServer server)
+        public static ZaabyServer FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ZaabyServer zaabyServer)
         {
             LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>();
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyOf(this ZaabyServer server, params Type[] types)
+        public static ZaabyServer FromAssemblyOf(this ZaabyServer zaabyServer, params Type[] types)
         {
             LoadHelper.FromAssemblyOf(types);
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblies(this ZaabyServer server, params Assembly[] assemblies)
+        public static ZaabyServer FromAssemblies(this ZaabyServer zaabyServer, params Assembly[] assemblies)
         {
             LoadHelper.FromAssemblies(assemblies);
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromAssemblyNames(this ZaabyServer server, params AssemblyName[] assemblyNames)
+        public static ZaabyServer FromAssemblyNames(this ZaabyServer zaabyServer, params AssemblyName[] assemblyNames)
         {
             LoadHelper.FromAssemblyNames(assemblyNames);
-            return server;
+            return zaabyServer;
         }
 
-        public static ZaabyServer FromDirectories(this ZaabyServer server, params string[] directories)
+        public static ZaabyServer FromDirectories(this ZaabyServer zaabyServer, params string[] directories)
         {
             LoadHelper.FromDirectories(directories);
-            return server;
+            return zaabyServer;
         }
     }
 }
