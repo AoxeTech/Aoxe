@@ -29,6 +29,6 @@ namespace Zaaby.DDD.Abstractions.Domain
 
     public class Entity<TId> : Entity, IEntity<TId>
     {
-        public TId Id { get; }
+        public TId Id { get; protected set; }
     }
 }
