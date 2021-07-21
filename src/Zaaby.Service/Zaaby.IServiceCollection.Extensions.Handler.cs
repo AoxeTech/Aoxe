@@ -3,10 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Zaaby.Common;
 
 namespace Zaaby.Service
@@ -44,16 +41,7 @@ namespace Zaaby.Service
                 }
             }
 
-            services.AddHostedService<HostClass>();
             return services;
-        }
-
-        public class HostClass : BackgroundService
-        {
-            protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

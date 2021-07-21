@@ -11,5 +11,8 @@ namespace Zaaby.Service
 
         public static IApplicationBuilder UseZaabyErrorHandling(this IApplicationBuilder app) =>
             app.UseMiddleware<ErrorHandlingMiddleware>();
+
+        public static IApplicationBuilder UseZaabyUnitOfWork(this IApplicationBuilder app) =>
+            app.UseMiddleware<UnitOfWorkMiddleware>();
     }
 }
