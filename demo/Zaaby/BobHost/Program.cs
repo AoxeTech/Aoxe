@@ -21,20 +21,21 @@ namespace BobHost
                 .FromAssemblies(typeof(ICarolService).Assembly)
                 .FromAssemblyNames(typeof(BobService).Assembly.GetName())
                 .AddZaabyService<IService>()
-                .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
+                .UseZaabyClient(typeof(IService), new Dictionary<string, List<string>>
                 {
                     {"IAliceServices", new List<string> {"https://localhost:5001"}},
                     {"ICarolServices", new List<string> {"http://localhost:5003"}}
                 })
-                .ConfigureServices(services =>
-                {
-                    services.AddSwaggerDocument();
-                })
+                .ConfigureServices(services => { services.AddSwaggerDocument(); })
                 .Configure(app =>
                 {
-                    app.UseOpenApi();
-                    app.UseSwaggerUi3();
-                    app.UseZaaby();
+                    app.UseHttpsRedirection()
+                        .UseOpenApi()
+                        .UseSwaggerUi3()
+                        .UseZaaby()
+                        .UseRouting()
+                        .UseAuthorization()
+                        .UseEndpoints(endpoints => { endpoints.MapControllers(); });
                 })
                 .UseUrls("http://localhost:5002")
                 .Run();

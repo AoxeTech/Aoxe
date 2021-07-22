@@ -66,11 +66,15 @@ namespace Zaaby
                 });
                 webBuilder.Configure(webHostBuilder =>
                 {
-                    webHostBuilder.UseHttpsRedirection();
-                    _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
-                    webHostBuilder.UseRouting();
-                    webHostBuilder.UseAuthorization();
-                    webHostBuilder.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+                    if (_configureAppActions.Any())
+                        _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
+                    else
+                    {
+                        webHostBuilder.UseHttpsRedirection();
+                        webHostBuilder.UseRouting();
+                        webHostBuilder.UseAuthorization();
+                        webHostBuilder.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+                    }
                 });
                 if (_urls.Any())
                     webBuilder.UseUrls(_urls.ToArray());
