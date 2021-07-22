@@ -67,10 +67,10 @@ namespace Zaaby
                 webBuilder.Configure(webHostBuilder =>
                 {
                     webHostBuilder.UseHttpsRedirection();
+                    _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
                     webHostBuilder.UseRouting();
                     webHostBuilder.UseAuthorization();
                     webHostBuilder.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-                    _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
                 });
                 if (_urls.Any())
                     webBuilder.UseUrls(_urls.ToArray());
