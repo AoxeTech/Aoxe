@@ -8,7 +8,7 @@ using Zaaby.Service;
 using Zaaby.ThreeTier;
 using Zaaby.ThreeTier.Abstractions.BusinessLogic;
 
-namespace ServiceHost
+namespace WebApiHost
 {
     public class Startup
     {
@@ -28,7 +28,7 @@ namespace ServiceHost
                 .AddDbConnection("Host=192.168.78.140;Username=postgres;Password=postgres;Database=ThreeTier");
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ServiceHost", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApiHost", Version = "v1"});
             });
         }
 
@@ -39,7 +39,7 @@ namespace ServiceHost
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ServiceHost v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiHost v1"));
             }
 
             app.UseHttpsRedirection();

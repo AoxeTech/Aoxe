@@ -2,7 +2,7 @@ using System.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
-namespace ServiceHost
+namespace WebApiHost
 {
     public static class ServiceCollectionExtension
     {
