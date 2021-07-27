@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.1.0</PackageVersion>
-        <Version>2021.1.0</Version>
+        <PackageVersion>2021.1.1</PackageVersion>
+        <Version>2021.1.1</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby Message Bus RabbitMQ</PackageTags>
@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.2.0" />
-        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.11.3" />
+        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.11.4" />
     </ItemGroup>
 
 </Project>
