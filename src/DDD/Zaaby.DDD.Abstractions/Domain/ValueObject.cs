@@ -4,7 +4,5 @@ namespace Zaaby.DDD.Abstractions.Domain
     {
     }
 
-    public record ValueObject : IValueObject
-    {
-    }
+    public record ValueObject : IValueObject;
 }

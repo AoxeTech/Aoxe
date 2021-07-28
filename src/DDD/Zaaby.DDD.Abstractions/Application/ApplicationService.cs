@@ -8,6 +8,5 @@ namespace Zaaby.DDD.Abstractions.Application
 
     public class ApplicationServiceAttribute : Attribute
     {
-        
     }
 }
