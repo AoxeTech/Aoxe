@@ -29,7 +29,7 @@ namespace Zaaby.Client
 
             var methodInfo = client.GetType().GetMethod("GetService");
             if (methodInfo is null) return services;
-            
+
             foreach (var interfaceType in interfaceTypes)
                 services.AddScoped(interfaceType,
                     p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
