@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub.RabbitMQ",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby", "src\Zaaby\Zaaby.csproj", "{FB39B898-AD30-486C-A845-B6E681B81061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Service", "src\Zaaby.Service\Zaaby.Service.csproj", "{7EA38F04-2EA4-4E2A-BA49-D121058E47E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server", "src\Zaaby.Server\Zaaby.Server.csproj", "{7EA38F04-2EA4-4E2A-BA49-D121058E47E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Common", "src\Zaaby.Common\Zaaby.Common.csproj", "{3124644D-03C2-4513-9790-07B65202E626}"
 EndProject

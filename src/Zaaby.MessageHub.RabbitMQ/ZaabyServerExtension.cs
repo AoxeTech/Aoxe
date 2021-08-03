@@ -1,9 +1,9 @@
 // using System;
 // using System.Linq;
 // using Zaabee.RabbitMQ.Abstractions;
-// using Zaaby.Service.Abstractions;
+// using Zaaby.Server.Abstractions;
 //
-// namespace Zaaby.Service.MessageHub.RabbitMQ
+// namespace Zaaby.Server.MessageHub.RabbitMQ
 // {
 //     public static class ZaabyServerExtension
 //     {

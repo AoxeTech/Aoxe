@@ -5,8 +5,8 @@
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <Version>2021.11.0</Version>
-        <PackageVersion>2021.11.0</PackageVersion>
+        <Version>2021.12.0</Version>
+        <PackageVersion>2021.12.0</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>

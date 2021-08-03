@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     internal class ZaabyActionModelConvention : IActionModelConvention
     {

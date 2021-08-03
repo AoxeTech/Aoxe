@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     public static class ZaabyIApplicationBuilderExtensions
     {

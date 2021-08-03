@@ -2,7 +2,7 @@ using System.Data;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     public class UnitOfWorkMiddleware
     {

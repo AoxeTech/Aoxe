@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     internal class ZaabyAppServiceControllerFeatureProvider : IApplicationFeatureProvider<ControllerFeature>
     {

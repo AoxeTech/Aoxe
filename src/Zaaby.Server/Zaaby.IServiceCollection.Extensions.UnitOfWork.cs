@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     public static partial class ZaabyIServiceCollectionExtensions
     {

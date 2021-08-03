@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zaaby.Client;
 using Zaaby.Common;
-using Zaaby.Service;
+using Zaaby.Server;
 
 namespace CarolHost
 {

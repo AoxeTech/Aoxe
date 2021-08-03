@@ -1,4 +1,4 @@
-// namespace Zaaby.Service
+// namespace Zaaby.Server
 // {
 //     public class ZaabyMessageHub : IZaabyMessageHub
 //     {

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Zaaby.Client;
 using Zaaby.Common;
-using Zaaby.Service;
+using Zaaby.Server;
 
 namespace AliceHost
 {

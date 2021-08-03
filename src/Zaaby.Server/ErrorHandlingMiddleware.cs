@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Zaaby.Common;
 
-namespace Zaaby.Service
+namespace Zaaby.Server
 {
     internal class ErrorHandlingMiddleware
     {

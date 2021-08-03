@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
-        <ProjectReference Include="..\..\..\src\Zaaby.Service\Zaaby.Service.csproj" />
+        <ProjectReference Include="..\..\..\src\Zaaby.Server\Zaaby.Server.csproj" />
         <ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
     </ItemGroup>
 
