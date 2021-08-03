@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby;
-using Zaaby.Service;
+using Zaaby.Server;
 using Zaaby.ThreeTier.Abstractions.BusinessLogic;
 
 namespace ConsoleHost

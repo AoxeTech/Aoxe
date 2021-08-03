@@ -7,7 +7,7 @@ using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby;
-using Zaaby.Service;
+using Zaaby.Server;
 
 namespace BobHost
 {
