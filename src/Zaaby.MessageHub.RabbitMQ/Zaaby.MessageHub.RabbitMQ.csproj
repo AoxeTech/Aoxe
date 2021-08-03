@@ -15,7 +15,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-      <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.2.0" />
+      <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.5.0" />
       <PackageReference Include="Zaaby.Common" Version="2021.23.0" />
     </ItemGroup>
 
