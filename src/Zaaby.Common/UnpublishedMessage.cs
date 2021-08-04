@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.DDD.Abstractions.Infrastructure.MessageBus
+namespace Zaaby.Common
 {
     public class UnpublishedMessage
     {
