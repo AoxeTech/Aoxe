@@ -104,10 +104,11 @@ namespace Zaaby.Client
             private static async Task<object> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
+                var type = returnType.GetGenericTypeDefinition() == typeof(Task<>) ? returnType.GenericTypeArguments[0] : returnType;
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return result.IsNullOrWhiteSpace()
                         ? null
-                        : result.FromJson(returnType);
+                        : result.FromJson(type);
 
                 var zaabyError = result.FromJson<ZaabyError>();
                 throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
