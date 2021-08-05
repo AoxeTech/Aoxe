@@ -4,8 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <OutputType>Library</OutputType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2021.17.2</Version>
-        <PackageVersion>2021.17.2</PackageVersion>
+        <Version>2021.17.3</Version>
+        <PackageVersion>2021.17.3</PackageVersion>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -18,7 +18,7 @@
     
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-        <PackageReference Include="Zaaby.Client" Version="2021.9.0" />
+        <PackageReference Include="Zaaby.Client" Version="2021.9.2" />
         <PackageReference Include="Zaaby.DDD" Version="2021.8.9" />
         <PackageReference Include="Zaaby.Server" Version="2021.12.1" />
         <PackageReference Include="Zaaby.ThreeTier" Version="2021.1.3" />
