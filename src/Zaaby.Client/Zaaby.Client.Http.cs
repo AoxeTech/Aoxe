@@ -74,10 +74,11 @@ namespace Zaaby.Client
 
             private async Task<object> InvokeAsync(MethodInfo targetMethod, object message)
             {
+                var methodName = targetMethod.Name.TrimEnd("Async");
                 if (string.IsNullOrEmpty(_type.FullName))
                     throw new ZaabyException($"{_type}'s full name is null or empty.");
-                var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, targetMethod.Name),
-                    $"/{_type.FullName.Replace('.', '/')}/{targetMethod.Name}");
+                var url = _urlMapper.GetOrAdd(new Tuple<string, string>(_type.FullName, methodName),
+                    $"/{_type.FullName.Replace('.', '/')}/{methodName}");
 
                 var httpRequestMessage = CreateHttpRequestMessage(url, message);
 
