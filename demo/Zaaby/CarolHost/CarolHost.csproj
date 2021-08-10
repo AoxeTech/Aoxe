@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Zaaby.Client\Zaaby.Client.csproj" />
+        <ProjectReference Include="..\..\..\src\Zaaby.Client.Http\Zaaby.Client.Http.csproj" />
         <ProjectReference Include="..\..\..\src\Zaaby.Server\Zaaby.Server.csproj" />
         <ProjectReference Include="..\CarolSystem\CarolServices\CarolServices.csproj" />
     </ItemGroup>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Zaaby.Client;
+using Zaaby.Client.Http;
 using Zaaby.Common;
 using Zaaby.Server;
 
@@ -24,10 +24,10 @@ namespace CarolHost
             services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
                 typeof(CarolService).Assembly.GetName());
             services.AddZaabyService<IService>();
-            services.AddZaabyClient(typeof(IService),new Dictionary<string, List<string>>
+            services.AddZaabyClient(typeof(IService),new Dictionary<string, string>
             {
-                {"IAliceServices", new List<string> {"https://localhost:5001"}},
-                {"IBobServices", new List<string> {"http://localhost:5002"}}
+                {"IAliceServices", "https://localhost:5001"},
+                {"IBobServices", "http://localhost:5002"}
             });
         }
 
