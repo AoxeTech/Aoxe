@@ -36,6 +36,7 @@ namespace Zaaby.Client.Http
             services.AddScoped<ZaabyClient>();
 
             var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
+            if (methodInfo is null) throw new Exception("The Zaaby Client has no method witch named GetService.");
             foreach (var interfaceType in interfaceTypes)
             {
                 services.AddScoped(interfaceType, _ => methodInfo.MakeGenericMethod(interfaceType).Invoke(services

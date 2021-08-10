@@ -22,18 +22,21 @@ namespace Zaaby.Client.Http
 
         public T GetService<T>()
         {
-            var t = DispatchProxy.Create<T, InvokeProxy>();
-            if (t is not InvokeProxy invokeProxy) return t;
-            var type = typeof(T);
-            invokeProxy.Type = type;
-            invokeProxy.Client = _httpClientFactory.CreateClient(type.Namespace);
+            var t = DispatchProxy.Create<T, InvokeProxy<T>>();
+            if (t is not InvokeProxy<T> invokeProxy) return t;
+            invokeProxy.Client = _httpClientFactory.CreateClient(typeof(T).Namespace);
             return t;
         }
 
-        public class InvokeProxy : DispatchProxy
+        public class InvokeProxy<T> : DispatchProxy
         {
-            internal Type Type { get; set; }
+            private readonly Type _type;
             internal HttpClient Client { get; set; }
+            
+            public InvokeProxy()
+            {
+                _type = typeof(T);
+            }
 
             protected override object Invoke(MethodInfo targetMethod, object[] args) =>
                 InvokeAsync(targetMethod, args.FirstOrDefault()).RunSync();
@@ -41,9 +44,9 @@ namespace Zaaby.Client.Http
             private async Task<object> InvokeAsync(MethodInfo targetMethod, object message)
             {
                 var methodName = targetMethod.Name.TrimEnd("Async");
-                if (string.IsNullOrEmpty(Type.FullName))
-                    throw new ZaabyException($"{Type}'s full name is null or empty.");
-                var url = $"/{Type.FullName.Replace('.', '/')}/{methodName}";
+                if (string.IsNullOrEmpty(_type.FullName))
+                    throw new ZaabyException($"{_type}'s full name is null or empty.");
+                var url = $"/{_type.FullName.Replace('.', '/')}/{methodName}";
 
                 var httpRequestMessage = CreateHttpRequestMessage(url, message);
 
@@ -69,8 +72,10 @@ namespace Zaaby.Client.Http
             private static async Task<object> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
-                var type = returnType.GetGenericTypeDefinition() == typeof(Task<>)
-                    ? returnType.GenericTypeArguments[0]
+                var type = returnType.IsGenericType
+                    ? returnType.GetGenericTypeDefinition() == typeof(Task<>)
+                        ? returnType.GenericTypeArguments[0]
+                        : returnType
                     : returnType;
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return result.IsNullOrWhiteSpace()

@@ -17,15 +17,15 @@ namespace ServiceHost
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _rabbitMqClient.SubscribeEvent<UserBirthdayCelebratedEvent>(
+            await _rabbitMqClient.SubscribeEventAsync<UserBirthdayCelebratedEvent>(
                 "Domain.DomainEvents.UserBirthdayCelebratedEvent", null);
-            _rabbitMqClient.SubscribeEvent<UserCardAddedEvent>(
+            await _rabbitMqClient.SubscribeEventAsync<UserCardAddedEvent>(
                 "Domain.DomainEvents.UserCardAddedEvent", null);
-            _rabbitMqClient.SubscribeEvent<UserCreatedEvent>(
+            await _rabbitMqClient.SubscribeEventAsync<UserCreatedEvent>(
                 "Domain.DomainEvents.UserCreatedEvent", null);
-            _rabbitMqClient.SubscribeEvent<UserNameChangedEvent>(
+            await _rabbitMqClient.SubscribeEventAsync<UserNameChangedEvent>(
                 "Domain.DomainEvents.UserNameChangedEvent", null);
-            _rabbitMqClient.SubscribeEvent<UserTagsSetEvent>(
+            await _rabbitMqClient.SubscribeEventAsync<UserTagsSetEvent>(
                 "Domain.DomainEvents.UserTagsSetEvent", null);
         }
     }
