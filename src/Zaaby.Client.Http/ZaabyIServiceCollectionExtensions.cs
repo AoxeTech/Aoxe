@@ -9,39 +9,32 @@ namespace Zaaby.Client.Http
     public static class ZaabyIServiceCollectionExtensions
     {
         public static IServiceCollection AddZaabyClient(this IServiceCollection services, Type serviceDefineType,
-            Dictionary<string, string> baseUrls)
+            Dictionary<string, string> configUrls)
         {
-            if (baseUrls is null || baseUrls.Count <= 0) return services;
+            if (configUrls is null || configUrls.Count <= 0) return services;
+            var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
+            if (methodInfo is null) throw new Exception("The Zaaby Client has no method witch named GetService.");
 
-            var typePairs = LoadHelper.GetByBaseType(serviceDefineType);
-            var interfaceTypes = typePairs.Where(t => t.InterfaceType?.Namespace is not null
-                                                      && t.ImplementationType is null
-                                                      && baseUrls.ContainsKey(t.InterfaceType.Namespace))
-                .Select(t => t.InterfaceType).ToList();
-
-            var clientUrls = interfaceTypes
-                .Where(@interface => @interface is not null
-                                     && !string.IsNullOrWhiteSpace(@interface.Namespace)
-                                     && baseUrls.ContainsKey(@interface.Namespace))
-                .Select(@interface => @interface.Namespace)
-                .Distinct()
-                .ToDictionary(k => k, v => baseUrls[v]);
-
-            foreach (var (@namespace, baseUrl) in clientUrls)
+            var typeWitUris = LoadHelper.GetByBaseType(serviceDefineType)
+                .Where(p => p.InterfaceType?.Namespace is not null && p.ImplementationType is null)
+                .Join(configUrls,
+                    typePair => typePair.InterfaceType.Namespace,
+                    configUrl => configUrl.Key,
+                    (typePair, configUrl) =>
+                        new
+                        {
+                            Type = typePair.InterfaceType,
+                            UriString = configUrl.Value
+                        });
+            foreach (var typeWithUri in typeWitUris)
             {
-                services.AddHttpClient(@namespace,
-                    configureClient => { configureClient.BaseAddress = new Uri(baseUrl); });
+                services.AddHttpClient(typeWithUri.Type.Namespace,
+                    configureClient => { configureClient.BaseAddress = new Uri(typeWithUri.UriString); });
+                services.AddScoped(typeWithUri.Type, _ => methodInfo.MakeGenericMethod(typeWithUri.Type)
+                    .Invoke(services.BuildServiceProvider().GetService<ZaabyClient>(), null));
             }
 
             services.AddScoped<ZaabyClient>();
-
-            var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
-            if (methodInfo is null) throw new Exception("The Zaaby Client has no method witch named GetService.");
-            foreach (var interfaceType in interfaceTypes)
-            {
-                services.AddScoped(interfaceType, _ => methodInfo.MakeGenericMethod(interfaceType).Invoke(services
-                    .BuildServiceProvider().GetService<ZaabyClient>(), null));
-            }
 
             return services;
         }
