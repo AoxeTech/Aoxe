@@ -8,6 +8,6 @@ namespace Zaaby
     {
         public static ZaabyHost UseZaabyClient(this ZaabyHost zaabyHost, Type serviceDefineType,
             Dictionary<string, List<string>> baseUrls) =>
-            zaabyHost.ConfigureServices(services => services.UseZaabyClient(serviceDefineType, baseUrls));
+            zaabyHost.ConfigureServices(services => services.AddZaabyClient(serviceDefineType, baseUrls));
     }
 }

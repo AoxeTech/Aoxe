@@ -101,6 +101,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "demo\Zaaby.ThreeTi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHost", "demo\Zaaby.ThreeTier\ConsoleHost\ConsoleHost.csproj", "{37FFBE5E-1FE2-4823-A603-64BDA34E1567}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http", "src\Zaaby.Client.Http\Zaaby.Client.Http.csproj", "{97257EE6-82CC-4F34-8847-E507BC2A016F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -239,6 +241,10 @@ Global
 		{37FFBE5E-1FE2-4823-A603-64BDA34E1567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37FFBE5E-1FE2-4823-A603-64BDA34E1567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37FFBE5E-1FE2-4823-A603-64BDA34E1567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97257EE6-82CC-4F34-8847-E507BC2A016F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97257EE6-82CC-4F34-8847-E507BC2A016F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97257EE6-82CC-4F34-8847-E507BC2A016F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97257EE6-82CC-4F34-8847-E507BC2A016F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +293,7 @@ Global
 		{C732C1CD-B149-4532-8335-06BD90A4252F} = {076D2CA0-75A4-4C12-989F-09B2A5F02CB9}
 		{EF00DA5D-6F27-47B1-A9E4-15066487A640} = {076D2CA0-75A4-4C12-989F-09B2A5F02CB9}
 		{37FFBE5E-1FE2-4823-A603-64BDA34E1567} = {076D2CA0-75A4-4C12-989F-09B2A5F02CB9}
+		{97257EE6-82CC-4F34-8847-E507BC2A016F} = {A8121E45-FC80-4578-8791-7EB2867F4D38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

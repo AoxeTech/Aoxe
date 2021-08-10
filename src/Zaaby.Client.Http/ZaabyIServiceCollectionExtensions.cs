@@ -4,12 +4,12 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
 
-namespace Zaaby.Client
+namespace Zaaby.Client.Http
 {
     public static class ZaabyIServiceCollectionExtensions
     {
-        public static IServiceCollection UseZaabyClient(this IServiceCollection services,Type serviceDefineType,
-            Dictionary<string, List<string>> baseUrls)
+        public static IServiceCollection AddZaabyClient(this IServiceCollection services, Type serviceDefineType,
+            Dictionary<string, string> baseUrls)
         {
             if (baseUrls is null || baseUrls.Count <= 0) return services;
 
@@ -19,20 +19,28 @@ namespace Zaaby.Client
                                                       && baseUrls.ContainsKey(t.InterfaceType.Namespace))
                 .Select(t => t.InterfaceType).ToList();
 
-            var client = new ZaabyClient(interfaceTypes
+            var clientUrls = interfaceTypes
                 .Where(@interface => @interface is not null
                                      && !string.IsNullOrWhiteSpace(@interface.Namespace)
                                      && baseUrls.ContainsKey(@interface.Namespace))
                 .Select(@interface => @interface.Namespace)
                 .Distinct()
-                .ToDictionary(k => k, v => baseUrls[v]));
+                .ToDictionary(k => k, v => baseUrls[v]);
 
-            var methodInfo = client.GetType().GetMethod("GetService");
-            if (methodInfo is null) return services;
+            foreach (var (@namespace, baseUrl) in clientUrls)
+            {
+                services.AddHttpClient(@namespace,
+                    configureClient => { configureClient.BaseAddress = new Uri(baseUrl); });
+            }
 
+            services.AddScoped<ZaabyClient>();
+
+            var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
             foreach (var interfaceType in interfaceTypes)
-                services.AddScoped(interfaceType,
-                    p => methodInfo.MakeGenericMethod(interfaceType).Invoke(client, null));
+            {
+                services.AddScoped(interfaceType, _ => methodInfo.MakeGenericMethod(interfaceType).Invoke(services
+                    .BuildServiceProvider().GetService<ZaabyClient>(), null));
+            }
 
             return services;
         }

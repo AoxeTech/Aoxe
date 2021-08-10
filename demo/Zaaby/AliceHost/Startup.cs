@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Zaaby.Client;
+using Zaaby.Client.Http;
 using Zaaby.Common;
 using Zaaby.Server;
 
@@ -27,10 +27,10 @@ namespace AliceHost
                 .FromAssemblyOf<AliceService>()
                 .AddZaabyService<IService>()
                 .AddZaabyService<ServiceAttribute>()
-                .UseZaabyClient(typeof(IService),new Dictionary<string, List<string>>
+                .AddZaabyClient(typeof(IService),new Dictionary<string, string>
                 {
-                    {"IBobServices", new List<string> {"http://localhost:5002"}},
-                    {"ICarolServices", new List<string> {"http://localhost:5003"}}
+                    {"IBobServices", "http://localhost:5002"},
+                    {"ICarolServices", "http://localhost:5003"}
                 });
             services.AddSwaggerGen(option =>
             {

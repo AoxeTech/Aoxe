@@ -1,4 +1,4 @@
-namespace Zaaby.Client
+namespace Zaaby.Client.Http
 {
     public static class StringExtensions
     {
