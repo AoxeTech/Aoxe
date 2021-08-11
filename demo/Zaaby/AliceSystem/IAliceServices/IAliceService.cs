@@ -8,9 +8,10 @@ namespace IAliceServices
     {
         string Hello();
         string SayHelloToBob();
+        Task<string> SayHelloToBobAsyncTest();
         string SayHelloToCarol();
         Exception ThrowException();
         Apple PassBackApple(Apple apple);
-        Task<string> HelloAsyncTest();
+        Task<string> HelloTestAsync();
     }
 }

@@ -1,6 +1,6 @@
 namespace Zaaby.Client.Http
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         public static string TrimStart(this string target, string trimString)
         {

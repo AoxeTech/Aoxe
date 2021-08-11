@@ -32,14 +32,21 @@ namespace Zaaby.Client.Http
         {
             private readonly Type _type;
             internal HttpClient Client { get; set; }
-            
+
             public InvokeProxy()
             {
                 _type = typeof(T);
             }
 
-            protected override object Invoke(MethodInfo targetMethod, object[] args) =>
-                InvokeAsync(targetMethod, args.FirstOrDefault()).RunSync();
+            protected override object Invoke(MethodInfo targetMethod, object[] args)
+            {
+                var result = targetMethod.ReturnType.IsGenericType &&
+                             targetMethod.ReturnType.GetGenericTypeDefinition() == typeof(Task<>)
+                    ? InvokeAsync(targetMethod, args.FirstOrDefault())
+                        .CastResult(targetMethod.ReturnType.GetGenericArguments()[0])
+                    : InvokeAsync(targetMethod, args.FirstOrDefault()).RunSync();
+                return result;
+            }
 
             private async Task<object> InvokeAsync(MethodInfo targetMethod, object message)
             {
