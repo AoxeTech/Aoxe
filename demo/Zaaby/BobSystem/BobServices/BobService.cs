@@ -21,6 +21,7 @@ namespace BobServices
         }
 
         public string Hello() => "Hello,I am Bob.";
+
         public async Task<string> HelloTestAsync()
         {
             var hello = $"Hi,I am Bob.{DateTime.UtcNow}";
@@ -35,7 +36,9 @@ namespace BobServices
         }
 
         public string SayHelloToAlice() => $"Hi,I am Bob.\r\n{_aliceService.Hello()}";
-        public async Task<string> SayHelloToAliceAsyncTest() => $"Hi,I am Bob.\r\n{await _aliceService.HelloTestAsync()}";
+
+        public async Task<string> SayHelloToAliceAsyncTest() =>
+            $"Hi,I am Bob.\r\n{await _aliceService.HelloAsyncTest()}";
 
         public string SayHelloToCarol() => $"Hi,I am Bob.\r\n{_carolService.Hello()}";
 
@@ -50,6 +53,17 @@ namespace BobServices
                 Message = $"Bob has passed the apple to Alice on {DateTimeOffset.Now}."
             };
             return _aliceService.PassBackApple(apple).ToJson();
+        }
+
+        public async Task<string> PassAppleToAliceAsyncTest(string appleName)
+        {
+            var apple = new Apple
+            {
+                Id = 1,
+                Name = appleName,
+                Message = $"Bob has passed the apple to Alice on {DateTimeOffset.Now}."
+            };
+            return (await _aliceService.PassBackAppleAsyncTest(apple)).ToJson();
         }
     }
 }

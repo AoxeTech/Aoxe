@@ -43,7 +43,22 @@ namespace AliceServices
             return apple;
         }
 
-        public async Task<string> HelloTestAsync()
+        public async Task<Apple> PassBackAppleAsyncTest(Apple apple)
+        {
+            if (apple is null)
+                return new Apple
+                {
+                    Id = 2,
+                    Name = "Red Apple",
+                    Message = "This apple is pass back by Alice."
+                };
+            apple.Name ??= string.Empty;
+            apple.Message ??= string.Empty;
+            apple.Message += $"\r\nThis apple is pass back by Alice on {DateTime.UtcNow}.";
+            return apple;
+        }
+
+        public async Task<string> HelloAsyncTest()
         {
             var hello = $"Hi,I am Alice.{DateTime.UtcNow}";
             var ms = new MemoryStream();
