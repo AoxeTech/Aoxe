@@ -79,10 +79,8 @@ namespace Zaaby.Client.Http
             private static async Task<object> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
             {
                 var result = await httpResponseMessage.Content.ReadAsStringAsync();
-                var type = returnType.IsGenericType
-                    ? returnType.GetGenericTypeDefinition() == typeof(Task<>)
-                        ? returnType.GenericTypeArguments[0]
-                        : returnType
+                var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
+                    ? returnType.GenericTypeArguments[0]
                     : returnType;
                 if (httpResponseMessage.IsSuccessStatusCode)
                     return result.IsNullOrWhiteSpace()
