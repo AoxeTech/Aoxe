@@ -10,7 +10,7 @@ namespace Zaaby.Client.Http
         public static Task CastResult(this Task<object> taskResult, Type resultType)
         {
             var taskSource = new TaskCompletionSource(resultType);
-            taskResult.ContinueWith((task) =>
+            taskResult.ContinueWith(task =>
             {
                 try
                 {
