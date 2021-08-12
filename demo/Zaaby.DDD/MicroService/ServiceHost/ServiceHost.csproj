@@ -9,7 +9,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.9" NoWarn="NU1605" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
         <PackageReference Include="Zaabee.NewtonsoftJson" Version="2021.4.3" />
-        <PackageReference Include="Zaabee.RabbitMQ" Version="2021.8.0" />
+        <PackageReference Include="Zaabee.RabbitMQ" Version="2021.10.0" />
     </ItemGroup>
 
     <ItemGroup>

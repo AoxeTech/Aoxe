@@ -32,7 +32,7 @@ namespace ServiceHost
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "MicroService", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroService", Version = "v1" });
             });
 
             //注册DDD各层
@@ -42,17 +42,18 @@ namespace ServiceHost
                 //注册序列化器用于包装需要持久化的事件
                 .AddSingleton<ITextSerializer, Serializer>()
                 //注册RabbitMQ以用于消息总线
-                .AddSingleton<IMessageBus,MessageBus>()
+                .AddSingleton<IMessageBus, MessageBus>()
                 .AddSingleton<IZaabeeRabbitMqClient>(_ =>
-                    new ZaabeeRabbitMqClient(new MqConfig
+                    new ZaabeeRabbitMqClient(new ZaabeeRabbitMqOptions
                     {
                         AutomaticRecoveryEnabled = true,
                         HeartBeat = TimeSpan.FromMinutes(1),
                         NetworkRecoveryInterval = new TimeSpan(60),
-                        Hosts = new List<string> {"192.168.78.150"},
+                        Hosts = new List<string> { "192.168.78.150" },
                         UserName = "admin",
-                        Password = "123"
-                    }, new Serializer()))
+                        Password = "123",
+                        Serializer = new Serializer()
+                    }))
                 // .AddHostedService<DomainEventBackgroundService>()
                 ;
         }
