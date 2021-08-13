@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
-using Zaabee.Extensions;
 
 namespace Zaaby
 {
@@ -135,9 +134,6 @@ namespace Zaaby
             _serviceDescriptors.Add(new ServiceDescriptor(serviceType, implementationFactory, lifetime));
 
         public void TryAddEnumerable(params ServiceDescriptor[] descriptors) =>
-            descriptors.ForEach(descriptor => _tryAddEnumerableDescriptors.Add(descriptor));
-
-        public void TryAddEnumerable(IEnumerable<ServiceDescriptor> descriptors) =>
-            descriptors.ForEach(descriptor => _tryAddEnumerableDescriptors.Add(descriptor));
+            _tryAddEnumerableDescriptors.AddRange(descriptors);
     }
 }

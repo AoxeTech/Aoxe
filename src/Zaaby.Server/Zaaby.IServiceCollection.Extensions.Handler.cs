@@ -19,7 +19,7 @@ namespace Zaaby.Server
         public static IServiceCollection AddZaabyHandler(this IServiceCollection services, Type baseHandleType,
             Type messageType, string handleName = "Handle")
         {
-            var typePairs = LoadHelper.GetByBaseType(baseHandleType);
+            var typePairs = LoadHelper.GetTypePairs(baseHandleType);
             foreach (var classType in typePairs.Where(t => t.ImplementationType is not null)
                 .Select(t => t.ImplementationType))
             {

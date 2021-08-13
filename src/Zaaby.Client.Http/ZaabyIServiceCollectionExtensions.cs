@@ -11,11 +11,11 @@ namespace Zaaby.Client.Http
         public static IServiceCollection AddZaabyClient(this IServiceCollection services, Type serviceDefineType,
             Dictionary<string, string> configUrls)
         {
-            if (configUrls is null || configUrls.Count <= 0) return services;
+            if (configUrls is null || configUrls.Count is 0) return services;
             var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
             if (methodInfo is null) throw new Exception("The Zaaby Client has no method witch named GetService.");
 
-            var typeWitUris = LoadHelper.GetByBaseType(serviceDefineType)
+            var typeWitUris = LoadHelper.GetTypePairs(serviceDefineType)
                 .Where(p => p.InterfaceType?.Namespace is not null && p.ImplementationType is null)
                 .Join(configUrls,
                     typePair => typePair.InterfaceType.Namespace,

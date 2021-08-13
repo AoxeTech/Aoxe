@@ -14,9 +14,7 @@ namespace Zaaby.Common
         public static IServiceCollection Register(this IServiceCollection services, Type defineType,
             ServiceLifetime serviceLifetime)
         {
-            var typePairs = typeof(Attribute).IsAssignableFrom(defineType)
-                ? LoadHelper.GetByAttributes(defineType)
-                : LoadHelper.GetByBaseTypes(defineType);
+            var typePairs = LoadHelper.GetTypePairs(defineType);
             return services.Register(typePairs, serviceLifetime);
         }
 

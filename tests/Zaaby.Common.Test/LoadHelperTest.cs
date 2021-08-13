@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.Linq;
 using AliceServices;
 using BobServices;
 using CarolServices;
@@ -16,30 +15,26 @@ namespace Zaaby.Common.Test
         [Fact]
         public void GetByAttribute()
         {
-            var types0 = LoadHelper.GetByAttribute<TestAttribute>();
+            var types0 = LoadHelper.GetByAttributes(typeof(TestAttribute));
             var types1 = LoadHelper.GetByAttributes(typeof(TestDerivedAttribute));
 
             Assert.Equal(2, types0.Count);
             Assert.Single(types1);
-            Assert.Contains(typeof(TestClassWithAttribute), types0.Select(p => p.ImplementationType));
-            Assert.Contains(typeof(TestClassWithDerivedAttribute), types0.Select(p => p.ImplementationType));
-            Assert.Contains(typeof(TestClassWithDerivedAttribute), types1.Select(p => p.ImplementationType));
+            Assert.Contains(typeof(TestClassWithAttribute), types0);
+            Assert.Contains(typeof(TestClassWithDerivedAttribute), types0);
+            Assert.Contains(typeof(TestClassWithDerivedAttribute), types1);
         }
 
         [Fact]
         public void GetByBaseType()
         {
-            var types0 = LoadHelper.GetByBaseType<ITestInterface>();
+            var types0 = LoadHelper.GetByBaseTypes(typeof(ITestInterface));
             var types1 = LoadHelper.GetByBaseTypes(typeof(IDerivedTestInterface));
 
             Assert.Equal(2, types0.Count);
-            Assert.Contains(typeof(IDerivedTestInterface), types0.Select(p => p.InterfaceType));
-            Assert.Contains(typeof(ClassWithInterface), types0.Select(p => p.ImplementationType));
-            Assert.Contains(typeof(ClassWithDerivedInterface), types0.Select(p => p.ImplementationType));
-
-            Assert.Single(types1);
-            Assert.Null(types1[0].InterfaceType);
-            Assert.Equal(typeof(ClassWithDerivedInterface), types1[0].ImplementationType);
+            Assert.Contains(typeof(IDerivedTestInterface), types0);
+            Assert.Contains(typeof(ClassWithInterface), types0);
+            Assert.Contains(typeof(ClassWithDerivedInterface), types0);
         }
 
         [Fact]

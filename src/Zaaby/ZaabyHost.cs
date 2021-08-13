@@ -57,12 +57,10 @@ namespace Zaaby
                 webBuilder.ConfigureServices(services =>
                 {
                     _configurationServicesActions.ForEach(action => action.Invoke(services));
-                    _serviceDescriptors.ForEach(services.Add);
-                    _tryAddEnumerableDescriptors.ForEach(services.TryAddEnumerable);
-                    _serviceBaseTypes.ForEach(serviceBaseType =>
-                        services.AddZaabyService(serviceBaseType));
-                    _serviceAttributeTypes.ForEach(serviceAttributeType =>
-                        services.AddZaabyService(serviceAttributeType));
+                    services.Add(_serviceDescriptors);
+                    services.TryAddEnumerable(_tryAddEnumerableDescriptors);
+                    services.AddZaabyServices(_serviceBaseTypes.ToArray());
+                    services.AddZaabyServices(_serviceAttributeTypes.ToArray());
                 });
                 webBuilder.Configure(webHostBuilder =>
                 {
