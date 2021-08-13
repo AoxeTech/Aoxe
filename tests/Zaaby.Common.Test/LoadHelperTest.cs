@@ -17,7 +17,7 @@ namespace Zaaby.Common.Test
         public void GetByAttribute()
         {
             var types0 = LoadHelper.GetByAttribute<TestAttribute>();
-            var types1 = LoadHelper.GetByAttribute(typeof(TestDerivedAttribute));
+            var types1 = LoadHelper.GetByAttributes(typeof(TestDerivedAttribute));
 
             Assert.Equal(2, types0.Count);
             Assert.Single(types1);
@@ -30,7 +30,7 @@ namespace Zaaby.Common.Test
         public void GetByBaseType()
         {
             var types0 = LoadHelper.GetByBaseType<ITestInterface>();
-            var types1 = LoadHelper.GetByBaseType(typeof(IDerivedTestInterface));
+            var types1 = LoadHelper.GetByBaseTypes(typeof(IDerivedTestInterface));
 
             Assert.Equal(2, types0.Count);
             Assert.Contains(typeof(IDerivedTestInterface), types0.Select(p => p.InterfaceType));

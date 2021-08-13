@@ -6,35 +6,6 @@ namespace Zaaby.Common
 {
     public static partial class LoadHelper
     {
-        public static List<TypePair> GetByBaseType<T>() => GetByBaseType(typeof(T));
-
-        public static List<TypePair> GetByBaseType(Type baseType)
-        {
-            var types = LoadTypes()
-                .Where(baseType.IsAssignableFrom)
-                .ToList();
-
-            var interfaceTypes = types.Where(type => type.IsInterface && type != baseType);
-            var implementationTypes = types.Where(type => type.IsClass);
-
-            return CreateTypePairs(interfaceTypes, implementationTypes);
-        }
-
-        public static List<TypePair> GetByAttribute<TAttribute>() where TAttribute : Attribute =>
-            GetByAttribute(typeof(TAttribute));
-
-        public static List<TypePair> GetByAttribute(Type attributeType)
-        {
-            var types = LoadTypes()
-                .Where(type => Attribute.GetCustomAttribute(type, attributeType, true) is not null)
-                .ToList();
-
-            var interfaceTypes = types.Where(type => type.IsInterface);
-            var implementationTypes = types.Where(type => type.IsClass);
-
-            return CreateTypePairs(interfaceTypes, implementationTypes);
-        }
-
         private static List<TypePair> CreateTypePairs(IEnumerable<Type> interfaceTypes,
             IEnumerable<Type> implementationTypes)
         {

@@ -15,8 +15,8 @@ namespace Zaaby.Common
             ServiceLifetime serviceLifetime)
         {
             var typePairs = typeof(Attribute).IsAssignableFrom(defineType)
-                ? LoadHelper.GetByAttribute(defineType)
-                : LoadHelper.GetByBaseType(defineType);
+                ? LoadHelper.GetByAttributes(defineType)
+                : LoadHelper.GetByBaseTypes(defineType);
             return services.Register(typePairs, serviceLifetime);
         }
 
