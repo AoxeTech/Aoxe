@@ -90,8 +90,8 @@ namespace Zaaby.MessageBus.RabbitMQ
         }
 
         private string GetTypeName(Type type) => _queueNameDic.GetOrAdd(type,
-            key => !(type.GetCustomAttributes(typeof(MessageVersionAttribute), false).FirstOrDefault() is
-                MessageVersionAttribute msgVerAttr)
+            key => type.GetCustomAttributes(typeof(MessageVersionAttribute), false).FirstOrDefault()
+                is not MessageVersionAttribute msgVerAttr
                 ? type.ToString()
                 : $"{type}[{msgVerAttr.Version}]");
 
