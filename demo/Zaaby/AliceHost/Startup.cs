@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using AliceServices;
+using Consul;
 using IAliceServices;
 using IBobServices;
 using ICarolServices;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Zaaby.Client.Http;
 using Zaaby.Common;
+using Zaaby.Consul;
 using Zaaby.Server;
 
 namespace AliceHost
@@ -41,6 +44,24 @@ namespace AliceHost
                     Description = "API for AliceHost",
                     Contact = new OpenApiContact {Name = "DuXiaoFei", Email = "aeondxf@live.com"}
                 });
+            });
+            services.AddConsul(options =>
+            {
+                options.ConsulAddress = "http://192.168.78.140:8500/";
+                options.AgentServiceRegistration = new AgentServiceRegistration
+                {
+                    ID = Guid.NewGuid().ToString(),
+                    Name = GetType().Namespace,
+                    Address = "https://172.16.20.26",
+                    Port = 5001,
+                    Tags = new[] { "api" },
+                    Check = new AgentServiceCheck
+                    {
+                        DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
+                        Interval = TimeSpan.FromSeconds(30),
+                        HTTP = "https://172.16.20.26:5001/HealthCheck"
+                    }
+                };
             });
         }
 

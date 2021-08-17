@@ -5,8 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Zaaby.Client.Http\Zaaby.Client.Http.csproj" />
-        <ProjectReference Include="..\..\..\src\Zaaby.Server\Zaaby.Server.csproj" />
+        <ProjectReference Include="..\..\..\src\Client\Zaaby.Client.Http\Zaaby.Client.Http.csproj" />
+        <ProjectReference Include="..\..\..\src\Server\Zaaby.Consul\Zaaby.Consul.csproj" />
+        <ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj" />
         <ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
     </ItemGroup>
 
