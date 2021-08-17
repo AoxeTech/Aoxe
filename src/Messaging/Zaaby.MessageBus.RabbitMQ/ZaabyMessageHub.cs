@@ -15,8 +15,7 @@ namespace Zaaby.MessageBus.RabbitMQ
         private readonly IZaabeeRabbitMqClient _rabbitMqClient;
         private readonly ushort _prefetch;
 
-        private readonly ConcurrentDictionary<Type, string> _queueNameDic =
-            new ConcurrentDictionary<Type, string>();
+        private readonly ConcurrentDictionary<Type, string> _queueNameDic = new();
 
         public ZaabyMessageHub(IServiceScopeFactory serviceScopeFactory, IZaabeeRabbitMqClient rabbitMqClient,
             MessageHubConfig messageHubConfig)
