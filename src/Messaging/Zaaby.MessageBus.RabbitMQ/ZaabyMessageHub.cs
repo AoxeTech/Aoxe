@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
 using Zaaby.Common;
 
-namespace Zaaby.MessageHub.RabbitMQ
+namespace Zaaby.MessageBus.RabbitMQ
 {
     public class ZaabyMessageHub : IZaabyMessageHub
     {

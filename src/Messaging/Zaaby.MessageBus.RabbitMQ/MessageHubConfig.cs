@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.MessageHub.RabbitMQ
+namespace Zaaby.MessageBus.RabbitMQ
 {
     public class MessageHubConfig
     {

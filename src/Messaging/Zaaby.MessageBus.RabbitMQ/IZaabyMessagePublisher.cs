@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Zaaby.MessageHub.RabbitMQ
+namespace Zaaby.MessageBus.RabbitMQ
 {
     public interface IZaabyMessagePublisher
     {
