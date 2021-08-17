@@ -59,7 +59,7 @@ namespace AliceHost
                     {
                         DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
                         Interval = TimeSpan.FromSeconds(30),
-                        HTTP = "https://172.16.20.26:5001/HealthCheck"
+                        HTTP = "https://172.16.20.26:5001/IAliceServices/IAliceService/Hello"
                     }
                 };
             });
