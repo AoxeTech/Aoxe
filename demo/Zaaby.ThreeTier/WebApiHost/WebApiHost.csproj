@@ -11,7 +11,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj" />
-      <ProjectReference Include="..\..\..\src\Zaaby\Zaaby.csproj" />
       <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
     </ItemGroup>
 

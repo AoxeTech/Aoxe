@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby;
 using Zaaby.Server;
-using Zaaby.ThreeTier.Abstractions.BusinessLogic;
+using Zaaby.ThreeTier.Annotations.BusinessLogic;
 
 namespace ConsoleHost
 {

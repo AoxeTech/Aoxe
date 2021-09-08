@@ -25,7 +25,7 @@ namespace Zaaby.Client.Http.Consul
             var serviceNames = consulClient?.Catalog.Services().Result.Response;
 
             var i = LoadHelper.GetTypePairs(serviceDefineType)
-                .Where(p => p.InterfaceType?.Namespace is not null && p.ImplementationType is null)
+                .Where(p => p.InterfaceType?.Namespace is not null && p.ImplementationType is null);
 
             // foreach (var typeWithUri in typeWitUris)
             // {
