@@ -1,6 +1,6 @@
 using Consul;
 
-namespace Zaaby.Consul
+namespace Zaaby.Server.Consul
 {
     public class ZaabeeConsulOptions
     {

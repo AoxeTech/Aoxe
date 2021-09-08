@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Zaabee.SequentialGuid" Version="2021.1.0" />
-    <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.0" />
+    <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.2" />
     <PackageReference Include="Zaaby.Common" Version="2021.26.2" />
     <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.11.4" />
   </ItemGroup>

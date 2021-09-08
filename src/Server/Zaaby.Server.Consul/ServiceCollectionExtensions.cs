@@ -1,23 +1,22 @@
 using System;
 using Consul;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Zaaby.Consul
+namespace Zaaby.Server.Consul
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddConsul(this IServiceCollection services,
+        public static IServiceCollection AddServiceRegistry(this IServiceCollection services,
             Action<ZaabeeConsulOptions> optionsFactory)
         {
             var options = new ZaabeeConsulOptions();
             optionsFactory(options);
             services.Configure(optionsFactory);
-            services.AddSingleton<IConsulClient>(_ => new ConsulClient(x =>
+            services.TryAddSingleton<IConsulClient>(_ => new ConsulClient(x =>
             {
                 x.Address = new Uri(options.ConsulAddress);
             }));
-            //注册自定义的DelegatingHandler
-            services.AddTransient<ConsulDiscoveryDelegatingHandler>();
             services.AddHostedService<ServiceRegistry>();
             return services;
         }

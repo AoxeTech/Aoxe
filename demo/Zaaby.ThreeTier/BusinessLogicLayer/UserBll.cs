@@ -4,7 +4,7 @@ using BusinessLogicLayer.Dtos;
 using DataAccessLayer;
 using Model;
 using Zaabee.SequentialGuid;
-using Zaaby.ThreeTier.Abstractions.BusinessLogic;
+using Zaaby.ThreeTier.Annotations.BusinessLogic;
 
 namespace BusinessLogicLayer
 {

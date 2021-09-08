@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
-using Zaaby.ThreeTier.Abstractions.BusinessLogic;
+using Zaaby.ThreeTier.Annotations.BusinessLogic;
 
 namespace Zaaby.ThreeTier
 {
@@ -12,6 +12,6 @@ namespace Zaaby.ThreeTier
         
         public static IServiceCollection AddMessageHandler(this IServiceCollection services) =>
             services.Register<IMessageHandler>(ServiceLifetime.Scoped)
-                .Register<MessageHandler>(ServiceLifetime.Scoped);
+                .Register<MessageHandlerAttribute>(ServiceLifetime.Scoped);
     }
 }

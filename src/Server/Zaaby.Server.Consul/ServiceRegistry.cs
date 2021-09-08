@@ -4,7 +4,7 @@ using Consul;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace Zaaby.Consul
+namespace Zaaby.Server.Consul
 {
     public class ServiceRegistry : BackgroundService
     {

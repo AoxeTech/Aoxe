@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThreeTier", "ThreeTier", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ThreeTier", "src\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj", "{38C4AE18-FC89-4A99-81C8-C272CCA35D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ThreeTier.Abstractions", "src\ThreeTier\Zaaby.ThreeTier.Abstractions\Zaaby.ThreeTier.Abstractions.csproj", "{23EB6DBF-04AE-48DB-A409-5E337E8FF270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ThreeTier.Annotations", "src\ThreeTier\Zaaby.ThreeTier.Annotations\Zaaby.ThreeTier.Annotations.csproj", "{23EB6DBF-04AE-48DB-A409-5E337E8FF270}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDD", "DDD", "{2CE5217F-F90E-4ECB-9403-FA1E17593D4E}"
 EndProject
@@ -107,7 +107,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageBus.RabbitMQ",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server", "src\Server\Zaaby.Server\Zaaby.Server.csproj", "{B624800D-A833-4008-A505-499C53160BCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Consul", "src\Server\Zaaby.Consul\Zaaby.Consul.csproj", "{637E68D2-6445-4EA6-97E0-6ED0A3746B48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server.Consul", "src\Server\Zaaby.Server.Consul\Zaaby.Server.Consul.csproj", "{637E68D2-6445-4EA6-97E0-6ED0A3746B48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Grpc", "src\Client\Zaaby.Client.Grpc\Zaaby.Client.Grpc.csproj", "{7658841E-08E5-440A-8BAA-E1B478EDD975}"
 EndProject
@@ -116,6 +116,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub.Kafka", "src\Messaging\Zaaby.MessageHub.Kafka\Zaaby.MessageHub.Kafka.csproj", "{F36BB29B-9DF9-45ED-9BF3-99C562CF6A9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.MessageHub.Redis", "src\Messaging\Zaaby.MessageHub.Redis\Zaaby.MessageHub.Redis.csproj", "{39258640-36A7-467E-93A0-97B36F9CD3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Consul", "src\Client\Zaaby.Client.Http.Consul\Zaaby.Client.Http.Consul.csproj", "{590D3D44-C535-4DD4-B72D-11517CC1580B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,6 +277,10 @@ Global
 		{39258640-36A7-467E-93A0-97B36F9CD3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39258640-36A7-467E-93A0-97B36F9CD3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39258640-36A7-467E-93A0-97B36F9CD3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{590D3D44-C535-4DD4-B72D-11517CC1580B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{590D3D44-C535-4DD4-B72D-11517CC1580B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{590D3D44-C535-4DD4-B72D-11517CC1580B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{590D3D44-C535-4DD4-B72D-11517CC1580B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -331,6 +337,7 @@ Global
 		{5155A266-7D97-4AC4-A6B9-26EA6C8A6D87} = {71B821C7-4B75-45E1-8019-E407F4B672BE}
 		{F36BB29B-9DF9-45ED-9BF3-99C562CF6A9D} = {71B821C7-4B75-45E1-8019-E407F4B672BE}
 		{39258640-36A7-467E-93A0-97B36F9CD3CF} = {71B821C7-4B75-45E1-8019-E407F4B672BE}
+		{590D3D44-C535-4DD4-B72D-11517CC1580B} = {FE4DF66D-4961-46F9-9CB7-45DC7739F0CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

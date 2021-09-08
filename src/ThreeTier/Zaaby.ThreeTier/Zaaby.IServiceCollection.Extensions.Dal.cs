@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby.Common;
-using Zaaby.ThreeTier.Abstractions.DataAccess;
+using Zaaby.ThreeTier.Annotations.DataAccess;
 
 namespace Zaaby.ThreeTier
 {

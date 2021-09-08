@@ -10,10 +10,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Zaaby.Client.Http;
 using Zaaby.Common;
-using Zaaby.Consul;
+using Zaaby.Server.Consul;
 using Zaaby.Server;
 
 namespace AliceHost
@@ -32,34 +31,25 @@ namespace AliceHost
                 .AddZaabyService<ServiceAttribute>()
                 .AddZaabyClient(typeof(IService),new Dictionary<string, string>
                 {
-                    {"IBobServices", "http://localhost:5002"},
-                    {"ICarolServices", "http://localhost:5003"}
+                    {typeof(IBobService).Namespace, "http://localhost:5002"},
+                    {typeof(ICarolService).Namespace, "http://localhost:5003"}
                 });
-            services.AddSwaggerGen(option =>
+            services.AddServiceRegistry(options =>
             {
-                option.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Alice API",
-                    Description = "API for AliceHost",
-                    Contact = new OpenApiContact {Name = "DuXiaoFei", Email = "aeondxf@live.com"}
-                });
-            });
-            services.AddConsul(options =>
-            {
+                var uri = new Uri("http://172.16.20.25:5001");
                 options.ConsulAddress = "http://192.168.78.140:8500/";
                 options.AgentServiceRegistration = new AgentServiceRegistration
                 {
                     ID = Guid.NewGuid().ToString(),
-                    Name = GetType().Namespace,
-                    Address = "https://172.16.20.26",
-                    Port = 5001,
+                    Name = typeof(IAliceService).Namespace,
+                    Address = $"{uri.Scheme}://{uri.Host}",
+                    Port = uri.Port,
                     Tags = new[] { "api" },
                     Check = new AgentServiceCheck
                     {
                         DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
                         Interval = TimeSpan.FromSeconds(30),
-                        HTTP = "https://172.16.20.26:5001/IAliceServices/IAliceService/Hello"
+                        HTTP = $"{uri.AbsoluteUri}HealthCheck"
                     }
                 };
             });

@@ -1,12 +1,7 @@
 using System;
 
-namespace Zaaby.ThreeTier.Abstractions.BusinessLogic
+namespace Zaaby.ThreeTier.Annotations.BusinessLogic
 {
-    public class MessageHandler
-    {
-
-    }
-
     public interface IMessageHandler
     {
     }

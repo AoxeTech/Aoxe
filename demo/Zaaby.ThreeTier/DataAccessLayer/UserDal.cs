@@ -4,7 +4,7 @@ using System.Data;
 using Dapper;
 using Model;
 using Zaabee.Dapper.Extensions;
-using Zaaby.ThreeTier.Abstractions.DataAccess;
+using Zaaby.ThreeTier.Annotations.DataAccess;
 
 namespace DataAccessLayer
 {

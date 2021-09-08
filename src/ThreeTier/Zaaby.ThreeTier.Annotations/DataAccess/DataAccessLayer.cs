@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.ThreeTier.Abstractions.DataAccess
+namespace Zaaby.ThreeTier.Annotations.DataAccess
 {
     public interface IDal
     {

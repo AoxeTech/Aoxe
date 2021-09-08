@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.ThreeTier.Abstractions.BusinessLogic
+namespace Zaaby.ThreeTier.Annotations.BusinessLogic
 {
     public interface IBll
     {

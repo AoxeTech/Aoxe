@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier.Abstractions\Zaaby.ThreeTier.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier.Annotations\Zaaby.ThreeTier.Annotations.csproj" />
       <ProjectReference Include="..\Model\Model.csproj" />
     </ItemGroup>
     
