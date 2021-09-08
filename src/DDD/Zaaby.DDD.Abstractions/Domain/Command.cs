@@ -4,5 +4,5 @@ namespace Zaaby.DDD.Abstractions.Domain
     {
     }
 
-    public record Command : ICommand;
+    public abstract record Command : ICommand;
 }

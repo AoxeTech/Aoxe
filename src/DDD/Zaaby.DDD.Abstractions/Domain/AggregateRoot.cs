@@ -8,11 +8,11 @@ namespace Zaaby.DDD.Abstractions.Domain
     {
     }
 
-    public class AggregateRoot : Entity, IAggregateRoot
+    public abstract class AggregateRoot : Entity, IAggregateRoot
     {
     }
 
-    public class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
+    public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
     {
     }
 }

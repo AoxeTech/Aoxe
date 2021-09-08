@@ -10,14 +10,14 @@ namespace Zaaby.DDD.Abstractions.Domain
         public int EntityVersion { get; }
     }
 
-    public record DomainEvent<TEntityId> : IDomainEvent<TEntityId>
+    public abstract record DomainEvent<TEntityId> : IDomainEvent<TEntityId>
     {
         public TEntityId EntityId { get; protected set; }
         public int EntityVersion { get; protected set; }
-        
-        public DomainEvent(){}
 
-        public DomainEvent(Entity<TEntityId> entity)
+        protected DomainEvent(){}
+
+        protected DomainEvent(Entity<TEntityId> entity)
         {
             EntityId = entity.Id;
             EntityVersion = entity.Version;

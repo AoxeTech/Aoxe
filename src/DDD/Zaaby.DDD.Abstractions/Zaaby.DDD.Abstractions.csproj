@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.11.4</PackageVersion>
-        <Version>2021.11.4</Version>
+        <PackageVersion>2021.12.0</PackageVersion>
+        <Version>2021.12.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby DDD</PackageTags>

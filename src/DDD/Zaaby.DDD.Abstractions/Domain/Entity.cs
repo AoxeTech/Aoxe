@@ -12,7 +12,7 @@ namespace Zaaby.DDD.Abstractions.Domain
         TId Id { get; }
     }
 
-    public class Entity : IEntity
+    public abstract class Entity : IEntity
     {
         public int Version { get; private set; }
 
@@ -27,7 +27,7 @@ namespace Zaaby.DDD.Abstractions.Domain
         }
     }
 
-    public class Entity<TId> : Entity, IEntity<TId>
+    public abstract class Entity<TId> : Entity, IEntity<TId>
     {
         public TId Id { get; protected set; }
     }
