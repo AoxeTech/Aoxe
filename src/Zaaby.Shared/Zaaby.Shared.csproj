@@ -7,7 +7,7 @@
         <Version>2021.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageTags>Zaaby MicroService Framework</PackageTags>
+        <PackageTags>Zaaby;MicroService;Framework</PackageTags>
         <Description>Common classes and tools for Zaaby.</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <LicenseExpression>MIT</LicenseExpression>
