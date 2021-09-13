@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A8121E45-FC8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby", "src\Zaaby\Zaaby.csproj", "{FB39B898-AD30-486C-A845-B6E681B81061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Common", "src\Zaaby.Common\Zaaby.Common.csproj", "{3124644D-03C2-4513-9790-07B65202E626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Shared", "src\Zaaby.Shared\Zaaby.Shared.csproj", "{3124644D-03C2-4513-9790-07B65202E626}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9C5D1C18-AB9B-4A01-9A06-375198D440C0}"
 EndProject

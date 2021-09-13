@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Zaaby.Common
+namespace Zaaby.Shared
 {
     public static partial class LoadHelper
     {

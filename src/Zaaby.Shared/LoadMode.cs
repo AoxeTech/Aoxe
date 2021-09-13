@@ -1,4 +1,4 @@
-namespace Zaaby.Common
+namespace Zaaby.Shared
 {
     public enum LoadTypesMode
     {

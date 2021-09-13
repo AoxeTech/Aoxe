@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Zaaby.Common
+namespace Zaaby.Shared
 {
     public class ZaabyException : Exception
     {

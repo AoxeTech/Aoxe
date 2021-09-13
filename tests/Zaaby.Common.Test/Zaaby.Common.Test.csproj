@@ -26,7 +26,7 @@
       <ProjectReference Include="..\..\demo\Zaaby\BobSystem\IBobServices\IBobServices.csproj" />
       <ProjectReference Include="..\..\demo\Zaaby\CarolSystem\CarolServices\CarolServices.csproj" />
       <ProjectReference Include="..\..\demo\Zaaby\CarolSystem\ICarolServices\ICarolServices.csproj" />
-      <ProjectReference Include="..\..\src\Zaaby.Common\Zaaby.Common.csproj" />
+      <ProjectReference Include="..\..\src\Zaaby.Shared\Zaaby.Shared.csproj" />
     </ItemGroup>
 
 </Project>

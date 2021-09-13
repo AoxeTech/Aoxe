@@ -1,6 +1,6 @@
 using System;
 
-namespace Zaaby.Common
+namespace Zaaby.Shared
 {
     public class TypePair
     {

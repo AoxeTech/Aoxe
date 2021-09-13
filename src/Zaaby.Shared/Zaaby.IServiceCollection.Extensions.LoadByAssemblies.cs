@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Zaaby.Common
+namespace Zaaby.Shared
 {
     public static partial class ZaabyIServiceCollectionExtensions
     {
