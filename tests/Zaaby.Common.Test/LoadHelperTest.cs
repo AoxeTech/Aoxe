@@ -7,6 +7,7 @@ using IAliceServices;
 using IBobServices;
 using ICarolServices;
 using Xunit;
+using Zaaby.Shared;
 
 namespace Zaaby.Common.Test
 {

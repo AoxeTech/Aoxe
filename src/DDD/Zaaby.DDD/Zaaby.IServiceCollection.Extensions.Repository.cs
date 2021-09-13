@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby.Common;
+using Zaaby.Shared;
 using Zaaby.DDD.Abstractions.Infrastructure.Repository;
 
 namespace Zaaby.DDD

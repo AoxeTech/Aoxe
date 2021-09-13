@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zaabee.Extensions;
 using Zaabee.NewtonsoftJson;
-using Zaaby.Common;
+using Zaaby.Shared;
 
 namespace Zaaby.Client.Http
 {

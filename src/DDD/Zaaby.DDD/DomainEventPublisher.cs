@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Zaaby.Common;
+using Zaaby.Shared;
 using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
 
 namespace Zaaby.DDD

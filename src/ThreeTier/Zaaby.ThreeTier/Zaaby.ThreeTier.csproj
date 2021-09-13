@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.3.0</PackageVersion>
-        <Version>2021.3.0</Version>
+        <PackageVersion>2021.3.2</PackageVersion>
+        <Version>2021.3.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageTags>Zaaby ThreeTier</PackageTags>
+        <PackageTags>Zaaby;ThreeTier</PackageTags>
         <Description>Three tier framework for Zaaby.</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <PackageReference Include="Zaaby.ThreeTier.Annotations" Version="2021.1.0" />
-        <PackageReference Include="Zaaby.Common" Version="2021.26.2" />
+        <PackageReference Include="Zaaby.Shared" Version="2021.1.0" />
     </ItemGroup>
 
 </Project>

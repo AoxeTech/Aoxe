@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Zaabee.RabbitMQ.Abstractions;
-using Zaaby.Common;
+using Zaaby.Shared;
 
 namespace Zaaby.MessageBus.RabbitMQ
 {

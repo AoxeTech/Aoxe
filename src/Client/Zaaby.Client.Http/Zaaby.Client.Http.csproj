@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.4.2</PackageVersion>
-        <Version>2021.4.2</Version>
+        <PackageVersion>2021.4.4</PackageVersion>
+        <Version>2021.4.4</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
+        <PackageTags>Zaaby;MicroService;Http Client</PackageTags>
         <Description>Client for Zaaby framework base by http.</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,7 +17,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
         <PackageReference Include="Zaabee.NewtonsoftJson" Version="2021.6.0" />
-        <PackageReference Include="Zaaby.Common" Version="2021.26.2" />
+        <PackageReference Include="Zaaby.Shared" Version="2021.1.0" />
     </ItemGroup>
 
 </Project>

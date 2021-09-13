@@ -4,11 +4,11 @@
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.10.5</PackageVersion>
-        <Version>0.10.5</Version>
+        <PackageVersion>0.10.6</PackageVersion>
+        <Version>0.10.6</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageTags>Zaaby MicroService DDD Webapi Framework</PackageTags>
+        <PackageTags>Zaaby;MicroService;Message bus</PackageTags>
         <Description>Message hub for Zaaby framework by RabbitMQ.</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,7 +17,7 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
       <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.8.0" />
-      <PackageReference Include="Zaaby.Common" Version="2021.26.2" />
+        <PackageReference Include="Zaaby.Shared" Version="2021.1.0" />
     </ItemGroup>
 
 </Project>

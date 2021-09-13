@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Zaabee.SequentialGuid;
 using Zaabee.Serializer.Abstractions;
-using Zaaby.Common;
+using Zaaby.Shared;
 using Zaaby.DDD.Abstractions.Domain;
-using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
 
 namespace Zaaby.DDD
 {
