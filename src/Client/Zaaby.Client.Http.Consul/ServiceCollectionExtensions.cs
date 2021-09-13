@@ -3,7 +3,7 @@ using System.Linq;
 using Consul;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Zaaby.Common;
+using Zaaby.Shared;
 
 namespace Zaaby.Client.Http.Consul
 {

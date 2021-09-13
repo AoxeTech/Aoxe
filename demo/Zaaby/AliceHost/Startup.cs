@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zaaby.Client.Http;
-using Zaaby.Common;
+using Zaaby.Shared;
 using Zaaby.Server.Consul;
 using Zaaby.Server;
 
