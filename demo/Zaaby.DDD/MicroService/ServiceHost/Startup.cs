@@ -40,7 +40,7 @@ namespace ServiceHost
                 //注册DbContext
                 .AddDbContext(Configuration)
                 //注册序列化器用于包装需要持久化的事件
-                .AddSingleton<ITextSerializer, Serializer>()
+                .AddSingleton<ITextSerializer, ZaabeeSerializer>()
                 //注册RabbitMQ以用于消息总线
                 .AddSingleton<IMessageBus, MessageBus>()
                 .AddSingleton<IZaabeeRabbitMqClient>(_ =>
@@ -52,7 +52,7 @@ namespace ServiceHost
                         Hosts = new List<string> { "192.168.78.150" },
                         UserName = "admin",
                         Password = "123",
-                        Serializer = new Serializer()
+                        Serializer = new ZaabeeSerializer()
                     }))
                 // .AddHostedService<DomainEventBackgroundService>()
                 ;
