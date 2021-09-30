@@ -8,7 +8,7 @@
     <ItemGroup>
         <PackageReference Include="Consul" Version="1.6.10.3" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-        <PackageReference Include="Zaaby.Client.Http" Version="2021.4.4" />
+        <PackageReference Include="Zaaby.Client.Http" Version="2021.4.5" />
     </ItemGroup>
 
 </Project>

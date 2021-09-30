@@ -5,10 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Npgsql" Version="5.0.7" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
     </ItemGroup>
-
+    
     <ItemGroup>
       <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj" />
       <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
