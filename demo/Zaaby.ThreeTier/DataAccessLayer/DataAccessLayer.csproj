@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.0.90" />
+        <PackageReference Include="Dapper" Version="2.0.123" />
         <PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.9-alpha" />
     </ItemGroup>
 
@@ -13,5 +13,5 @@
       <ProjectReference Include="..\..\..\src\ThreeTier\Zaaby.ThreeTier.Annotations\Zaaby.ThreeTier.Annotations.csproj" />
       <ProjectReference Include="..\Model\Model.csproj" />
     </ItemGroup>
-    
+
 </Project>

@@ -54,7 +54,7 @@ namespace Zaaby.DDD
                 {
                     Id = SequentialGuidHelper.GenerateComb(),
                     EventType = domainEvent.GetType().ToString(),
-                    Content = _serializer.SerializeToString(domainEvent),
+                    Content = _serializer.ToText(domainEvent),
                     PersistenceUtcTime = DateTime.UtcNow
                 });
             UnpublishedMessages.AddRange(messages);
@@ -67,7 +67,7 @@ namespace Zaaby.DDD
                 {
                     Id = SequentialGuidHelper.GenerateComb(),
                     EventType = domainEvent.GetType().ToString(),
-                    Content = _serializer.SerializeToString(domainEvent),
+                    Content = _serializer.ToText(domainEvent),
                     PersistenceUtcTime = DateTime.UtcNow
                 });
             await UnpublishedMessages.AddRangeAsync(messages);

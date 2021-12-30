@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Zaaby.Service;
+using Zaaby.Server;
 using Zaaby.ThreeTier;
-using Zaaby.ThreeTier.Abstractions.BusinessLogic;
+using Zaaby.ThreeTier.Annotations.BusinessLogic;
 
 namespace WebApiHost
 {

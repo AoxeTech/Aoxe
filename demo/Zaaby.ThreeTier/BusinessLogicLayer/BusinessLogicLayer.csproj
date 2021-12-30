@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,7 +9,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Zaabee.SequentialGuid" Version="2021.1.0" />
+        <PackageReference Include="Zaabee.SequentialGuid" Version="2022.1.0" />
     </ItemGroup>
 
 </Project>

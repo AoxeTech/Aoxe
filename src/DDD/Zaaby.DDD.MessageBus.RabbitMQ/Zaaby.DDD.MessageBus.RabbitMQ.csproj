@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2021.8.0" />
+        <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.2.0" />
         <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.12.0" />
     </ItemGroup>
 
