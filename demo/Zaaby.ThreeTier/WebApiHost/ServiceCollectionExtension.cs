@@ -8,8 +8,7 @@ namespace WebApiHost
     {
         public static IServiceCollection AddDbConnection(this IServiceCollection services, string connectionString)
         {
-            services.AddScoped<IDbConnection>(
-                _ => new NpgsqlConnection(connectionString));
+            services.AddScoped<IDbConnection>(_ => new NpgsqlConnection(connectionString));
             return services;
         }
     }

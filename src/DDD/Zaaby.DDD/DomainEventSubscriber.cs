@@ -6,7 +6,7 @@ namespace Zaaby.DDD
 {
     public class DomainEventSubscriber : BackgroundService
     {
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             throw new System.NotImplementedException();
         }
