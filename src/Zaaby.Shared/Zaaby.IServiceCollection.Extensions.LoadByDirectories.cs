@@ -1,14 +1,11 @@
-using Microsoft.Extensions.DependencyInjection;
+namespace Zaaby.Shared;
 
-namespace Zaaby.Shared
+public static partial class ZaabyIServiceCollectionExtensions
 {
-    public static partial class ZaabyIServiceCollectionExtensions
+    public static IServiceCollection FromDirectoriesOf(this IServiceCollection services,
+        params string[] directories)
     {
-        public static IServiceCollection FromDirectoriesOf(this IServiceCollection services,
-            params string[] directories)
-        {
-            LoadHelper.FromDirectories(directories);
-            return services;
-        }
+        LoadHelper.FromDirectories(directories);
+        return services;
     }
 }

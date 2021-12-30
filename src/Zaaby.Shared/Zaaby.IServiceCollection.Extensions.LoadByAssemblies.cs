@@ -1,21 +1,17 @@
-using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+namespace Zaaby.Shared;
 
-namespace Zaaby.Shared
+public static partial class ZaabyIServiceCollectionExtensions
 {
-    public static partial class ZaabyIServiceCollectionExtensions
+    public static IServiceCollection FromAssemblyNames(this IServiceCollection services,
+        params AssemblyName[] assemblyNames)
     {
-        public static IServiceCollection FromAssemblyNames(this IServiceCollection services,
-            params AssemblyName[] assemblyNames)
-        {
-            LoadHelper.FromAssemblyNames(assemblyNames);
-            return services;
-        }
+        LoadHelper.FromAssemblyNames(assemblyNames);
+        return services;
+    }
 
-        public static IServiceCollection FromAssemblies(this IServiceCollection services, params Assembly[] assemblies)
-        {
-            LoadHelper.FromAssemblies(assemblies);
-            return services;
-        }
+    public static IServiceCollection FromAssemblies(this IServiceCollection services, params Assembly[] assemblies)
+    {
+        LoadHelper.FromAssemblies(assemblies);
+        return services;
     }
 }

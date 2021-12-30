@@ -1,13 +1,10 @@
-using System;
+namespace Zaaby.Shared;
 
-namespace Zaaby.Shared
+public class TypePair
 {
-    public class TypePair
-    {
-        public Type InterfaceType { get; }
-        public Type ImplementationType { get; }
+    public Type InterfaceType { get; }
+    public Type ImplementationType { get; }
 
-        public TypePair(Type interfaceType, Type implementationType) =>
-            (InterfaceType, ImplementationType) = (interfaceType, implementationType);
-    }
+    public TypePair(Type interfaceType, Type implementationType) =>
+        (InterfaceType, ImplementationType) = (interfaceType, implementationType);
 }

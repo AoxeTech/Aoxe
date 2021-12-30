@@ -1,12 +1,9 @@
-using System;
+namespace Zaaby.Shared;
 
-namespace Zaaby.Shared
+public class UnpublishedMessage
 {
-    public class UnpublishedMessage
-    {
-        public Guid Id { get; set; }
-        public string EventType { get; set; }
-        public string Content { get; set; }
-        public DateTime PersistenceUtcTime { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string EventType { get; set; }
+    public string Content { get; set; }
+    public DateTime PersistenceUtcTime { get; set; }
 }

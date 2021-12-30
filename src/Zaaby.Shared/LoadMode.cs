@@ -1,8 +1,7 @@
-namespace Zaaby.Shared
+namespace Zaaby.Shared;
+
+public enum LoadTypesMode
 {
-    public enum LoadTypesMode
-    {
-        LoadBySpecify,
-        LoadByAllDirectory
-    }
+    LoadBySpecify,
+    LoadByAllDirectory
 }
