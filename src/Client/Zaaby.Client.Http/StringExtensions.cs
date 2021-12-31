@@ -1,27 +1,26 @@
-namespace Zaaby.Client.Http
+namespace Zaaby.Client.Http;
+
+internal static class StringExtensions
 {
-    internal static class StringExtensions
+    public static string TrimStart(this string target, string trimString)
     {
-        public static string TrimStart(this string target, string trimString)
-        {
-            if (string.IsNullOrEmpty(trimString)) return target;
+        if (string.IsNullOrEmpty(trimString)) return target;
 
-            var result = target;
-            while (result.StartsWith(trimString))
-                result = result[trimString.Length..];
+        var result = target;
+        while (result.StartsWith(trimString))
+            result = result[trimString.Length..];
 
-            return result;
-        }
+        return result;
+    }
 
-        public static string TrimEnd(this string target, string trimString)
-        {
-            if (string.IsNullOrEmpty(trimString)) return target;
+    public static string TrimEnd(this string target, string trimString)
+    {
+        if (string.IsNullOrEmpty(trimString)) return target;
 
-            var result = target;
-            while (result.EndsWith(trimString))
-                result = result[..^trimString.Length];
+        var result = target;
+        while (result.EndsWith(trimString))
+            result = result[..^trimString.Length];
 
-            return result;
-        }
+        return result;
     }
 }
