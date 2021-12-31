@@ -3,20 +3,21 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.1.3</PackageVersion>
-        <Version>2021.1.3</Version>
+        <PackageVersion>2022.1.0</PackageVersion>
+        <Version>2022.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby Message Bus RabbitMQ</PackageTags>
-        <Description>Message bud base by RabbitMQ</Description>
+        <Description>Message bus base by RabbitMQ</Description>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.2.0" />
-        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2021.12.0" />
+        <PackageReference Include="Zaaby.DDD.Abstractions" Version="2022.1.0" />
     </ItemGroup>
 
 </Project>

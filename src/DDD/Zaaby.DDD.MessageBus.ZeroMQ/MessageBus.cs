@@ -1,32 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Zaabee.ZeroMQ.Abstraction;
+using Zaabee.ZeroMQ.Abstractions;
 using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
 
-namespace Zaaby.DDD.MessageBus.ZeroMQ
+namespace Zaaby.DDD.MessageBus.ZeroMQ;
+
+public class MessageBus : IMessageBus, IDisposable
 {
-    public class MessageBus : IMessageBus, IDisposable
-    {
-        private readonly IZaabeeZeroMqHub _zeroMqHub;
+    private readonly IZaabeeZeroMessageBus _messageBus;
 
-        public MessageBus(IZaabeeZeroMqHub zeroMqHub)
-        {
-            _zeroMqHub = zeroMqHub;
-        }
+    public MessageBus(IZaabeeZeroMessageBus zeroMessageBus) =>
+        _messageBus = zeroMessageBus;
 
-        public void Publish<T>(string topic, T message)
-        {
-            _zeroMqHub.Publish(topic, message);
-        }
+    public void Publish<T>(string topic, T message) =>
+        _messageBus.Publish(topic, message);
 
-        public async Task PublishAsync<T>(string topic, T message)
-        {
-            await _zeroMqHub.PublishAsync(topic, message);
-        }
+    public async Task PublishAsync<T>(string topic, T message) =>
+        await _messageBus.PublishAsync(topic, message);
 
-        public void Dispose()
-        {
-            _zeroMqHub?.Dispose();
-        }
-    }
+    public void Dispose() =>
+        _messageBus.Dispose();
 }
