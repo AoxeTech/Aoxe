@@ -1,91 +1,79 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Zaabee.SequentialGuid;
-using Zaabee.Serializer.Abstractions;
-using Zaaby.Shared;
-using Zaaby.DDD.Abstractions.Domain;
+namespace Zaaby.DDD;
 
-namespace Zaaby.DDD
+public class ZaabyDddContext : DbContext
 {
-    public class ZaabyDddContext : DbContext
+    private readonly ITextSerializer _serializer;
+    public DbSet<UnpublishedMessage> UnpublishedMessages { get; set; } = default!;
+    public DbSet<PublishedMessage> PublishedMessages { get; set; } = default!;
+
+    public ZaabyDddContext(DbContextOptions options, ITextSerializer serializer) : base(options)
     {
-        private readonly ITextSerializer _serializer;
-        public DbSet<UnpublishedMessage> UnpublishedMessages { get; set; }
-        public DbSet<PublishedMessage> PublishedMessages { get; set; }
+        _serializer = serializer;
+    }
 
-        public ZaabyDddContext(DbContextOptions options, ITextSerializer serializer) : base(options)
-        {
-            _serializer = serializer;
-        }
+    public override int SaveChanges()
+    {
+        PersistenceDomainEvents();
+        return base.SaveChanges();
+    }
 
-        public override int SaveChanges()
-        {
-            PersistenceDomainEvents();
-            return base.SaveChanges();
-        }
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        PersistenceDomainEvents();
+        return base.SaveChanges(acceptAllChangesOnSuccess);
+    }
 
-        public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        {
-            PersistenceDomainEvents();
-            return base.SaveChanges(acceptAllChangesOnSuccess);
-        }
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await PersistenceDomainEventsAsync();
+        return await base.SaveChangesAsync(cancellationToken);
+    }
 
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-            CancellationToken cancellationToken = new())
-        {
-            await PersistenceDomainEventsAsync();
-            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
+    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
+        CancellationToken cancellationToken = default)
+    {
+        await PersistenceDomainEventsAsync();
+        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
-        {
-            await PersistenceDomainEventsAsync();
-            return await base.SaveChangesAsync(cancellationToken);
-        }
+    private void PersistenceDomainEvents()
+    {
+        var messages = TakeAwayDomainEvents()
+            .Select(domainEvent => new UnpublishedMessage
+            {
+                Id = SequentialGuidHelper.GenerateComb(),
+                EventType = domainEvent.GetType().ToString(),
+                Content = _serializer.ToText(domainEvent),
+                PersistenceUtcTime = DateTime.UtcNow
+            });
+        UnpublishedMessages.AddRange(messages);
+    }
 
-        private void PersistenceDomainEvents()
-        {
-            var messages = TakeAwayDomainEvents()
-                .Select(domainEvent => new UnpublishedMessage
-                {
-                    Id = SequentialGuidHelper.GenerateComb(),
-                    EventType = domainEvent.GetType().ToString(),
-                    Content = _serializer.ToText(domainEvent),
-                    PersistenceUtcTime = DateTime.UtcNow
-                });
-            UnpublishedMessages.AddRange(messages);
-        }
+    private async Task PersistenceDomainEventsAsync()
+    {
+        var messages = TakeAwayDomainEvents()
+            .Select(domainEvent => new UnpublishedMessage
+            {
+                Id = SequentialGuidHelper.GenerateComb(),
+                EventType = domainEvent.GetType().ToString(),
+                Content = _serializer.ToText(domainEvent),
+                PersistenceUtcTime = DateTime.UtcNow
+            });
+        await UnpublishedMessages.AddRangeAsync(messages);
+    }
 
-        private async Task PersistenceDomainEventsAsync()
-        {
-            var messages = TakeAwayDomainEvents()
-                .Select(domainEvent => new UnpublishedMessage
-                {
-                    Id = SequentialGuidHelper.GenerateComb(),
-                    EventType = domainEvent.GetType().ToString(),
-                    Content = _serializer.ToText(domainEvent),
-                    PersistenceUtcTime = DateTime.UtcNow
-                });
-            await UnpublishedMessages.AddRangeAsync(messages);
-        }
+    private List<IDomainEvent> TakeAwayDomainEvents()
+    {
+        var entityEntries = ChangeTracker
+            .Entries<Entity>()
+            .Where(x => x.Entity.DomainEvents.Any())
+            .ToList();
 
-        private List<IDomainEvent> TakeAwayDomainEvents()
-        {
-            var domainEntities = ChangeTracker
-                .Entries<Entity>()
-                .Where(x => x.Entity.DomainEvents is not null && x.Entity.DomainEvents.Any())
-                .ToList();
+        var domainEvents = entityEntries
+            .SelectMany(x => x.Entity.DomainEvents)
+            .ToList();
 
-            var domainEvents = domainEntities
-                .SelectMany(x => x.Entity.DomainEvents)
-                .ToList();
-
-            domainEntities.ForEach(entity => entity.Entity.ClearDomainEvents());
-            return domainEvents;
-        }
+        entityEntries.ForEach(entity => entity.Entity.ClearDomainEvents());
+        return domainEvents;
     }
 }

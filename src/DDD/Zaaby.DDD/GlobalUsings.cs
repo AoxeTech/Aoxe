@@ -1,0 +1,15 @@
+global using System;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Zaaby.Shared;
+global using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
+global using Zaaby.DDD.Abstractions.Application;
+global using Zaaby.DDD.Abstractions.Domain;
+global using Zaaby.DDD.Abstractions.Infrastructure.Repository;
+global using System.Collections.Generic;
+global using Microsoft.EntityFrameworkCore;
+global using Zaabee.SequentialGuid;
+global using Zaabee.Serializer.Abstractions;

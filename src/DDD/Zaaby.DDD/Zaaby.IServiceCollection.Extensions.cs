@@ -1,16 +1,13 @@
-using Microsoft.Extensions.DependencyInjection;
+namespace Zaaby.DDD;
 
-namespace Zaaby.DDD
+public static partial class ZaabyIServiceCollectionExtensions
 {
-    public static partial class ZaabyIServiceCollectionExtensions
-    {
-        public static IServiceCollection AddDDD(this IServiceCollection services) =>
-            services.AddApplicationService()
-                .AddIntegrationEventHandler()
-                .AddDomainService()
-                .AddDomainEventHandler()
-                .AddDomainFactory()
-                .AddRepository()
-                .AddDomainEventPublisher();
-    }
+    public static IServiceCollection AddDDD(this IServiceCollection services) =>
+        services.AddApplicationService()
+            .AddIntegrationEventHandler()
+            .AddDomainService()
+            .AddDomainEventHandler()
+            .AddDomainFactory()
+            .AddRepository()
+            .AddDomainEventPublisher();
 }
