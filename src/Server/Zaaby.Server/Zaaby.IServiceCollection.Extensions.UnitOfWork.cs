@@ -1,16 +1,11 @@
-using System;
-using System.Data;
-using Microsoft.Extensions.DependencyInjection;
+namespace Zaaby.Server;
 
-namespace Zaaby.Server
+public static partial class ZaabyIServiceCollectionExtensions
 {
-    public static partial class ZaabyIServiceCollectionExtensions
+    public static IServiceCollection AddUnitOfWork(this IServiceCollection services,
+        Func<IServiceProvider, IDbTransaction> factory)
     {
-        public static IServiceCollection AddUnitOfWork(this IServiceCollection services,
-            Func<IServiceProvider, IDbTransaction> factory)
-        {
-            services.AddScoped(factory);
-            return services;
-        }
+        services.AddScoped(factory);
+        return services;
     }
 }
