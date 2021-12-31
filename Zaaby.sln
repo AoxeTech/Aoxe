@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Shared", "src\Zaaby.S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9C5D1C18-AB9B-4A01-9A06-375198D440C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Common.Test", "tests\Zaaby.Common.Test\Zaaby.Common.Test.csproj", "{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Shared.Test", "tests\Zaaby.Shared.Test\Zaaby.Shared.Test.csproj", "{E9DE5BF6-BD26-4FDD-B18B-32A8A56EA697}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThreeTier", "ThreeTier", "{607DC8C9-F38C-4C10-AA02-44C4D0B16C08}"
 EndProject

@@ -7,9 +7,8 @@ using IAliceServices;
 using IBobServices;
 using ICarolServices;
 using Xunit;
-using Zaaby.Shared;
 
-namespace Zaaby.Common.Test
+namespace Zaaby.Shared.Test
 {
     public class UnitTest1
     {
@@ -74,12 +73,12 @@ namespace Zaaby.Common.Test
     {
     }
 
-    [TestAttribute]
+    [Test]
     public class TestClassWithAttribute
     {
     }
 
-    [TestDerivedAttribute]
+    [TestDerived]
     public class TestClassWithDerivedAttribute
     {
     }
