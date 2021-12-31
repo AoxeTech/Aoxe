@@ -1,6 +1,5 @@
-﻿namespace Zaaby.DDD.Abstractions.Application
+﻿namespace Zaaby.DDD.Abstractions.Application;
+
+public interface IIntegrationEvent
 {
-    public interface IIntegrationEvent
-    {
-    }
 }

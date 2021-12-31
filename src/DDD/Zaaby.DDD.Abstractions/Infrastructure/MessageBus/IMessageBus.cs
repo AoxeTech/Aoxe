@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
+namespace Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
 
-namespace Zaaby.DDD.Abstractions.Infrastructure.MessageBus
+public interface IMessageBus
 {
-    public interface IMessageBus
-    {
-        void Publish<T>(string topic, T message);
-        Task PublishAsync<T>(string topic, T message);
-    }
+    void Publish<T>(string topic, T message);
+    Task PublishAsync<T>(string topic, T message);
 }

@@ -1,12 +1,9 @@
-﻿using System;
+﻿namespace Zaaby.DDD.Abstractions.Application;
 
-namespace Zaaby.DDD.Abstractions.Application
+public interface IApplicationService
 {
-    public interface IApplicationService
-    {
-    }
+}
 
-    public class ApplicationServiceAttribute : Attribute
-    {
-    }
+public class ApplicationServiceAttribute : Attribute
+{
 }

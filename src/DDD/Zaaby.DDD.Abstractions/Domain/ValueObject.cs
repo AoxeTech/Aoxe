@@ -1,8 +1,7 @@
-namespace Zaaby.DDD.Abstractions.Domain
-{
-    public interface IValueObject
-    {
-    }
+namespace Zaaby.DDD.Abstractions.Domain;
 
-    public abstract record ValueObject : IValueObject;
+public interface IValueObject
+{
 }
+
+public abstract record ValueObject : IValueObject;

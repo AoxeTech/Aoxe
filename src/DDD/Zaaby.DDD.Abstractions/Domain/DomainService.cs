@@ -1,12 +1,9 @@
-﻿using System;
+﻿namespace Zaaby.DDD.Abstractions.Domain;
 
-namespace Zaaby.DDD.Abstractions.Domain
+public interface IDomainService
 {
-    public interface IDomainService
-    {
-    }
+}
 
-    public class DomainServiceAttribute : Attribute
-    {
-    }
+public class DomainServiceAttribute : Attribute
+{
 }
