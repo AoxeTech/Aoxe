@@ -1,12 +1,9 @@
-using System;
+namespace Zaaby.ThreeTier.Annotations.DataAccess;
 
-namespace Zaaby.ThreeTier.Annotations.DataAccess
+public interface IDal
 {
-    public interface IDal
-    {
-    }
+}
 
-    public class DalAttribute : Attribute
-    {
-    }
+public class DalAttribute : Attribute
+{
 }
