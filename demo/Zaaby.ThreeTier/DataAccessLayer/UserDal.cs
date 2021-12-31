@@ -40,7 +40,7 @@ namespace DataAccessLayer
         public User GetByName(string name)
         {
             return _connection.QueryFirstOrDefault<User>("SELECT * FROM \"User\" WHERE \"Name\" = @Name",
-                new {Name = name});
+                new { Name = name });
         }
 
         public IList<User> GetAll()

@@ -29,7 +29,7 @@ namespace AliceHost
                 .FromAssemblyOf<AliceService>()
                 .AddZaabyService<IService>()
                 .AddZaabyService<ServiceAttribute>()
-                .AddZaabyClient(typeof(IService),new Dictionary<string, string>
+                .AddZaabyClient(typeof(IService), new Dictionary<string, string>
                 {
                     {typeof(IBobService).Namespace, "http://localhost:5002"},
                     {typeof(ICarolService).Namespace, "http://localhost:5003"}
@@ -59,10 +59,10 @@ namespace AliceHost
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseZaaby();
-            
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();    
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alice API v1"));
             }

@@ -8,7 +8,7 @@ public class PublishedMessage
     public DateTime PersistenceUtcTime { get; set; }
     public DateTime PublishedUtcTime { get; set; }
 
-    private PublishedMessage(){}
+    private PublishedMessage() { }
 
     public PublishedMessage(UnpublishedMessage unpublishedMessage)
     {

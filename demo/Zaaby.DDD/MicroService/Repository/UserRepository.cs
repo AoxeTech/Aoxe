@@ -15,7 +15,7 @@ namespace Repository
         {
             _dbContext = customDbContext;
         }
-        
+
         public async Task AddAsync(User user)
         {
             await _dbContext.Users.AddAsync(user);

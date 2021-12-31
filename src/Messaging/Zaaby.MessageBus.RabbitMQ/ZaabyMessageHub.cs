@@ -78,13 +78,13 @@ namespace Zaaby.MessageBus.RabbitMQ
                         {
                             var handler = scope.ServiceProvider.GetService(messageHandlerType);
                             var @delegate = Delegate.CreateDelegate(actionT, handler, handleMethod);
-                            @delegate.Method.Invoke(handler, new[] {message});
+                            @delegate.Method.Invoke(handler, new[] { message });
                         }
                     }
 
                     subscribeMethod.MakeGenericMethod(messageType)
                         .Invoke(_rabbitMqClient,
-                            new object[] {exchangeName, queueName, (Action<object>) HandleAction, _prefetch});
+                            new object[] { exchangeName, queueName, (Action<object>)HandleAction, _prefetch });
                 });
             });
         }

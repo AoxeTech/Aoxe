@@ -10,5 +10,5 @@ public interface IFactory<TEntity> : IFactory where TEntity : IEntity
 
 public class FactoryAttribute : Attribute
 {
-        
+
 }

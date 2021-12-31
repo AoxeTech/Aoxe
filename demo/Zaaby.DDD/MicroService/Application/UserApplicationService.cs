@@ -28,7 +28,7 @@ namespace Application
         {
             return await _userDomainService.GetUserAsync(userId);
         }
-        
+
         public async Task AddUser()
         {
             //注意:不要使用自增字段，使用自增字段相当于要先持久化才能获取到Id，实际上是破坏了聚合的完整性。
@@ -46,7 +46,7 @@ namespace Application
         {
             await _userDomainService.CelebrateBirthdayAsync(userId);
         }
-        
+
         public async Task SetTagsAsync(Guid userId, IEnumerable<string> tags)
         {
             await _userDomainService.SetTagsAsync(userId, tags.ToArray());

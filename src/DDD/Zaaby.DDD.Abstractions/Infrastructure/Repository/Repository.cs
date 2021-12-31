@@ -15,5 +15,5 @@ public interface IRepository<in TAggregateRoot, in TId> : IRepository<TAggregate
 
 public class RepositoryAttribute : Attribute
 {
-        
+
 }

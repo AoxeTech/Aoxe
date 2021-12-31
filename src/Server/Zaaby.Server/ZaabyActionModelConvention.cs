@@ -14,7 +14,7 @@ internal class ZaabyActionModelConvention : IActionModelConvention
         action.Selectors.Clear();
         var route = _serviceType.GetCustomAttribute(typeof(RouteAttribute), false) as RouteAttribute;
         var template = $"{_serviceType.FullName?.Replace('.', '/')}/[action]";
-        action.Selectors.Add(CreateSelector(route ?? new RouteAttribute(template) {Name = template}));
+        action.Selectors.Add(CreateSelector(route ?? new RouteAttribute(template) { Name = template }));
 
         foreach (var parameter in action.Parameters)
         {
@@ -29,7 +29,7 @@ internal class ZaabyActionModelConvention : IActionModelConvention
         if (routeTemplateProvider is not null)
             selectorModel.AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider);
 
-        selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> {"POST"}));
+        selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> { "POST" }));
 
         return selectorModel;
     }

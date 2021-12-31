@@ -10,7 +10,7 @@ public class ZaabyException : Exception
     {
     }
 
-    public ZaabyException(string message) : base(message)=>
+    public ZaabyException(string message) : base(message) =>
         Message = message;
 
     public ZaabyException(string message, string stackTrace = null) : base(message) =>

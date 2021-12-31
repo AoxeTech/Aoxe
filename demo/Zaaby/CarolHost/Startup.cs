@@ -24,7 +24,7 @@ namespace CarolHost
             services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
                 typeof(CarolService).Assembly.GetName());
             services.AddZaabyService<IService>();
-            services.AddZaabyClient(typeof(IService),new Dictionary<string, string>
+            services.AddZaabyClient(typeof(IService), new Dictionary<string, string>
             {
                 {"IAliceServices", "https://localhost:5001"},
                 {"IBobServices", "http://localhost:5002"}

@@ -22,7 +22,7 @@ namespace AliceServices
         public string Hello() => "Hi,I am Alice.";
 
         public string SayHelloToBob() => $"Hi,I am Alice.\r\n{_bobService.Hello()}";
-        public async Task<string> SayHelloToBobAsyncTest()=> $"Hi,I am Alice.\r\n{await _bobService.HelloTestAsync()}";
+        public async Task<string> SayHelloToBobAsyncTest() => $"Hi,I am Alice.\r\n{await _bobService.HelloTestAsync()}";
 
         public string SayHelloToCarol() => $"Hi,I am Alice.\r\n{_carolService.Hello()}";
 

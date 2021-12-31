@@ -22,7 +22,7 @@ namespace BackendForBrowser
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BackendForBrowser", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BackendForBrowser", Version = "v1" });
             });
 
             services.AddQueryService() //批量注册QueryService

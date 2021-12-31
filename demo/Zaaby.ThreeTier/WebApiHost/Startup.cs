@@ -28,7 +28,7 @@ namespace WebApiHost
                 .AddDbConnection("Host=192.168.78.140;Username=postgres;Password=postgres;Database=ThreeTier");
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApiHost", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiHost", Version = "v1" });
             });
         }
 

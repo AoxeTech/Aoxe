@@ -20,7 +20,7 @@ namespace QueryService
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             return await _dbConnection.QueryAsync<UserReadModel>("SELECT * FROM User WHERE Name=@Name",
-                new {Name = name});
+                new { Name = name });
         }
     }
 }
