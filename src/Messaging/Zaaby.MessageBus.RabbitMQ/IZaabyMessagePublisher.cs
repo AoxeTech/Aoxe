@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
+namespace Zaaby.MessageBus.RabbitMQ;
 
-namespace Zaaby.MessageBus.RabbitMQ
+public interface IZaabyMessagePublisher
 {
-    public interface IZaabyMessagePublisher
-    {
-        void Publish<TMessage>(TMessage message);
-        Task PublishAsync<TMessage>(TMessage message);
-    }
+    void Publish<TMessage>(TMessage message);
+    Task PublishAsync<TMessage>(TMessage message);
 }

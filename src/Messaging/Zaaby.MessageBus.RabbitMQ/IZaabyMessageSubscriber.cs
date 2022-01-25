@@ -1,9 +1,6 @@
-using System;
+namespace Zaaby.MessageBus.RabbitMQ;
 
-namespace Zaaby.MessageBus.RabbitMQ
+public interface IZaabyMessageSubscriber
 {
-    public interface IZaabyMessageSubscriber
-    {
-        void Subscribe<TMessage>(Func<Action<TMessage>> resolve);
-    }
+    void Subscribe<TMessage>(Func<Action<TMessage>> resolve);
 }

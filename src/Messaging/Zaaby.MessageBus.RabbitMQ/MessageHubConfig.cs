@@ -1,19 +1,16 @@
-using System;
+namespace Zaaby.MessageBus.RabbitMQ;
 
-namespace Zaaby.MessageBus.RabbitMQ
+public class MessageHubConfig
 {
-    public class MessageHubConfig
+    public Type MessageHandlerInterfaceType { get; set; }
+    public Type MessageInterfaceType { get; set; }
+    public string HandleName { get; set; }
+
+    private ushort _prefetch = 50;
+
+    public ushort Prefetch
     {
-        public Type MessageHandlerInterfaceType { get; set; }
-        public Type MessageInterfaceType { get; set; }
-        public string HandleName { get; set; }
-
-        private ushort _prefetch = 50;
-
-        public ushort Prefetch
-        {
-            get => _prefetch;
-            set => _prefetch = value == 0 ? _prefetch : value;
-        }
+        get => _prefetch;
+        set => _prefetch = value is 0 ? _prefetch : value;
     }
 }

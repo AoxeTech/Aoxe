@@ -1,10 +1,7 @@
-using System;
+namespace Zaaby.MessageBus.RabbitMQ;
 
-namespace Zaaby.MessageBus.RabbitMQ
+public interface IZaabyMessageHub : IZaabyMessagePublisher, IZaabyMessageSubscriber
 {
-    public interface IZaabyMessageHub : IZaabyMessagePublisher, IZaabyMessageSubscriber
-    {
-        void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
-            string handleName);
-    }
+    void RegisterMessageSubscriber(Type messageHandlerInterfaceType, Type messageInterfaceType,
+        string handleName);
 }
