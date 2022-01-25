@@ -1,10 +1,7 @@
-using Consul;
+namespace Zaaby.Server.Consul;
 
-namespace Zaaby.Server.Consul
+public class ZaabeeConsulOptions
 {
-    public class ZaabeeConsulOptions
-    {
-        public string ConsulAddress { get; set; }
-        public AgentServiceRegistration AgentServiceRegistration { get; set; }
-    }
+    public string ConsulAddress { get; set; }
+    public AgentServiceRegistration AgentServiceRegistration { get; set; }
 }
