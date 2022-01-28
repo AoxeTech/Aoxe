@@ -3,13 +3,13 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.1.2</PackageVersion>
-        <Version>2022.1.2</Version>
+        <PackageVersion>2022.2.0</PackageVersion>
+        <Version>2022.2.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby;MicroService;Http Client</PackageTags>
         <Description>Client for Zaaby framework base by http.</Description>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaaby</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
@@ -17,8 +17,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-        <PackageReference Include="Zaabee.NewtonsoftJson" Version="2022.9.0" />
-        <PackageReference Include="Zaaby.Shared" Version="2022.1.0" />
+        <PackageReference Include="Zaabee.NewtonsoftJson" Version="2022.10.0" />
+        <PackageReference Include="Zaaby.Shared" Version="2022.2.0" />
     </ItemGroup>
 
 </Project>

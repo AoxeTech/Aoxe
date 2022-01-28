@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Zaabee.RabbitMQ.Abstractions;
-using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
+using Zaaby.DDD.Abstractions.Infrastructure.Messaging;
 
 namespace Zaaby.DDD.MessageBus.RabbitMQ;
 

@@ -5,7 +5,7 @@ global using System.Threading.Tasks;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Zaaby.Shared;
-global using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
+global using Zaaby.DDD.Abstractions.Infrastructure.Messaging;
 global using Zaaby.DDD.Abstractions.Application;
 global using Zaaby.DDD.Abstractions.Domain;
 global using Zaaby.DDD.Abstractions.Infrastructure.Repository;

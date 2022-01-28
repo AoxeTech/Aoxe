@@ -11,7 +11,7 @@ using Zaabee.RabbitMQ;
 using Zaabee.RabbitMQ.Abstractions;
 using Zaabee.Serializer.Abstractions;
 using Zaaby.DDD;
-using Zaaby.DDD.Abstractions.Infrastructure.MessageBus;
+using Zaaby.DDD.Abstractions.Infrastructure.Messaging;
 using Zaaby.DDD.MessageBus.RabbitMQ;
 
 namespace ServiceHost
