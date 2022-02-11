@@ -1,4 +1,4 @@
-namespace Zaaby.Client.Http;
+namespace Zaaby.Client.Http.Internal;
 
 internal class TaskCompletionSource
 {

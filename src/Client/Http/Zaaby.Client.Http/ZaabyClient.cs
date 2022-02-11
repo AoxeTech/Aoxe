@@ -1,4 +1,6 @@
-﻿namespace Zaaby.Client.Http;
+﻿using Zaaby.Client.Http.Internal;
+
+namespace Zaaby.Client.Http;
 
 public class ZaabyClient
 {
@@ -30,18 +32,15 @@ public class ZaabyClient
         protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
         {
             if (targetMethod is null) return null;
-            var result = targetMethod.ReturnType.IsGenericType &&
-                         targetMethod.ReturnType.GetGenericTypeDefinition() == typeof(Task<>)
-                ? InvokeAsync(targetMethod, args?.FirstOrDefault())
-                    .CastResult(targetMethod.ReturnType.GetGenericArguments()[0])
-                : InvokeAsync(targetMethod, args?.FirstOrDefault())
-                    .RunSync();
-            return result;
+            var result = SendAsync(targetMethod.ReturnType, targetMethod.Name, args?.FirstOrDefault());
+            if (targetMethod.ReturnType.IsGenericType
+                && targetMethod.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
+                return result.CastResult(targetMethod.ReturnType.GetGenericArguments()[0]);
+            return result.RunSync();
         }
 
-        private async Task<object?> InvokeAsync(MethodInfo targetMethod, object? message)
+        private async Task<object?> SendAsync(Type returnType, string methodName, object? message)
         {
-            var methodName = targetMethod.Name.TrimEnd("Async");
             if (string.IsNullOrEmpty(_type.FullName))
                 throw new ZaabyException($"{_type}'s full name is null or empty.");
             var url = $"/{_type.FullName.Replace('.', '/')}/{methodName}";
@@ -50,31 +49,20 @@ public class ZaabyClient
 
             var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
 
-            if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode != (HttpStatusCode)600)
+            if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode is not (HttpStatusCode)600)
                 throw new ZaabyException($"{url}:{httpResponseMessage}");
 
-            return await GetResultAsync(httpResponseMessage, targetMethod.ReturnType);
+            return await GetResultAsync(returnType, httpResponseMessage);
         }
 
-        private static HttpRequestMessage CreateHttpRequestMessage(string url, object? message)
-        {
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, url)
-            {
-                Content = new StringContent(message is null ? "" : message.ToJson(), Encoding.UTF8,
-                    "application/json")
-            };
-            httpRequestMessage.Headers.Add("Accept", "application/json");
-            return httpRequestMessage;
-        }
-
-        private static async Task<object?> GetResultAsync(HttpResponseMessage httpResponseMessage, Type returnType)
+        private static async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
         {
             var result = await httpResponseMessage.Content.ReadAsStringAsync();
             var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
                 ? returnType.GenericTypeArguments[0]
                 : returnType;
             if (httpResponseMessage.IsSuccessStatusCode)
-                return result.IsNullOrWhiteSpace()
+                return string.IsNullOrWhiteSpace(result)
                     ? null
                     : result.FromJson(type);
 
@@ -86,6 +74,20 @@ public class ZaabyClient
                 ThrowTime = zaabyError.ThrowTime,
                 Source = zaabyError.Source
             };
+        }
+
+        private static HttpRequestMessage CreateHttpRequestMessage(string requestUri, object? message)
+        {
+            var mediaType = "application/json";
+            var httpContent = new StringContent(message is null ? "" : message.ToJson(), Encoding.UTF8, mediaType);
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
+            {
+                Content = httpContent
+            };
+            httpRequestMessage.Content.Headers.ContentType =
+                new System.Net.Http.Headers.MediaTypeHeaderValue(mediaType);
+            httpRequestMessage.Headers.Add("Accept", mediaType);
+            return httpRequestMessage;
         }
     }
 }

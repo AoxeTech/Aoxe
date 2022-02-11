@@ -5,15 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Client\Zaaby.Client.Http\Zaaby.Client.Http.csproj" />
+        <ProjectReference Include="..\..\..\src\Client\Http\Zaaby.Client.Http\Zaaby.Client.Http.csproj" />
         <ProjectReference Include="..\..\..\src\Server\Zaaby.Server.Consul\Zaaby.Server.Consul.csproj" />
         <ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj" />
         <ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" NoWarn="NU1605" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.1" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.2" NoWarn="NU1605" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
