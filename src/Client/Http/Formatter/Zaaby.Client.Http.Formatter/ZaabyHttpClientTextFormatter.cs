@@ -1,32 +1,22 @@
-using System.Text;
-using Zaabee.Serializer.Abstractions;
-using Zaaby.Client.Http.Formatter.Abstractions;
-using Zaaby.Shared;
+namespace Zaaby.Client.Http.Formatter;
 
-namespace Zaaby.Client.Http.Formatter.Jil;
-
-public class ZaabyHttpClientFormatter : IZaabyHttpClientFormatter
+public class ZaabyHttpClientTextFormatter : ZaabyHttpClientFormatter, IZaabyHttpClientFormatter
 {
     private readonly ITextSerializer _serializer;
+    public string MediaType { get; }
 
-    public ZaabyHttpClientFormatter(ITextSerializer serializer)
+    public ZaabyHttpClientTextFormatter(ZaabyClientFormatterOptions options)
     {
-        _serializer = serializer;
+        if (options.Serializer is not ITextSerializer textSerializer)
+            throw new ArgumentException("The Serializer is not ITextSerializer.");
+        _serializer = textSerializer;
+        MediaType = options.MediaType;
     }
-
-    public string MediaType { get; set; } = "application/x-jil";
 
     public HttpRequestMessage CreateHttpRequestMessage(string requestUri, object? message)
     {
         var httpContent = new StringContent(_serializer.ToText(message), Encoding.UTF8, MediaType);
-        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
-        {
-            Content = httpContent
-        };
-        httpRequestMessage.Content.Headers.ContentType =
-            new System.Net.Http.Headers.MediaTypeHeaderValue(MediaType);
-        httpRequestMessage.Headers.Add("Accept", MediaType);
-        return httpRequestMessage;
+        return CreateHttpRequestMessage(httpContent, MediaType, requestUri);
     }
 
     public async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)

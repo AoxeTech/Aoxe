@@ -1,4 +1,8 @@
-namespace Zaaby.Client.Http.Formatter.Abstractions;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace Zaaby.Client.Http.Formatter.Shared;
 
 public interface IZaabyHttpClientFormatter
 {

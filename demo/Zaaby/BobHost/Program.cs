@@ -7,6 +7,11 @@ using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Zaaby;
+using Zaaby.AspNetCore.Formatters.Jil;
+using Zaaby.AspNetCore.Formatters.MsgPack;
+using Zaaby.AspNetCore.Formatters.Protobuf;
+using Zaaby.AspNetCore.Formatters.Utf8Json;
+using Zaaby.AspNetCore.Formatters.ZeroFormatter;
 using Zaaby.Server;
 
 namespace BobHost
@@ -23,10 +28,20 @@ namespace BobHost
                 .AddZaabyService<IService>()
                 .UseZaabyClient(typeof(IService), new Dictionary<string, string>
                 {
-                    {"IAliceServices", "https://localhost:5001"},
+                    {"IAliceServices", "http://localhost:5001"},
                     {"ICarolServices", "http://localhost:5003"}
                 })
-                .ConfigureServices(services => { services.AddSwaggerDocument(); })
+                .ConfigureServices(services =>
+                {
+                    services.AddControllers()
+                        .AddJil()
+                        .AddMsgPack()
+                        .AddProtobuf()
+                        .AddUtf8Json()
+                        .AddZeroFormatter()
+                        .AddXmlSerializerFormatters();
+                    services.AddSwaggerDocument();
+                })
                 .Configure(app =>
                 {
                     app.UseHttpsRedirection()

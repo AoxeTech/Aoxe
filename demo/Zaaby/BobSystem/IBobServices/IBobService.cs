@@ -7,7 +7,7 @@ namespace IBobServices
     public interface IBobService : IService
     {
         string Hello();
-        Task<string> HelloTestAsync();
+        Task<string> HelloAsyncTest();
         string SayHelloToAlice();
         Task<string> SayHelloToAliceAsyncTest();
         string SayHelloToCarol();

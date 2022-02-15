@@ -22,9 +22,9 @@ namespace BobServices
 
         public string Hello() => "Hello,I am Bob.";
 
-        public async Task<string> HelloTestAsync()
+        public async Task<string> HelloAsyncTest()
         {
-            var hello = $"Hi,I am Bob.{DateTime.UtcNow}";
+            var hello = $"Hi,I am Bob.{DateTime.Now}";
             var ms = new MemoryStream();
             var bytes = Encoding.UTF8.GetBytes(hello);
             await ms.WriteAsync(bytes.AsMemory(0, bytes.Length));

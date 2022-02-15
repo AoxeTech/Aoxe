@@ -1,14 +1,16 @@
-﻿using Zaaby.Client.Http.Internal;
+﻿
 
 namespace Zaaby.Client.Http;
 
 public class ZaabyClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IZaabyHttpClientFormatter _httpClientFormatter;
 
-    public ZaabyClient(IHttpClientFactory httpClientFactory)
+    public ZaabyClient(IHttpClientFactory httpClientFactory, IZaabyHttpClientFormatter httpClientFormatter)
     {
         _httpClientFactory = httpClientFactory;
+        _httpClientFormatter = httpClientFormatter;
     }
 
     public T GetService<T>()
@@ -16,6 +18,7 @@ public class ZaabyClient
         var t = DispatchProxy.Create<T, InvokeProxy<T>>();
         if (t is not InvokeProxy<T> invokeProxy) return t;
         invokeProxy.Client = _httpClientFactory.CreateClient(typeof(T).Namespace!);
+        invokeProxy.HttpClientFormatter = _httpClientFormatter;
         return t;
     }
 
@@ -23,6 +26,7 @@ public class ZaabyClient
     {
         private readonly Type _type;
         internal HttpClient Client { get; set; }
+        internal IZaabyHttpClientFormatter HttpClientFormatter { get; set; }
 
         public InvokeProxy()
         {
@@ -45,49 +49,14 @@ public class ZaabyClient
                 throw new ZaabyException($"{_type}'s full name is null or empty.");
             var url = $"/{_type.FullName.Replace('.', '/')}/{methodName}";
 
-            var httpRequestMessage = CreateHttpRequestMessage(url, message);
+            var httpRequestMessage = HttpClientFormatter.CreateHttpRequestMessage(url, message);
 
             var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
 
             if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode is not (HttpStatusCode)600)
                 throw new ZaabyException($"{url}:{httpResponseMessage}");
 
-            return await GetResultAsync(returnType, httpResponseMessage);
-        }
-
-        private static async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
-        {
-            var result = await httpResponseMessage.Content.ReadAsStringAsync();
-            var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
-                ? returnType.GenericTypeArguments[0]
-                : returnType;
-            if (httpResponseMessage.IsSuccessStatusCode)
-                return string.IsNullOrWhiteSpace(result)
-                    ? null
-                    : result.FromJson(type);
-
-            var zaabyError = result.FromJson<ZaabyError>()!;
-            throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
-            {
-                Id = zaabyError.Id,
-                Code = zaabyError.Code,
-                ThrowTime = zaabyError.ThrowTime,
-                Source = zaabyError.Source
-            };
-        }
-
-        private static HttpRequestMessage CreateHttpRequestMessage(string requestUri, object? message)
-        {
-            var mediaType = "application/json";
-            var httpContent = new StringContent(message is null ? "" : message.ToJson(), Encoding.UTF8, mediaType);
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
-            {
-                Content = httpContent
-            };
-            httpRequestMessage.Content.Headers.ContentType =
-                new System.Net.Http.Headers.MediaTypeHeaderValue(mediaType);
-            httpRequestMessage.Headers.Add("Accept", mediaType);
-            return httpRequestMessage;
+            return await HttpClientFormatter.GetResultAsync(returnType, httpResponseMessage);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace AliceServices
         public string Hello() => "Hi,I am Alice.";
 
         public string SayHelloToBob() => $"Hi,I am Alice.\r\n{_bobService.Hello()}";
-        public async Task<string> SayHelloToBobAsyncTest() => $"Hi,I am Alice.\r\n{await _bobService.HelloTestAsync()}";
+        public async Task<string> SayHelloToBobAsyncTest() => $"Hi,I am Alice.\r\n{await _bobService.HelloAsyncTest()}";
 
         public string SayHelloToCarol() => $"Hi,I am Alice.\r\n{_carolService.Hello()}";
 
@@ -60,7 +60,7 @@ namespace AliceServices
 
         public async Task<string> HelloAsyncTest()
         {
-            var hello = $"Hi,I am Alice.{DateTime.UtcNow}";
+            var hello = $"Hi,I am Alice.{DateTime.Now}";
             var ms = new MemoryStream();
             var bytes = Encoding.UTF8.GetBytes(hello);
             await ms.WriteAsync(bytes.AsMemory(0, bytes.Length));

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2022.2.0</PackageVersion>
+        <Version>2022.2.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Zaaby;MicroService;Http Client;Formatter;Abstractions</PackageTags>
+        <Description>The formatter's abstractions for Zaaby http client.</Description>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaaby</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0" />
+    </ItemGroup>
+
+</Project>

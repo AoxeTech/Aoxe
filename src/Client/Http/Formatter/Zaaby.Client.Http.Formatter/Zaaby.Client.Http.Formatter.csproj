@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2022.2.0</PackageVersion>
+        <Version>2022.2.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Zaaby;MicroService;Http Client;Formatter;</PackageTags>
+        <Description>The formatter for Zaaby http client.</Description>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaaby</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Zaaby.Client.Http.Formatter.Shared" Version="2022.2.0" />
+        <PackageReference Include="Zaaby.Shared" Version="2022.2.0" />
+    </ItemGroup>
+
+</Project>

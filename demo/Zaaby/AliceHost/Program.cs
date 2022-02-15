@@ -10,7 +10,7 @@ namespace AliceHost
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://172.16.20.25:5001");
+                    webBuilder.UseUrls("http://localhost:5001");
                 })
                 .Build()
                 .Run();

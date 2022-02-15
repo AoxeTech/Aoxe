@@ -1,9 +1,14 @@
-﻿namespace Zaaby.Client.Http;
+﻿using Zaabee.NewtonsoftJson;
+using Zaabee.Serializer.Abstractions;
+using Zaaby.Client.Http.Formatter;
+
+namespace Zaaby.Client.Http;
 
 public static class ZaabyIServiceCollectionExtensions
 {
-    public static IServiceCollection AddZaabyClient(this IServiceCollection services, Type serviceDefineType,
-        Dictionary<string, string> configUrls)
+    public static IServiceCollection AddZaabyClient(this IServiceCollection services,
+        Type serviceDefineType, Dictionary<string, string> configUrls,
+        Action<ZaabyClientFormatterOptions>? optionsFactory = null)
     {
         if (configUrls.Count is 0) return services;
         var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
@@ -29,6 +34,18 @@ public static class ZaabyIServiceCollectionExtensions
         }
 
         services.AddScoped<ZaabyClient>();
+
+        var options = new ZaabyClientFormatterOptions(new Serializer(), "application/json");
+        optionsFactory?.Invoke(options);
+        IZaabyHttpClientFormatter formatter = options.Serializer switch
+        {
+            ITextSerializer => new ZaabyHttpClientTextFormatter(options),
+            not null => new ZaabyHttpClientStreamFormatter(options),
+            _ => throw new ArgumentOutOfRangeException(nameof(options.Serializer),
+                $"options.Serializer must be {nameof(ITextSerializer)} or {nameof(IStreamSerializer)}.")
+        };
+
+        services.AddSingleton(formatter);
 
         return services;
     }
