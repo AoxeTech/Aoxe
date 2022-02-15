@@ -147,6 +147,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server.Consul", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server.Etcd", "src\Server\ServiceRegistration\Zaaby.Server.Etcd\Zaaby.Server.Etcd.csproj", "{4F4BC9A5-3031-4675-B271-710EA53B6286}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Messaging.Abstractions", "src\Messaging\Zaaby.Messaging.Abstractions\Zaaby.Messaging.Abstractions.csproj", "{9C6C38FA-B747-4927-98D5-394B2A167D70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -345,6 +347,10 @@ Global
 		{4F4BC9A5-3031-4675-B271-710EA53B6286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F4BC9A5-3031-4675-B271-710EA53B6286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F4BC9A5-3031-4675-B271-710EA53B6286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -416,6 +422,7 @@ Global
 		{19D89FAB-4791-4C5A-817D-65811645764C} = {E2E82934-0354-4EB1-BAC4-7A583D8E22A9}
 		{22A6E1DC-4EC6-412B-B8B3-301539F133BA} = {19D89FAB-4791-4C5A-817D-65811645764C}
 		{4F4BC9A5-3031-4675-B271-710EA53B6286} = {19D89FAB-4791-4C5A-817D-65811645764C}
+		{9C6C38FA-B747-4927-98D5-394B2A167D70} = {71B821C7-4B75-45E1-8019-E407F4B672BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}
