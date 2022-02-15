@@ -7,8 +7,8 @@
         <Version>2022.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageTags>Zaaby;MicroService;Http Client;Formatter;Utf8Json;</PackageTags>
-        <Description>The utf8json formatter for Zaaby http client.</Description>
+        <PackageTags>Zaaby;MicroService;Http Client;Formatter;MsgPack;</PackageTags>
+        <Description>The MsgPack formatter for Zaaby http client.</Description>
         <PackageProjectUrl>https://github.com/PicoHex/Zaaby</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.Utf8Json" Version="2022.16.0" />
+        <PackageReference Include="Zaabee.MsgPack" Version="2022.16.0" />
         <PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.2.0" />
     </ItemGroup>
 
