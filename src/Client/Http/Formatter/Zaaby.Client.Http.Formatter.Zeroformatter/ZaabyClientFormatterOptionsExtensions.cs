@@ -5,7 +5,7 @@ namespace Zaaby.Client.Http.Formatter.Zeroformatter;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {
-    public static ZaabyClientFormatterOptions UseJilFormatter(this ZaabyClientFormatterOptions formatterOptions,
+    public static ZaabyClientFormatterOptions UseZeroFormatter(this ZaabyClientFormatterOptions formatterOptions,
         string mediaType = "application/x-zeroformatter")
     {
         formatterOptions.Serializer = new Serializer();

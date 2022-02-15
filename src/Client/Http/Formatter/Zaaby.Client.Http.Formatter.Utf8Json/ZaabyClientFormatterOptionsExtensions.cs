@@ -6,7 +6,7 @@ namespace Zaaby.Client.Http.Formatter.Utf8Json;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {
-    public static ZaabyClientFormatterOptions UseJilFormatter(this ZaabyClientFormatterOptions formatterOptions,
+    public static ZaabyClientFormatterOptions UseUtf8JsonFormatter(this ZaabyClientFormatterOptions formatterOptions,
         IJsonFormatterResolver? jsonFormatterResolver = null, string mediaType = "application/x-utf8json")
     {
         formatterOptions.Serializer = new Serializer(jsonFormatterResolver);

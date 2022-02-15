@@ -5,7 +5,7 @@ namespace Zaaby.Client.Http.Formatter.MsgPack;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {
-    public static ZaabyClientFormatterOptions UseJilFormatter(this ZaabyClientFormatterOptions formatterOptions,
+    public static ZaabyClientFormatterOptions UseMsgPackFormatter(this ZaabyClientFormatterOptions formatterOptions,
         string mediaType = "application/x-msgpack")
     {
         formatterOptions.Serializer = new Serializer();
