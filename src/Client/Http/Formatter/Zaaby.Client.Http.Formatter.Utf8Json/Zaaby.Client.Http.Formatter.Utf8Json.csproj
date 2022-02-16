@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.2.0</PackageVersion>
-        <Version>2022.2.0</Version>
+        <PackageVersion>2022.2.2</PackageVersion>
+        <Version>2022.2.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby;MicroService;Http Client;Formatter;Utf8Json;</PackageTags>
@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Zaabee.Utf8Json" Version="2022.16.0" />
-        <PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.2.0" />
+        <PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.2.2" />
     </ItemGroup>
 
 </Project>
