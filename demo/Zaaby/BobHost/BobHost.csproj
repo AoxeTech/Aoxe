@@ -6,9 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Formatter.Jil\Zaaby.Client.Http.Formatter.Jil.csproj" />
-      <ProjectReference Include="..\..\..\src\Zaaby\Zaaby.csproj" />
-      <ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
+        <ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Formatter.Jil\Zaaby.Client.Http.Formatter.Jil.csproj" />
+        <ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Formatter.Utf8Json\Zaaby.Client.Http.Formatter.Utf8Json.csproj" />
+        <ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Formatter.MsgPack\Zaaby.Client.Http.Formatter.MsgPack.csproj" />
+        <ProjectReference Include="..\..\..\src\Zaaby\Zaaby.csproj" />
+        <ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
     </ItemGroup>
     
     <ItemGroup>

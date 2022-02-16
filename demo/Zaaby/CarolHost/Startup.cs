@@ -15,46 +15,46 @@ using Zaaby.AspNetCore.Formatters.Utf8Json;
 using Zaaby.AspNetCore.Formatters.ZeroFormatter;
 using Zaaby.Client.Http;
 using Zaaby.Client.Http.Formatter.Jil;
+using Zaaby.Client.Http.Formatter.Utf8Json;
 using Zaaby.Shared;
 using Zaaby.Server;
 
-namespace CarolHost
+namespace CarolHost;
+
+public class Startup
 {
-    public class Startup
+    // This method gets called by the runtime. Use this method to add services to the container.
+    // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+    public void ConfigureServices(IServiceCollection services)
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        services.AddControllers()
+            .AddJil()
+            .AddMsgPack()
+            .AddProtobuf()
+            .AddUtf8Json()
+            .AddZeroFormatter()
+            .AddXmlSerializerFormatters();
+        services.FromAssemblies(typeof(IAliceService).Assembly, typeof(IBobService).Assembly);
+        services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
+            typeof(CarolService).Assembly.GetName());
+        services.AddZaabyService<IService>();
+        services.AddZaabyClient(typeof(IService), new Dictionary<string, string>
         {
-            services.AddControllers()
-                .AddJil()
-                .AddMsgPack()
-                .AddProtobuf()
-                .AddUtf8Json()
-                .AddZeroFormatter()
-                .AddXmlSerializerFormatters();
-            services.FromAssemblies(typeof(IAliceService).Assembly, typeof(IBobService).Assembly);
-            services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
-                typeof(CarolService).Assembly.GetName());
-            services.AddZaabyService<IService>();
-            services.AddZaabyClient(typeof(IService), new Dictionary<string, string>
-            {
-                {"IAliceServices", "http://localhost:5001"},
-                {"IBobServices", "http://localhost:5002"}
-            }, options => options.UseJilFormatter());
+            { "IAliceServices", "http://localhost:5001" },
+            { "IBobServices", "http://localhost:5002" }
+        }, options => options.UseUtf8JsonFormatter());
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseZaabyErrorHandling();
-            app.UseRouting();
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
-        }
+        app.UseZaabyErrorHandling();
+        app.UseRouting();
+        app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }

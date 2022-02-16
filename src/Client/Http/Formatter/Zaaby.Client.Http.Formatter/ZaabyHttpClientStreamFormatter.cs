@@ -24,7 +24,7 @@ public class ZaabyHttpClientStreamFormatter : ZaabyHttpClientFormatter, IZaabyHt
             ? returnType.GenericTypeArguments[0]
             : returnType;
         if (httpResponseMessage.IsSuccessStatusCode)
-            _serializer.FromStream(type, result);
+            return _serializer.FromStream(type, result);
 
         var zaabyError = _serializer.FromStream<ZaabyError>(result)!;
         throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
