@@ -13,8 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\src\DDD\Zaaby.DDD.MessageBus.RabbitMQ\Zaaby.DDD.MessageBus.RabbitMQ.csproj" />
-        <ProjectReference Include="..\..\..\..\src\DDD\Zaaby.DDD\Zaaby.DDD.csproj" />
+        <ProjectReference Include="..\..\..\..\src\Architecture\DDD\Zaaby.DDD.MessageBus.RabbitMQ\Zaaby.DDD.MessageBus.RabbitMQ.csproj" />
+        <ProjectReference Include="..\..\..\..\src\Architecture\DDD\Zaaby.DDD\Zaaby.DDD.csproj" />
         <ProjectReference Include="..\Application\Application.csproj" />
         <ProjectReference Include="..\Domain\Domain.csproj" />
         <ProjectReference Include="..\Repository\Repository.csproj" />

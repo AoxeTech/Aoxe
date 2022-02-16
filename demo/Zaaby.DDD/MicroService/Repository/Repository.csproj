@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\DDD\Zaaby.DDD\Zaaby.DDD.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Architecture\DDD\Zaaby.DDD\Zaaby.DDD.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
