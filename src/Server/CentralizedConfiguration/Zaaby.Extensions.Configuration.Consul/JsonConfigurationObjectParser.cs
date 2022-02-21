@@ -6,7 +6,7 @@ internal class JsonConfigurationObjectParser
 		new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
 	private readonly Stack<string> _context = new();
-	private string _currentPath;
+	private string _currentPath = string.Empty;
 	private JsonTextReader _reader;
 
 	public IDictionary<string, string> Parse(Stream input)
