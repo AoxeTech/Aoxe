@@ -163,6 +163,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configurat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Etcd", "src\Server\CentralizedConfiguration\Zaaby.Extensions.Configuration.Etcd\Zaaby.Extensions.Configuration.Etcd.csproj", "{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Consul.Test", "tests\Zaaby.Extensions.Configuration.Consul.Test\Zaaby.Extensions.Configuration.Consul.Test.csproj", "{06368BFD-4055-4EBE-B657-1AE40D0050C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -381,6 +383,10 @@ Global
 		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06368BFD-4055-4EBE-B657-1AE40D0050C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06368BFD-4055-4EBE-B657-1AE40D0050C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06368BFD-4055-4EBE-B657-1AE40D0050C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06368BFD-4055-4EBE-B657-1AE40D0050C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -460,6 +466,7 @@ Global
 		{783C8330-A7D4-4682-8140-408E0482104E} = {B16C940A-44E2-4337-8371-18B0C47BDE4A}
 		{9A8A389A-3273-4A64-94E0-92E2E77A0B51} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
 		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
+		{06368BFD-4055-4EBE-B657-1AE40D0050C8} = {9C5D1C18-AB9B-4A01-9A06-375198D440C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}
