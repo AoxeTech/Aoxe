@@ -21,7 +21,7 @@
         <PackageReference Include="Zaaby.AspNetCore.Formatters.Protobuf" Version="2022.8.0" />
         <PackageReference Include="Zaaby.AspNetCore.Formatters.Utf8Json" Version="2022.8.0" />
         <PackageReference Include="Zaaby.AspNetCore.Formatters.ZeroFormatter" Version="2022.8.0" />
-        <PackageReference Include="Zaaby.Client.Http" Version="2022.2.6" />
+        <PackageReference Include="Zaaby.Client.Http" Version="2022.2.8" />
     </ItemGroup>
 
 </Project>
