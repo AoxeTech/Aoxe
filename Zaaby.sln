@@ -143,9 +143,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Etcd", "src\Cl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceRegistration", "ServiceRegistration", "{19D89FAB-4791-4C5A-817D-65811645764C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server.Consul", "src\Server\ServiceRegistration\Zaaby.Server.Consul\Zaaby.Server.Consul.csproj", "{22A6E1DC-4EC6-412B-B8B3-301539F133BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ServiceRegistration.Consul", "src\Server\ServiceRegistration\Zaaby.ServiceRegistration.Consul\Zaaby.ServiceRegistration.Consul.csproj", "{22A6E1DC-4EC6-412B-B8B3-301539F133BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Server.Etcd", "src\Server\ServiceRegistration\Zaaby.Server.Etcd\Zaaby.Server.Etcd.csproj", "{4F4BC9A5-3031-4675-B271-710EA53B6286}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ServiceRegistration.Etcd", "src\Server\ServiceRegistration\Zaaby.ServiceRegistration.Etcd\Zaaby.ServiceRegistration.Etcd.csproj", "{4F4BC9A5-3031-4675-B271-710EA53B6286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Messaging.Abstractions", "src\Messaging\Zaaby.Messaging.Abstractions\Zaaby.Messaging.Abstractions.csproj", "{9C6C38FA-B747-4927-98D5-394B2A167D70}"
 EndProject
@@ -154,6 +154,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CentralizedConfiguration", "CentralizedConfiguration", "{3B2EBDCF-3135-443D-982E-5459748EF2E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HealthCheck", "HealthCheck", "{B16C940A-44E2-4337-8371-18B0C47BDE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.HealthCheck.Consul", "src\Server\HealthCheck\Zaaby.HealthCheck.Consul\Zaaby.HealthCheck.Consul.csproj", "{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.HealthCheck.Etcd", "src\Server\HealthCheck\Zaaby.HealthCheck.Etcd\Zaaby.HealthCheck.Etcd.csproj", "{783C8330-A7D4-4682-8140-408E0482104E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Consul", "src\Server\CentralizedConfiguration\Zaaby.Extensions.Configuration.Consul\Zaaby.Extensions.Configuration.Consul.csproj", "{9A8A389A-3273-4A64-94E0-92E2E77A0B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Etcd", "src\Server\CentralizedConfiguration\Zaaby.Extensions.Configuration.Etcd\Zaaby.Extensions.Configuration.Etcd.csproj", "{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -357,6 +365,22 @@ Global
 		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C6C38FA-B747-4927-98D5-394B2A167D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783C8330-A7D4-4682-8140-408E0482104E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783C8330-A7D4-4682-8140-408E0482104E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783C8330-A7D4-4682-8140-408E0482104E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783C8330-A7D4-4682-8140-408E0482104E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8A389A-3273-4A64-94E0-92E2E77A0B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8A389A-3273-4A64-94E0-92E2E77A0B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8A389A-3273-4A64-94E0-92E2E77A0B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8A389A-3273-4A64-94E0-92E2E77A0B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -432,6 +456,10 @@ Global
 		{607DC8C9-F38C-4C10-AA02-44C4D0B16C08} = {24942B51-4031-4D76-8A83-257CE3E619C1}
 		{3B2EBDCF-3135-443D-982E-5459748EF2E9} = {E2E82934-0354-4EB1-BAC4-7A583D8E22A9}
 		{B16C940A-44E2-4337-8371-18B0C47BDE4A} = {E2E82934-0354-4EB1-BAC4-7A583D8E22A9}
+		{C968B91D-2AF1-4DCF-9A78-D1B605EC5C5B} = {B16C940A-44E2-4337-8371-18B0C47BDE4A}
+		{783C8330-A7D4-4682-8140-408E0482104E} = {B16C940A-44E2-4337-8371-18B0C47BDE4A}
+		{9A8A389A-3273-4A64-94E0-92E2E77A0B51} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
+		{1D9E251A-F987-4BD9-AAD4-A12F10AC5C1F} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

@@ -1,4 +1,4 @@
-namespace Zaaby.Server.Consul;
+namespace Zaaby.ServiceRegistration.Consul;
 
 public class ServiceRegistry : BackgroundService
 {

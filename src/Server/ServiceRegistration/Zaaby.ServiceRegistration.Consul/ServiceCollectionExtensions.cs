@@ -1,4 +1,4 @@
-namespace Zaaby.Server.Consul;
+namespace Zaaby.ServiceRegistration.Consul;
 
 public static class ServiceCollectionExtensions
 {
@@ -10,7 +10,10 @@ public static class ServiceCollectionExtensions
         services.Configure(optionsFactory);
         services.TryAddSingleton<IConsulClient>(_ => new ConsulClient(x =>
         {
-            x.Address = new Uri(options.ConsulAddress);
+            x.Address = options.ConsulAddress;
+            x.Datacenter = options.Datacenter;
+            x.Token = options.Token;
+            x.WaitTime = options.WaitTime;
         }));
         services.AddHostedService<ServiceRegistry>();
         return services;
