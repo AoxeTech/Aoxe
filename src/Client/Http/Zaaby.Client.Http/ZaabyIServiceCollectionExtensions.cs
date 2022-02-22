@@ -33,11 +33,10 @@ public static class ZaabyIServiceCollectionExtensions
         }
 
         services.AddScoped<ZaabyClient>();
-
+        
         var options = new ZaabyClientFormatterOptions(new Serializer(), "application/json");
         optionsFactory?.Invoke(options);
-        var formatterFactory = new ZaabyHttpClientFormatterFactory();
-        var formatter = formatterFactory.Create(options);
+        var formatter = ZaabyHttpClientFormatterFactory.Create(options);
         services.AddSingleton(formatter);
 
         return services;
