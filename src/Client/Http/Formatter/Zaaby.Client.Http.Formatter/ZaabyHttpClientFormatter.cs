@@ -2,7 +2,7 @@ namespace Zaaby.Client.Http.Formatter;
 
 public class ZaabyHttpClientFormatter
 {
-    internal HttpRequestMessage CreateHttpRequestMessage(HttpContent httpContent, string mediaType, string requestUri)
+    internal static HttpRequestMessage CreateHttpRequestMessage(HttpContent httpContent, string mediaType, string requestUri)
     {
         var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
         {
