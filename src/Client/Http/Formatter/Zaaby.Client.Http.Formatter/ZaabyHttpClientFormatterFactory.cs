@@ -1,6 +1,6 @@
 namespace Zaaby.Client.Http.Formatter;
 
-public class ZaabyHttpClientFormatterFactory
+public static class ZaabyHttpClientFormatterFactory
 {
     public static IZaabyHttpClientFormatter Create(ZaabyClientFormatterOptions options) =>
         options.Serializer switch
