@@ -1,6 +1,4 @@
-﻿
-
-namespace Zaaby.Client.Http;
+﻿namespace Zaaby.Client.Http;
 
 public class ZaabyClient
 {
