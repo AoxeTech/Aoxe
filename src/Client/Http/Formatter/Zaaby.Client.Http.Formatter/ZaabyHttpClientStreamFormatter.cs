@@ -11,13 +11,13 @@ public class ZaabyHttpClientStreamFormatter : ZaabyHttpClientFormatter, IZaabyHt
         MediaType = options.MediaType;
     }
 
-    public HttpRequestMessage CreateHttpRequestMessage(string requestUri, object? message)
+    public override HttpRequestMessage CreateHttpRequestMessage(string requestUri, object? message)
     {
         var httpContent = new StreamContent(_serializer.ToStream(message));
         return CreateHttpRequestMessage(httpContent, MediaType, requestUri);
     }
 
-    public async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
+    public override async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
     {
         var result = await httpResponseMessage.Content.ReadAsStreamAsync();
         var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
