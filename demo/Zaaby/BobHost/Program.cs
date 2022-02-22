@@ -19,7 +19,7 @@ namespace BobHost;
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         ZaabyHost.Instance
             .FromAssemblyOf<IAliceService>()

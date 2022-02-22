@@ -14,7 +14,6 @@ using Zaaby.AspNetCore.Formatters.Protobuf;
 using Zaaby.AspNetCore.Formatters.Utf8Json;
 using Zaaby.AspNetCore.Formatters.ZeroFormatter;
 using Zaaby.Client.Http;
-using Zaaby.Client.Http.Formatter.Jil;
 using Zaaby.Client.Http.Formatter.Utf8Json;
 using Zaaby.Shared;
 using Zaaby.Server;
