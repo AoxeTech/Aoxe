@@ -13,23 +13,19 @@ public class ZaabyClient
 
     public T GetService<T>()
     {
-        var t = DispatchProxy.Create<T, InvokeProxy<T>>();
-        if (t is not InvokeProxy<T> invokeProxy) return t;
+        var t = DispatchProxy.Create<T, ZaabyClientProxy>();
+        if (t is not ZaabyClientProxy invokeProxy) return t;
+        invokeProxy.InterfaceType = typeof(T);
         invokeProxy.Client = _httpClientFactory.CreateClient(typeof(T).Namespace!);
         invokeProxy.HttpClientFormatter = _httpClientFormatter;
         return t;
     }
 
-    public class InvokeProxy<T> : DispatchProxy
+    internal class ZaabyClientProxy : DispatchProxy
     {
-        private readonly Type _type;
+        internal Type InterfaceType { get; set; }
         internal HttpClient Client { get; set; }
         internal IZaabyHttpClientFormatter HttpClientFormatter { get; set; }
-
-        public InvokeProxy()
-        {
-            _type = typeof(T);
-        }
 
         protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
         {
@@ -43,9 +39,9 @@ public class ZaabyClient
 
         private async Task<object?> SendAsync(Type returnType, string methodName, object? message)
         {
-            if (string.IsNullOrEmpty(_type.FullName))
-                throw new ZaabyException($"{_type}'s full name is null or empty.");
-            var url = $"/{_type.FullName.Replace('.', '/')}/{methodName}";
+            if (string.IsNullOrEmpty(InterfaceType.FullName))
+                throw new ZaabyException($"{InterfaceType}'s full name is null or empty.");
+            var url = $"/{InterfaceType.FullName.Replace('.', '/')}/{methodName}";
 
             var httpRequestMessage = HttpClientFormatter.CreateHttpRequestMessage(url, message);
 

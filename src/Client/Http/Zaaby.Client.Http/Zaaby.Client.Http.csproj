@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.2.10</PackageVersion>
-        <Version>2022.2.10</Version>
+        <PackageVersion>2022.2.12</PackageVersion>
+        <Version>2022.2.12</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby;MicroService;Http Client</PackageTags>
