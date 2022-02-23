@@ -25,9 +25,10 @@ internal class ZaabyActionModelConvention : IActionModelConvention
 
     private static SelectorModel CreateSelector(IRouteTemplateProvider routeTemplateProvider)
     {
-        var selectorModel = new SelectorModel();
-        if (routeTemplateProvider is not null)
-            selectorModel.AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider);
+        var selectorModel = new SelectorModel
+        {
+            AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider)
+        };
 
         selectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new List<string> { "POST" }));
 
