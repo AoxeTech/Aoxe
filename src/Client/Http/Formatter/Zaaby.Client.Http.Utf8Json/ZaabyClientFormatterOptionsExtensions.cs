@@ -2,7 +2,7 @@ using Utf8Json;
 using Zaabee.Utf8Json;
 using Zaaby.Client.Http.Formatter.Shared;
 
-namespace Zaaby.Client.Http.Formatter.Utf8Json;
+namespace Zaaby.Client.Http.Utf8Json;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {

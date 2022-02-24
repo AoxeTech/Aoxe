@@ -1,7 +1,7 @@
 using Zaabee.ZeroFormatter;
 using Zaaby.Client.Http.Formatter.Shared;
 
-namespace Zaaby.Client.Http.Formatter.Zeroformatter;
+namespace Zaaby.Client.Http.Zeroformatter;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {

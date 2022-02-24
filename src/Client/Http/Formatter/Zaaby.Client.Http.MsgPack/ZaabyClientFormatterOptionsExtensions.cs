@@ -1,12 +1,12 @@
-using Zaabee.Protobuf;
+using Zaabee.MsgPack;
 using Zaaby.Client.Http.Formatter.Shared;
 
-namespace Zaaby.Client.Http.Formatter.Protobuf;
+namespace Zaaby.Client.Http.MsgPack;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {
-    public static ZaabyClientFormatterOptions UseProtobufFormatter(this ZaabyClientFormatterOptions formatterOptions,
-        string mediaType = "application/x-protobuf")
+    public static ZaabyClientFormatterOptions UseMsgPackFormatter(this ZaabyClientFormatterOptions formatterOptions,
+        string mediaType = "application/x-msgpack")
     {
         formatterOptions.Serializer = new Serializer();
         formatterOptions.MediaType = mediaType;

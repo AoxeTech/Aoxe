@@ -2,7 +2,7 @@ using Jil;
 using Zaabee.Jil;
 using Zaaby.Client.Http.Formatter.Shared;
 
-namespace Zaaby.Client.Http.Formatter.Jil;
+namespace Zaaby.Client.Http.Jil;
 
 public static class ZaabyClientFormatterOptionsExtensions
 {
