@@ -1,6 +1,6 @@
 namespace Zaaby.Client.Http.Formatter;
 
-public class ZaabyHttpClientTextFormatter : ZaabyHttpClientFormatter, IZaabyHttpClientFormatter
+public class ZaabyHttpClientTextFormatter : ZaabyHttpClientFormatter
 {
     private readonly ITextSerializer _serializer;
     public string MediaType { get; }

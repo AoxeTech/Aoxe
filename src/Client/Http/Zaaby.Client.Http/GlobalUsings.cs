@@ -4,7 +4,7 @@ global using System.Linq;
 global using System.Net;
 global using System.Net.Http;
 global using System.Reflection;
-global using Zaaby.Client.Http.Formatter.Shared;
+global using Zaaby.Client.Http.Formatter;
 global using Zaaby.Client.Http.Internal;
 global using Zaaby.Shared;
 global using System.Collections.Generic;

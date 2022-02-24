@@ -1,6 +1,6 @@
 using Jil;
 using Zaabee.Jil;
-using Zaaby.Client.Http.Formatter.Shared;
+using Zaaby.Client.Http.Formatter;
 
 namespace Zaaby.Client.Http.Jil;
 

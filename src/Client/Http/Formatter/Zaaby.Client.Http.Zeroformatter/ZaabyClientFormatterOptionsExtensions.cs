@@ -1,5 +1,5 @@
 using Zaabee.ZeroFormatter;
-using Zaaby.Client.Http.Formatter.Shared;
+using Zaaby.Client.Http.Formatter;
 
 namespace Zaaby.Client.Http.Zeroformatter;
 

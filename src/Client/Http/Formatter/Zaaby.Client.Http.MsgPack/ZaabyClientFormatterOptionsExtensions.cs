@@ -1,5 +1,5 @@
 using Zaabee.MsgPack;
-using Zaaby.Client.Http.Formatter.Shared;
+using Zaaby.Client.Http.Formatter;
 
 namespace Zaaby.Client.Http.MsgPack;
 

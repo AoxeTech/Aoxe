@@ -1,6 +1,4 @@
-using Zaabee.Serializer.Abstractions;
-
-namespace Zaaby.Client.Http.Formatter.Shared;
+namespace Zaaby.Client.Http.Formatter;
 
 public class ZaabyClientFormatterOptions
 {

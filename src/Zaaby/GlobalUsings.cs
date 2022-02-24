@@ -13,4 +13,4 @@ global using System.Reflection;
 global using Zaaby.Shared;
 global using Zaaby.ThreeTier;
 global using System.Data;
-global using Zaaby.Client.Http.Formatter.Shared;
+global using Zaaby.Client.Http.Formatter;

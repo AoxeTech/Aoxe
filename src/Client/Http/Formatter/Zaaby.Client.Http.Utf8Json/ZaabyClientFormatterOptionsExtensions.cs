@@ -1,6 +1,6 @@
 using Utf8Json;
 using Zaabee.Utf8Json;
-using Zaaby.Client.Http.Formatter.Shared;
+using Zaaby.Client.Http.Formatter;
 
 namespace Zaaby.Client.Http.Utf8Json;
 

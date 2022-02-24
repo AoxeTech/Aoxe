@@ -1,5 +1,4 @@
 ﻿using Zaabee.NewtonsoftJson;
-using Zaaby.Client.Http.Formatter;
 
 namespace Zaaby.Client.Http;
 

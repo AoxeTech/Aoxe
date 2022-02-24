@@ -2,7 +2,7 @@ namespace Zaaby.Client.Http.Formatter;
 
 public static class ZaabyHttpClientFormatterFactory
 {
-    public static IZaabyHttpClientFormatter Create(ZaabyClientFormatterOptions options) =>
+    public static ZaabyHttpClientFormatter Create(ZaabyClientFormatterOptions options) =>
         options.Serializer switch
         {
             ITextSerializer => new ZaabyHttpClientTextFormatter(options),

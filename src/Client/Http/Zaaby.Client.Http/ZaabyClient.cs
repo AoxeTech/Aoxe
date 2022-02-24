@@ -3,9 +3,9 @@
 public class ZaabyClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly IZaabyHttpClientFormatter _httpClientFormatter;
+    private readonly ZaabyHttpClientFormatter _httpClientFormatter;
 
-    public ZaabyClient(IHttpClientFactory httpClientFactory, IZaabyHttpClientFormatter httpClientFormatter)
+    public ZaabyClient(IHttpClientFactory httpClientFactory, ZaabyHttpClientFormatter httpClientFormatter)
     {
         _httpClientFactory = httpClientFactory;
         _httpClientFormatter = httpClientFormatter;
@@ -26,7 +26,7 @@ internal class ZaabyClientProxy : DispatchProxy
 {
     internal Type InterfaceType { get; set; }
     internal HttpClient Client { get; set; }
-    internal IZaabyHttpClientFormatter HttpClientFormatter { get; set; }
+    internal ZaabyHttpClientFormatter HttpClientFormatter { get; set; }
 
     protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
     {
