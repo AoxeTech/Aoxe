@@ -20,37 +20,37 @@ public class ZaabyClient
         invokeProxy.HttpClientFormatter = _httpClientFormatter;
         return t;
     }
+}
 
-    internal class ZaabyClientProxy : DispatchProxy
+internal class ZaabyClientProxy : DispatchProxy
+{
+    internal Type InterfaceType { get; set; }
+    internal HttpClient Client { get; set; }
+    internal IZaabyHttpClientFormatter HttpClientFormatter { get; set; }
+
+    protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
     {
-        internal Type InterfaceType { get; set; }
-        internal HttpClient Client { get; set; }
-        internal IZaabyHttpClientFormatter HttpClientFormatter { get; set; }
+        if (targetMethod is null) return null;
+        var result = SendAsync(targetMethod.ReturnType, targetMethod.Name, args?.FirstOrDefault());
+        if (targetMethod.ReturnType.IsGenericType
+            && targetMethod.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
+            return result.CastResult(targetMethod.ReturnType.GetGenericArguments()[0]);
+        return result.RunSync();
+    }
 
-        protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
-        {
-            if (targetMethod is null) return null;
-            var result = SendAsync(targetMethod.ReturnType, targetMethod.Name, args?.FirstOrDefault());
-            if (targetMethod.ReturnType.IsGenericType
-                && targetMethod.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
-                return result.CastResult(targetMethod.ReturnType.GetGenericArguments()[0]);
-            return result.RunSync();
-        }
+    private async Task<object?> SendAsync(Type returnType, string methodName, object? message)
+    {
+        if (string.IsNullOrEmpty(InterfaceType.FullName))
+            throw new ZaabyException($"{InterfaceType}'s full name is null or empty.");
+        var url = $"/{InterfaceType.FullName.Replace('.', '/')}/{methodName}";
 
-        private async Task<object?> SendAsync(Type returnType, string methodName, object? message)
-        {
-            if (string.IsNullOrEmpty(InterfaceType.FullName))
-                throw new ZaabyException($"{InterfaceType}'s full name is null or empty.");
-            var url = $"/{InterfaceType.FullName.Replace('.', '/')}/{methodName}";
+        var httpRequestMessage = HttpClientFormatter.CreateHttpRequestMessage(url, message);
 
-            var httpRequestMessage = HttpClientFormatter.CreateHttpRequestMessage(url, message);
+        var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
 
-            var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
+        if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode is not (HttpStatusCode)600)
+            throw new ZaabyException($"{url}:{httpResponseMessage}");
 
-            if (!httpResponseMessage.IsSuccessStatusCode && httpResponseMessage.StatusCode is not (HttpStatusCode)600)
-                throw new ZaabyException($"{url}:{httpResponseMessage}");
-
-            return await HttpClientFormatter.GetResultAsync(returnType, httpResponseMessage);
-        }
+        return await HttpClientFormatter.GetResultAsync(returnType, httpResponseMessage);
     }
 }
