@@ -7,7 +7,7 @@ namespace Zaaby.Client.Http.Jil;
 public static class ZaabyClientFormatterOptionsExtensions
 {
     public static ZaabyClientFormatterOptions UseJilFormatter(this ZaabyClientFormatterOptions formatterOptions,
-        Options? jilOptions = null, string mediaType = "application/x-jil")
+        string mediaType = "application/x-jil", Options? jilOptions = null)
     {
         formatterOptions.Serializer = new Serializer(jilOptions);
         formatterOptions.MediaType = mediaType;
