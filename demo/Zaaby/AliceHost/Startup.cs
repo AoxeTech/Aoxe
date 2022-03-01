@@ -41,8 +41,8 @@ namespace AliceHost
                 .AddZaabyService<ServiceAttribute>()
                 .AddZaabyClient(typeof(IService), new Dictionary<string, string>
                 {
-                    { typeof(IBobService).Namespace, "http://localhost:5002" },
-                    { typeof(ICarolService).Namespace, "http://localhost:5003" }
+                    { typeof(IBobService).Namespace!, "http://localhost:5002" },
+                    { typeof(ICarolService).Namespace!, "http://localhost:5003" }
                 }, options => options.UseJilFormatter());
             // services.AddServiceRegistry(options =>
             // {
