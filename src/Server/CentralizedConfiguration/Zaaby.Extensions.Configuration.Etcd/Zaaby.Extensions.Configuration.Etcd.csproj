@@ -16,6 +16,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="dotnet-etcd" Version="5.2.0"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1"/>
 	</ItemGroup>
 </Project>
