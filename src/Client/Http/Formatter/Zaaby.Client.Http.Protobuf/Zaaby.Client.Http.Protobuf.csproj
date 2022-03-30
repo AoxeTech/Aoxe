@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2022.2.4</PackageVersion>
-		<Version>2022.2.4</Version>
+		<PackageVersion>2022.2.6</PackageVersion>
+		<Version>2022.2.6</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageTags>Zaaby;MicroService;Http Client;Formatter;Protobuf;</PackageTags>
@@ -14,7 +14,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Protobuf" Version="2022.16.2"/>
-		<PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.8.2"/>
+		<PackageReference Include="Zaabee.Protobuf" Version="2022.16.3" />
+		<PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.8.4" />
 	</ItemGroup>
 </Project>
