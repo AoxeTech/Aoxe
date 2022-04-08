@@ -163,6 +163,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configurat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Consul.Test", "tests\Zaaby.Extensions.Configuration.Consul.Test\Zaaby.Extensions.Configuration.Consul.Test.csproj", "{06368BFD-4055-4EBE-B657-1AE40D0050C8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "perf", "perf", "{677F64C2-1378-4352-B981-70758BAFA5EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
