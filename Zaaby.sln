@@ -166,6 +166,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "perf", "perf", "{677F64C2-1378-4352-B981-70758BAFA5EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formatters", "Formatters", "{9EA48686-D07B-4CCF-96AD-B63CD51537DA}"
+	ProjectSection(SolutionItems) = preProject
+		src\Server\Formatters\README.md = src\Server\Formatters\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.AspNetCore.Formatters", "src\Server\Formatters\Zaaby.AspNetCore.Formatters\Zaaby.AspNetCore.Formatters.csproj", "{49FA147C-E8AB-4FD1-9EEA-B1BBE0DB5C9F}"
 EndProject
