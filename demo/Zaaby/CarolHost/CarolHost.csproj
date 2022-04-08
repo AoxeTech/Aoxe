@@ -3,9 +3,9 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Jil\Zaaby.Client.Http.Jil.csproj" />
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.Utf8Json\Zaaby.Client.Http.Utf8Json.csproj" />
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatter\Zaaby.Client.Http.MsgPack\Zaaby.Client.Http.MsgPack.csproj" />
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Zaaby.Client.Http.Jil\Zaaby.Client.Http.Jil.csproj" />
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Zaaby.Client.Http.Utf8Json\Zaaby.Client.Http.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Zaaby.Client.Http.MsgPack\Zaaby.Client.Http.MsgPack.csproj" />
 		<ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj" />
 		<ProjectReference Include="..\CarolSystem\CarolServices\CarolServices.csproj" />
 	</ItemGroup>

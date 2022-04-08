@@ -119,19 +119,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Grpc", "src\Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http", "src\Client\Http\Zaaby.Client.Http\Zaaby.Client.Http.csproj", "{DFE7C75F-33E0-4BCE-9547-9D971DEF19D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formatter", "Formatter", "{4FA8BBF9-96EA-487B-A647-1DFF8E837E46}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formatters", "Formatters", "{4FA8BBF9-96EA-487B-A647-1DFF8E837E46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Formatter", "src\Client\Http\Formatter\Zaaby.Client.Http.Formatter\Zaaby.Client.Http.Formatter.csproj", "{E9872F33-8ACF-4241-9C7B-8C727A337B90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Formatter", "src\Client\Http\Formatters\Zaaby.Client.Http.Formatter\Zaaby.Client.Http.Formatter.csproj", "{E9872F33-8ACF-4241-9C7B-8C727A337B90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Jil", "src\Client\Http\Formatter\Zaaby.Client.Http.Jil\Zaaby.Client.Http.Jil.csproj", "{9EBBE0DA-DEDC-42E3-B5F2-B56BF38DB8A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Jil", "src\Client\Http\Formatters\Zaaby.Client.Http.Jil\Zaaby.Client.Http.Jil.csproj", "{9EBBE0DA-DEDC-42E3-B5F2-B56BF38DB8A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.MsgPack", "src\Client\Http\Formatter\Zaaby.Client.Http.MsgPack\Zaaby.Client.Http.MsgPack.csproj", "{17CAFB3B-5303-49FC-A5E9-5A75DA3A3022}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.MsgPack", "src\Client\Http\Formatters\Zaaby.Client.Http.MsgPack\Zaaby.Client.Http.MsgPack.csproj", "{17CAFB3B-5303-49FC-A5E9-5A75DA3A3022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Protobuf", "src\Client\Http\Formatter\Zaaby.Client.Http.Protobuf\Zaaby.Client.Http.Protobuf.csproj", "{881BACF8-AAE4-461F-9BE2-F3EC763E953A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Protobuf", "src\Client\Http\Formatters\Zaaby.Client.Http.Protobuf\Zaaby.Client.Http.Protobuf.csproj", "{881BACF8-AAE4-461F-9BE2-F3EC763E953A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Utf8Json", "src\Client\Http\Formatter\Zaaby.Client.Http.Utf8Json\Zaaby.Client.Http.Utf8Json.csproj", "{CA076482-D412-4B33-98DF-0436FB766551}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Utf8Json", "src\Client\Http\Formatters\Zaaby.Client.Http.Utf8Json\Zaaby.Client.Http.Utf8Json.csproj", "{CA076482-D412-4B33-98DF-0436FB766551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Zeroformatter", "src\Client\Http\Formatter\Zaaby.Client.Http.Zeroformatter\Zaaby.Client.Http.Zeroformatter.csproj", "{6ED942AA-5E4E-495C-85F3-2EAFDC24AB4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Zeroformatter", "src\Client\Http\Formatters\Zaaby.Client.Http.Zeroformatter\Zaaby.Client.Http.Zeroformatter.csproj", "{6ED942AA-5E4E-495C-85F3-2EAFDC24AB4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceDiscovery", "ServiceDiscovery", "{4FA79CEA-E209-4811-8615-BCF2F091C4B5}"
 EndProject
