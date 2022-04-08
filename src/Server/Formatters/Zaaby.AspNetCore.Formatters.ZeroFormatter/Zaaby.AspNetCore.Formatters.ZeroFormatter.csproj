@@ -11,7 +11,7 @@
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby;asp.net core formatters;ZeroFormatter</PackageTags>
-        <PackageProjectUrl>https://github.com/PicoHex/Zaaby.AspNetCore.Formatters</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaaby/tree/master/src/Server/Formatters/Zaaby.AspNetCore.Formatters</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Formatters for asp.net core base by ZeroFormatter.</Description>
         <LangVersion>latest</LangVersion>
