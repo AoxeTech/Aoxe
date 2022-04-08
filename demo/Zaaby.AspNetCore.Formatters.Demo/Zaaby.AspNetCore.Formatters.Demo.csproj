@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.3" Condition="'$(TargetFramework)' == 'net6.0'" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.23" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Jil\Zaaby.AspNetCore.Formatters.Jil.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.MsgPack\Zaaby.AspNetCore.Formatters.MsgPack.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Protobuf\Zaaby.AspNetCore.Formatters.Protobuf.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Utf8Json\Zaaby.AspNetCore.Formatters.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.ZeroFormatter\Zaaby.AspNetCore.Formatters.ZeroFormatter.csproj" />
+	</ItemGroup>
+</Project>

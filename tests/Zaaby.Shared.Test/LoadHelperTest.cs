@@ -31,7 +31,8 @@ public class LoadHelperTest
         var types0 = LoadHelper.GetByBaseTypes(typeof(ITestInterface));
         var types1 = LoadHelper.GetByBaseTypes(typeof(IDerivedTestInterface));
 
-        Assert.Equal(2, types0.Count);
+        Assert.Equal(4, types0.Count);
+        Assert.Contains(typeof(ITestInterface), types0);
         Assert.Contains(typeof(IDerivedTestInterface), types0);
         Assert.Contains(typeof(ClassWithInterface), types0);
         Assert.Contains(typeof(ClassWithDerivedInterface), types0);
