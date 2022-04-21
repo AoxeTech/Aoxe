@@ -186,6 +186,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.AspNetCore.Formatters
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.AspNetCore.Formatters.Tests", "tests\Zaaby.AspNetCore.Formatters.Tests\Zaaby.AspNetCore.Formatters.Tests.csproj", "{D2B29A63-C24C-465F-81FD-63DABC3FAB08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client", "src\Client\Zaaby.Client\Zaaby.Client.csproj", "{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -436,6 +438,10 @@ Global
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -524,6 +530,7 @@ Global
 		{7D117C8D-B44C-485E-BC2B-30C5CAE6758A} = {9EA48686-D07B-4CCF-96AD-B63CD51537DA}
 		{E68EC879-CF37-40FA-B554-06AA1244DBA8} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08} = {9C5D1C18-AB9B-4A01-9A06-375198D440C0}
+		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19} = {FE4DF66D-4961-46F9-9CB7-45DC7739F0CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

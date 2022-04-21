@@ -3,8 +3,8 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>2022.2.24</Version>
-		<PackageVersion>2022.2.24</PackageVersion>
+		<Version>2022.2.24.2</Version>
+		<PackageVersion>2022.2.24.2</PackageVersion>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageTags>Zaaby MicroService Framework</PackageTags>
@@ -18,7 +18,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageReference Include="Zaaby.Client.Http" Version="2022.4.4" />
-		<PackageReference Include="Zaaby.DDD" Version="2022.2.6" />
+		<PackageReference Include="Zaaby.DDD" Version="2022.2.7" />
 		<PackageReference Include="Zaaby.Server" Version="2022.2.4" />
 		<PackageReference Include="Zaaby.ThreeTier" Version="2022.2.2" />
 	</ItemGroup>
