@@ -24,9 +24,9 @@ public class ZaabyClient
 
 internal class ZaabyClientProxy : DispatchProxy
 {
-    internal Type InterfaceType { get; set; }
-    internal HttpClient Client { get; set; }
-    internal ZaabyHttpClientFormatter HttpClientFormatter { get; set; }
+    internal Type InterfaceType { get; set; } = null!;
+    internal HttpClient Client { get; set; } = null!;
+    internal ZaabyHttpClientFormatter HttpClientFormatter { get; set; } = null!;
 
     protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
     {
