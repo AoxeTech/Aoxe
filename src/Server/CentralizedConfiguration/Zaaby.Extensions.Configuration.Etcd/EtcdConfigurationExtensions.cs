@@ -9,7 +9,7 @@ namespace Zaaby.Extensions.Configuration.Etcd
             this IConfigurationBuilder builder,
             string connectionString,
             int port = 2379,
-            HttpClientHandler handler = null,
+            HttpClientHandler? handler = null,
             bool ssl = false,
             bool useLegacyRpcExceptionForCancellation = false)
         {
