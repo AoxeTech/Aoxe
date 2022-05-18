@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Consul;
 
-namespace Zaaby.Client.Consul;
+namespace Zaaby.ServiceDiscovery.Consul;
 
 public class ConsulServiceDiscoveryDelegatingHandler : DelegatingHandler
 {

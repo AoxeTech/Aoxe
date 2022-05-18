@@ -7,7 +7,7 @@ internal class JsonConfigurationObjectParser
 
 	private readonly Stack<string> _context = new();
 	private string _currentPath = string.Empty;
-	private JsonTextReader _reader;
+	private JsonTextReader _reader = null!;
 
 	public IDictionary<string, string> Parse(Stream input)
 	{

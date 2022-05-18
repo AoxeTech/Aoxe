@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Zaaby.Client.Http;
 using Zaaby.Shared;
 
-namespace Zaaby.Client.Consul;
+namespace Zaaby.ServiceDiscovery.Consul;
 
 public static class ServiceCollectionExtensions
 {

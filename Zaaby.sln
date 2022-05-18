@@ -135,9 +135,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Http.Zeroforma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceDiscovery", "ServiceDiscovery", "{4FA79CEA-E209-4811-8615-BCF2F091C4B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Consul", "src\Client\ServiceDiscovery\Zaaby.Client.Consul\Zaaby.Client.Consul.csproj", "{8C9CCAEE-2629-4BD3-B0DF-76A0CD8F0128}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ServiceDiscovery.Consul", "src\Client\ServiceDiscovery\Zaaby.ServiceDiscovery.Consul\Zaaby.ServiceDiscovery.Consul.csproj", "{8C9CCAEE-2629-4BD3-B0DF-76A0CD8F0128}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client.Etcd", "src\Client\ServiceDiscovery\Zaaby.Client.Etcd\Zaaby.Client.Etcd.csproj", "{6936A2D4-9620-4B56-9D5D-F684E96529FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.ServiceDiscovery.Etcd", "src\Client\ServiceDiscovery\Zaaby.ServiceDiscovery.Etcd\Zaaby.ServiceDiscovery.Etcd.csproj", "{6936A2D4-9620-4B56-9D5D-F684E96529FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceRegistration", "ServiceRegistration", "{19D89FAB-4791-4C5A-817D-65811645764C}"
 EndProject
