@@ -33,7 +33,6 @@ public static class ServiceCollectionExtensions
         //         .Invoke(services.BuildServiceProvider().GetService<ZaabyClient>(), null));
         // }
 
-        services.AddScoped<ZaabyClient>();
         return services;
     }
 }
