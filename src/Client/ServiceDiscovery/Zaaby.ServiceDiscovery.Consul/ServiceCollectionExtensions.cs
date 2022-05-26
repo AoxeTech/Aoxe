@@ -13,9 +13,6 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddServiceDiscovery(this IServiceCollection services, Type serviceDefineType,
         string consulAddress)
     {
-        var methodInfo = typeof(ZaabyClient).GetMethod("GetService");
-        if (methodInfo is null) throw new Exception("The Zaaby Client has no method witch named GetService.");
-
         services.TryAddSingleton<IConsulClient>(_ => new ConsulClient(x =>
         {
             x.Address = new Uri(consulAddress);
