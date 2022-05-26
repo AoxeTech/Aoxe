@@ -1,32 +1,15 @@
-﻿namespace Zaaby.Client.Http;
-
-public class ZaabyClient
-{
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly ZaabyHttpClientFormatter _httpClientFormatter;
-
-    public ZaabyClient(IHttpClientFactory httpClientFactory, ZaabyHttpClientFormatter httpClientFormatter)
-    {
-        _httpClientFactory = httpClientFactory;
-        _httpClientFormatter = httpClientFormatter;
-    }
-
-    public T GetService<T>()
-    {
-        var t = DispatchProxy.Create<T, ZaabyClientProxy>();
-        if (t is not ZaabyClientProxy invokeProxy) return t;
-        invokeProxy.InterfaceType = typeof(T);
-        invokeProxy.Client = _httpClientFactory.CreateClient(typeof(T).Namespace!);
-        invokeProxy.HttpClientFormatter = _httpClientFormatter;
-        return t;
-    }
-}
+namespace Zaaby.Client.Http.Internal;
 
 internal class ZaabyClientProxy : DispatchProxy
 {
     internal Type InterfaceType { get; set; } = null!;
     internal HttpClient Client { get; set; } = null!;
     internal ZaabyHttpClientFormatter HttpClientFormatter { get; set; } = null!;
+
+    public static object Create(Type interfaceType) =>
+        typeof(DispatchProxy).GetMethod(nameof(DispatchProxy.Create))!
+            .MakeGenericMethod(interfaceType, typeof(ZaabyClientProxy))
+            .Invoke(null, null)!;
 
     protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
     {
