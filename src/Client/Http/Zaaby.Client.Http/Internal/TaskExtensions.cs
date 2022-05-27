@@ -2,8 +2,6 @@ namespace Zaaby.Client.Http.Internal;
 
 internal static class TaskExtensions
 {
-    public static readonly Task CompletedTask = Task.FromResult<object?>(null);
-
     public static Task CastResult(this Task<object?> taskResult, Type resultType)
     {
         var taskSource = new TaskCompletionSource(resultType);
