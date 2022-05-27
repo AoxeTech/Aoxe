@@ -11,8 +11,7 @@ namespace IAliceServices
         Task<string> SayHelloToBobAsyncTest();
         string SayHelloToCarol();
         Exception ThrowException();
-        Apple PassBackApple(Apple apple);
-        Task<Apple> PassBackAppleAsyncTest(Apple apple);
+        Task<Apple> PassBackAppleAsync(Apple apple);
         Task<string> HelloAsyncTest();
     }
 }

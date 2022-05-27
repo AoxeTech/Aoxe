@@ -12,7 +12,6 @@ namespace IBobServices
         Task<string> SayHelloToAliceAsyncTest();
         string SayHelloToCarol();
         Exception ThrowException();
-        string PassAppleToAlice(string appleName);
-        Task<string> PassAppleToAliceAsyncTest(string appleName);
+        Task<string> PassAppleToAliceAsync(string appleName);
     }
 }

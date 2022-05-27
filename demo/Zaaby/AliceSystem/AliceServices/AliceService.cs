@@ -28,22 +28,7 @@ namespace AliceServices
 
         public Exception ThrowException() => throw new Exception("This exception was thrown by Alice.");
 
-        public Apple PassBackApple(Apple apple)
-        {
-            if (apple is null)
-                return new Apple
-                {
-                    Id = 2,
-                    Name = "Red Apple",
-                    Message = "This apple is pass back by Alice."
-                };
-            apple.Name ??= string.Empty;
-            apple.Message ??= string.Empty;
-            apple.Message += "\r\nThis apple is pass back by Alice.";
-            return apple;
-        }
-
-        public Task<Apple> PassBackAppleAsyncTest(Apple apple)
+        public Task<Apple> PassBackAppleAsync(Apple apple)
         {
             if (apple is null)
                 return Task.FromResult(new Apple

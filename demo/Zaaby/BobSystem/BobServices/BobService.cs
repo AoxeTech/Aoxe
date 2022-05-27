@@ -44,7 +44,7 @@ namespace BobServices
 
         public Exception ThrowException() => throw new Exception("This exception was thrown by Bob.");
 
-        public string PassAppleToAlice(string appleName)
+        public async Task<string> PassAppleToAliceAsync(string appleName)
         {
             var apple = new Apple
             {
@@ -52,18 +52,7 @@ namespace BobServices
                 Name = appleName,
                 Message = $"Bob has passed the apple to Alice on {DateTimeOffset.Now}."
             };
-            return _aliceService.PassBackApple(apple).ToJson();
-        }
-
-        public async Task<string> PassAppleToAliceAsyncTest(string appleName)
-        {
-            var apple = new Apple
-            {
-                Id = 1,
-                Name = appleName,
-                Message = $"Bob has passed the apple to Alice on {DateTimeOffset.Now}."
-            };
-            return (await _aliceService.PassBackAppleAsyncTest(apple)).ToJson();
+            return (await _aliceService.PassBackAppleAsync(apple)).ToJson();
         }
     }
 }
