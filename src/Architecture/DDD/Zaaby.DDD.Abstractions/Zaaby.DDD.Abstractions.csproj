@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.2.0</PackageVersion>
-        <Version>2022.2.0</Version>
+        <PackageVersion>2022.2.0.2</PackageVersion>
+        <Version>2022.2.0.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Zaaby DDD</PackageTags>
@@ -13,4 +13,7 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="MediatR.Contracts" Version="1.0.1" />
+    </ItemGroup>
 </Project>
