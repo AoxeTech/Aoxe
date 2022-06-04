@@ -4,9 +4,9 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Consul" Version="1.6.10.5"/>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1"/>
-		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0"/>
+		<PackageReference Include="Consul" Version="1.6.10.6" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 	</ItemGroup>
 </Project>
