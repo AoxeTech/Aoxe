@@ -4,7 +4,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Npgsql" Version="6.0.5"/>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.2"/>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj"/>
