@@ -3,12 +3,12 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Npgsql" Version="6.0.5"/>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+		<PackageReference Include="Npgsql" Version="6.0.5" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj"/>
-		<ProjectReference Include="..\..\..\src\Architecture\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj"/>
-		<ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj"/>
+		<ProjectReference Include="..\..\..\src\Server\Zaaby.Server\Zaaby.Server.csproj" />
+		<ProjectReference Include="..\..\..\src\Architecture\ThreeTier\Zaaby.ThreeTier\Zaaby.ThreeTier.csproj" />
+		<ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
 	</ItemGroup>
 </Project>
