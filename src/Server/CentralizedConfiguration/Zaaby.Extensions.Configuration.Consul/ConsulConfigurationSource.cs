@@ -1,6 +1,6 @@
 namespace Zaaby.Extensions.Configuration.Consul;
 
-public class ConsulConfigurationSource : IConfigurationSource
+public class ConsulConfigurationSource : IConfigurationSource, IDisposable
 {
     private readonly ConsulClient _consulClient;
     private readonly string? _folder;
@@ -17,4 +17,9 @@ public class ConsulConfigurationSource : IConfigurationSource
 
     public IConfigurationProvider Build(IConfigurationBuilder builder) =>
         new ConsulConfigurationProvider(_consulClient, _folder, _key);
+
+    public void Dispose()
+    {
+        _consulClient.Dispose();
+    }
 }
