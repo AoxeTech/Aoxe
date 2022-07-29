@@ -1,12 +1,14 @@
 ﻿namespace Zaaby.Extensions.Configuration.Consul;
 
-public class ConsulConfigurationProvider : ConfigurationProvider
+public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
 {
     private readonly ConsulClient _consulClient;
     private readonly string? _folder;
     private readonly string? _key;
 
-    public ConsulConfigurationProvider(ConsulClient consulClient, string? folder = "/", string? key = null)
+    public ConsulConfigurationProvider(ConsulClient consulClient,
+        string? folder = "/",
+        string? key = null)
     {
         _folder = folder?.Trim();
         _key = key?.Trim();
@@ -46,5 +48,10 @@ public class ConsulConfigurationProvider : ConfigurationProvider
             foreach (var keyValuePair in parser.Parse(memoryStream))
                 Set(keyValuePair.Key, keyValuePair.Value);
         }
+    }
+
+    public void Dispose()
+    {
+        _consulClient.Dispose();
     }
 }
