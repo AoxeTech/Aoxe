@@ -15,7 +15,7 @@ public class Startup
         services.AddControllers();
         services.AddZaabyService<IBll>()
             .AddThreeTier()
-            .AddDbConnection("Host=192.168.78.140;Username=postgres;Password=postgres;Database=ThreeTier");
+            .AddDbConnection(Configuration.GetConnectionString("PgSql"));
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiHost", Version = "v1" });
