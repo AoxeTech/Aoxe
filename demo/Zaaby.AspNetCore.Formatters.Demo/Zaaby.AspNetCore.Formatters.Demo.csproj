@@ -5,14 +5,14 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7"/>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Jil\Zaaby.AspNetCore.Formatters.Jil.csproj"/>
-		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.MsgPack\Zaaby.AspNetCore.Formatters.MsgPack.csproj"/>
-		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Protobuf\Zaaby.AspNetCore.Formatters.Protobuf.csproj"/>
-		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Utf8Json\Zaaby.AspNetCore.Formatters.Utf8Json.csproj"/>
-		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.ZeroFormatter\Zaaby.AspNetCore.Formatters.ZeroFormatter.csproj"/>
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Jil\Zaaby.AspNetCore.Formatters.Jil.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.MsgPack\Zaaby.AspNetCore.Formatters.MsgPack.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Protobuf\Zaaby.AspNetCore.Formatters.Protobuf.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.Utf8Json\Zaaby.AspNetCore.Formatters.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\src\Server\Formatters\Zaaby.AspNetCore.Formatters.ZeroFormatter\Zaaby.AspNetCore.Formatters.ZeroFormatter.csproj" />
 	</ItemGroup>
 </Project>
