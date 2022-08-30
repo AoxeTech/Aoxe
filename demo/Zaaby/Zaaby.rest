@@ -1,0 +1,101 @@
+POST http://localhost:5001/IAliceServices/IAliceService/Hello HTTP/1.1
+Content-Type: application/x-jil
+Accept: application/x-jil
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/SayHelloToBob HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/SayHellosToBob HTTP/1.1
+Content-Type: application/json
+
+10
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/SayHelloToCarol HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/SayHelloToBobAsyncTest HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5002/IBobServices/IBobService/SayHelloToAlice HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5002/IBobServices/IBobService/SayHelloToAliceAsyncTest HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:5001/HealthCheck/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/Hello HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/HelloAsyncTest HTTP/1.1
+Content-Type: application/x-msgpack
+Accept: application/x-msgpack
+
+###
+
+POST http://localhost:5002/IBobServices/IBobService/Hello HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5003/ICarolServices/ICarolService/Hello HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/ThrowException HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:5001/IAliceServices/IAliceService/PassBackApple HTTP/1.1
+Content-Type: application/x-jil
+Accept: application/x-jil
+
+{
+    "Id": 2,
+    "Name": "Red Apple",
+    "Message": "This apple is pass to Alice."
+}
+
+###
+
+POST http://localhost:5002/IBobServices/IBobService/PassAppleToAlice HTTP/1.1
+Content-Type: application/x-utf8json
+Accept: application/x-msgpack
+
+"testApple"
+
+###
+
+POST https://www.baidu.com HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:4000/Contract/IBusinessLogicLayer//Contract/IBusinessLogicLayer/IFieldDefinitionBll/Get HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:5000/swagger HTTP/1.1
+Content-Type: application/json
