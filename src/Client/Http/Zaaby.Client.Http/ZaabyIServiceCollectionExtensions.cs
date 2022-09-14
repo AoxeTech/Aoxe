@@ -29,17 +29,17 @@ public static class ZaabyIServiceCollectionExtensions
 
         foreach (var typeWithUri in typeWithUris)
         {
-            services.AddHttpClient(typeWithUri.Type.Namespace!,
-                configureClient => { configureClient.BaseAddress = new Uri(typeWithUri.UriString); });
+            var @namespace = typeWithUri.Type.Namespace!;
+            services.AddHttpClient(@namespace,
+                configureClient => configureClient.BaseAddress = new Uri(typeWithUri.UriString));
             services.AddScoped(typeWithUri.Type,
-                _ =>
+                p =>
                 {
                     var implement = ZaabyClientProxy.Create(typeWithUri.Type);
                     if (implement is not ZaabyClientProxy zaabyClientProxy) return implement;
                     zaabyClientProxy.InterfaceType = typeWithUri.Type;
-                    zaabyClientProxy.Client = services.BuildServiceProvider()
-                        .GetService<IHttpClientFactory>()!
-                        .CreateClient(typeWithUri.Type.Namespace!);
+                    zaabyClientProxy.Client = p.GetService<IHttpClientFactory>()!
+                        .CreateClient(@namespace);
                     zaabyClientProxy.HttpClientFormatter = formatter;
                     return implement;
                 });
