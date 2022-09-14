@@ -31,7 +31,7 @@ public static class ZaabyIServiceCollectionExtensions
         {
             var @namespace = typeWithUri.Type.Namespace!;
             services.AddHttpClient(@namespace,
-                configureClient => configureClient.BaseAddress = new Uri(typeWithUri.UriString));
+                httpClient => httpClient.BaseAddress = new Uri(typeWithUri.UriString));
             services.AddScoped(typeWithUri.Type,
                 p =>
                 {
