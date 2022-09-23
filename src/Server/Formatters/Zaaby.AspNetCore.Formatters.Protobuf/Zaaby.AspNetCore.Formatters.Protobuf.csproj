@@ -5,8 +5,8 @@
 		<LangVersion>latest</LangVersion>
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2022.10.0.6</PackageVersion>
-		<Version>2022.10.0.6</Version>
+		<PackageVersion>2022.10.0.8</PackageVersion>
+		<Version>2022.10.0.8</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageTags>Zaaby;asp.net core formatters;protobuf</PackageTags>
@@ -17,7 +17,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Protobuf" Version="2022.16.4.4"/>
-		<PackageReference Include="Zaaby.AspNetCore.Formatters" Version="2022.10.2"/>
+		<PackageReference Include="Zaabee.Protobuf" Version="2022.16.4.6" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters" Version="2022.10.2" />
 	</ItemGroup>
 </Project>
