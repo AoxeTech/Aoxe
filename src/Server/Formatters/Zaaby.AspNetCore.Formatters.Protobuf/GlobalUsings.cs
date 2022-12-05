@@ -3,7 +3,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Extensions.Primitives;
 global using Microsoft.Net.Http.Headers;
-global using System.Threading.Tasks;
-global using Microsoft.AspNetCore.Mvc.Formatters;
-global using Zaabee.Extensions;
 global using Zaabee.Protobuf;

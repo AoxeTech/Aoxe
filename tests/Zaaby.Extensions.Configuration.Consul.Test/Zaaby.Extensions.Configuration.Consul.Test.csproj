@@ -21,6 +21,9 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Ini\Zaaby.Extensions.Configuration.Parser.Ini.csproj" />
+		<ProjectReference Include="..\..\src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Json\Zaaby.Extensions.Configuration.Parser.Json.csproj" />
+		<ProjectReference Include="..\..\src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Xml\Zaaby.Extensions.Configuration.Parser.Xml.csproj" />
 		<ProjectReference Include="..\..\src\Server\CentralizedConfiguration\Zaaby.Extensions.Configuration.Consul\Zaaby.Extensions.Configuration.Consul.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,16 +1,18 @@
-﻿namespace Zaaby.Extensions.Configuration.Consul;
+namespace Zaaby.Extensions.Configuration.Consul;
 
-public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
+public class ConsulJsonConfigurationProvider : ConfigurationProvider, IDisposable
 {
     private readonly ConsulClient _consulClient;
     private readonly string? _folder;
     private readonly string? _key;
+    private readonly IParser _parser;
 
-    public ConsulConfigurationProvider(ConsulConfigurationOptions options)
+    public ConsulJsonConfigurationProvider(ConsulConfigurationOptions options)
     {
         _folder = options.Folder?.Trim();
         _key = options.Key?.Trim();
         _consulClient = new ConsulClient(options.ConfigOverride, options.ClientOverride, options.HandlerOverride);
+        _parser = options.Parser;
     }
 
     public override void Load()
@@ -22,29 +24,14 @@ public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
             if (queryResult?.StatusCode is not HttpStatusCode.OK || queryResult.Response is null)
                 return;
             foreach (var item in queryResult.Response.Where(p => p.Value is not null))
-                SetKvPair(item.Value);
+                _parser.Load();
         }
         else
         {
             var queryResult = _consulClient.KV.Get($"{folder}/{_key}").Result;
             if (queryResult?.StatusCode is not HttpStatusCode.OK || queryResult.Response?.Value is null)
                 return;
-            SetKvPair(queryResult.Response.Value);
-        }
-    }
-
-    private void SetKvPair(byte[] bytes)
-    {
-        var json = Encoding.UTF8.GetString(bytes);
-        using (var memoryStream = new MemoryStream())
-        using (var streamWriter = new StreamWriter(memoryStream))
-        {
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            memoryStream.Position = 0;
-            var parser = new JsonConfigurationObjectParser();
-            foreach (var keyValuePair in parser.Parse(memoryStream))
-                Set(keyValuePair.Key, keyValuePair.Value);
+            _parser.Load();
         }
     }
 

@@ -1,4 +1,4 @@
-namespace Zaaby.Extensions.Configuration.Consul;
+﻿namespace Zaaby.Extensions.Configuration.Shared;
 
 public enum ConfigContentType
 {

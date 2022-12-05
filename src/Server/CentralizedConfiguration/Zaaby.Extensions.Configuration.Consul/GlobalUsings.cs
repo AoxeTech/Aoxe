@@ -9,3 +9,8 @@ global using System.Linq;
 global using System.Net;
 global using System.Net.Http;
 global using System.Text;
+global using Microsoft.Extensions.Configuration.Json;
+global using Microsoft.Extensions.Configuration.Xml;
+global using Microsoft.Extensions.Configuration.Ini;
+global using Microsoft.Extensions.Configuration.KeyPerFile;
+global using Zaaby.Extensions.Configuration.Shared;
