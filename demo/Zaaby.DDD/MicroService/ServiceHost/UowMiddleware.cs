@@ -1,22 +1,17 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Zaaby.DDD;
+namespace ServiceHost;
 
-namespace ServiceHost
+public class UowMiddleware
 {
-    public class UowMiddleware
+    private readonly RequestDelegate _next;
+
+    public UowMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public UowMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
-        public async Task Invoke(HttpContext context, ZaabyDddContext dbContext)
-        {
-            await _next(context);
-            await dbContext.SaveChangesAsync();
-        }
+    public async Task Invoke(HttpContext context, ZaabyDddContext dbContext)
+    {
+        await _next(context);
+        await dbContext.SaveChangesAsync();
     }
 }

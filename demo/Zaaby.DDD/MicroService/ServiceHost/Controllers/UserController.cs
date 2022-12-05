@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Application;
+﻿using Application;
 using Domain.AggregateRoots;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
