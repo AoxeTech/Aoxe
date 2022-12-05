@@ -8,6 +8,7 @@ namespace IAliceServices
     {
         string Hello();
         string SayHelloToBob();
+        string SayHellosToBob(int quantity);
         Task<string> SayHelloToBobAsyncTest();
         string SayHelloToCarol();
         Exception ThrowException();

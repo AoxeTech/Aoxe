@@ -6,13 +6,11 @@ public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
     private readonly string? _folder;
     private readonly string? _key;
 
-    public ConsulConfigurationProvider(ConsulClient consulClient,
-        string? folder = "/",
-        string? key = null)
+    public ConsulConfigurationProvider(ConsulConfigurationOptions options)
     {
-        _folder = folder?.Trim();
-        _key = key?.Trim();
-        _consulClient = consulClient;
+        _folder = options.Folder?.Trim();
+        _key = options.Key?.Trim();
+        _consulClient = new ConsulClient(options.ConfigOverride, options.ClientOverride, options.HandlerOverride);
     }
 
     public override void Load()

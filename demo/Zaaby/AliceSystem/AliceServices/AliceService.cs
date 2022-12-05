@@ -22,6 +22,15 @@ namespace AliceServices
         public string Hello() => "Hi,I am Alice.";
 
         public string SayHelloToBob() => $"Hi,I am Alice.\r\n{_bobService.Hello()}";
+
+        public string SayHellosToBob(int quantity)
+        {
+            var result = new StringBuilder();
+            for (var i = 0; i < quantity; i++)
+                result.Append($"Hi,I am Alice.\t{_bobService.Hello()} on {DateTime.Now}\r\n");
+            return result.ToString();
+        }
+
         public async Task<string> SayHelloToBobAsyncTest() => $"Hi,I am Alice.\r\n{await _bobService.HelloAsyncTest()}";
 
         public string SayHelloToCarol() => $"Hi,I am Alice.\r\n{_carolService.Hello()}";

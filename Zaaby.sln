@@ -188,6 +188,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.AspNetCore.Formatters
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Client", "src\Client\Zaaby.Client\Zaaby.Client.csproj", "{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Shared", "src\Server\CentralizedConfiguration\Zaaby.Extensions.Configuration.Shared\Zaaby.Extensions.Configuration.Shared.csproj", "{BB354649-3745-48CC-A5D7-75A1794621E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Parsers", "Parsers", "{D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Parser.Ini", "src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Ini\Zaaby.Extensions.Configuration.Parser.Ini.csproj", "{252821C7-F83C-414A-A476-3E9D060E3E8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Parser.Json", "src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Json\Zaaby.Extensions.Configuration.Parser.Json.csproj", "{D317B860-F8CB-4C29-BA13-499EC62BE86C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.Extensions.Configuration.Parser.Xml", "src\Server\CentralizedConfiguration\Parsers\Zaaby.Extensions.Configuration.Parser.Xml\Zaaby.Extensions.Configuration.Parser.Xml.csproj", "{326937A2-CF21-43A5-9440-9822DB8A0B48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -442,6 +452,22 @@ Global
 		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB354649-3745-48CC-A5D7-75A1794621E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB354649-3745-48CC-A5D7-75A1794621E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB354649-3745-48CC-A5D7-75A1794621E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB354649-3745-48CC-A5D7-75A1794621E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252821C7-F83C-414A-A476-3E9D060E3E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252821C7-F83C-414A-A476-3E9D060E3E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252821C7-F83C-414A-A476-3E9D060E3E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252821C7-F83C-414A-A476-3E9D060E3E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D317B860-F8CB-4C29-BA13-499EC62BE86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D317B860-F8CB-4C29-BA13-499EC62BE86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D317B860-F8CB-4C29-BA13-499EC62BE86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D317B860-F8CB-4C29-BA13-499EC62BE86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{326937A2-CF21-43A5-9440-9822DB8A0B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326937A2-CF21-43A5-9440-9822DB8A0B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326937A2-CF21-43A5-9440-9822DB8A0B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326937A2-CF21-43A5-9440-9822DB8A0B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -531,6 +557,11 @@ Global
 		{E68EC879-CF37-40FA-B554-06AA1244DBA8} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08} = {9C5D1C18-AB9B-4A01-9A06-375198D440C0}
 		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19} = {FE4DF66D-4961-46F9-9CB7-45DC7739F0CE}
+		{BB354649-3745-48CC-A5D7-75A1794621E6} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
+		{D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
+		{252821C7-F83C-414A-A476-3E9D060E3E8F} = {D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505}
+		{D317B860-F8CB-4C29-BA13-499EC62BE86C} = {D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505}
+		{326937A2-CF21-43A5-9440-9822DB8A0B48} = {D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}

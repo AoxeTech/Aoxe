@@ -1,3 +1,5 @@
+using Zaaby.Extensions.Configuration.Parser.Json;
+
 namespace Zaaby.Extensions.Configuration.Consul.Test;
 
 public class UnitTest1
@@ -6,11 +8,15 @@ public class UnitTest1
     public void Test1()
     {
         var configBuilder = new ConfigurationBuilder()
-            .AddConsul(c =>
+            .AddConsul(options =>
             {
-                c.Address = new Uri("http://192.168.78.140:8500");
-                c.Datacenter = "dc1";
-                c.WaitTime = TimeSpan.FromSeconds(30);
+                options.ConfigOverride = c =>
+                {
+                    c.Address = new Uri("http://192.168.78.140:8500");
+                    c.Datacenter = "dc1";
+                    c.WaitTime = TimeSpan.FromSeconds(30);
+                };
+                options.Parser = new JsonParser();
             });
         var config = configBuilder.Build();
         var a = config.GetSection("a").Get<string>();
