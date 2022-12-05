@@ -3,10 +3,10 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\src\Architecture\DDD\Zaaby.DDD\Zaaby.DDD.csproj"/>
-		<ProjectReference Include="..\Domain\Domain.csproj"/>
+		<ProjectReference Include="..\..\..\..\src\Architecture\DDD\Zaaby.DDD\Zaaby.DDD.csproj" />
+		<ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6"/>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
 	</ItemGroup>
 </Project>
