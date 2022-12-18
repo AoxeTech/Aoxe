@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>0.10.8</PackageVersion>
-		<Version>0.10.8</Version>
+		<PackageVersion>0.10.10</PackageVersion>
+		<Version>0.10.10</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageTags>Zaaby;MicroService;Message bus</PackageTags>
@@ -14,7 +14,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-		<PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.20.0" />
+		<PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.22.0" />
 		<PackageReference Include="Zaaby.Shared" Version="2022.2.2.2" />
 	</ItemGroup>
 </Project>

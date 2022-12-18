@@ -3,7 +3,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Npgsql" Version="7.0.0" />
+		<PackageReference Include="Npgsql" Version="7.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
 	<ItemGroup>

@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.Jil" Version="2022.16.2.2" />
+        <PackageReference Include="Zaabee.Jil" Version="2022.17.0" />
         <PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.8.4" />
     </ItemGroup>
 

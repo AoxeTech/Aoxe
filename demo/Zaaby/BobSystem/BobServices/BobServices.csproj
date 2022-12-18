@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Zaabee.Utf8Json" Version="2022.16.2.2" />
+      <PackageReference Include="Zaabee.Utf8Json" Version="2022.17.0" />
     </ItemGroup>
 
 </Project>

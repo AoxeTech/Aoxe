@@ -14,7 +14,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.20.0" />
+		<PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2022.22.0" />
 		<PackageReference Include="Zaaby.DDD.Abstractions" Version="2022.2.0.2" />
 	</ItemGroup>
 </Project>
