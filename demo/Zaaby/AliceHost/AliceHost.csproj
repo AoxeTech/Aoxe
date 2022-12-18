@@ -13,11 +13,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" NoWarn="NU1605" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.1" NoWarn="NU1605" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Jil" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.MsgPack" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Protobuf" Version="2022.10.0.10" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Utf8Json" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.ZeroFormatter" Version="2022.10.0.2" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Jil" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.MsgPack" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Protobuf" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Utf8Json" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.ZeroFormatter" Version="2022.11.0" />
 		<PackageReference Include="Zaaby.Client.Http" Version="2022.6.2.2" />
 	</ItemGroup>
 </Project>

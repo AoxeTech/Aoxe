@@ -12,10 +12,10 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="NSwag.AspNetCore" Version="13.18.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Jil" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.MsgPack" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Protobuf" Version="2022.10.0.10" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.Utf8Json" Version="2022.10.0.2" />
-		<PackageReference Include="Zaaby.AspNetCore.Formatters.ZeroFormatter" Version="2022.10.0.2" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Jil" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.MsgPack" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Protobuf" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.Utf8Json" Version="2022.11.0" />
+		<PackageReference Include="Zaaby.AspNetCore.Formatters.ZeroFormatter" Version="2022.11.0" />
 	</ItemGroup>
 </Project>
