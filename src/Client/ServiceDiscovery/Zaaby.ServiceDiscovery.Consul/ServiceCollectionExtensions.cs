@@ -1,11 +1,3 @@
-using System;
-using System.Linq;
-using Consul;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Zaaby.Client.Http;
-using Zaaby.Shared;
-
 namespace Zaaby.ServiceDiscovery.Consul;
 
 public static class ServiceCollectionExtensions
