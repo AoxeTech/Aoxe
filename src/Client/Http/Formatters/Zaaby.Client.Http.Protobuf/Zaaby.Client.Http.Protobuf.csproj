@@ -14,7 +14,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Protobuf" Version="2022.17.1" />
+		<PackageReference Include="Zaabee.Protobuf" Version="2022.17.3" />
 		<PackageReference Include="Zaaby.Client.Http.Formatter" Version="2022.9.0" />
 	</ItemGroup>
 </Project>

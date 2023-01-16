@@ -19,7 +19,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.ZeroFormatter" Version="2022.17.0" />
+        <PackageReference Include="Zaabee.ZeroFormatter" Version="2022.17.2" />
         <PackageReference Include="Zaaby.AspNetCore.Formatters" Version="2022.10.3" />
     </ItemGroup>
 
