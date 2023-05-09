@@ -17,11 +17,11 @@
 	<ItemGroup>
 		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-		<PackageReference Include="Consul" Version="1.6.10.8" />
+		<PackageReference Include="Consul" Version="1.6.10.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="7.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="7.0.5" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Zaaby.Extensions.Configuration.Shared\Zaaby.Extensions.Configuration.Shared.csproj" />
