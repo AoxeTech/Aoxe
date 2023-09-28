@@ -3,7 +3,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.0.143" />
+		<PackageReference Include="Dapper" Version="2.0.151" />
 		<PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.12-alpha" />
 	</ItemGroup>
 	<ItemGroup>
