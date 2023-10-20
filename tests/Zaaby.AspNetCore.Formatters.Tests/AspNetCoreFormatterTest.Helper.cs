@@ -12,11 +12,11 @@ public partial class FormatterTest
             var dtoOne = first[i];
             var dtoTwo = second[i];
 
-            if (dtoOne.Id != dtoTwo.Id ||
-                dtoOne.CreateTime.ToUniversalTime() != dtoTwo.CreateTime.ToUniversalTime() ||
-                dtoOne.Enum != dtoTwo.Enum ||
-                dtoOne.Name != dtoTwo.Name ||
-                dtoOne.Tag != dtoTwo.Tag)
+            if (dtoOne.Id != dtoTwo.Id
+                || dtoOne.CreateTime.ToUniversalTime() != dtoTwo.CreateTime.ToUniversalTime()
+                || dtoOne.Enum != dtoTwo.Enum
+                || dtoOne.Name != dtoTwo.Name
+                || dtoOne.Tag != dtoTwo.Tag)
 //                    dtoOne.TestTime != dtoTwo.TestTime ||
 //                    !CompareDtos(dtoOne.Kids, dtoTwo.Kids))
                 return false;
@@ -29,7 +29,7 @@ public partial class FormatterTest
     {
         return new List<TestDto>
         {
-            new TestDto
+            new()
             {
                 Id = Guid.NewGuid(),
                 Tag = long.MaxValue,
@@ -59,7 +59,7 @@ public partial class FormatterTest
 //                        }
 //                    }
             },
-            new TestDto
+            new()
             {
                 Id = Guid.NewGuid(),
                 Tag = long.MaxValue - 3,
