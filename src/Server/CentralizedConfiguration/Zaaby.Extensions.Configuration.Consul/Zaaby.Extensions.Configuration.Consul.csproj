@@ -21,7 +21,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="7.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="7.0.12" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Zaaby.Extensions.Configuration.Shared\Zaaby.Extensions.Configuration.Shared.csproj" />

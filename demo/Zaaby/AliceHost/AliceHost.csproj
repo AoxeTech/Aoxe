@@ -10,9 +10,9 @@
 		<ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.11" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.Orleans.Runtime" Version="7.2.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.12" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.12" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.Orleans.Runtime" Version="7.2.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Zaaby.AspNetCore.Formatters.Jil" Version="2023.1.0" />
 		<PackageReference Include="Zaaby.AspNetCore.Formatters.MsgPack" Version="2023.1.0" />
