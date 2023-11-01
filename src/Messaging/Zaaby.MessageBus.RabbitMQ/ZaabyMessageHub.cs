@@ -22,8 +22,11 @@ public class ZaabyMessageHub : IZaabyMessageHub
     public void Publish<TMessage>(TMessage message) =>
         _rabbitMqClient.PublishEvent(message);
 
-    public Task PublishAsync<TMessage>(TMessage message) =>
-        _rabbitMqClient.PublishEventAsync(message);
+    public Task PublishAsync<TMessage>(TMessage message)
+    {
+        _rabbitMqClient.PublishEvent(message);
+        return Task.CompletedTask;
+    }
 
     public void Subscribe<TMessage>(Func<Action<TMessage>> resolve) =>
         _rabbitMqClient.SubscribeEvent(resolve);

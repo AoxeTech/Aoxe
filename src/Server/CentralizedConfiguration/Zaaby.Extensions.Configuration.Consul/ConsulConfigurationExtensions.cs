@@ -7,15 +7,15 @@ public static class ConsulConfigurationExtensions
             Action<ConsulConfigurationOptions> optionsFactory)
     {
         builder
-            .AddInMemoryCollection()
-            .AddIniFile()
-            .AddIniStream()
-            .AddJsonFile()
-            .AddJsonStream()
-            .AddXmlFile()
-            .AddXmlStream()
-            .AddKeyPerFile()
-            .AddAzureKeyVault();
+            .AddInMemoryCollection();
+            // .AddIniFile()
+            // .AddIniStream()
+            // .AddJsonFile()
+            // .AddJsonStream()
+            // .AddXmlFile()
+            // .AddXmlStream()
+            // .AddKeyPerFile()
+            // .AddAzureKeyVault();
         var options = new ConsulConfigurationOptions();
         optionsFactory(options);
         builder.Add(new ConsulConfigurationSource(options));

@@ -306,3 +306,5 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 .dccache
+
+.sonarqube

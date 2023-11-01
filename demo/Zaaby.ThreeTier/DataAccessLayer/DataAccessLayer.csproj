@@ -3,11 +3,11 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Dapper" Version="2.0.123"/>
-		<PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.10-alpha"/>
+		<PackageReference Include="Dapper" Version="2.1.15" />
+		<PackageReference Include="Zaabee.Dapper.Extensions" Version="0.0.12-alpha" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Architecture\ThreeTier\Zaaby.ThreeTier.Annotations\Zaaby.ThreeTier.Annotations.csproj"/>
-		<ProjectReference Include="..\Model\Model.csproj"/>
+		<ProjectReference Include="..\..\..\src\Architecture\ThreeTier\Zaaby.ThreeTier.Annotations\Zaaby.ThreeTier.Annotations.csproj" />
+		<ProjectReference Include="..\Model\Model.csproj" />
 	</ItemGroup>
 </Project>
