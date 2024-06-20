@@ -1,10 +1,10 @@
-# Zaaby
+# Aoxe
 
 A micro service framework base by asp.net core.
 
-[Zaaby.DDD](https://github.com/PicoHex/Zaaby/tree/master/src/DDD)
+[Aoxe.DDD](https://github.com/PicoHex/Aoxe/tree/master/src/DDD)
 
-[Zaaby.ThreeTier](https://github.com/PicoHex/Zaaby/tree/master/src/ThreeTier)
+[Aoxe.ThreeTier](https://github.com/PicoHex/Aoxe/tree/master/src/ThreeTier)
 
 Thank`s for [JetBrains](https://www.jetbrains.com/) for the great support in providing assistance and user-friendly environment for my open source projects.
 
