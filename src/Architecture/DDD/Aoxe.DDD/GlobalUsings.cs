@@ -1,0 +1,15 @@
+global using System;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Aoxe.Shared;
+global using Aoxe.DDD.Abstractions.Infrastructure.Messaging;
+global using Aoxe.DDD.Abstractions.Application;
+global using Aoxe.DDD.Abstractions.Domain;
+global using Aoxe.DDD.Abstractions.Infrastructure.Repository;
+global using System.Collections.Generic;
+global using Microsoft.EntityFrameworkCore;
+global using Aoxe.SequentialGuid;
+global using Aoxe.Serializer.Abstractions;

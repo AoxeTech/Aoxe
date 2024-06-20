@@ -1,0 +1,11 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Net.Http;
+global using System.Text;
+global using System.Threading.Tasks;
+global using Aoxe.AspNetCore.Formatters.Demo;
+global using Aoxe.Serializer.Abstractions;
+global using Jil;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.TestHost;
+global using Xunit;

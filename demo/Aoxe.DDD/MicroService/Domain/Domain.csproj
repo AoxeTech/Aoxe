@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Aoxe.SequentialGuid" Version="2023.2.0" />
+      <PackageReference Include="Aoxe.DDD.Abstractions" Version="2023.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DomainHandlers" />
+    </ItemGroup>
+
+</Project>

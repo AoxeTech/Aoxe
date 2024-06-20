@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Jil\Aoxe.Client.Http.Jil.csproj" />
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.MsgPack\Aoxe.Client.Http.MsgPack.csproj" />
+		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Utf8Json\Aoxe.Client.Http.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\..\src\Aoxe\Aoxe.csproj" />
+		<ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NSwag.AspNetCore" Version="13.20.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Jil" Version="2023.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.MsgPack" Version="2023.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Protobuf" Version="2023.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Utf8Json" Version="2023.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.ZeroFormatter" Version="2023.1.0" />
+	</ItemGroup>
+</Project>

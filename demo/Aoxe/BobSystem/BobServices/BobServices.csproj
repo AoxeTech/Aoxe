@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\AliceSystem\IAliceServices\IAliceServices.csproj" />
+      <ProjectReference Include="..\..\CarolSystem\ICarolServices\ICarolServices.csproj" />
+      <ProjectReference Include="..\IBobServices\IBobServices.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Aoxe.Utf8Json" Version="2023.6.0" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.OpenApi.Models;
+global using Zaaby.Server;
+global using Zaaby.ThreeTier;
+global using Zaaby.ThreeTier.Annotations.BusinessLogic;
+global using System.Data;
+global using Npgsql;

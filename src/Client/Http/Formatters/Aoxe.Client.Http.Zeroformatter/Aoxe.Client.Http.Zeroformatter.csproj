@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2022.3.0</PackageVersion>
+        <Version>2022.3.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageTags>Aoxe;MicroService;Http Client;Formatter;Zeroformatter</PackageTags>
+        <Description>The zeroformatter formatter for Aoxe http client.</Description>
+        <PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aoxe.ZeroFormatter" Version="2023.6.0" />
+        <PackageReference Include="Aoxe.Client.Http.Formatter" Version="2022.9.0" />
+    </ItemGroup>
+
+</Project>
