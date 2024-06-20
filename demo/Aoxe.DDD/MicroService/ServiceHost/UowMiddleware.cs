@@ -9,7 +9,7 @@ public class UowMiddleware
         _next = next;
     }
 
-    public async Task Invoke(HttpContext context, ZaabyDddContext dbContext)
+    public async Task Invoke(HttpContext context, AoxeDddContext dbContext)
     {
         await _next(context);
         await dbContext.SaveChangesAsync();

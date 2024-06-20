@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Aoxe.DDD.Abstractions.Domain;
 using Domain.AggregateRoots;
 using Domain.Entities;
 using Domain.IRepositories;
-using Zaaby.DDD.Abstractions.Domain;
 
 namespace Domain.DomainServices
 {

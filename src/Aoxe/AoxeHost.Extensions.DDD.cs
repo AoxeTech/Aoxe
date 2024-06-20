@@ -1,10 +1,10 @@
-namespace Zaaby;
+namespace Aoxe;
 
-public static partial class ZaabyHostExtensions
+public static partial class AoxeHostExtensions
 {
-    public static ZaabyHost AddDDD(this ZaabyHost zaabyHost)
+    public static AoxeHost AddDDD(this AoxeHost AoxeHost)
     {
-        zaabyHost.ConfigureServices(services => services.AddDDD());
-        return zaabyHost;
+        AoxeHost.ConfigureServices(services => services.AddDDD());
+        return AoxeHost;
     }
 }

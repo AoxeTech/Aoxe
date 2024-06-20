@@ -1,18 +1,21 @@
-namespace Zaaby;
+namespace Aoxe;
 
-public partial class ZaabyHost
+public partial class AoxeHost
 {
-    public ZaabyHost AddHostedService<THostedService>(ZaabyHost zaabyHost)
+    public AoxeHost AddHostedService<THostedService>(AoxeHost AoxeHost)
         where THostedService : class, IHostedService
     {
         TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService, THostedService>());
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public ZaabyHost AddHostedService<THostedService>(ZaabyHost zaabyHost,
-        Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class, IHostedService
+    public AoxeHost AddHostedService<THostedService>(
+        AoxeHost AoxeHost,
+        Func<IServiceProvider, THostedService> implementationFactory
+    )
+        where THostedService : class, IHostedService
     {
         TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService>(implementationFactory));
-        return zaabyHost;
+        return AoxeHost;
     }
 }

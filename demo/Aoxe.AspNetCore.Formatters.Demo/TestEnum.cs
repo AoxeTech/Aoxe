@@ -1,4 +1,4 @@
-﻿namespace Zaaby.AspNetCore.Formatters.Demo;
+﻿namespace Aoxe.AspNetCore.Formatters.Demo;
 
 public enum TestEnum
 {

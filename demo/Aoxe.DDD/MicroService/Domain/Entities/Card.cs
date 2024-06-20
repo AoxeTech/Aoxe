@@ -1,5 +1,5 @@
 using System;
-using Zaaby.DDD.Abstractions.Domain;
+using Aoxe.DDD.Abstractions.Domain;
 
 namespace Domain.Entities
 {
@@ -10,7 +10,8 @@ namespace Domain.Entities
 
         public Card(Guid id, string name)
         {
-            if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
+            if (id == Guid.Empty)
+                throw new ArgumentNullException(nameof(id));
             (Id, Name) = (id, name);
         }
     }

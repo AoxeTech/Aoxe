@@ -1,4 +1,4 @@
-namespace Zaaby.DDD;
+namespace Aoxe.DDD;
 
 public class DomainEventSubscriber : BackgroundService
 {

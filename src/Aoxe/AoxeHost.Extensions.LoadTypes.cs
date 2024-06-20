@@ -1,88 +1,95 @@
-namespace Zaaby;
+namespace Aoxe;
 
-public static partial class ZaabyHostExtensions
+public static partial class AoxeHostExtensions
 {
-    public static ZaabyHost FromAssemblyOf<T>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4, T5>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4, T5>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>(this AoxeHost AoxeHost)
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>(
+        this AoxeHost AoxeHost
+    )
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ZaabyHost zaabyHost)
+    public static AoxeHost FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+        this AoxeHost AoxeHost
+    )
     {
         LoadHelper.FromAssemblyOf<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>();
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyOf(this ZaabyHost zaabyHost, params Type[] types)
+    public static AoxeHost FromAssemblyOf(this AoxeHost AoxeHost, params Type[] types)
     {
         LoadHelper.FromAssemblyOf(types);
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblies(this ZaabyHost zaabyHost, params Assembly[] assemblies)
+    public static AoxeHost FromAssemblies(this AoxeHost AoxeHost, params Assembly[] assemblies)
     {
         LoadHelper.FromAssemblies(assemblies);
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromAssemblyNames(this ZaabyHost zaabyHost, params AssemblyName[] assemblyNames)
+    public static AoxeHost FromAssemblyNames(
+        this AoxeHost AoxeHost,
+        params AssemblyName[] assemblyNames
+    )
     {
         LoadHelper.FromAssemblyNames(assemblyNames);
-        return zaabyHost;
+        return AoxeHost;
     }
 
-    public static ZaabyHost FromDirectories(this ZaabyHost zaabyHost, params string[] directories)
+    public static AoxeHost FromDirectories(this AoxeHost AoxeHost, params string[] directories)
     {
         LoadHelper.FromDirectories(directories);
-        return zaabyHost;
+        return AoxeHost;
     }
 }

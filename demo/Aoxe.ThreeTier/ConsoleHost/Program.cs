@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Aoxe;
+using Aoxe.Server;
+using Aoxe.ThreeTier.Annotations.BusinessLogic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Zaaby;
-using Zaaby.Server;
-using Zaaby.ThreeTier.Annotations.BusinessLogic;
 
 namespace ConsoleHost
 {
@@ -10,19 +10,26 @@ namespace ConsoleHost
     {
         static void Main(string[] args)
         {
-            ZaabyHost.Instance
-                .AddZaabyService<IBll>()
+            AoxeHost
+                .Instance
+                .AddAoxeService<IBll>()
                 .AddThreeTiers()
-                .ConfigureServices(services => { services.AddSwaggerDocument(); })
+                .ConfigureServices(services =>
+                {
+                    services.AddSwaggerDocument();
+                })
                 .Configure(app =>
                 {
                     app.UseHttpsRedirection()
                         .UseOpenApi()
                         .UseSwaggerUi3()
-                        .UseZaaby()
+                        .UseAoxe()
                         .UseRouting()
                         .UseAuthorization()
-                        .UseEndpoints(endpoints => { endpoints.MapControllers(); });
+                        .UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapControllers();
+                        });
                 })
                 .Run();
         }

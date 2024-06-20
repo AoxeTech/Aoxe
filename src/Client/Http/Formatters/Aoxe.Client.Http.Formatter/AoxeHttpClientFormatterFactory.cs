@@ -1,13 +1,16 @@
-namespace Zaaby.Client.Http.Formatter;
+namespace Aoxe.Client.Http.Formatter;
 
-public static class ZaabyHttpClientFormatterFactory
+public static class AoxeHttpClientFormatterFactory
 {
-    public static ZaabyHttpClientFormatter Create(ZaabyClientFormatterOptions options) =>
+    public static AoxeHttpClientFormatter Create(AoxeClientFormatterOptions options) =>
         options.Serializer switch
         {
-            ITextSerializer => new ZaabyHttpClientTextFormatter(options),
-            not null => new ZaabyHttpClientStreamFormatter(options),
-            _ => throw new ArgumentOutOfRangeException(nameof(options.Serializer),
-                $"options.Serializer must be {nameof(ITextSerializer)} or {nameof(IStreamSerializer)}.")
+            ITextSerializer => new AoxeHttpClientTextFormatter(options),
+            not null => new AoxeHttpClientStreamFormatter(options),
+            _
+                => throw new ArgumentOutOfRangeException(
+                    nameof(options.Serializer),
+                    $"options.Serializer must be {nameof(ITextSerializer)} or {nameof(IStreamSerializer)}."
+                )
         };
 }

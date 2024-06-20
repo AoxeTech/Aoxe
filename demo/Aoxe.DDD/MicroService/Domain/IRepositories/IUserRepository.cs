@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Aoxe.DDD.Abstractions.Infrastructure.Repository;
 using Domain.AggregateRoots;
-using Zaaby.DDD.Abstractions.Infrastructure.Repository;
 
 namespace Domain.IRepositories
 {

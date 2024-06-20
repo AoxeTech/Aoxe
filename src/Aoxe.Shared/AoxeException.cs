@@ -1,27 +1,24 @@
-﻿namespace Zaaby.Shared;
+﻿namespace Aoxe.Shared;
 
-public class ZaabyException : Exception
+public class AoxeException : Exception
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Code { get; set; }
     public DateTimeOffset ThrowTime { get; set; } = DateTimeOffset.Now;
 
-    public ZaabyException()
-    {
-    }
+    public AoxeException() { }
 
-    public ZaabyException(string message) : base(message) =>
-        Message = message;
+    public AoxeException(string message)
+        : base(message) => Message = message;
 
-    public ZaabyException(string message, string stackTrace = null) : base(message) =>
-        StackTrace = stackTrace;
+    public AoxeException(string message, string stackTrace = null)
+        : base(message) => StackTrace = stackTrace;
 
-    public ZaabyException(string message, Exception inner, string stackTrace = null) : base(message, inner) =>
-        StackTrace = stackTrace;
+    public AoxeException(string message, Exception inner, string stackTrace = null)
+        : base(message, inner) => StackTrace = stackTrace;
 
-    protected ZaabyException(SerializationInfo info, StreamingContext context) : base(info, context)
-    {
-    }
+    protected AoxeException(SerializationInfo info, StreamingContext context)
+        : base(info, context) { }
 
     /// <inheritdoc />
     /// <summary>Gets a message that describes the current exception.</summary>

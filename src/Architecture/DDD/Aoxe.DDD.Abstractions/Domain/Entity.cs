@@ -1,8 +1,6 @@
-namespace Zaaby.DDD.Abstractions.Domain;
+namespace Aoxe.DDD.Abstractions.Domain;
 
-public interface IEntity
-{
-}
+public interface IEntity { }
 
 public interface IEntity<out TId> : IEntity
 {
@@ -15,6 +13,7 @@ public abstract class Entity : IEntity
 
     private readonly List<IDomainEvent> _domainEvents = new();
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents;
+
     public void ClearDomainEvents() => _domainEvents.Clear();
 
     protected void PublishEvent(Func<IDomainEvent> domainEventFunc)

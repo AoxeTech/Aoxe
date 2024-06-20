@@ -1,8 +1,6 @@
-namespace Zaaby.ThreeTier.Annotations.BusinessLogic;
+namespace Aoxe.ThreeTier.Annotations.BusinessLogic;
 
-public interface IMessageHandler
-{
-}
+public interface IMessageHandler { }
 
 public interface IMessageHandler<in TMessage> : IMessageHandler
 {

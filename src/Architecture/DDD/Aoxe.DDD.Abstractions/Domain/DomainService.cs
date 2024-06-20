@@ -1,9 +1,5 @@
-﻿namespace Zaaby.DDD.Abstractions.Domain;
+﻿namespace Aoxe.DDD.Abstractions.Domain;
 
-public interface IDomainService
-{
-}
+public interface IDomainService { }
 
-public class DomainServiceAttribute : Attribute
-{
-}
+public class DomainServiceAttribute : Attribute { }

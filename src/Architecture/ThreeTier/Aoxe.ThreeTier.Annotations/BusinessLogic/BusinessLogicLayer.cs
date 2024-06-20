@@ -1,9 +1,5 @@
-namespace Zaaby.ThreeTier.Annotations.BusinessLogic;
+namespace Aoxe.ThreeTier.Annotations.BusinessLogic;
 
-public interface IBll
-{
-}
+public interface IBll { }
 
-public class BllAttribute : Attribute
-{
-}
+public class BllAttribute : Attribute { }

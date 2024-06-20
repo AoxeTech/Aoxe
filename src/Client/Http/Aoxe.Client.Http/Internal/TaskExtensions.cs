@@ -1,4 +1,4 @@
-namespace Zaaby.Client.Http.Internal;
+namespace Aoxe.Client.Http.Internal;
 
 internal static class TaskExtensions
 {

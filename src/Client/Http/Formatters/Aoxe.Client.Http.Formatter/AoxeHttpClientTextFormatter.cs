@@ -1,11 +1,11 @@
-namespace Zaaby.Client.Http.Formatter;
+namespace Aoxe.Client.Http.Formatter;
 
-public class ZaabyHttpClientTextFormatter : ZaabyHttpClientFormatter
+public class AoxeHttpClientTextFormatter : AoxeHttpClientFormatter
 {
     private readonly ITextSerializer _serializer;
     public string MediaType { get; }
 
-    public ZaabyHttpClientTextFormatter(ZaabyClientFormatterOptions options)
+    public AoxeHttpClientTextFormatter(AoxeClientFormatterOptions options)
     {
         if (options.Serializer is not ITextSerializer textSerializer)
             throw new ArgumentException("The Serializer is not ITextSerializer.");
@@ -19,24 +19,26 @@ public class ZaabyHttpClientTextFormatter : ZaabyHttpClientFormatter
         return CreateHttpRequestMessage(httpContent, MediaType, requestUri);
     }
 
-    public override async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
+    public override async Task<object?> GetResultAsync(
+        Type returnType,
+        HttpResponseMessage httpResponseMessage
+    )
     {
         var result = await httpResponseMessage.Content.ReadAsStringAsync();
-        var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
-            ? returnType.GenericTypeArguments[0]
-            : returnType;
+        var type =
+            returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
+                ? returnType.GenericTypeArguments[0]
+                : returnType;
         if (httpResponseMessage.IsSuccessStatusCode)
-            return string.IsNullOrWhiteSpace(result)
-                ? null
-                : _serializer.FromText(type, result);
+            return string.IsNullOrWhiteSpace(result) ? null : _serializer.FromText(type, result);
 
-        var zaabyError = _serializer.FromText<ZaabyError>(result)!;
-        throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
+        var AoxeError = _serializer.FromText<AoxeError>(result)!;
+        throw new AoxeException(AoxeError.Message, AoxeError.StackTrace)
         {
-            Id = zaabyError.Id,
-            Code = zaabyError.Code,
-            ThrowTime = zaabyError.ThrowTime,
-            Source = zaabyError.Source
+            Id = AoxeError.Id,
+            Code = AoxeError.Code,
+            ThrowTime = AoxeError.ThrowTime,
+            Source = AoxeError.Source
         };
     }
 }

@@ -1,4 +1,4 @@
-namespace Zaaby.DDD.Abstractions.Infrastructure.Messaging;
+namespace Aoxe.DDD.Abstractions.Infrastructure.Messaging;
 
 public interface IMessageBus
 {

@@ -1,4 +1,4 @@
+global using Aoxe.Shared;
+global using Aoxe.ThreeTier.Annotations.BusinessLogic;
+global using Aoxe.ThreeTier.Annotations.DataAccess;
 global using Microsoft.Extensions.DependencyInjection;
-global using Zaaby.Shared;
-global using Zaaby.ThreeTier.Annotations.BusinessLogic;
-global using Zaaby.ThreeTier.Annotations.DataAccess;

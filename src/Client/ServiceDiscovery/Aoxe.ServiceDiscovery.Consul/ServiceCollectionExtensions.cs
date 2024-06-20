@@ -1,20 +1,27 @@
-namespace Zaaby.ServiceDiscovery.Consul;
+namespace Aoxe.ServiceDiscovery.Consul;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddServiceDiscovery(this IServiceCollection services, Type serviceDefineType,
-        string consulAddress)
+    public static IServiceCollection AddServiceDiscovery(
+        this IServiceCollection services,
+        Type serviceDefineType,
+        string consulAddress
+    )
     {
-        services.TryAddSingleton<IConsulClient>(_ => new ConsulClient(x =>
-        {
-            x.Address = new Uri(consulAddress);
-        }));
+        services.TryAddSingleton<IConsulClient>(
+            _ =>
+                new ConsulClient(x =>
+                {
+                    x.Address = new Uri(consulAddress);
+                })
+        );
         services.AddTransient<ConsulServiceDiscoveryDelegatingHandler>();
 
         var consulClient = services.BuildServiceProvider().GetService<IConsulClient>();
         var serviceNames = consulClient?.Catalog.Services().Result.Response;
 
-        var i = LoadHelper.GetTypePairs(serviceDefineType)
+        var i = LoadHelper
+            .GetTypePairs(serviceDefineType)
             .Where(p => p.InterfaceType?.Namespace is not null && p.ImplementationType is null);
 
         // foreach (var typeWithUri in typeWitUris)
@@ -22,7 +29,7 @@ public static class ServiceCollectionExtensions
         //     services.AddHttpClient(typeWithUri.Type.Namespace)
         //         .AddHttpMessageHandler<ConsulServiceDiscoveryDelegatingHandler>();
         //     services.AddScoped(typeWithUri.Type, _ => methodInfo.MakeGenericMethod(typeWithUri.Type)
-        //         .Invoke(services.BuildServiceProvider().GetService<ZaabyClient>(), null));
+        //         .Invoke(services.BuildServiceProvider().GetService<AoxeClient>(), null));
         // }
 
         return services;

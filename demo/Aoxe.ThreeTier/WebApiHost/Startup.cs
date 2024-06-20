@@ -13,7 +13,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-        services.AddZaabyService<IBll>()
+        services
+            .AddAoxeService<IBll>()
             .AddThreeTier()
             .AddDbConnection(Configuration.GetConnectionString("PgSql"));
         services.AddSwaggerGen(c =>
@@ -38,6 +39,9 @@ public class Startup
 
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }

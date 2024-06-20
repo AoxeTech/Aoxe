@@ -1,8 +1,14 @@
-namespace Zaaby;
+namespace Aoxe;
 
-public static partial class ZaabyHostExtensions
+public static partial class AoxeHostExtensions
 {
-    public static ZaabyHost UseZaabyClient(this ZaabyHost zaabyHost, Type serviceDefineType,
-        Dictionary<string, string> configUrls, Action<ZaabyClientFormatterOptions>? optionsFactory = null) =>
-        zaabyHost.ConfigureServices(services => services.AddZaabyClient(serviceDefineType, configUrls, optionsFactory));
+    public static AoxeHost UseAoxeClient(
+        this AoxeHost AoxeHost,
+        Type serviceDefineType,
+        Dictionary<string, string> configUrls,
+        Action<AoxeClientFormatterOptions>? optionsFactory = null
+    ) =>
+        AoxeHost.ConfigureServices(
+            services => services.AddAoxeClient(serviceDefineType, configUrls, optionsFactory)
+        );
 }

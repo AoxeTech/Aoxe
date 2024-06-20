@@ -1,4 +1,4 @@
-namespace Zaaby.Client.Http.Internal;
+namespace Aoxe.Client.Http.Internal;
 
 internal class TaskCompletionSource
 {
@@ -12,11 +12,9 @@ internal class TaskCompletionSource
         _taskSource = (Activator.CreateInstance(type) as ITaskCompletionSource)!;
     }
 
-    public bool SetResult(object? result) =>
-        _taskSource.SetResult(result);
+    public bool SetResult(object? result) => _taskSource.SetResult(result);
 
-    public bool SetException(Exception ex) =>
-        _taskSource.SetException(ex);
+    public bool SetException(Exception ex) => _taskSource.SetException(ex);
 
     private interface ITaskCompletionSource
     {
@@ -33,13 +31,10 @@ internal class TaskCompletionSource
 
         public Task Task => _taskSource.Task;
 
-        public TaskCompletionSourceOf() =>
-            _taskSource = new TaskCompletionSource<TResult?>();
+        public TaskCompletionSourceOf() => _taskSource = new TaskCompletionSource<TResult?>();
 
-        public bool SetResult(object? result) =>
-            _taskSource.TrySetResult((TResult?)result);
+        public bool SetResult(object? result) => _taskSource.TrySetResult((TResult?)result);
 
-        public bool SetException(Exception ex) =>
-            _taskSource.TrySetException(ex);
+        public bool SetException(Exception ex) => _taskSource.TrySetException(ex);
     }
 }

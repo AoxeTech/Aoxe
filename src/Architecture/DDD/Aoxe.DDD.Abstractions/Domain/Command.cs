@@ -1,7 +1,5 @@
-namespace Zaaby.DDD.Abstractions.Domain;
+namespace Aoxe.DDD.Abstractions.Domain;
 
-public interface ICommand : IValueObject
-{
-}
+public interface ICommand : IValueObject { }
 
 public abstract record Command : ICommand;

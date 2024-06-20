@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aoxe.DDD.Abstractions.Domain;
 using Domain.DomainEvents;
 using Domain.Entities;
 using Domain.ValueObjects;
-using Zaaby.DDD.Abstractions.Domain;
 
 namespace Domain.AggregateRoots
 {
@@ -17,9 +17,10 @@ namespace Domain.AggregateRoots
         public string Name
         {
             get => _name;
-            protected set => _name = string.IsNullOrWhiteSpace(value)
-                ? throw new ArgumentNullException(nameof(Name))
-                : value.Trim();
+            protected set =>
+                _name = string.IsNullOrWhiteSpace(value)
+                    ? throw new ArgumentNullException(nameof(Name))
+                    : value.Trim();
         }
 
         private int _age;
@@ -27,9 +28,14 @@ namespace Domain.AggregateRoots
         public int Age
         {
             get => _age;
-            protected set => _age = value < 0
-                ? throw new ArgumentOutOfRangeException(nameof(Age), "Age can not less than 0.")
-                : value;
+            protected set =>
+                _age =
+                    value < 0
+                        ? throw new ArgumentOutOfRangeException(
+                            nameof(Age),
+                            "Age can not less than 0."
+                        )
+                        : value;
         }
 
         public Address Address { get; protected set; }
@@ -42,15 +48,28 @@ namespace Domain.AggregateRoots
         private List<Card> _cards = new();
         public IReadOnlyList<Card> Cards => _cards;
 
-        private User()
-        {
-        }
+        private User() { }
 
-        public User(Guid id, string name, int age, Gender gender, string country, string state, string city,
-            string street)
+        public User(
+            Guid id,
+            string name,
+            int age,
+            Gender gender,
+            string country,
+            string state,
+            string city,
+            string street
+        )
         {
-            if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
-            (Id, Name, Age, Gender, Address) = (id, name, age, gender, new Address(country, state, city, street));
+            if (id == Guid.Empty)
+                throw new ArgumentNullException(nameof(id));
+            (Id, Name, Age, Gender, Address) = (
+                id,
+                name,
+                age,
+                gender,
+                new Address(country, state, city, street)
+            );
             PublishEvent(() => new UserCreatedEvent(this));
         }
 

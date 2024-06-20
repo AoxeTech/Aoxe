@@ -1,4 +1,4 @@
-namespace Zaaby.Shared;
+namespace Aoxe.Shared;
 
 public class UnpublishedMessage
 {

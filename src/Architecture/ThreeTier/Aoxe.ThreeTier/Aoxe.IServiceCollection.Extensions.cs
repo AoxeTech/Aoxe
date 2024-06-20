@@ -1,9 +1,7 @@
-namespace Zaaby.ThreeTier;
+namespace Aoxe.ThreeTier;
 
-public static partial class ZaabyIServiceCollectionExtensions
+public static partial class AoxeIServiceCollectionExtensions
 {
     public static IServiceCollection AddThreeTier(this IServiceCollection services) =>
-        services.AddBll()
-            .AddMessageHandler()
-            .AddDal();
+        services.AddBll().AddMessageHandler().AddDal();
 }

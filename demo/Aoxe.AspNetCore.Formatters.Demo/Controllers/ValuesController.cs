@@ -1,4 +1,4 @@
-﻿namespace Zaaby.AspNetCore.Formatters.Demo.Controllers;
+﻿namespace Aoxe.AspNetCore.Formatters.Demo.Controllers;
 
 [Route("api/[controller]/[action]")]
 public class ValuesController : ControllerBase

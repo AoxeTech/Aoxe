@@ -7,10 +7,10 @@
 		<Version>2022.3.0</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
-		<PackageProjectUrl>https://github.com/PicoHex/Zaaby</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>The configuration extensions base by consul.</Description>
-		<PackageTags>Zaaby configuration extensions consul</PackageTags>
+		<PackageTags>Aoxe configuration extensions consul</PackageTags>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -24,6 +24,6 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="7.0.12" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Zaaby.Extensions.Configuration.Shared\Zaaby.Extensions.Configuration.Shared.csproj" />
+	  <ProjectReference Include="..\Aoxe.Extensions.Configuration.Shared\Aoxe.Extensions.Configuration.Shared.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,9 +1,5 @@
-﻿namespace Zaaby.DDD.Abstractions.Application;
+﻿namespace Aoxe.DDD.Abstractions.Application;
 
-public interface IApplicationService
-{
-}
+public interface IApplicationService { }
 
-public class ApplicationServiceAttribute : Attribute
-{
-}
+public class ApplicationServiceAttribute : Attribute { }

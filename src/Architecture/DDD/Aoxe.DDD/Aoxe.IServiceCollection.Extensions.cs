@@ -1,9 +1,10 @@
-namespace Zaaby.DDD;
+namespace Aoxe.DDD;
 
-public static partial class ZaabyIServiceCollectionExtensions
+public static partial class AoxeIServiceCollectionExtensions
 {
     public static IServiceCollection AddDDD(this IServiceCollection services) =>
-        services.AddApplicationService()
+        services
+            .AddApplicationService()
             .AddIntegrationEventHandler()
             .AddDomainService()
             .AddDomainEventHandler()

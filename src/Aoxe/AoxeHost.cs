@@ -1,6 +1,6 @@
-﻿namespace Zaaby;
+﻿namespace Aoxe;
 
-public partial class ZaabyHost
+public partial class AoxeHost
 {
     private readonly List<Action<IServiceCollection>> _configurationServicesActions = new();
     private readonly List<Action<IApplicationBuilder>> _configureAppActions = new();
@@ -8,65 +8,69 @@ public partial class ZaabyHost
     private readonly List<Type> _serviceBaseTypes = new();
     private readonly List<Type> _serviceAttributeTypes = new();
 
-    public static readonly ZaabyHost Instance = new();
+    public static readonly AoxeHost Instance = new();
 
-    private ZaabyHost()
+    private AoxeHost() { }
+
+    public AoxeHost AddAoxeService<TService>() => AddAoxeService(typeof(TService));
+
+    public AoxeHost AddAoxeService(Type serviceDefineType)
     {
-    }
-
-    public ZaabyHost AddZaabyService<TService>() => AddZaabyService(typeof(TService));
-
-    public ZaabyHost AddZaabyService(Type serviceDefineType)
-    {
-        if (typeof(Attribute).IsAssignableFrom(serviceDefineType)) _serviceAttributeTypes.Add(serviceDefineType);
-        else _serviceBaseTypes.Add(serviceDefineType);
+        if (typeof(Attribute).IsAssignableFrom(serviceDefineType))
+            _serviceAttributeTypes.Add(serviceDefineType);
+        else
+            _serviceBaseTypes.Add(serviceDefineType);
         return Instance;
     }
 
-    public ZaabyHost ConfigureServices(Action<IServiceCollection> configureServicesAction)
+    public AoxeHost ConfigureServices(Action<IServiceCollection> configureServicesAction)
     {
         _configurationServicesActions.Add(configureServicesAction);
         return Instance;
     }
 
-    public ZaabyHost Configure(Action<IApplicationBuilder> configureAppAction)
+    public AoxeHost Configure(Action<IApplicationBuilder> configureAppAction)
     {
         _configureAppActions.Add(configureAppAction);
         return Instance;
     }
 
-    public ZaabyHost UseUrls(params string[] urls)
+    public AoxeHost UseUrls(params string[] urls)
     {
         _urls.AddRange(urls);
         return Instance;
     }
 
-    public void Run() => Host.CreateDefaultBuilder()
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.ConfigureServices(services =>
+    public void Run() =>
+        Host.CreateDefaultBuilder()
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                _configurationServicesActions.ForEach(action => action.Invoke(services));
-                services.Add(_serviceDescriptors);
-                services.TryAddEnumerable(_tryAddEnumerableDescriptors);
-                services.AddZaabyServices(_serviceBaseTypes.ToArray());
-                services.AddZaabyServices(_serviceAttributeTypes.ToArray());
-            });
-            webBuilder.Configure(webHostBuilder =>
-            {
-                if (_configureAppActions.Any())
-                    _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
-                else
+                webBuilder.ConfigureServices(services =>
                 {
-                    webHostBuilder.UseHttpsRedirection();
-                    webHostBuilder.UseRouting();
-                    webHostBuilder.UseAuthorization();
-                    webHostBuilder.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-                }
-            });
-            if (_urls.Any())
-                webBuilder.UseUrls(_urls.ToArray());
-        })
-        .Build()
-        .Run();
+                    _configurationServicesActions.ForEach(action => action.Invoke(services));
+                    services.Add(_serviceDescriptors);
+                    services.TryAddEnumerable(_tryAddEnumerableDescriptors);
+                    services.AddAoxeServices(_serviceBaseTypes.ToArray());
+                    services.AddAoxeServices(_serviceAttributeTypes.ToArray());
+                });
+                webBuilder.Configure(webHostBuilder =>
+                {
+                    if (_configureAppActions.Any())
+                        _configureAppActions.ForEach(action => action.Invoke(webHostBuilder));
+                    else
+                    {
+                        webHostBuilder.UseHttpsRedirection();
+                        webHostBuilder.UseRouting();
+                        webHostBuilder.UseAuthorization();
+                        webHostBuilder.UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapControllers();
+                        });
+                    }
+                });
+                if (_urls.Any())
+                    webBuilder.UseUrls(_urls.ToArray());
+            })
+            .Build()
+            .Run();
 }

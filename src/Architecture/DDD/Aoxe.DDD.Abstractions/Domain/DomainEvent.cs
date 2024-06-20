@@ -1,8 +1,6 @@
-namespace Zaaby.DDD.Abstractions.Domain;
+namespace Aoxe.DDD.Abstractions.Domain;
 
-public interface IDomainEvent : IValueObject
-{
-}
+public interface IDomainEvent : IValueObject { }
 
 public interface IDomainEvent<out TEntityId> : IDomainEvent
 {

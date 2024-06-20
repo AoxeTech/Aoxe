@@ -1,5 +1,14 @@
 using System.Collections.Generic;
 using AliceServices;
+using Aoxe.AspNetCore.Formatters.Jil;
+using Aoxe.AspNetCore.Formatters.MsgPack;
+using Aoxe.AspNetCore.Formatters.Protobuf;
+using Aoxe.AspNetCore.Formatters.Utf8Json;
+using Aoxe.AspNetCore.Formatters.ZeroFormatter;
+using Aoxe.Client.Http;
+using Aoxe.Client.Http.Jil;
+using Aoxe.Server;
+using Aoxe.Shared;
 using IAliceServices;
 using IBobServices;
 using ICarolServices;
@@ -8,15 +17,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Zaaby.AspNetCore.Formatters.Jil;
-using Zaaby.AspNetCore.Formatters.MsgPack;
-using Zaaby.AspNetCore.Formatters.Protobuf;
-using Zaaby.AspNetCore.Formatters.Utf8Json;
-using Zaaby.AspNetCore.Formatters.ZeroFormatter;
-using Zaaby.Client.Http;
-using Zaaby.Client.Http.Jil;
-using Zaaby.Shared;
-using Zaaby.Server;
 
 namespace AliceHost
 {
@@ -26,24 +26,30 @@ namespace AliceHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
+            services
+                .AddControllers()
                 .AddJil()
                 .AddMsgPack()
                 .AddProtobuf()
                 .AddUtf8Json()
                 .AddZeroFormatter()
                 .AddXmlSerializerFormatters();
-            services.FromAssemblyOf<IAliceService>()
+            services
+                .FromAssemblyOf<IAliceService>()
                 .FromAssemblyOf<IBobService>()
                 .FromAssemblyOf<ICarolService>()
                 .FromAssemblyOf<AliceService>()
-                .AddZaabyService<IService>()
-                .AddZaabyService<ServiceAttribute>()
-                .AddZaabyClient(typeof(IService), new Dictionary<string, string>
-                {
-                    { typeof(IBobService).Namespace!, "http://localhost:5002" },
-                    { typeof(ICarolService).Namespace!, "http://localhost:5003" }
-                }, options => options.UseJilFormatter());
+                .AddAoxeService<IService>()
+                .AddAoxeService<ServiceAttribute>()
+                .AddAoxeClient(
+                    typeof(IService),
+                    new Dictionary<string, string>
+                    {
+                        { typeof(IBobService).Namespace!, "http://localhost:5002" },
+                        { typeof(ICarolService).Namespace!, "http://localhost:5003" }
+                    },
+                    options => options.UseJilFormatter()
+                );
             // services.AddServiceRegistry(options =>
             // {
             //     var uri = new Uri("http://172.16.20.25:5001");
@@ -68,13 +74,15 @@ namespace AliceHost
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseZaaby();
+            app.UseAoxe();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alice API v1"));
+                app.UseSwaggerUI(
+                    c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alice API v1")
+                );
             }
 
             app.UseHttpsRedirection();
@@ -83,7 +91,10 @@ namespace AliceHost
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

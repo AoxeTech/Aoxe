@@ -1,12 +1,13 @@
-namespace Zaaby.DDD;
+namespace Aoxe.DDD;
 
-public class ZaabyDddContext : DbContext
+public class AoxeDddContext : DbContext
 {
     private readonly ITextSerializer _serializer;
     public DbSet<UnpublishedMessage> UnpublishedMessages { get; set; } = default!;
     public DbSet<PublishedMessage> PublishedMessages { get; set; } = default!;
 
-    public ZaabyDddContext(DbContextOptions options, ITextSerializer serializer) : base(options)
+    public AoxeDddContext(DbContextOptions options, ITextSerializer serializer)
+        : base(options)
     {
         _serializer = serializer;
     }
@@ -29,8 +30,10 @@ public class ZaabyDddContext : DbContext
         return await base.SaveChangesAsync(cancellationToken);
     }
 
-    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-        CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(
+        bool acceptAllChangesOnSuccess,
+        CancellationToken cancellationToken = default
+    )
     {
         await PersistenceDomainEventsAsync();
         return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
@@ -39,26 +42,32 @@ public class ZaabyDddContext : DbContext
     private void PersistenceDomainEvents()
     {
         var messages = TakeAwayDomainEvents()
-            .Select(domainEvent => new UnpublishedMessage
-            {
-                Id = SequentialGuidHelper.GenerateComb(),
-                EventType = domainEvent.GetType().ToString(),
-                Content = _serializer.ToText(domainEvent),
-                PersistenceUtcTime = DateTime.UtcNow
-            });
+            .Select(
+                domainEvent =>
+                    new UnpublishedMessage
+                    {
+                        Id = SequentialGuidHelper.GenerateComb(),
+                        EventType = domainEvent.GetType().ToString(),
+                        Content = _serializer.ToText(domainEvent),
+                        PersistenceUtcTime = DateTime.UtcNow
+                    }
+            );
         UnpublishedMessages.AddRange(messages);
     }
 
     private async Task PersistenceDomainEventsAsync()
     {
         var messages = TakeAwayDomainEvents()
-            .Select(domainEvent => new UnpublishedMessage
-            {
-                Id = SequentialGuidHelper.GenerateComb(),
-                EventType = domainEvent.GetType().ToString(),
-                Content = _serializer.ToText(domainEvent),
-                PersistenceUtcTime = DateTime.UtcNow
-            });
+            .Select(
+                domainEvent =>
+                    new UnpublishedMessage
+                    {
+                        Id = SequentialGuidHelper.GenerateComb(),
+                        EventType = domainEvent.GetType().ToString(),
+                        Content = _serializer.ToText(domainEvent),
+                        PersistenceUtcTime = DateTime.UtcNow
+                    }
+            );
         await UnpublishedMessages.AddRangeAsync(messages);
     }
 
@@ -69,9 +78,7 @@ public class ZaabyDddContext : DbContext
             .Where(x => x.Entity.DomainEvents.Any())
             .ToList();
 
-        var domainEvents = entityEntries
-            .SelectMany(x => x.Entity.DomainEvents)
-            .ToList();
+        var domainEvents = entityEntries.SelectMany(x => x.Entity.DomainEvents).ToList();
 
         entityEntries.ForEach(entity => entity.Entity.ClearDomainEvents());
         return domainEvents;

@@ -1,10 +1,10 @@
-namespace Zaaby;
+namespace Aoxe;
 
-public static partial class ZaabyHostExtensions
+public static partial class AoxeHostExtensions
 {
-    public static ZaabyHost AddThreeTiers(this ZaabyHost zaabyHost)
+    public static AoxeHost AddThreeTiers(this AoxeHost AoxeHost)
     {
-        zaabyHost.ConfigureServices(services => services.AddThreeTier());
-        return zaabyHost;
+        AoxeHost.ConfigureServices(services => services.AddThreeTier());
+        return AoxeHost;
     }
 }

@@ -1,4 +1,4 @@
-namespace Zaaby.Shared;
+namespace Aoxe.Shared;
 
 public static partial class LoadHelper
 {
@@ -17,10 +17,11 @@ public static partial class LoadHelper
             _ => LoadAllDirectoryTypes()
         };
 
-    private static readonly Lazy<List<Type>> DirectoryTypesLazy = new(() =>
-    {
-        var result = LoadFromDirectories(Directory.GetCurrentDirectory());
-        LoadMode = LoadTypesMode.LoadByAllDirectory;
-        return result;
-    });
+    private static readonly Lazy<List<Type>> DirectoryTypesLazy =
+        new(() =>
+        {
+            var result = LoadFromDirectories(Directory.GetCurrentDirectory());
+            LoadMode = LoadTypesMode.LoadByAllDirectory;
+            return result;
+        });
 }

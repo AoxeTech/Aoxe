@@ -1,4 +1,4 @@
-namespace Zaaby.ServiceDiscovery.Consul;
+namespace Aoxe.ServiceDiscovery.Consul;
 
 public class ConsulServiceDiscoveryDelegatingHandler : DelegatingHandler
 {
@@ -10,15 +10,19 @@ public class ConsulServiceDiscoveryDelegatingHandler : DelegatingHandler
         _consulClient = consulClient;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-        CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request,
+        CancellationToken cancellationToken
+    )
     {
         var current = request.RequestUri;
         try
         {
             var catalogService = await LookupServiceAsync(current.Host);
             var domainName = $"{catalogService.ServiceAddress}:{catalogService.ServicePort}";
-            request.RequestUri = new Uri($"{current.Scheme}://{domainName}//{current.PathAndQuery}");
+            request.RequestUri = new Uri(
+                $"{current.Scheme}://{domainName}//{current.PathAndQuery}"
+            );
             return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }
         finally
@@ -30,7 +34,8 @@ public class ConsulServiceDiscoveryDelegatingHandler : DelegatingHandler
     private async Task<CatalogService> LookupServiceAsync(string serviceName)
     {
         var services = (await _consulClient.Catalog.Service(serviceName)).Response;
-        if (services is null || !services.Any()) return null;
+        if (services is null || !services.Any())
+            return null;
         var index = Random.Next(services.Length);
         return services.ElementAt(index);
     }

@@ -1,4 +1,13 @@
 using System.Collections.Generic;
+using Aoxe.AspNetCore.Formatters.Jil;
+using Aoxe.AspNetCore.Formatters.MsgPack;
+using Aoxe.AspNetCore.Formatters.Protobuf;
+using Aoxe.AspNetCore.Formatters.Utf8Json;
+using Aoxe.AspNetCore.Formatters.ZeroFormatter;
+using Aoxe.Client.Http;
+using Aoxe.Client.Http.Utf8Json;
+using Aoxe.Server;
+using Aoxe.Shared;
 using CarolServices;
 using IAliceServices;
 using IBobServices;
@@ -8,15 +17,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Zaaby.AspNetCore.Formatters.Jil;
-using Zaaby.AspNetCore.Formatters.MsgPack;
-using Zaaby.AspNetCore.Formatters.Protobuf;
-using Zaaby.AspNetCore.Formatters.Utf8Json;
-using Zaaby.AspNetCore.Formatters.ZeroFormatter;
-using Zaaby.Client.Http;
-using Zaaby.Client.Http.Utf8Json;
-using Zaaby.Shared;
-using Zaaby.Server;
 
 namespace CarolHost;
 
@@ -26,7 +26,8 @@ public class Startup
     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers()
+        services
+            .AddControllers()
             .AddJil()
             .AddMsgPack()
             .AddProtobuf()
@@ -34,14 +35,20 @@ public class Startup
             .AddZeroFormatter()
             .AddXmlSerializerFormatters();
         services.FromAssemblies(typeof(IAliceService).Assembly, typeof(IBobService).Assembly);
-        services.FromAssemblyNames(typeof(ICarolService).Assembly.GetName(),
-            typeof(CarolService).Assembly.GetName());
-        services.AddZaabyService<IService>();
-        services.AddZaabyClient(typeof(IService), new Dictionary<string, string>
-        {
-            { "IAliceServices", "http://localhost:5001" },
-            { "IBobServices", "http://localhost:5002" }
-        }, options => options.UseUtf8JsonFormatter());
+        services.FromAssemblyNames(
+            typeof(ICarolService).Assembly.GetName(),
+            typeof(CarolService).Assembly.GetName()
+        );
+        services.AddAoxeService<IService>();
+        services.AddAoxeClient(
+            typeof(IService),
+            new Dictionary<string, string>
+            {
+                { "IAliceServices", "http://localhost:5001" },
+                { "IBobServices", "http://localhost:5002" }
+            },
+            options => options.UseUtf8JsonFormatter()
+        );
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +59,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseZaabyErrorHandling();
+        app.UseAoxeErrorHandling();
         app.UseRouting();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
     }

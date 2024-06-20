@@ -1,19 +1,11 @@
-﻿namespace Zaaby.DDD.Abstractions.Infrastructure.Repository;
+﻿namespace Aoxe.DDD.Abstractions.Infrastructure.Repository;
 
-public interface IRepository
-{
-}
+public interface IRepository { }
 
-public interface IRepository<in TAggregateRoot> : IRepository where TAggregateRoot : IAggregateRoot
-{
-}
+public interface IRepository<in TAggregateRoot> : IRepository
+    where TAggregateRoot : IAggregateRoot { }
 
 public interface IRepository<in TAggregateRoot, in TId> : IRepository<TAggregateRoot>
-    where TAggregateRoot : IAggregateRoot<TId>
-{
-}
+    where TAggregateRoot : IAggregateRoot<TId> { }
 
-public class RepositoryAttribute : Attribute
-{
-
-}
+public class RepositoryAttribute : Attribute { }

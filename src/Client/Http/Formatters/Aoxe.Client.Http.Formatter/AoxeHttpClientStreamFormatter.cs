@@ -1,11 +1,11 @@
-namespace Zaaby.Client.Http.Formatter;
+namespace Aoxe.Client.Http.Formatter;
 
-public class ZaabyHttpClientStreamFormatter : ZaabyHttpClientFormatter
+public class AoxeHttpClientStreamFormatter : AoxeHttpClientFormatter
 {
     private readonly IStreamSerializer _serializer;
     public string MediaType { get; }
 
-    public ZaabyHttpClientStreamFormatter(ZaabyClientFormatterOptions options)
+    public AoxeHttpClientStreamFormatter(AoxeClientFormatterOptions options)
     {
         _serializer = options.Serializer;
         MediaType = options.MediaType;
@@ -17,22 +17,26 @@ public class ZaabyHttpClientStreamFormatter : ZaabyHttpClientFormatter
         return CreateHttpRequestMessage(httpContent, MediaType, requestUri);
     }
 
-    public override async Task<object?> GetResultAsync(Type returnType, HttpResponseMessage httpResponseMessage)
+    public override async Task<object?> GetResultAsync(
+        Type returnType,
+        HttpResponseMessage httpResponseMessage
+    )
     {
         var result = await httpResponseMessage.Content.ReadAsStreamAsync();
-        var type = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
-            ? returnType.GenericTypeArguments[0]
-            : returnType;
+        var type =
+            returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>)
+                ? returnType.GenericTypeArguments[0]
+                : returnType;
         if (httpResponseMessage.IsSuccessStatusCode)
             return _serializer.FromStream(type, result);
 
-        var zaabyError = _serializer.FromStream<ZaabyError>(result)!;
-        throw new ZaabyException(zaabyError.Message, zaabyError.StackTrace)
+        var AoxeError = _serializer.FromStream<AoxeError>(result)!;
+        throw new AoxeException(AoxeError.Message, AoxeError.StackTrace)
         {
-            Id = zaabyError.Id,
-            Code = zaabyError.Code,
-            ThrowTime = zaabyError.ThrowTime,
-            Source = zaabyError.Source
+            Id = AoxeError.Id,
+            Code = AoxeError.Code,
+            ThrowTime = AoxeError.ThrowTime,
+            Source = AoxeError.Source
         };
     }
 }

@@ -1,4 +1,4 @@
-namespace Zaaby.DDD;
+namespace Aoxe.DDD;
 
 public class DomainEventPublisher : BackgroundService
 {
@@ -13,8 +13,9 @@ public class DomainEventPublisher : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        await using var zaabyDddContext = _serviceProvider.GetService<ZaabyDddContext>();
-        if (zaabyDddContext is null) throw new NullReferenceException(nameof(zaabyDddContext));
+        await using var AoxeDddContext = _serviceProvider.GetService<AoxeDddContext>();
+        if (AoxeDddContext is null)
+            throw new NullReferenceException(nameof(AoxeDddContext));
         var lastPublishTime = DateTime.UtcNow;
         while (!cancellationToken.IsCancellationRequested)
         {
@@ -22,7 +23,8 @@ public class DomainEventPublisher : BackgroundService
             if (ms.Milliseconds < 100)
                 await Task.Delay(100 - ms.Milliseconds, cancellationToken);
 
-            var unpublishedMessages = zaabyDddContext.UnpublishedMessages
+            var unpublishedMessages = AoxeDddContext
+                .UnpublishedMessages
                 .OrderBy(p => p.PersistenceUtcTime)
                 .Take(100)
                 .ToList();
@@ -30,19 +32,25 @@ public class DomainEventPublisher : BackgroundService
             foreach (var unpublishedMessage in unpublishedMessages)
                 await _messageBus.PublishAsync(unpublishedMessage.EventType, unpublishedMessage);
 
-            zaabyDddContext.UnpublishedMessages.RemoveRange(unpublishedMessages);
-            await zaabyDddContext.PublishedMessages.AddRangeAsync(
-                unpublishedMessages.Select(p => new PublishedMessage(p)), cancellationToken);
+            AoxeDddContext.UnpublishedMessages.RemoveRange(unpublishedMessages);
+            await AoxeDddContext
+                .PublishedMessages
+                .AddRangeAsync(
+                    unpublishedMessages.Select(p => new PublishedMessage(p)),
+                    cancellationToken
+                );
 
-            await zaabyDddContext.SaveChangesAsync(cancellationToken);
+            await AoxeDddContext.SaveChangesAsync(cancellationToken);
             lastPublishTime = DateTime.UtcNow;
         }
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)
     {
-        if (_messageBus is IDisposable disposable) disposable.Dispose();
-        if (_messageBus is IAsyncDisposable asyncDisposable) await asyncDisposable.DisposeAsync();
+        if (_messageBus is IDisposable disposable)
+            disposable.Dispose();
+        if (_messageBus is IAsyncDisposable asyncDisposable)
+            await asyncDisposable.DisposeAsync();
         await base.StopAsync(cancellationToken);
     }
 }

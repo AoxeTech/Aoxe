@@ -1,4 +1,4 @@
-﻿namespace Zaaby.AspNetCore.Formatters.Demo;
+﻿namespace Aoxe.AspNetCore.Formatters.Demo;
 
 public class Startup
 {
@@ -12,11 +12,17 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers()
+        services
+            .AddControllers()
             .AddNewtonsoftJson()
-            .AddJil(jilOptions: new Options(dateFormat: DateTimeFormat.ISO8601,
-                excludeNulls: true, includeInherited: true,
-                serializationNameFormat: SerializationNameFormat.CamelCase))
+            .AddJil(
+                jilOptions: new Options(
+                    dateFormat: DateTimeFormat.ISO8601,
+                    excludeNulls: true,
+                    includeInherited: true,
+                    serializationNameFormat: SerializationNameFormat.CamelCase
+                )
+            )
             .AddMsgPack()
             .AddProtobuf()
             .AddUtf8Json()

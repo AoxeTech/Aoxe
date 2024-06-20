@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aoxe.DDD.Abstractions.Application;
 using Domain.AggregateRoots;
 using Domain.DomainServices;
 using Domain.Entities;
 using Domain.ValueObjects;
-using Zaaby.DDD.Abstractions.Application;
 
 namespace Application
 {
@@ -32,8 +32,16 @@ namespace Application
         public async Task AddUser()
         {
             //注意:不要使用自增字段，使用自增字段相当于要先持久化才能获取到Id，实际上是破坏了聚合的完整性。
-            var user = new User(Guid.NewGuid(), "This is user name",
-                DateTime.UtcNow.Hour, Gender.Female, "CN", "GuangDong", "GuangZhou", "YueXiu");
+            var user = new User(
+                Guid.NewGuid(),
+                "This is user name",
+                DateTime.UtcNow.Hour,
+                Gender.Female,
+                "CN",
+                "GuangDong",
+                "GuangZhou",
+                "YueXiu"
+            );
             await _userDomainService.AddUser(user);
         }
 

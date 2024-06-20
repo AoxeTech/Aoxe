@@ -1,4 +1,4 @@
-namespace Zaaby.Shared;
+namespace Aoxe.Shared;
 
 public static partial class LoadHelper
 {
@@ -10,11 +10,15 @@ public static partial class LoadHelper
 
     private static List<Type> LoadFromDirectories(params string[] directories)
     {
-        var files = directories.SelectMany(dir => Directory
-            .GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
-            .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories)));
+        var files = directories.SelectMany(
+            dir =>
+                Directory
+                    .GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
+                    .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories))
+        );
 
-        var result = files.Select(file =>
+        var result = files
+            .Select(file =>
             {
                 try
                 {
