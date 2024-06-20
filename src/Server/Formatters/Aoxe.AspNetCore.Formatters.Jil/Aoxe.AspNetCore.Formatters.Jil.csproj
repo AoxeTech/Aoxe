@@ -11,7 +11,7 @@
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageTags>Aoxe;asp.net core formatters;jil</PackageTags>
-        <PackageProjectUrl>https://github.com/PicoHex/Aoxe/tree/master/src/Server/Formatters/Aoxe.AspNetCore.Formatters</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/AoxeTech/Aoxe/tree/master/src/Server/Formatters/Aoxe.AspNetCore.Formatters</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Jil formatters for asp.net core</Description>
         <LangVersion>latest</LangVersion>

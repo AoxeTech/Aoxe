@@ -9,7 +9,7 @@
 		<Company>Mutuduxf</Company>
 		<PackageTags>Aoxe MicroService Framework</PackageTags>
 		<Description>A micro service framework base by asp.net core</Description>
-		<PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>latest</LangVersion>

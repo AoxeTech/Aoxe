@@ -9,7 +9,7 @@
         <Company>Mutuduxf</Company>
         <PackageTags>Aoxe;MicroService;Http Client;Formatter;Jil;</PackageTags>
         <Description>The jil formatter for Aoxe http client.</Description>
-        <PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>

@@ -9,7 +9,7 @@
         <Company>Mutuduxf</Company>
         <PackageTags>Aoxe Message Bus ZeroMQ</PackageTags>
         <Description>Message bus base by ZeroMQ</Description>
-        <PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>

@@ -9,7 +9,7 @@
         <Company>Mutuduxf</Company>
         <PackageTags>Aoxe;MicroService;Http Client;Formatter;Utf8Json;</PackageTags>
         <Description>The utf8json formatter for Aoxe http client.</Description>
-        <PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>

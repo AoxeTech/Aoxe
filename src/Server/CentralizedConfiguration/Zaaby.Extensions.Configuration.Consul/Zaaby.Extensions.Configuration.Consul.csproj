@@ -7,7 +7,7 @@
 		<Version>2022.3.0</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
-		<PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>The configuration extensions base by consul.</Description>
 		<PackageTags>Aoxe configuration extensions consul</PackageTags>

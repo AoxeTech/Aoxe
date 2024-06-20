@@ -9,7 +9,7 @@
 		<Company>Mutuduxf</Company>
 		<PackageTags>Aoxe;MicroService;Message bus</PackageTags>
 		<Description>Message hub for Aoxe framework by RabbitMQ.</Description>
-		<PackageProjectUrl>https://github.com/PicoHex/Aoxe</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 	<ItemGroup>
