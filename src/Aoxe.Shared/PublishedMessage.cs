@@ -3,10 +3,10 @@ namespace Aoxe.Shared;
 public class PublishedMessage
 {
     public Guid Id { get; set; }
-    public string EventType { get; set; }
-    public string Content { get; set; }
-    public DateTime PersistenceUtcTime { get; set; }
-    public DateTime PublishedUtcTime { get; set; }
+    public string EventType { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
+    public DateTime PersistenceUtcTime { get; set; } = DateTime.UtcNow;
+    public DateTime PublishedUtcTime { get; set; } = DateTime.UtcNow;
 
     private PublishedMessage() { }
 

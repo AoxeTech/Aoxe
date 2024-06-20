@@ -44,11 +44,12 @@ public static partial class LoadHelper
     )
     {
         var result = interfaceTypes
+            .Where(interfaceType => implementationTypes.Any(interfaceType.IsAssignableFrom))
             .Select(
                 interfaceType =>
                     new TypePair(
                         interfaceType,
-                        implementationTypes.FirstOrDefault(interfaceType.IsAssignableFrom)
+                        implementationTypes.FirstOrDefault(interfaceType.IsAssignableFrom)!
                     )
             )
             .ToList();
@@ -56,7 +57,7 @@ public static partial class LoadHelper
         result.AddRange(
             implementationTypes
                 .Where(c => result.All(r => r.ImplementationType != c))
-                .Select(implementationType => new TypePair(null, implementationType))
+                .Select(implementationType => new TypePair(implementationType, implementationType))
         );
 
         return result;

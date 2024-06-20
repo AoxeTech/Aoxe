@@ -23,16 +23,9 @@ public static partial class AoxeIServiceCollectionExtensions
         ServiceLifetime serviceLifetime
     )
     {
-        var serviceDescriptors = typePairs
-            .Where(tp => tp.ImplementationType is not null)
-            .Select(
-                tp =>
-                    new ServiceDescriptor(
-                        tp.InterfaceType ?? tp.ImplementationType,
-                        tp.ImplementationType,
-                        serviceLifetime
-                    )
-            );
+        var serviceDescriptors = typePairs.Select(
+            tp => new ServiceDescriptor(tp.InterfaceType, tp.ImplementationType, serviceLifetime)
+        );
         foreach (var serviceDescriptor in serviceDescriptors)
             services.Add(serviceDescriptor);
         return services;

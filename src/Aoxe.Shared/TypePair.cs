@@ -1,10 +1,7 @@
 namespace Aoxe.Shared;
 
-public class TypePair
+public class TypePair(Type interfaceType, Type implementationType)
 {
-    public Type InterfaceType { get; }
-    public Type ImplementationType { get; }
-
-    public TypePair(Type interfaceType, Type implementationType) =>
-        (InterfaceType, ImplementationType) = (interfaceType, implementationType);
+    public Type InterfaceType { get; } = interfaceType;
+    public Type ImplementationType { get; } = implementationType;
 }

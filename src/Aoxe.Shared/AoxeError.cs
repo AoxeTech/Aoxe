@@ -1,11 +1,11 @@
 namespace Aoxe.Shared;
 
-public class AoxeError
+public class AoxeErrorMsg
 {
     public Guid Id { get; set; }
-    public string Code { get; set; }
-    public DateTimeOffset ThrowTime { get; set; }
-    public string Message { get; set; }
-    public string Source { get; set; }
-    public string StackTrace { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public DateTime ThrowTime { get; set; } = DateTime.UtcNow;
+    public string Message { get; set; } = string.Empty;
+    public string Source { get; set; } = string.Empty;
+    public string StackTrace { get; set; } = string.Empty;
 }

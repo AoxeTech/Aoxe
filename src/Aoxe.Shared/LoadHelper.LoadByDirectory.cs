@@ -38,7 +38,7 @@ public static partial class LoadHelper
                 }
             })
             .Where(types => types is not null)
-            .SelectMany(types => types.Where(g => g is not null))
+            .SelectMany(types => types!)
             .Distinct()
             .ToList();
 
