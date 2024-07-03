@@ -3,12 +3,12 @@ namespace Aoxe;
 public static partial class AoxeHostExtensions
 {
     public static AoxeHost AddAoxeUnitOfWork(
-        this AoxeHost AoxeHost,
+        this AoxeHost aoxeHost,
         Func<IServiceProvider, IDbTransaction> factory
     )
     {
-        AoxeHost.AddScoped(factory);
-        AoxeHost.Configure(app => app.UseAoxeUnitOfWork());
-        return AoxeHost;
+        aoxeHost.AddScoped(factory);
+        aoxeHost.Configure(app => app.UseAoxeUnitOfWork());
+        return aoxeHost;
     }
 }

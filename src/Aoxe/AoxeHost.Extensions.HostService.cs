@@ -2,20 +2,20 @@ namespace Aoxe;
 
 public partial class AoxeHost
 {
-    public AoxeHost AddHostedService<THostedService>(AoxeHost AoxeHost)
+    public AoxeHost AddHostedService<THostedService>(AoxeHost aoxeHost)
         where THostedService : class, IHostedService
     {
         TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService, THostedService>());
-        return AoxeHost;
+        return aoxeHost;
     }
 
     public AoxeHost AddHostedService<THostedService>(
-        AoxeHost AoxeHost,
+        AoxeHost aoxeHost,
         Func<IServiceProvider, THostedService> implementationFactory
     )
         where THostedService : class, IHostedService
     {
         TryAddEnumerable(ServiceDescriptor.Singleton<IHostedService>(implementationFactory));
-        return AoxeHost;
+        return aoxeHost;
     }
 }

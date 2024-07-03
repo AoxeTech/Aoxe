@@ -2,9 +2,9 @@ namespace Aoxe;
 
 public static partial class AoxeHostExtensions
 {
-    public static AoxeHost AddDDD(this AoxeHost AoxeHost)
+    public static AoxeHost AddDDD(this AoxeHost aoxeHost)
     {
-        AoxeHost.ConfigureServices(services => services.AddDDD());
-        return AoxeHost;
+        aoxeHost.ConfigureServices(services => services.AddDDD());
+        return aoxeHost;
     }
 }

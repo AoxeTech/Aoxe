@@ -3,12 +3,12 @@ namespace Aoxe;
 public static partial class AoxeHostExtensions
 {
     public static AoxeHost UseAoxeClient(
-        this AoxeHost AoxeHost,
+        this AoxeHost aoxeHost,
         Type serviceDefineType,
         Dictionary<string, string> configUrls,
         Action<AoxeClientFormatterOptions>? optionsFactory = null
     ) =>
-        AoxeHost.ConfigureServices(
+        aoxeHost.ConfigureServices(
             services => services.AddAoxeClient(serviceDefineType, configUrls, optionsFactory)
         );
 }

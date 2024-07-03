@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Shared;
+﻿namespace Aoxe.Core;
 
 public class AoxeException : Exception
 {

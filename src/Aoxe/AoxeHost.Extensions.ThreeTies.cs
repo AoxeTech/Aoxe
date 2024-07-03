@@ -2,9 +2,9 @@ namespace Aoxe;
 
 public static partial class AoxeHostExtensions
 {
-    public static AoxeHost AddThreeTiers(this AoxeHost AoxeHost)
+    public static AoxeHost AddThreeTiers(this AoxeHost aoxeHost)
     {
-        AoxeHost.ConfigureServices(services => services.AddThreeTier());
-        return AoxeHost;
+        aoxeHost.ConfigureServices(services => services.AddThreeTier());
+        return aoxeHost;
     }
 }
