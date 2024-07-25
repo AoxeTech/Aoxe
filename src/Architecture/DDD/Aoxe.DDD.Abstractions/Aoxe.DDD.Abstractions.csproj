@@ -1,20 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2023.1.0</PackageVersion>
-        <Version>2023.1.0</Version>
-        <Authors>Mutuduxf</Authors>
-        <Company>Mutuduxf</Company>
-        <PackageTags>Aoxe DDD</PackageTags>
+        <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+        <PackageVersion>2024.2.0</PackageVersion>
+        <Version>2024.2.0</Version>
         <Description>Abstractions for Aoxe.DDD</Description>
+        <PackageTags>Aoxe DDD</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AoxeTech/Aoxe</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RepositoryType>git</RepositoryType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Authors>Mutuduxf</Authors>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
 </Project>

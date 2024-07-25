@@ -1,16 +1,10 @@
 namespace Aoxe.DDD;
 
-public class AoxeDddContext : DbContext
+public class AoxeDddContext(DbContextOptions options, ITextSerializer serializer)
+    : DbContext(options)
 {
-    private readonly ITextSerializer _serializer;
-    public DbSet<UnpublishedMessage> UnpublishedMessages { get; set; } = default!;
-    public DbSet<PublishedMessage> PublishedMessages { get; set; } = default!;
-
-    public AoxeDddContext(DbContextOptions options, ITextSerializer serializer)
-        : base(options)
-    {
-        _serializer = serializer;
-    }
+    public DbSet<AoxeUnpublishedMessage> UnpublishedMessages { get; set; } = default!;
+    public DbSet<AoxePublishedMessage> PublishedMessages { get; set; } = default!;
 
     public override int SaveChanges()
     {
@@ -44,13 +38,12 @@ public class AoxeDddContext : DbContext
         var messages = TakeAwayDomainEvents()
             .Select(
                 domainEvent =>
-                    new UnpublishedMessage
-                    {
-                        Id = SequentialGuidHelper.GenerateComb(),
-                        EventType = domainEvent.GetType().ToString(),
-                        Content = _serializer.ToText(domainEvent),
-                        PersistenceUtcTime = DateTime.UtcNow
-                    }
+                    new AoxeUnpublishedMessage(
+                        SequentialGuidHelper.GenerateComb(),
+                        domainEvent.GetType().ToString(),
+                        serializer.ToText(domainEvent),
+                        DateTime.UtcNow
+                    )
             );
         UnpublishedMessages.AddRange(messages);
     }
@@ -60,13 +53,12 @@ public class AoxeDddContext : DbContext
         var messages = TakeAwayDomainEvents()
             .Select(
                 domainEvent =>
-                    new UnpublishedMessage
-                    {
-                        Id = SequentialGuidHelper.GenerateComb(),
-                        EventType = domainEvent.GetType().ToString(),
-                        Content = _serializer.ToText(domainEvent),
-                        PersistenceUtcTime = DateTime.UtcNow
-                    }
+                    new AoxeUnpublishedMessage(
+                        SequentialGuidHelper.GenerateComb(),
+                        domainEvent.GetType().ToString(),
+                        serializer.ToText(domainEvent),
+                        DateTime.UtcNow
+                    )
             );
         await UnpublishedMessages.AddRangeAsync(messages);
     }

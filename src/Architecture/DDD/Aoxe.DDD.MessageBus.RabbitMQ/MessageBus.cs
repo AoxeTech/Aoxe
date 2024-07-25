@@ -1,19 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using Aoxe.RabbitMQ.Abstractions;
-using Aoxe.DDD.Abstractions.Infrastructure.Messaging;
-
 namespace Aoxe.DDD.MessageBus.RabbitMQ;
 
 public class MessageBus : IMessageBus, IDisposable
 {
     private readonly IAoxeRabbitMqClient _rabbitMqClient;
 
-    public MessageBus(IAoxeRabbitMqClient rabbitMqClient) =>
-        _rabbitMqClient = rabbitMqClient;
+    public MessageBus(IAoxeRabbitMqClient rabbitMqClient) => _rabbitMqClient = rabbitMqClient;
 
-    public void Publish<T>(string topic, T message) =>
-        _rabbitMqClient.PublishEvent(topic, message);
+    public void Publish<T>(string topic, T message) => _rabbitMqClient.PublishEvent(topic, message);
 
     public ValueTask PublishAsync<T>(string topic, T message)
     {
@@ -25,6 +18,5 @@ public class MessageBus : IMessageBus, IDisposable
 #endif
     }
 
-    public void Dispose() =>
-        _rabbitMqClient.Dispose();
+    public void Dispose() => _rabbitMqClient.Dispose();
 }
