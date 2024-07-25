@@ -1,4 +1,4 @@
-namespace Aoxe.ThreeTier.Annotations.DataAccess;
+namespace Aoxe.ThreeTier.Abstractions.DataAccess;
 
 public interface IDal { }
 

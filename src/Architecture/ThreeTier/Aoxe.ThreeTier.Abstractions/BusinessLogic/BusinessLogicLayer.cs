@@ -1,4 +1,4 @@
-namespace Aoxe.ThreeTier.Annotations.BusinessLogic;
+namespace Aoxe.ThreeTier.Abstractions.BusinessLogic;
 
 public interface IBll { }
 
