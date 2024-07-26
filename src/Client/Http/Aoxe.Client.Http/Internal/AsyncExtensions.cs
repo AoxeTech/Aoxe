@@ -12,13 +12,14 @@ internal static class AsyncExtensions
 
     public static TResult? RunSync<TResult>(this Task<TResult?> func)
     {
-        Task<TResult?> Func() => func;
         return TaskFactory.StartNew(Func).Unwrap().GetAwaiter().GetResult();
+        Task<TResult?> Func() => func;
     }
 
     public static void RunSync(this Task func)
     {
-        Task Func() => func;
         TaskFactory.StartNew(Func).Unwrap().GetAwaiter().GetResult();
+        return;
+        Task Func() => func;
     }
 }

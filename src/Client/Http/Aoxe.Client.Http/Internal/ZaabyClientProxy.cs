@@ -36,8 +36,8 @@ internal class AoxeClientProxy : DispatchProxy
         var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
 
         if (
-            !httpResponseMessage.IsSuccessStatusCode
-            && httpResponseMessage.StatusCode is not (HttpStatusCode)600
+            httpResponseMessage is
+            { IsSuccessStatusCode: false, StatusCode: not (HttpStatusCode)600 }
         )
             throw new AoxeException($"{url}:{httpResponseMessage}");
 
