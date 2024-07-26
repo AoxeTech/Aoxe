@@ -1,6 +1,6 @@
 namespace Aoxe.Core;
 
-public class AoxeErrorMsg
+public class AoxeError
 {
     public Guid Id { get; set; }
     public string Code { get; set; } = string.Empty;
