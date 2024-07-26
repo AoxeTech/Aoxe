@@ -2,8 +2,8 @@
 	
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-		<PackageVersion>2024.3.0</PackageVersion>
-		<Version>2024.3.0</Version>
+		<PackageVersion>2024.3.1</PackageVersion>
+		<Version>2024.3.1</Version>
 		<Description>DDD framework for Aoxe.</Description>
 		<PackageTags>Aoxe;DDD;Framework</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech/Aoxe</PackageProjectUrl>
@@ -27,7 +27,7 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Aoxe.SequentialGuid" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.1.0" />
-		<PackageReference Include="Aoxe.Core" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.Core" Version="2024.2.0" />
 		<PackageReference Include="Aoxe.DDD.Abstractions" Version="2024.2.0" />
 		<PackageReference Include="Aoxe.Shared" Version="2024.3.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
