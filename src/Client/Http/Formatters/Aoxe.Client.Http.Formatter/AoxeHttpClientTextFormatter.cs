@@ -32,13 +32,13 @@ public class AoxeHttpClientTextFormatter : AoxeHttpClientFormatter
         if (httpResponseMessage.IsSuccessStatusCode)
             return string.IsNullOrWhiteSpace(result) ? null : _serializer.FromText(type, result);
 
-        var AoxeError = _serializer.FromText<AoxeError>(result)!;
-        throw new AoxeException(AoxeError.Message, AoxeError.StackTrace)
+        var aoxeError = _serializer.FromText<AoxeError>(result)!;
+        throw new AoxeException(aoxeError.Message)
         {
-            Id = AoxeError.Id,
-            Code = AoxeError.Code,
-            ThrowTime = AoxeError.ThrowTime,
-            Source = AoxeError.Source
+            Id = aoxeError.Id,
+            Code = aoxeError.Code,
+            ThrowTime = aoxeError.ThrowTime,
+            Source = aoxeError.Source
         };
     }
 }
