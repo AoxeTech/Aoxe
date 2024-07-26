@@ -6,6 +6,7 @@ global using System.Linq;
 global using System.Reflection;
 global using System.Text.Json;
 global using System.Threading.Tasks;
+global using Aoxe.Core;
 global using Aoxe.Shared;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;

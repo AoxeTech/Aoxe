@@ -1,16 +1,12 @@
 ﻿namespace Aoxe.Server;
 
-internal class ErrorHandlingMiddleware
+internal class ErrorHandlingMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate _next;
-
-    public ErrorHandlingMiddleware(RequestDelegate next) => _next = next;
-
     public async Task Invoke(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await next(context);
         }
         catch (AoxeException ex)
         {
@@ -44,14 +40,16 @@ internal class ErrorHandlingMiddleware
         while (inmostEx.InnerException is not null)
             inmostEx = inmostEx.InnerException;
         context.Response.StatusCode = httpStatusCode;
-        var AoxeError = new AoxeError
+        var aoxeError = new AoxeError
         {
-            Id = inmostEx is AoxeException AoxeException ? AoxeException.Id : Guid.NewGuid(),
+            Id = inmostEx is AoxeException aoxeException ? aoxeException.Id : Guid.NewGuid(),
             Message = inmostEx.Message,
-            Source = inmostEx.Source,
-            StackTrace = inmostEx.StackTrace,
-            ThrowTime = DateTimeOffset.Now
+            Source = inmostEx.Source ?? string.Empty,
+            StackTrace = inmostEx.StackTrace ?? string.Empty,
+            ThrowTime = DateTime.Now
         };
-        return context.Response.WriteAsync(JsonSerializer.Serialize(AoxeError));
+        if (aoxeError == null)
+            throw new ArgumentNullException(nameof(aoxeError));
+        return context.Response.WriteAsync(JsonSerializer.Serialize(aoxeError));
     }
 }
