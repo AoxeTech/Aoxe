@@ -1,5 +1,4 @@
 global using System;
-global using Aoxe.Utf8Json;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Primitives;

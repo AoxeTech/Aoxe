@@ -1,25 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0;</TargetFrameworks>
+        <PackageVersion>2024.1.1</PackageVersion>
+        <Version>2024.1.1</Version>
         <OutputType>Library</OutputType>
-        <LangVersion>latest</LangVersion>
         <IsPackable>true</IsPackable>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2023.1.0</PackageVersion>
-        <Version>2023.1.0</Version>
-        <Authors>Mutuduxf</Authors>
-        <Company>Mutuduxf</Company>
+        <Description>The formatters for asp.net core base by Aoxe.Serializers</Description>
         <PackageTags>Aoxe;asp.net core formatters</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech/Aoxe/tree/master/src/Server/Formatters/Aoxe.AspNetCore.Formatters</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/AoxeTech/Aoxe</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>The formatters for asp.net core base by Aoxe.Serializers</Description>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RepositoryType>git</RepositoryType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Authors>Mutuduxf</Authors>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2023.5.0" />
+        <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.1.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

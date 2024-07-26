@@ -17,7 +17,7 @@ public static class MvcOptionsExtension
         var mediaTypeHeaderValue = MediaTypeHeaderValue
             .Parse((StringSegment)contentType)
             .CopyAsReadOnly();
-        var serializer = new Serializer(resolver);
+        var serializer = new Aoxe.Utf8Json.Serializer(resolver);
         options.InputFormatters.Add(new AoxeTextInputFormatter(mediaTypeHeaderValue, serializer));
         options.OutputFormatters.Add(new AoxeTextOutputFormatter(mediaTypeHeaderValue, serializer));
         options.FormatterMappings.SetMediaTypeMappingForFormat(format, mediaTypeHeaderValue);
