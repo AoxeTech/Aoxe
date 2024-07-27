@@ -1,23 +1,3 @@
-using System.Collections.Generic;
-using AliceServices;
-using Aoxe.AspNetCore.Formatters.Jil;
-using Aoxe.AspNetCore.Formatters.MsgPack;
-using Aoxe.AspNetCore.Formatters.Protobuf;
-using Aoxe.AspNetCore.Formatters.Utf8Json;
-using Aoxe.AspNetCore.Formatters.ZeroFormatter;
-using Aoxe.Client.Http;
-using Aoxe.Client.Http.Jil;
-using Aoxe.Server;
-using Aoxe.Shared;
-using IAliceServices;
-using IBobServices;
-using ICarolServices;
-using Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace AliceHost
 {
     public class Startup

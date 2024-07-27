@@ -1,28 +1,18 @@
 namespace Aoxe.Extensions.Configuration.Consul;
 
-public class ConsulJsonConfigurationProvider : ConfigurationProvider, IDisposable
+public class ConsulJsonConfigurationProvider(ConsulConfigurationOptions options)
+    : ConfigurationProvider,
+        IDisposable
 {
-    private readonly ConsulClient _consulClient;
-    private readonly string? _folder;
-    private readonly string? _key;
-
-    public ConsulJsonConfigurationProvider(ConsulConfigurationOptions options)
-    {
-        _folder = options.Folder?.Trim();
-        _key = options.Key?.Trim();
-        _consulClient = new ConsulClient(
-            options.ConfigOverride,
-            options.ClientOverride,
-            options.HandlerOverride
-        );
-    }
+    private readonly ConsulClient _consulClient =
+        new(options.ConfigOverride, options.ClientOverride, options.HandlerOverride);
+    private readonly string? _key = options.Key.Trim();
 
     public override void Load()
     {
-        var folder = _folder ?? "/";
         if (string.IsNullOrWhiteSpace(_key))
         {
-            var queryResult = _consulClient.KV.List(_folder).GetAwaiter().GetResult();
+            var queryResult = _consulClient.KV.List(_key).GetAwaiter().GetResult();
             if (queryResult?.StatusCode is not HttpStatusCode.OK || queryResult.Response is null)
                 return;
             foreach (var item in queryResult.Response)
@@ -30,7 +20,7 @@ public class ConsulJsonConfigurationProvider : ConfigurationProvider, IDisposabl
         }
         else
         {
-            var queryResult = _consulClient.KV.Get($"{folder}/{_key}").GetAwaiter().GetResult();
+            var queryResult = _consulClient.KV.Get(_key).GetAwaiter().GetResult();
             if (
                 queryResult?.StatusCode is not HttpStatusCode.OK
                 || queryResult.Response?.Value is null
@@ -43,16 +33,14 @@ public class ConsulJsonConfigurationProvider : ConfigurationProvider, IDisposabl
     private void SetKvPair(byte[] bytes)
     {
         var json = Encoding.UTF8.GetString(bytes);
-        using (var memoryStream = new MemoryStream())
-        using (var streamWriter = new StreamWriter(memoryStream))
-        {
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            memoryStream.Position = 0;
-            var parser = new JsonConfigurationObjectParser();
-            foreach (var keyValuePair in parser.Parse(memoryStream))
-                Set(keyValuePair.Key, keyValuePair.Value);
-        }
+        using var memoryStream = new MemoryStream();
+        using var streamWriter = new StreamWriter(memoryStream);
+        streamWriter.Write(json);
+        streamWriter.Flush();
+        memoryStream.Position = 0;
+        var parser = new JsonConfigurationObjectParser();
+        foreach (var keyValuePair in parser.Parse(memoryStream))
+            Set(keyValuePair.Key, keyValuePair.Value);
     }
 
     public void Dispose()

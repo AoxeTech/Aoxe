@@ -9,7 +9,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aoxe.SequentialGuid" Version="2023.2.0" />
+        <PackageReference Include="Aoxe.SequentialGuid" Version="2024.1.0" />
     </ItemGroup>
 
 </Project>

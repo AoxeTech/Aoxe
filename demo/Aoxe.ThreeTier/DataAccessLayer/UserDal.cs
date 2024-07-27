@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Aoxe.ThreeTier.Abstractions.DataAccess;
 using Dapper;
 using Model;
-using Aoxe.Dapper.Extensions;
-using Aoxe.ThreeTier.Annotations.DataAccess;
+using Zaabee.Dapper.Extensions;
 
 namespace DataAccessLayer
 {
@@ -39,8 +39,10 @@ namespace DataAccessLayer
 
         public User GetByName(string name)
         {
-            return _connection.QueryFirstOrDefault<User>("SELECT * FROM \"User\" WHERE \"Name\" = @Name",
-                new { Name = name });
+            return _connection.QueryFirstOrDefault<User>(
+                "SELECT * FROM \"User\" WHERE \"Name\" = @Name",
+                new { Name = name }
+            );
         }
 
         public IList<User> GetAll()

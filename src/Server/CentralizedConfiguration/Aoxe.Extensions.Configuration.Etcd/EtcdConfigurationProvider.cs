@@ -1,17 +1,8 @@
-using dotnet_etcd;
-using Microsoft.Extensions.Configuration;
+namespace Aoxe.Extensions.Configuration.Etcd;
 
-namespace Aoxe.Extensions.Configuration.Etcd
+public class EtcdConfigurationProvider(EtcdClient etcdClient) : ConfigurationProvider
 {
-    public class EtcdConfigurationProvider : ConfigurationProvider
-    {
-        private readonly EtcdClient _etcdClient;
+    private readonly EtcdClient _etcdClient = etcdClient;
 
-        public EtcdConfigurationProvider(EtcdClient etcdClient)
-        {
-            _etcdClient = etcdClient;
-        }
-
-        public override void Load() { }
-    }
+    public override void Load() { }
 }

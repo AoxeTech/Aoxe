@@ -1,27 +1,19 @@
 ﻿namespace Aoxe.Extensions.Configuration.Consul;
 
-public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
+public class ConsulConfigurationProvider(ConsulConfigurationOptions options)
+    : ConfigurationProvider,
+        IDisposable
 {
-    private readonly ConsulClient _consulClient;
-    private readonly string _key;
-    private readonly IParser _parser;
-
-    public ConsulConfigurationProvider(ConsulConfigurationOptions options)
-    {
-        _key = options.Key.Trim();
-        _consulClient = new ConsulClient(
-            options.ConfigOverride,
-            options.ClientOverride,
-            options.HandlerOverride
-        );
-        _parser = options.Parser;
-    }
+    private readonly ConsulClient _consulClient =
+        new(options.ConfigOverride, options.ClientOverride, options.HandlerOverride);
+    private readonly string _key = options.Key.Trim();
+    private readonly IParser _parser = options.Parser;
 
     public override void Load()
     {
         if (string.IsNullOrWhiteSpace(_key))
         {
-            var queryResult = _consulClient.KV.List(_folder).Result;
+            var queryResult = _consulClient.KV.List(_key).Result;
             if (queryResult?.StatusCode is not HttpStatusCode.OK || queryResult.Response is null)
                 return;
             foreach (var item in queryResult.Response.Where(p => p.Value is not null))
@@ -30,8 +22,7 @@ public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
         }
         else
         {
-            var folder = _folder ?? "/";
-            var queryResult = _consulClient.KV.Get($"{folder}/{_key}").Result;
+            var queryResult = _consulClient.KV.Get(_key).Result;
             if (
                 queryResult?.StatusCode is not HttpStatusCode.OK
                 || queryResult.Response?.Value is null

@@ -1,6 +1,3 @@
-using System;
-using Interfaces;
-
 namespace AliceServices
 {
     public class NonContractService : IService

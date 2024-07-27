@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThreeTier", "ThreeTier", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.ThreeTier", "src\Architecture\ThreeTier\Aoxe.ThreeTier\Aoxe.ThreeTier.csproj", "{38C4AE18-FC89-4A99-81C8-C272CCA35D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.ThreeTier.Annotations", "src\Architecture\ThreeTier\Aoxe.ThreeTier.Annotations\Aoxe.ThreeTier.Annotations.csproj", "{23EB6DBF-04AE-48DB-A409-5E337E8FF270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.ThreeTier.Abstractions", "src\Architecture\ThreeTier\Aoxe.ThreeTier.Abstractions\Aoxe.ThreeTier.Abstractions.csproj", "{23EB6DBF-04AE-48DB-A409-5E337E8FF270}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDD", "DDD", "{2CE5217F-F90E-4ECB-9403-FA1E17593D4E}"
 EndProject
@@ -185,8 +185,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.AspNetCore.Formatters.Demo", "demo\Aoxe.AspNetCore.Formatters.Demo\Aoxe.AspNetCore.Formatters.Demo.csproj", "{E68EC879-CF37-40FA-B554-06AA1244DBA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.AspNetCore.Formatters.Tests", "tests\Aoxe.AspNetCore.Formatters.Tests\Aoxe.AspNetCore.Formatters.Tests.csproj", "{D2B29A63-C24C-465F-81FD-63DABC3FAB08}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Client", "src\Client\Aoxe.Client\Aoxe.Client.csproj", "{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Extensions.Configuration.Shared", "src\Server\CentralizedConfiguration\Aoxe.Extensions.Configuration.Shared\Aoxe.Extensions.Configuration.Shared.csproj", "{BB354649-3745-48CC-A5D7-75A1794621E6}"
 EndProject
@@ -450,10 +448,6 @@ Global
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB354649-3745-48CC-A5D7-75A1794621E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB354649-3745-48CC-A5D7-75A1794621E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB354649-3745-48CC-A5D7-75A1794621E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -562,7 +556,6 @@ Global
 		{7D117C8D-B44C-485E-BC2B-30C5CAE6758A} = {9EA48686-D07B-4CCF-96AD-B63CD51537DA}
 		{E68EC879-CF37-40FA-B554-06AA1244DBA8} = {E0BD883E-A46F-4435-99AF-19F36D4DD282}
 		{D2B29A63-C24C-465F-81FD-63DABC3FAB08} = {9C5D1C18-AB9B-4A01-9A06-375198D440C0}
-		{828D2FB6-B898-4F25-9BDF-5CAE68E7AC19} = {FE4DF66D-4961-46F9-9CB7-45DC7739F0CE}
 		{BB354649-3745-48CC-A5D7-75A1794621E6} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
 		{D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505} = {3B2EBDCF-3135-443D-982E-5459748EF2E9}
 		{252821C7-F83C-414A-A476-3E9D060E3E8F} = {D19A6C7E-EBF4-4CE2-9E4F-A2804DB9A505}

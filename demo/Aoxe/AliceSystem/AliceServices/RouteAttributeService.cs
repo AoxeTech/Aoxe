@@ -1,16 +1,11 @@
-using System;
-using Interfaces;
-using Microsoft.AspNetCore.Mvc;
+namespace AliceServices;
 
-namespace AliceServices
+[Route("RouteTest/[action]")]
+[ServiceAttribute]
+public class RouteAttributeService
 {
-    [Route("RouteTest/[action]")]
-    [ServiceAttribute]
-    public class RouteAttributeService
+    public string RouteAttributeTest()
     {
-        public string RouteAttributeTest()
-        {
-            return $"This has not implemented any interface.[{DateTime.UtcNow}]";
-        }
+        return $"This has not implemented any interface.[{DateTime.UtcNow}]";
     }
 }

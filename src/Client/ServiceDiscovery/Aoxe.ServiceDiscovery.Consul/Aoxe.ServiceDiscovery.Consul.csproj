@@ -7,7 +7,7 @@
 	<ItemGroup>
 		<PackageReference Include="Aoxe.Client.Http" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.Shared" Version="2024.3.0" />
-		<PackageReference Include="Consul" Version="1.7.14.1" />
+		<PackageReference Include="Consul" Version="1.7.14.4" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 	</ItemGroup>
 </Project>

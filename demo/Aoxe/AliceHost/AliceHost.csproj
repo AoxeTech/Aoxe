@@ -10,15 +10,14 @@
 		<ProjectReference Include="..\AliceSystem\AliceServices\AliceServices.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.13" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.Orleans.Runtime" Version="7.2.2" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Jil" Version="2023.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.MsgPack" Version="2023.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Protobuf" Version="2023.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Utf8Json" Version="2023.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.ZeroFormatter" Version="2023.1.0" />
-		<PackageReference Include="Aoxe.Client.Http" Version="2022.7.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.7" NoWarn="NU1605" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Jil" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.MsgPack" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Protobuf" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.Utf8Json" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.AspNetCore.Formatters.ZeroFormatter" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.Client.Http" Version="2024.1.0" />
 	</ItemGroup>
 </Project>

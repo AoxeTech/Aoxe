@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Aoxe.SequentialGuid;
+using Aoxe.ThreeTier.Abstractions.BusinessLogic;
 using BusinessLogicLayer.Dtos;
 using DataAccessLayer;
 using Model;
-using Aoxe.SequentialGuid;
-using Aoxe.ThreeTier.Annotations.BusinessLogic;
 
 namespace BusinessLogicLayer
 {
@@ -20,7 +20,8 @@ namespace BusinessLogicLayer
         public bool Login(LoginRequestParam param)
         {
             var user = _userDal.GetByName(param.Name);
-            if (user is null) throw new ApplicationException("The user is not exist.");
+            if (user is null)
+                throw new ApplicationException("The user is not exist.");
             return user.Pwd == param.Pwd;
         }
 

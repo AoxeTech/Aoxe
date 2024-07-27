@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,21 +30,25 @@ namespace AliceServices
             return result.ToString();
         }
 
-        public async Task<string> SayHelloToBobAsyncTest() => $"Hi,I am Alice.\r\n{await _bobService.HelloAsyncTest()}";
+        public async Task<string> SayHelloToBobAsyncTest() =>
+            $"Hi,I am Alice.\r\n{await _bobService.HelloAsyncTest()}";
 
         public string SayHelloToCarol() => $"Hi,I am Alice.\r\n{_carolService.Hello()}";
 
-        public Exception ThrowException() => throw new Exception("This exception was thrown by Alice.");
+        public Exception ThrowException() =>
+            throw new Exception("This exception was thrown by Alice.");
 
         public Task<Apple> PassBackAppleAsync(Apple apple)
         {
             if (apple is null)
-                return Task.FromResult(new Apple
-                {
-                    Id = 2,
-                    Name = "Red Apple",
-                    Message = "This apple is pass back by Alice."
-                });
+                return Task.FromResult(
+                    new Apple
+                    {
+                        Id = 2,
+                        Name = "Red Apple",
+                        Message = "This apple is pass back by Alice."
+                    }
+                );
             apple.Name ??= string.Empty;
             apple.Message ??= string.Empty;
             apple.Message += $"\r\nThis apple is pass back by Alice on {DateTime.UtcNow}.";

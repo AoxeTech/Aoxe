@@ -53,7 +53,7 @@ class Program
             {
                 app.UseHttpsRedirection()
                     .UseOpenApi()
-                    .UseSwaggerUi3()
+                    .UseSwaggerUi()
                     .UseAoxe()
                     .UseRouting()
                     .UseAuthorization()

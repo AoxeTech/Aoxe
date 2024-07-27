@@ -1,6 +1,6 @@
 ﻿using Aoxe;
 using Aoxe.Server;
-using Aoxe.ThreeTier.Annotations.BusinessLogic;
+using Aoxe.ThreeTier.Abstractions.BusinessLogic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,7 +22,7 @@ namespace ConsoleHost
                 {
                     app.UseHttpsRedirection()
                         .UseOpenApi()
-                        .UseSwaggerUi3()
+                        .UseSwaggerUi()
                         .UseAoxe()
                         .UseRouting()
                         .UseAuthorization()
