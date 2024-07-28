@@ -4,21 +4,10 @@ public static class ConsulConfigurationExtensions
 {
     public static IConfigurationBuilder AddConsul(
         this IConfigurationBuilder builder,
-        Action<ConsulConfigurationOptions> optionsFactory
+        ConsulClient client,
+        string key
     )
     {
-        builder.AddInMemoryCollection();
-        // .AddIniFile()
-        // .AddIniStream()
-        // .AddJsonFile()
-        // .AddJsonStream()
-        // .AddXmlFile()
-        // .AddXmlStream()
-        // .AddKeyPerFile()
-        // .AddAzureKeyVault();
-        var options = new ConsulConfigurationOptions();
-        optionsFactory(options);
-        builder.Add(new ConsulConfigurationSource(options));
-        return builder;
+        return builder.Add(new ConsulConfigurationSource(client, key));
     }
 }

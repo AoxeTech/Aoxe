@@ -1,14 +1,9 @@
 namespace Aoxe.Extensions.Configuration.Consul;
 
-public class ConsulConfigurationSource : IConfigurationSource
+public class ConsulConfigurationSource(ConsulClient client, string key) : IConfigurationSource
 {
-    private readonly ConsulConfigurationOptions _consulConfigurationOptions;
-
-    public ConsulConfigurationSource(ConsulConfigurationOptions options)
+    public IConfigurationProvider Build(IConfigurationBuilder builder)
     {
-        _consulConfigurationOptions = options;
+        return new ConsulConfigurationProvider(client, key);
     }
-
-    public IConfigurationProvider Build(IConfigurationBuilder builder) =>
-        new ConsulConfigurationProvider(_consulConfigurationOptions);
 }

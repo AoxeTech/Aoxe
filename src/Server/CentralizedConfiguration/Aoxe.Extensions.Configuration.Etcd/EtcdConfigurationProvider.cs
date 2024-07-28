@@ -1,8 +1,10 @@
 namespace Aoxe.Extensions.Configuration.Etcd;
 
-public class EtcdConfigurationProvider(EtcdClient etcdClient) : ConfigurationProvider
+public class EtcdConfigurationProvider(EtcdClient etcdClient, string key) : ConfigurationProvider
 {
-    private readonly EtcdClient _etcdClient = etcdClient;
-
-    public override void Load() { }
+    public override void Load()
+    {
+        var data = etcdClient.GetRangeVal(key);
+        Data = data;
+    }
 }
