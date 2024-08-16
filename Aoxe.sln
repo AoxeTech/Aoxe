@@ -194,6 +194,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Extensions.Configurati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Extensions.Configuration.Consul.Ini", "src\Server\CentralizedConfiguration\Consul\Aoxe.Extensions.Configuration.Consul.Ini\Aoxe.Extensions.Configuration.Consul.Ini.csproj", "{BA4A9457-DB7B-4A3E-97C7-147BCC5ABBC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Extensions.Configuration.StackExchangeRedis", "src\Server\CentralizedConfiguration\Redis\Aoxe.Extensions.Configuration.StackExchangeRedis\Aoxe.Extensions.Configuration.StackExchangeRedis.csproj", "{74CB7B3D-E62B-4300-9092-F2D3777CA9BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -452,6 +454,10 @@ Global
 		{BA4A9457-DB7B-4A3E-97C7-147BCC5ABBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA4A9457-DB7B-4A3E-97C7-147BCC5ABBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA4A9457-DB7B-4A3E-97C7-147BCC5ABBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CB7B3D-E62B-4300-9092-F2D3777CA9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CB7B3D-E62B-4300-9092-F2D3777CA9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CB7B3D-E62B-4300-9092-F2D3777CA9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CB7B3D-E62B-4300-9092-F2D3777CA9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -544,6 +550,7 @@ Global
 		{D24427F2-3302-49B9-8B62-4BDB59F737BA} = {0740BEA8-0D4E-4E90-B03F-9F9AB2B380C4}
 		{3A8E141F-EC52-446E-97FA-C91008B56228} = {0740BEA8-0D4E-4E90-B03F-9F9AB2B380C4}
 		{BA4A9457-DB7B-4A3E-97C7-147BCC5ABBC8} = {0740BEA8-0D4E-4E90-B03F-9F9AB2B380C4}
+		{74CB7B3D-E62B-4300-9092-F2D3777CA9BC} = {7FED1CCB-40C0-43F0-8608-3725EFA17797}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {814A5486-0EE4-4BD6-8DB7-B07D3B51C4BB}
