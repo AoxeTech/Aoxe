@@ -15,7 +15,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="dotnet-etcd" Version="7.0.0" />
+		<PackageReference Include="dotnet-etcd" Version="7.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 	</ItemGroup>
 </Project>
