@@ -1,5 +1,3 @@
-using Aoxe.Extensions.Configuration.Parser.Json;
-
 namespace Aoxe.Extensions.Configuration.Consul.Test;
 
 public class UnitTest1
