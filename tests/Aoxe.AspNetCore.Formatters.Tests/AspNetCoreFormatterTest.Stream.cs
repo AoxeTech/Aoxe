@@ -2,7 +2,7 @@ namespace Aoxe.AspNetCore.Formatters.Tests;
 
 public partial class FormatterTest
 {
-    public async Task StreamFormatterAsync(IStreamSerializer streamSerializer, string mediaType)
+    private async Task StreamFormatterAsync(IStreamSerializer streamSerializer, string mediaType)
     {
         var dtos = GetDtos();
 
@@ -19,7 +19,10 @@ public partial class FormatterTest
         Assert.True(CompareDtos(dtos, result));
     }
 
-    public async Task StreamFormatterNullAsync(IStreamSerializer streamSerializer, string mediaType)
+    private async Task StreamFormatterNullAsync(
+        IStreamSerializer streamSerializer,
+        string mediaType
+    )
     {
         var httpRequestMessage = CreateHttpRequestMessage(
             new StreamContent(streamSerializer.ToStream<List<TestDto>>(null)),
