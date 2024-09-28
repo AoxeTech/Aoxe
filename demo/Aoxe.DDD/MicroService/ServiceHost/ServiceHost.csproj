@@ -7,7 +7,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.8" NoWarn="NU1605" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
 		<PackageReference Include="Aoxe.NewtonsoftJson" Version="2024.1.1" />
-		<PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.1" />
+		<PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\src\Architecture\DDD\Aoxe.DDD.MessageBus.RabbitMQ\Aoxe.DDD.MessageBus.RabbitMQ.csproj" />

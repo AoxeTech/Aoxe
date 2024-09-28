@@ -1,3 +1,5 @@
+using Aoxe.RabbitMQ;
+
 namespace ServiceHost;
 
 public class Startup
@@ -28,20 +30,17 @@ public class Startup
             .AddSingleton<ITextSerializer, Serializer>()
             //注册RabbitMQ以用于消息总线
             .AddSingleton<IMessageBus, MessageBus>()
-            .AddSingleton<IAoxeRabbitMqClient>(
-                _ =>
-                    new AoxeRabbitMqClient(
-                        new AoxeRabbitMqOptions
-                        {
-                            AutomaticRecoveryEnabled = true,
-                            HeartBeat = TimeSpan.FromMinutes(1),
-                            NetworkRecoveryInterval = new TimeSpan(60),
-                            Hosts = new List<string> { "192.168.78.150" },
-                            UserName = "admin",
-                            Password = "123",
-                            Serializer = new Serializer()
-                        }
-                    )
+            .AddAoxeRabbitMq(
+                new AoxeRabbitMqOptions
+                {
+                    AutomaticRecoveryEnabled = true,
+                    HeartBeat = TimeSpan.FromMinutes(1),
+                    NetworkRecoveryInterval = new TimeSpan(60),
+                    Hosts =  ["192.168.78.150"],
+                    UserName = "admin",
+                    Password = "123",
+                    Serializer = new Serializer()
+                }
             )
         // .AddHostedService<DomainEventBackgroundService>()
         ;

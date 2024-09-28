@@ -6,8 +6,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" NoWarn="NU1605" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.8" NoWarn="NU1605" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
-		<PackageReference Include="Npgsql" Version="8.0.3" />
-		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="Npgsql" Version="8.0.4" />
+		<PackageReference Include="Scrutor" Version="5.0.1" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 	</ItemGroup>
 	<ItemGroup>

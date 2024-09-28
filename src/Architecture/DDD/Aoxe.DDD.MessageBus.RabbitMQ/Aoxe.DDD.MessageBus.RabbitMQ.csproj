@@ -23,7 +23,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Aoxe.RabbitMQ.Abstractions" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.RabbitMQ.Abstractions" Version="2024.1.1" />
 		<PackageReference Include="Aoxe.DDD.Abstractions" Version="2024.2.0" />
 	</ItemGroup>
 	

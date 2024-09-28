@@ -7,12 +7,7 @@ public interface IMessageHandler<in TMessage> : IMessageHandler
     void Handle(TMessage message);
 }
 
-public class MessageHandlerAttribute : Attribute
+public class MessageHandlerAttribute(string handleName) : Attribute
 {
-    public string HandleName { get; }
-
-    public MessageHandlerAttribute(string handleName)
-    {
-        HandleName = handleName.Trim();
-    }
+    public string HandleName { get; } = handleName.Trim();
 }
