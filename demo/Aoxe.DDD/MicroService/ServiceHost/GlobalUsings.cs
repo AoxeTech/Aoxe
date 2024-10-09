@@ -6,7 +6,6 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using Aoxe.DDD;
 global using Aoxe.DDD.Abstractions.Infrastructure.Messaging;
-global using Aoxe.DDD.MessageBus.RabbitMQ;
 global using Aoxe.NewtonsoftJson;
 global using Aoxe.RabbitMQ.Abstractions;
 global using Aoxe.RabbitMQ.Client;
