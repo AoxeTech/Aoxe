@@ -20,8 +20,7 @@ public class DomainEventPublisher(IMessageBus messageBus, IServiceProvider servi
                 await Task.Delay(100 - ms.Milliseconds, cancellationToken);
 
             var unpublishedMessages = aoxeDddContext
-                .UnpublishedMessages
-                .OrderBy(p => p.PersistenceUtcTime)
+                .UnpublishedMessages.OrderBy(p => p.PersistenceUtcTime)
                 .Take(100)
                 .ToList();
 
@@ -29,12 +28,10 @@ public class DomainEventPublisher(IMessageBus messageBus, IServiceProvider servi
                 await messageBus.PublishAsync(unpublishedMessage.MessageType, unpublishedMessage);
 
             aoxeDddContext.UnpublishedMessages.RemoveRange(unpublishedMessages);
-            await aoxeDddContext
-                .PublishedMessages
-                .AddRangeAsync(
-                    unpublishedMessages.Select(p => new AoxePublishedMessage(p)),
-                    cancellationToken
-                );
+            await aoxeDddContext.PublishedMessages.AddRangeAsync(
+                unpublishedMessages.Select(p => new AoxePublishedMessage(p)),
+                cancellationToken
+            );
 
             await aoxeDddContext.SaveChangesAsync(cancellationToken);
             lastPublishTime = DateTime.UtcNow;

@@ -20,6 +20,6 @@
 		<PackageReference Include="Aoxe.DDD" Version="2024.3.1" />
 		<PackageReference Include="Aoxe.Server" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.ThreeTier" Version="2024.1.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
 	</ItemGroup>
 </Project>

@@ -3,10 +3,10 @@
 		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" NoWarn="NU1605" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.8" NoWarn="NU1605" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
-		<PackageReference Include="Aoxe.NewtonsoftJson" Version="2024.2.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.10" NoWarn="NU1605" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+		<PackageReference Include="Aoxe.NewtonsoftJson" Version="2024.3.0" />
 		<PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.5" />
 	</ItemGroup>
 	<ItemGroup>

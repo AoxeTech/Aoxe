@@ -10,7 +10,7 @@
 		<ProjectReference Include="..\CarolSystem\CarolServices\CarolServices.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
 		<PackageReference Include="Aoxe.AspNetCore.Formatters.Jil" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.AspNetCore.Formatters.MsgPack" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.AspNetCore.Formatters.Protobuf" Version="2024.1.0" />

@@ -36,30 +36,24 @@ public class AoxeDddContext(DbContextOptions options, ITextSerializer serializer
     private void PersistenceDomainEvents()
     {
         var messages = TakeAwayDomainEvents()
-            .Select(
-                domainEvent =>
-                    new AoxeUnpublishedMessage(
-                        SequentialGuidHelper.GenerateComb(),
-                        domainEvent.GetType().ToString(),
-                        serializer.ToText(domainEvent),
-                        DateTime.UtcNow
-                    )
-            );
+            .Select(domainEvent => new AoxeUnpublishedMessage(
+                SequentialGuidHelper.GenerateComb(),
+                domainEvent.GetType().ToString(),
+                serializer.ToText(domainEvent),
+                DateTime.UtcNow
+            ));
         UnpublishedMessages.AddRange(messages);
     }
 
     private async Task PersistenceDomainEventsAsync()
     {
         var messages = TakeAwayDomainEvents()
-            .Select(
-                domainEvent =>
-                    new AoxeUnpublishedMessage(
-                        SequentialGuidHelper.GenerateComb(),
-                        domainEvent.GetType().ToString(),
-                        serializer.ToText(domainEvent),
-                        DateTime.UtcNow
-                    )
-            );
+            .Select(domainEvent => new AoxeUnpublishedMessage(
+                SequentialGuidHelper.GenerateComb(),
+                domainEvent.GetType().ToString(),
+                serializer.ToText(domainEvent),
+                DateTime.UtcNow
+            ));
         await UnpublishedMessages.AddRangeAsync(messages);
     }
 

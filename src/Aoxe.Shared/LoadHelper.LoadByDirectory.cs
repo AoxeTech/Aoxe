@@ -10,11 +10,10 @@ public static partial class LoadHelper
 
     private static List<Type> LoadFromDirectories(params string[] directories)
     {
-        var files = directories.SelectMany(
-            dir =>
-                Directory
-                    .GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
-                    .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories))
+        var files = directories.SelectMany(dir =>
+            Directory
+                .GetFiles(dir + @"/", "*.dll", SearchOption.AllDirectories)
+                .Union(Directory.GetFiles(dir + @"/", "*.exe", SearchOption.AllDirectories))
         );
 
         var result = files
