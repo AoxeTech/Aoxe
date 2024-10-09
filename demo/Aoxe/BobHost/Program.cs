@@ -1,29 +1,11 @@
-﻿using System.Collections.Generic;
-using Aoxe;
-using Aoxe.AspNetCore.Formatters.Jil;
-using Aoxe.AspNetCore.Formatters.MsgPack;
-using Aoxe.AspNetCore.Formatters.Protobuf;
-using Aoxe.AspNetCore.Formatters.Utf8Json;
-using Aoxe.AspNetCore.Formatters.ZeroFormatter;
-using Aoxe.Client.Http.MsgPack;
-using Aoxe.Server;
-using BobServices;
-using IAliceServices;
-using IBobServices;
-using ICarolServices;
-using Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace BobHost;
+﻿namespace BobHost;
 
 class Program
 {
     public static void Main(string[] args)
     {
         AoxeHost
-            .Instance
-            .FromAssemblyOf<IAliceService>()
+            .Instance.FromAssemblyOf<IAliceService>()
             .FromAssemblyOf(typeof(IBobService))
             .FromAssemblies(typeof(ICarolService).Assembly)
             .FromAssemblyNames(typeof(BobService).Assembly.GetName())

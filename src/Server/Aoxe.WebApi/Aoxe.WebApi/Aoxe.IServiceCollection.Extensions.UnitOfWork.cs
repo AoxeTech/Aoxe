@@ -1,4 +1,4 @@
-namespace Aoxe.Server;
+namespace Aoxe.WebApi;
 
 public static partial class AoxeIServiceCollectionExtensions
 {

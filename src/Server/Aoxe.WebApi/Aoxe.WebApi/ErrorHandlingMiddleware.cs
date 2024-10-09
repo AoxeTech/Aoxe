@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Server;
+﻿namespace Aoxe.WebApi;
 
 internal class ErrorHandlingMiddleware(RequestDelegate next)
 {

@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Server;
+﻿namespace Aoxe.WebApi;
 
 internal class AoxeActionModelConvention : IActionModelConvention
 {
@@ -15,9 +15,9 @@ internal class AoxeActionModelConvention : IActionModelConvention
         var route =
             _serviceType.GetCustomAttribute(typeof(RouteAttribute), false) as RouteAttribute;
         var template = $"{_serviceType.FullName?.Replace('.', '/')}/[action]";
-        action
-            .Selectors
-            .Add(CreateSelector(route ?? new RouteAttribute(template) { Name = template }));
+        action.Selectors.Add(
+            CreateSelector(route ?? new RouteAttribute(template) { Name = template })
+        );
 
         foreach (var parameter in action.Parameters)
         {
@@ -33,9 +33,9 @@ internal class AoxeActionModelConvention : IActionModelConvention
             AttributeRouteModel = new AttributeRouteModel(routeTemplateProvider)
         };
 
-        selectorModel
-            .ActionConstraints
-            .Add(new HttpMethodActionConstraint(new List<string> { "POST" }));
+        selectorModel.ActionConstraints.Add(
+            new HttpMethodActionConstraint(new List<string> { "POST" })
+        );
 
         return selectorModel;
     }

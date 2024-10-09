@@ -4,15 +4,14 @@
 		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Jil\Aoxe.Client.Http.Jil.csproj" />
+		<ProjectReference Include="..\..\..\src\Aoxe\Aoxe.csproj" />
 		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.MsgPack\Aoxe.Client.Http.MsgPack.csproj" />
 		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Utf8Json\Aoxe.Client.Http.Utf8Json.csproj" />
-		<ProjectReference Include="..\..\..\src\Aoxe\Aoxe.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" />
 		<ProjectReference Include="..\BobSystem\BobServices\BobServices.csproj" />
 	</ItemGroup>
 	<ItemGroup>

@@ -1,23 +1,3 @@
-using System.Collections.Generic;
-using Aoxe.AspNetCore.Formatters.Jil;
-using Aoxe.AspNetCore.Formatters.MsgPack;
-using Aoxe.AspNetCore.Formatters.Protobuf;
-using Aoxe.AspNetCore.Formatters.Utf8Json;
-using Aoxe.AspNetCore.Formatters.ZeroFormatter;
-using Aoxe.Client.Http;
-using Aoxe.Client.Http.Utf8Json;
-using Aoxe.Server;
-using Aoxe.Shared;
-using CarolServices;
-using IAliceServices;
-using IBobServices;
-using ICarolServices;
-using Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace CarolHost;
 
 public class Startup

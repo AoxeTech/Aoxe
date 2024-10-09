@@ -1,9 +1,9 @@
 // using System;
 // using System.Linq;
 // using Aoxe.RabbitMQ.Abstractions;
-// using Aoxe.Server.Abstractions;
+// using Aoxe.WebApi.Abstractions;
 //
-// namespace Aoxe.Server.MessageHub.RabbitMQ
+// namespace Aoxe.WebApi.MessageHub.RabbitMQ
 // {
 //     public static class AoxeServerExtension
 //     {

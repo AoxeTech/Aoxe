@@ -1,7 +1,7 @@
 global using System.Data;
-global using Aoxe.Server;
 global using Aoxe.ThreeTier;
 global using Aoxe.ThreeTier.Abstractions.BusinessLogic;
+global using Aoxe.WebApi;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Hosting;
 global using Microsoft.Extensions.Configuration;

@@ -3,19 +3,17 @@
 		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Jil\Aoxe.Client.Http.Jil.csproj" />
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.Utf8Json\Aoxe.Client.Http.Utf8Json.csproj" />
-		<ProjectReference Include="..\..\..\src\Client\Http\Formatters\Aoxe.Client.Http.MsgPack\Aoxe.Client.Http.MsgPack.csproj" />
-		<ProjectReference Include="..\..\..\src\Server\Aoxe.Server\Aoxe.Server.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj" />
 		<ProjectReference Include="..\CarolSystem\CarolServices\CarolServices.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Aoxe.Client.Http.Utf8Json" Version="2024.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Jil" Version="2024.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.MsgPack" Version="2024.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Protobuf" Version="2024.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.Utf8Json" Version="2024.1.0" />
-		<PackageReference Include="Aoxe.AspNetCore.Formatters.ZeroFormatter" Version="2024.1.0" />
 		<PackageReference Include="Aoxe.Client.Http" Version="2024.1.0" />
 	</ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Server;
+﻿namespace Aoxe.WebApi;
 
 public static partial class AoxeIServiceCollectionExtensions
 {
@@ -108,16 +108,14 @@ public static partial class AoxeIServiceCollectionExtensions
             })
             .ConfigureApplicationPartManager(manager =>
             {
-                manager
-                    .FeatureProviders
-                    .Add(
-                        new AoxeAppServiceControllerFeatureProvider(
-                            typePairs
-                                .Where(t => t.ImplementationType is not null)
-                                .Select(t => t.ImplementationType)
-                                .ToList()
-                        )
-                    );
+                manager.FeatureProviders.Add(
+                    new AoxeAppServiceControllerFeatureProvider(
+                        typePairs
+                            .Where(t => t.ImplementationType is not null)
+                            .Select(t => t.ImplementationType)
+                            .ToList()
+                    )
+                );
             });
         return services;
     }
