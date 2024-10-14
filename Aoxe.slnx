@@ -1,0 +1,106 @@
+﻿<Solution>
+  <Folder Name="/demo/">
+    <Project Path="demo\Aoxe.AspNetCore.Formatters.Demo\Aoxe.AspNetCore.Formatters.Demo.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/demo/Aoxe.DDD/" />
+  <Folder Name="/demo/Aoxe.DDD/BackendForFrontend/">
+    <Project Path="demo\Aoxe.DDD\BackendForFrontend\BackendForBrowser\BackendForBrowser.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.DDD\BackendForFrontend\QueryService\QueryService.csproj" Type="Classic C#" />
+    <File Path="demo\Aoxe.DDD\BackendForFrontend\README.md" />
+  </Folder>
+  <Folder Name="/demo/Aoxe.DDD/MicroService/">
+    <Project Path="demo\Aoxe.DDD\MicroService\Application\Application.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.DDD\MicroService\Domain\Domain.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.DDD\MicroService\Repository\Repository.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.DDD\MicroService\ServiceHost\ServiceHost.csproj" Type="Classic C#" />
+    <File Path="demo\Aoxe.DDD\MicroService\README.md" />
+  </Folder>
+  <Folder Name="/demo/Aoxe.ThreeTier/">
+    <Project Path="demo\Aoxe.ThreeTier\BusinessLogicLayer\BusinessLogicLayer.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.ThreeTier\ConsoleHost\ConsoleHost.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.ThreeTier\DataAccessLayer\DataAccessLayer.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.ThreeTier\Model\Model.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe.ThreeTier\WebApiHost\WebApiHost.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/demo/Aoxe/">
+    <Project Path="demo\Aoxe\AliceHost\AliceHost.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\BobHost\BobHost.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\CarolHost\CarolHost.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\Interfaces\Interfaces.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/demo/Aoxe/AliceSystem/">
+    <Project Path="demo\Aoxe\AliceSystem\AliceServices\AliceServices.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\AliceSystem\IAliceServices\IAliceServices.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/demo/Aoxe/BobSystem/">
+    <Project Path="demo\Aoxe\BobSystem\BobServices\BobServices.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\BobSystem\IBobServices\IBobServices.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/demo/Aoxe/CarolSystem/">
+    <Project Path="demo\Aoxe\CarolSystem\CarolServices\CarolServices.csproj" Type="Classic C#" />
+    <Project Path="demo\Aoxe\CarolSystem\ICarolServices\ICarolServices.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/perf/" />
+  <Folder Name="/src/">
+    <Project Path="src\Aoxe.Core\Aoxe.Core.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe.Shared\Aoxe.Shared.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe\Aoxe.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Architecture/" />
+  <Folder Name="/src/Architecture/DDD/">
+    <Project Path="src\Architecture\DDD\Aoxe.DDD.Abstractions\Aoxe.DDD.Abstractions.csproj" Type="Classic C#" />
+    <Project Path="src\Architecture\DDD\Aoxe.DDD.MessageBus.RabbitMQ\Aoxe.DDD.MessageBus.RabbitMQ.csproj" Type="Classic C#" />
+    <Project Path="src\Architecture\DDD\Aoxe.DDD.MessageBus.ZeroMQ\Aoxe.DDD.MessageBus.ZeroMQ.csproj" Type="Classic C#" />
+    <Project Path="src\Architecture\DDD\Aoxe.DDD\Aoxe.DDD.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Architecture/ThreeTier/">
+    <Project Path="src\Architecture\ThreeTier\Aoxe.ThreeTier.Abstractions\Aoxe.ThreeTier.Abstractions.csproj" Type="Classic C#" />
+    <Project Path="src\Architecture\ThreeTier\Aoxe.ThreeTier\Aoxe.ThreeTier.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Client/" />
+  <Folder Name="/src/Client/Grpc/">
+    <Project Path="src\Client\Grpc\Aoxe.Client.Grpc\Aoxe.Client.Grpc.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Client/Http/">
+    <Project Path="src\Client\Http\Aoxe.Client.Http\Aoxe.Client.Http.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Client/Http/Formatters/">
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Formatter\Aoxe.Client.Http.Formatter.csproj" Type="Classic C#" />
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Jil\Aoxe.Client.Http.Jil.csproj" Type="Classic C#" />
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.MsgPack\Aoxe.Client.Http.MsgPack.csproj" Type="Classic C#" />
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Protobuf\Aoxe.Client.Http.Protobuf.csproj" Type="Classic C#" />
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Utf8Json\Aoxe.Client.Http.Utf8Json.csproj" Type="Classic C#" />
+    <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Zeroformatter\Aoxe.Client.Http.Zeroformatter.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Client/ServiceDiscovery/">
+    <Project Path="src\Client\ServiceDiscovery\Aoxe.ServiceDiscovery.Consul\Aoxe.ServiceDiscovery.Consul.csproj" Type="Classic C#" />
+    <Project Path="src\Client\ServiceDiscovery\Aoxe.ServiceDiscovery.Etcd\Aoxe.ServiceDiscovery.Etcd.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Messaging/">
+    <Project Path="src\Messaging\Aoxe.MessageBus.RabbitMQ\Aoxe.MessageBus.RabbitMQ.csproj" Type="Classic C#" />
+    <Project Path="src\Messaging\Aoxe.MessageBus.ZeroMQ\Aoxe.MessageBus.ZeroMQ.csproj" Type="Classic C#" />
+    <Project Path="src\Messaging\Aoxe.MessageHub.Kafka\Aoxe.MessageHub.Kafka.csproj" Type="Classic C#" />
+    <Project Path="src\Messaging\Aoxe.MessageHub.Redis\Aoxe.MessageHub.Redis.csproj" Type="Classic C#" />
+    <Project Path="src\Messaging\Aoxe.Messaging.Abstractions\Aoxe.Messaging.Abstractions.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Server/">
+    <Project Path="src\Server\Aoxe.Server\Aoxe.Server.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Server/Formatters/">
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj" Type="Classic C#" />
+    <File Path="src\Server\Formatters\README.md" />
+  </Folder>
+  <Folder Name="/src/Server/ServiceRegistration/">
+    <Project Path="src\Server\ServiceRegistration\Aoxe.ServiceRegistration.Consul\Aoxe.ServiceRegistration.Consul.csproj" Type="Classic C#" />
+    <Project Path="src\Server\ServiceRegistration\Aoxe.ServiceRegistration.Etcd\Aoxe.ServiceRegistration.Etcd.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests\Aoxe.AspNetCore.Formatters.Tests\Aoxe.AspNetCore.Formatters.Tests.csproj" Type="Classic C#" />
+    <Project Path="tests\Aoxe.Shared.Test\Aoxe.Shared.Test.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>
