@@ -49,8 +49,6 @@
   <Folder Name="/src/Architecture/" />
   <Folder Name="/src/Architecture/DDD/">
     <Project Path="src\Architecture\DDD\Aoxe.DDD.Abstractions\Aoxe.DDD.Abstractions.csproj" Type="Classic C#" />
-    <Project Path="src\Architecture\DDD\Aoxe.DDD.MessageBus.RabbitMQ\Aoxe.DDD.MessageBus.RabbitMQ.csproj" Type="Classic C#" />
-    <Project Path="src\Architecture\DDD\Aoxe.DDD.MessageBus.ZeroMQ\Aoxe.DDD.MessageBus.ZeroMQ.csproj" Type="Classic C#" />
     <Project Path="src\Architecture\DDD\Aoxe.DDD\Aoxe.DDD.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/src/Architecture/ThreeTier/">
@@ -83,9 +81,6 @@
     <Project Path="src\Messaging\Aoxe.MessageHub.Redis\Aoxe.MessageHub.Redis.csproj" Type="Classic C#" />
     <Project Path="src\Messaging\Aoxe.Messaging.Abstractions\Aoxe.Messaging.Abstractions.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/src/Server/">
-    <Project Path="src\Server\Aoxe.Server\Aoxe.Server.csproj" Type="Classic C#" />
-  </Folder>
   <Folder Name="/src/Server/Formatters/">
     <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" Type="Classic C#" />
     <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" Type="Classic C#" />
@@ -94,10 +89,6 @@
     <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" Type="Classic C#" />
     <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj" Type="Classic C#" />
     <File Path="src\Server\Formatters\README.md" />
-  </Folder>
-  <Folder Name="/src/Server/ServiceRegistration/">
-    <Project Path="src\Server\ServiceRegistration\Aoxe.ServiceRegistration.Consul\Aoxe.ServiceRegistration.Consul.csproj" Type="Classic C#" />
-    <Project Path="src\Server\ServiceRegistration\Aoxe.ServiceRegistration.Etcd\Aoxe.ServiceRegistration.Etcd.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests\Aoxe.AspNetCore.Formatters.Tests\Aoxe.AspNetCore.Formatters.Tests.csproj" Type="Classic C#" />
