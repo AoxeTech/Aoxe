@@ -25,7 +25,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aoxe.Jil" Version="2024.3.0" />
+        <PackageReference Include="Aoxe.Jil" Version="2024.4.0" />
         <PackageReference Include="Aoxe.AspNetCore.Formatters" Version="2024.1.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
             <PrivateAssets>all</PrivateAssets>

@@ -15,14 +15,6 @@ public class Startup
         services
             .AddControllers()
             .AddNewtonsoftJson()
-            .AddJil(
-                jilOptions: new Options(
-                    dateFormat: DateTimeFormat.ISO8601,
-                    excludeNulls: true,
-                    includeInherited: true,
-                    serializationNameFormat: SerializationNameFormat.CamelCase
-                )
-            )
             .AddMsgPack()
             .AddProtobuf()
             .AddUtf8Json()

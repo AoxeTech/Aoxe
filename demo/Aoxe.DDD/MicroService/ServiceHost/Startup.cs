@@ -28,8 +28,6 @@ public class Startup
             .AddDbContext(Configuration)
             //注册序列化器用于包装需要持久化的事件
             .AddSingleton<ITextSerializer, Serializer>()
-            //注册RabbitMQ以用于消息总线
-            .AddSingleton<IMessageBus, MessageBus>()
             .AddAoxeRabbitMq(
                 new AoxeRabbitMqOptions
                 {

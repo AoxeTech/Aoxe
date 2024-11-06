@@ -70,25 +70,24 @@
     <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Utf8Json\Aoxe.Client.Http.Utf8Json.csproj" Type="Classic C#" />
     <Project Path="src\Client\Http\Formatters\Aoxe.Client.Http.Zeroformatter\Aoxe.Client.Http.Zeroformatter.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/src/Client/ServiceDiscovery/">
-    <Project Path="src\Client\ServiceDiscovery\Aoxe.ServiceDiscovery.Consul\Aoxe.ServiceDiscovery.Consul.csproj" Type="Classic C#" />
-    <Project Path="src\Client\ServiceDiscovery\Aoxe.ServiceDiscovery.Etcd\Aoxe.ServiceDiscovery.Etcd.csproj" Type="Classic C#" />
+  <Folder Name="/src/Scheduling/">
+    <Project Path="src\Scheduling\Aoxe.Hangfire\Aoxe.Hangfire.csproj" Type="Classic C#" />
+    <Project Path="src\Scheduling\Aoxe.Quartz\Aoxe.Quartz.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/src/Messaging/">
-    <Project Path="src\Messaging\Aoxe.MessageBus.RabbitMQ\Aoxe.MessageBus.RabbitMQ.csproj" Type="Classic C#" />
-    <Project Path="src\Messaging\Aoxe.MessageBus.ZeroMQ\Aoxe.MessageBus.ZeroMQ.csproj" Type="Classic C#" />
-    <Project Path="src\Messaging\Aoxe.MessageHub.Kafka\Aoxe.MessageHub.Kafka.csproj" Type="Classic C#" />
-    <Project Path="src\Messaging\Aoxe.MessageHub.Redis\Aoxe.MessageHub.Redis.csproj" Type="Classic C#" />
-    <Project Path="src\Messaging\Aoxe.Messaging.Abstractions\Aoxe.Messaging.Abstractions.csproj" Type="Classic C#" />
+  <Folder Name="/src/Server/">
+    <Project Path="src\Server\Aoxe.Grpc\Aoxe.Grpc.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/src/Server/Formatters/">
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" Type="Classic C#" />
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" Type="Classic C#" />
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" Type="Classic C#" />
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" Type="Classic C#" />
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" Type="Classic C#" />
-    <Project Path="src\Server\Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj" Type="Classic C#" />
-    <File Path="src\Server\Formatters\README.md" />
+  <Folder Name="/src/Server/Aoxe.WebApi.Formatters/">
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj" Type="Classic C#" />
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj" Type="Classic C#" />
+    <File Path="src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\README.md" />
+  </Folder>
+  <Folder Name="/src/Server/Aoxe.WebApi/">
+    <Project Path="src\Server\Aoxe.WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests\Aoxe.AspNetCore.Formatters.Tests\Aoxe.AspNetCore.Formatters.Tests.csproj" Type="Classic C#" />
