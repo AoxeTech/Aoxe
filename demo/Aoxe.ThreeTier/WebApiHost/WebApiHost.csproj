@@ -11,7 +11,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Server\Aoxe.WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj" />
 		<ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
 	</ItemGroup>
 	

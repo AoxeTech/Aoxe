@@ -51,8 +51,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.Quartz", "src\Scheduli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{A18FDA34-DE1A-4515-9F65-B36013BD7376}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.Grpc", "src\Server\Aoxe.Grpc\Aoxe.Grpc.csproj", "{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AliceSystem", "AliceSystem", "{5EFFF392-4FE5-4144-9BEE-0547061EF84E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AliceServices", "demo\Aoxe\AliceSystem\AliceServices\AliceServices.csproj", "{135CF396-1894-40CA-96AC-F12FCBA1924E}"
@@ -113,9 +111,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Http", "Http", "{8A05305F-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.Client.Http", "src\Client\Http\Aoxe.Client.Http\Aoxe.Client.Http.csproj", "{DC9097A7-C30F-4B97-8B98-1AE79D525E2C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aoxe.WebApi", "Aoxe.WebApi", "{E1C7FAAE-E76D-4FA5-9AFC-0AD71E5B2300}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{E1C7FAAE-E76D-4FA5-9AFC-0AD71E5B2300}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.WebApi", "src\Server\Aoxe.WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj", "{C014DF4C-08FE-49B6-83B4-D2C699C8E575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.WebApi", "src\Server\WebApi\Aoxe.WebApi\Aoxe.WebApi.csproj", "{C014DF4C-08FE-49B6-83B4-D2C699C8E575}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formatters", "Formatters", "{5764E5FB-015D-4B46-9B09-821396127BC6}"
 EndProject
@@ -133,17 +131,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.Client.Http.Zeroformat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aoxe.WebApi.Formatters", "Aoxe.WebApi.Formatters", "{542A5CA2-4552-4DA8-BDAA-07181A164541}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj", "{02954E8D-7471-47BB-AC96-FBFC67213446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters\Aoxe.AspNetCore.Formatters.csproj", "{02954E8D-7471-47BB-AC96-FBFC67213446}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Jil", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj", "{7FB0D9F3-D596-43FD-8B38-3E773E8D5A57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Jil", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj", "{7FB0D9F3-D596-43FD-8B38-3E773E8D5A57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.MsgPack", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj", "{C11A4758-276F-4BFD-99ED-D8A99CEA3F80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.MsgPack", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj", "{C11A4758-276F-4BFD-99ED-D8A99CEA3F80}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Protobuf", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj", "{C9C6ECB4-CA81-409E-B7C8-DB9F1E05058E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Protobuf", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj", "{C9C6ECB4-CA81-409E-B7C8-DB9F1E05058E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Utf8Json", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj", "{C02B0F95-0B2A-48DD-B347-2F18DF68EA65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.Utf8Json", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Utf8Json\Aoxe.AspNetCore.Formatters.Utf8Json.csproj", "{C02B0F95-0B2A-48DD-B347-2F18DF68EA65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.ZeroFormatter", "src\Server\Aoxe.WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj", "{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aoxe.AspNetCore.Formatters.ZeroFormatter", "src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.ZeroFormatter\Aoxe.AspNetCore.Formatters.ZeroFormatter.csproj", "{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{C8B3B393-FED9-4C1A-8C39-5271199ACFE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aoxe.Grpc", "src\Server\Grpc\Aoxe.Grpc\Aoxe.Grpc.csproj", "{06F93311-548F-4602-8E70-1223012B2DA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,10 +221,6 @@ Global
 		{F1576120-F814-4052-A5D7-3B8CF925BAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1576120-F814-4052-A5D7-3B8CF925BAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1576120-F814-4052-A5D7-3B8CF925BAEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{135CF396-1894-40CA-96AC-F12FCBA1924E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{135CF396-1894-40CA-96AC-F12FCBA1924E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{135CF396-1894-40CA-96AC-F12FCBA1924E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -347,6 +345,10 @@ Global
 		{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F93311-548F-4602-8E70-1223012B2DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F93311-548F-4602-8E70-1223012B2DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F93311-548F-4602-8E70-1223012B2DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F93311-548F-4602-8E70-1223012B2DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -373,7 +375,6 @@ Global
 		{05DC52E7-F1AB-418B-BC1E-A72BE8DE0C44} = {277111B4-9FD0-48D6-8BA1-DC8B9A246927}
 		{F1576120-F814-4052-A5D7-3B8CF925BAEF} = {277111B4-9FD0-48D6-8BA1-DC8B9A246927}
 		{A18FDA34-DE1A-4515-9F65-B36013BD7376} = {650DD39C-0A1D-404F-BD7D-2D7B2107E8B6}
-		{DDA184E8-5A8B-4CA1-BFF3-FCC8A86083DF} = {A18FDA34-DE1A-4515-9F65-B36013BD7376}
 		{5EFFF392-4FE5-4144-9BEE-0547061EF84E} = {B7E13C3C-1B68-41B6-9914-E17EC9874E0E}
 		{135CF396-1894-40CA-96AC-F12FCBA1924E} = {5EFFF392-4FE5-4144-9BEE-0547061EF84E}
 		{D45D9D58-5A29-4131-BC56-3C92E3DEB547} = {5EFFF392-4FE5-4144-9BEE-0547061EF84E}
@@ -420,6 +421,8 @@ Global
 		{C9C6ECB4-CA81-409E-B7C8-DB9F1E05058E} = {542A5CA2-4552-4DA8-BDAA-07181A164541}
 		{C02B0F95-0B2A-48DD-B347-2F18DF68EA65} = {542A5CA2-4552-4DA8-BDAA-07181A164541}
 		{758DD4EF-F1E0-48C9-9C46-B3C4370CE84B} = {542A5CA2-4552-4DA8-BDAA-07181A164541}
+		{C8B3B393-FED9-4C1A-8C39-5271199ACFE4} = {A18FDA34-DE1A-4515-9F65-B36013BD7376}
+		{06F93311-548F-4602-8E70-1223012B2DA4} = {C8B3B393-FED9-4C1A-8C39-5271199ACFE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E41A67F9-EB77-48CD-B5D3-A81ACEDD96C0}
