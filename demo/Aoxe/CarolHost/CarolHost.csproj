@@ -3,6 +3,8 @@
 		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Client\Grpc\Aoxe.Client.Grpc\Aoxe.Client.Grpc.csproj" />
+		<ProjectReference Include="..\..\..\src\Server\Grpc\Aoxe.Grpc\Aoxe.Grpc.csproj" />
 		<ProjectReference Include="..\..\..\src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Jil\Aoxe.AspNetCore.Formatters.Jil.csproj" />
 		<ProjectReference Include="..\..\..\src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.MsgPack\Aoxe.AspNetCore.Formatters.MsgPack.csproj" />
 		<ProjectReference Include="..\..\..\src\Server\WebApi\Aoxe.WebApi.Formatters\Aoxe.AspNetCore.Formatters.Protobuf\Aoxe.AspNetCore.Formatters.Protobuf.csproj" />

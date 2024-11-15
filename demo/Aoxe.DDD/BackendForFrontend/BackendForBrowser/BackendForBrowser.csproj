@@ -7,7 +7,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.10" NoWarn="NU1605" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
 		<PackageReference Include="Npgsql" Version="8.0.5" />
-		<PackageReference Include="Scrutor" Version="5.0.1" />
+		<PackageReference Include="Scrutor" Version="5.0.2" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 	</ItemGroup>
 	<ItemGroup>
